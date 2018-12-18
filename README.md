@@ -8,6 +8,6 @@ A game by Furniture Corp.
 
 - [x] Påbörja readme
 - [x] Skapa .gitignore för pythonprojekt
-- [ ] Importera mall från arcade library
+- [x] Importera mall från arcade library
 - [ ] Visa en fisk
 - [ ] Funktion för att avsluta (tex tryck på `esc` eller liknande)
