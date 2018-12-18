@@ -1,11 +1,9 @@
 """
-Starting Template
+Aqua Fish
 
-Once you have learned how to use classes, you can begin your program with this
-template.
+A game by furniture corporation
 
-If Python and Arcade are installed, this example can be run from the command line with:
-python -m arcade.examples.starting_template
+https://github.com/owlnical/fc-aqua-fish
 """
 import arcade
 
