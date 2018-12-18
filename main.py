@@ -7,6 +7,7 @@ https://github.com/owlnical/fc-aqua-fish
 """
 import arcade
 
+VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -86,7 +87,7 @@ class MyGame(arcade.Window):
 
 
 def main():
-    """ Main method """
+    print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     game.setup()
     arcade.run()
