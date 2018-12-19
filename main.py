@@ -84,6 +84,9 @@ class MyGame(arcade.Window):
         # Avsluta AL
         if (key == arcade.key.Q):
             arcade.window_commands.close_window()
+        # Starta om
+        elif (key == arcade.key.R):
+            self.setup()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
