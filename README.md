@@ -24,6 +24,9 @@ A game by Furniture Corp.
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [ ] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
+- [ ] Någon form av klickbar knapp
+- [ ] Game state (Running, Paused osv)
+- [ ] En knapp som gör något (new game? Exit?)
 
 ## Tutorials / Dokumentation
 
