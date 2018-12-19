@@ -1,6 +1,6 @@
 # Aqua Fish
 
-A game by Furniture Corp.
+A game by Furniture Corp. The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
 
 ## Roadmap
 
