@@ -5,11 +5,13 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
-import arcade
+import arcade, random
 
 VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+SPRITE_SCALING_JELLY = 0.1
 
 # Test att ändra två filer samtidigt
 
@@ -30,10 +32,16 @@ class MyGame(arcade.Window):
 
         # If you have sprite lists, you should create them here,
         # and set them to None
+        self.pfish_list = None
+        #self.player_list = None
 
     def setup(self):
         # Create your sprites and sprite lists here
-        pass
+        self.pfish_list = arcade.SpriteList()
+        pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_JELLY)
+        pfish.center_x = 0.9*random.randrange(SCREEN_WIDTH)
+        pfish.center_y = 0.9*random.randrange(SCREEN_HEIGHT)
+        self.pfish_list.append(pfish)
 
     def on_draw(self):
         """
@@ -43,6 +51,7 @@ class MyGame(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
+        self.pfish_list.draw()
 
         # Call draw() on all your sprite lists below
 
