@@ -33,17 +33,21 @@ class MyGame(arcade.Window):
 
         # If you have sprite lists, you should create them here,
         # and set them to None
-        self.pfish_list = None
+
+        self.pfish_list = None                  # Skapa en lista där lila fiskar kommer simma
+                                                # (Jag fattar inte varför den måste in här)
         #self.player_list = None
 
     def setup(self):
         # Create your sprites and sprite lists here
-        self.pfish_list = arcade.SpriteList()
+
+        self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
+        # Loop som skapar "PFISH_NUMBER" många lila fiskar
         for i in range(PFISH_NUMBER):
             pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
-            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)
+            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)     # Detta placerar dem random inom 80 % från mitten
             pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)
-            self.pfish_list.append(pfish)
+            self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
     def on_draw(self):
         """
