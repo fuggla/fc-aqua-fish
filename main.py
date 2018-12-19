@@ -11,7 +11,8 @@ VERSION = 0.1
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-SPRITE_SCALING_JELLY = 0.1
+SPRITE_SCALING_PFISH = 0.1
+PFISH_NUMBER = 3
 
 # Test att ändra två filer samtidigt
 
@@ -38,10 +39,11 @@ class MyGame(arcade.Window):
     def setup(self):
         # Create your sprites and sprite lists here
         self.pfish_list = arcade.SpriteList()
-        pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_JELLY)
-        pfish.center_x = 0.9*random.randrange(SCREEN_WIDTH)
-        pfish.center_y = 0.9*random.randrange(SCREEN_HEIGHT)
-        self.pfish_list.append(pfish)
+        for i in range(PFISH_NUMBER):
+            pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
+            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)
+            pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)
+            self.pfish_list.append(pfish)
 
     def on_draw(self):
         """

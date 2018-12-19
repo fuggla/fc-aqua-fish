@@ -23,7 +23,7 @@ A game by Furniture Corp.
 - [ ] Få fisken att röra sig inom skärmen
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [ ] Få fisken att röra sig någorlunda trovärdigt
-- [ ] Lägg till flera (likadana) fiskar
+- [x] Lägg till flera (likadana) fiskar
 
 ## Tutorials / Dokumentation
 
