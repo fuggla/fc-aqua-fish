@@ -15,5 +15,6 @@ A game by Furniture Corp.
 - [x] Påbörja readme
 - [x] Skapa .gitignore för pythonprojekt
 - [x] Importera mall från arcade library
+- [x] Ändra färg påbakgrund
 - [ ] Visa en fisk
 - [ ] Funktion för att avsluta (tex tryck på `esc` eller liknande)

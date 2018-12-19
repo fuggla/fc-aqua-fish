@@ -11,6 +11,7 @@ VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+# Test att ändra två filer samtidigt
 
 class MyGame(arcade.Window):
     """
