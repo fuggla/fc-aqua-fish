@@ -5,6 +5,7 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
+from collections import namedtuple
 import arcade
 
 VERSION = 0.0
