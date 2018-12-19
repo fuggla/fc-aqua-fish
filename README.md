@@ -17,7 +17,7 @@ A game by Furniture Corp.
 - [x] Importera mall från arcade library
 - [x] Ändra färg påbakgrund
 - [ ] Visa en fisk
-- [ ] Funktion för att avsluta (tex tryck på `esc` eller liknande)
+- [x] Funktion för att avsluta (tex tryck på `esc` eller liknande)
 
 ## Tutorials / Dokumentation
 
