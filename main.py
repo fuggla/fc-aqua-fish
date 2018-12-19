@@ -74,7 +74,7 @@ class MyGame(arcade.Window):
         # Se: http://arcade.academy/arcade.key.html
     def on_key_release(self, key, key_modifiers):
         # Avsluta AL
-        if (key == keycode.q)
+        if (key == keycode.q):
             arcade.window_commands.close_window()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
