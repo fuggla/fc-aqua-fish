@@ -11,6 +11,9 @@ VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+# Keys
+KEY_Q = 113
+
 # Test att ändra två filer samtidigt
 
 class MyGame(arcade.Window):
@@ -63,11 +66,12 @@ class MyGame(arcade.Window):
         """
         pass
 
+        # key är en int
+        # Se: http://arcade.academy/arcade.key.html
     def on_key_release(self, key, key_modifiers):
-        """
-        Called whenever the user lets off a previously pressed key.
-        """
-        pass
+        # Avsluta AL
+        if (key == KEY_Q):
+            arcade.window_commands.close_window()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
