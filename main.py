@@ -11,6 +11,7 @@ VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+# Test att ändra två filer samtidigt
 
 class MyGame(arcade.Window):
     """
@@ -24,7 +25,8 @@ class MyGame(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        # BLUE_SAPPHIRE eller BLUE_YONDER, båda är rätt snygga
+        arcade.set_background_color(arcade.color.BLUE_YONDER)
 
         # If you have sprite lists, you should create them here,
         # and set them to None
@@ -61,11 +63,12 @@ class MyGame(arcade.Window):
         """
         pass
 
+        # key är en int
+        # Se: http://arcade.academy/arcade.key.html
     def on_key_release(self, key, key_modifiers):
-        """
-        Called whenever the user lets off a previously pressed key.
-        """
-        pass
+        # Avsluta AL
+        if (key == arcade.key.Q):
+            arcade.window_commands.close_window()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
