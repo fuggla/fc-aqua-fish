@@ -12,8 +12,11 @@ VERSION = 0.0
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-# Keys
-KEY_Q = 113
+# Lista med de key codes som behövs (http://arcade.academy/arcade.key.html)
+# namedtuple istället för dict för att kunna använda:
+# keycode.q istället för keycode["q"]
+Key = namedtuple("Key", "q")
+keycode = Key(q=113)
 
 # Test att ändra två filer samtidigt
 
@@ -71,7 +74,7 @@ class MyGame(arcade.Window):
         # Se: http://arcade.academy/arcade.key.html
     def on_key_release(self, key, key_modifiers):
         # Avsluta AL
-        if (key == KEY_Q):
+        if (key == keycode.q)
             arcade.window_commands.close_window()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
