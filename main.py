@@ -7,7 +7,7 @@ https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random
 
-VERSION = 0.0
+VERSION = 0.1
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 

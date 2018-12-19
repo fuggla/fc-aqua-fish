@@ -16,8 +16,14 @@ A game by Furniture Corp.
 - [x] Skapa .gitignore för pythonprojekt
 - [x] Importera mall från arcade library
 - [x] Ändra färg påbakgrund
-- [ ] Visa en fisk
+- [x] Visa en fisk
 - [x] Funktion för att avsluta (tex tryck på `esc` eller liknande)
+
+### v0.2
+- [ ] Få fisken att röra sig inom skärmen
+- [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
+- [ ] Få fisken att röra sig någorlunda trovärdigt
+- [ ] Lägg till flera (likadana) fiskar
 
 ## Tutorials / Dokumentation
 
