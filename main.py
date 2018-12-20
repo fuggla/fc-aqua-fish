@@ -8,6 +8,7 @@ https://github.com/owlnical/fc-aqua-fish
 import arcade, random, types
 from movefunctions import *
 from classes.state import State
+from classes.button import Button
 
 VERSION = 0.2
 SCREEN_WIDTH = 800
@@ -155,31 +156,6 @@ class PfishSprite(arcade.Sprite):
         self.change_y = 0  # y_hastighet
         self.pathcounter = random.random() * 200        # Variable som styr hur länge de gör saker
         self.relaxed = [True, True]                     # Pfish blir nervös nära kanter
-
-# Klass för att skapa rektangulära knappar
-class Button():
-
-    def __init__(self, x, y, width, height, text, font_size, click):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
-        self.text = text
-        self.font_size = font_size
-        self.click = click
-
-    # Rita knapp
-    def draw(self):
-        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
-        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
-
-    # Kolla om angiven x y är inom knappens ramar
-    # self.x och self.y är mitten av knappen
-    def is_mouse_on_buttom(self, x, y):
-        if (self.x + self.width / 2) > x > (self.x - self.width / 2) and (self.y + self.height / 2) > y > (self.y - self.height / 2):
-            return True
-        else:
-            return False
 
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
