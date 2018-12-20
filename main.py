@@ -88,6 +88,17 @@ class MyGame(arcade.Window):
         """
         pass
 
+class Button():
+
+    def __init__(self, x, y, width, height, text):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.text = text
+
+    def on_moune_release(self, x, y)
+		pass
 
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
