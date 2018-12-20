@@ -8,7 +8,7 @@ https://github.com/owlnical/fc-aqua-fish
 import arcade, random, types
 from movefunctions import *
 
-VERSION = 0.1
+VERSION = 0.2
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -167,7 +167,7 @@ class Button():
     # Kolla om angiven x y är inom knappens ramar
     # self.x och self.y är mitten av knappen
     def is_mouse_on_buttom(self, x, y):
-        if (self.x + self.width / 2) > x > (self.x - self.width / 2) and y > (self.y - self.height / 2):
+        if (self.x + self.width / 2) > x > (self.x - self.width / 2) and (self.y + self.height / 2) > y > (self.y - self.height / 2):
             return True
         else:
             return False

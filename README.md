@@ -6,6 +6,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ### v0.3
 
+- [ ] Game state (Running, Paused osv)
 - [ ] Pausemeny istället för knappar hela tiden
 - [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
@@ -19,7 +20,6 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [x] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [x] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
-- [ ] Game state (Running, Paused osv)
 - [x] En knapp som gör något
   - [x] Någon form av klickbar knapp
   - [x] Trigga funktion vid klick (New Game? Exit?)
