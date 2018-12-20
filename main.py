@@ -5,7 +5,7 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
-import arcade, random
+import arcade, random, types
 
 VERSION = 0.1
 SCREEN_WIDTH = 800
@@ -119,13 +119,14 @@ class MyGame(arcade.Window):
 # Klass för att skapa rektangulära knappar
 class Button():
 
-    def __init__(self, x, y, width, height, text, font_size):
+    def __init__(self, x, y, width, height, text, font_size, click):
         self.x = x
         self.y = y
         self.height = height
         self.width = width
         self.text = text
         self.font_size = font_size
+        self.click = types.MethodType(click, self) # Ny metod för klick på knapp
 
     # Rita knapp
     def draw(self):
