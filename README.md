@@ -9,7 +9,9 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Pausemeny istället för knappar hela tiden
 - [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
-- [ ] Ändra rörelsemönster från baserat på hastighet till baserat på acceleration
+- [ ] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
+- [ ] Lägg till animering till "purple_fish"
+- [ ] Evetuellt flytta klasser till separat fil
 
 ### v0.2
 - [x] Gör om Pfish kod i main till en klass
@@ -22,7 +24,6 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
   - [x] Någon form av klickbar knapp
   - [x] Trigga funktion vid klick (New Game? Exit?)
   - [x] Göra en klass för knappar
-- [ ] Flytta klass Button till separat fil
 
 ### v0.1
 
