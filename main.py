@@ -45,16 +45,17 @@ class MyGame(arcade.Window):
 
         self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
         # Loop som skapar "PFISH_NUMBER" många lila fiskar
+        # Pfish måste göras om till en klass,
+        # Detta kommer att bli jätterörigt
         for i in range(PFISH_NUMBER):
             pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
             # Detta placerar dem random inom 90 % från mitten
             pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)+SCREEN_WIDTH*0.1
             pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
-            pfish.change_x = 0
-            pfish.change_y = 0
-            pfish.daydream = 0
-            pfish.pathcounter = random.random()*100+50
-            pfish.relaxed = [True,True]
+            pfish.change_x = 0                              # x_hastighet
+            pfish.change_y = 0                              # y_hastighet
+            pfish.pathcounter = random.random()*200         # Variable som styr hur länge de gör saker
+            pfish.relaxed = [True,True]                     # Pfish blir nervös nära kanter
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
         # Skapa en lista på knappar
