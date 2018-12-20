@@ -1,14 +1,19 @@
 # Aqua Fish
 
-A game by Furniture Corp.
+A game by Furniture Corp. The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
 
 ## Roadmap
 
-### pre v0.1
-
-- [x] Få det att fungera på Johns jobb
-- [x] Pilla med det här istället för att rätta prov
-- [ ] Kolla på tutorial(s) för arcade
+### v0.2
+- [ ] Få fisken att röra sig inom skärmen
+- [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
+- [ ] Få fisken att röra sig någorlunda trovärdigt
+- [x] Lägg till flera (likadana) fiskar
+- [ ] Game state (Running, Paused osv)
+- [ ] En fyrkantig knapp som gör något
+  - [ ] Någon form av klickbar knapp
+  - [ ] Trigga funktion vid klick (New Game? Exit?) 
+  - [ ] Göra en klass för knappar (ev flytta till 0.3)
 
 ### v0.1
 
@@ -16,8 +21,14 @@ A game by Furniture Corp.
 - [x] Skapa .gitignore för pythonprojekt
 - [x] Importera mall från arcade library
 - [x] Ändra färg påbakgrund
-- [ ] Visa en fisk
+- [x] Visa en fisk
 - [x] Funktion för att avsluta (tex tryck på `esc` eller liknande)
+
+### pre v0.1
+
+- [x] Få det att fungera på Johns jobb
+- [x] Pilla med det här istället för att rätta prov
+- [ ] Kolla på tutorial(s) för arcade
 
 ## Tutorials / Dokumentation
 

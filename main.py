@@ -5,11 +5,14 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
-import arcade
+import arcade, random
 
-VERSION = 0.0
+VERSION = 0.1
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+SPRITE_SCALING_PFISH = 0.1
+PFISH_NUMBER = 3
 
 # Test att ändra två filer samtidigt
 
@@ -31,9 +34,21 @@ class MyGame(arcade.Window):
         # If you have sprite lists, you should create them here,
         # and set them to None
 
+        self.pfish_list = None                  # Skapa en lista där lila fiskar kommer simma
+                                                # (Jag fattar inte varför den måste in här)
+        #self.player_list = None
+
     def setup(self):
         # Create your sprites and sprite lists here
-        pass
+
+        self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
+        # Loop som skapar "PFISH_NUMBER" många lila fiskar
+        for i in range(PFISH_NUMBER):
+            pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
+            # Detta placerar dem random inom 90 % från mitten
+            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)+SCREEN_WIDTH*0.1
+            pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
+            self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
     def on_draw(self):
         """
@@ -43,6 +58,7 @@ class MyGame(arcade.Window):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
+        self.pfish_list.draw()
 
         # Call draw() on all your sprite lists below
 
@@ -69,6 +85,9 @@ class MyGame(arcade.Window):
         # Avsluta AL
         if (key == arcade.key.Q):
             arcade.window_commands.close_window()
+        # Starta om
+        elif (key == arcade.key.R):
+            self.setup()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
