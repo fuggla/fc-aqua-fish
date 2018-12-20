@@ -116,9 +116,6 @@ class Button():
         self.width = width
         self.text = text
 
-    def on_moune_release(self, x, y)
-		pass
-
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
