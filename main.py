@@ -111,11 +111,12 @@ class MyGame(arcade.Window):
         pass
 
     def on_mouse_release(self, x, y, button, key_modifiers):
-        """
-        Called when a user releases a mouse button.
-        """
-        pass
+        # Kolla om vi klickat på någon knapp
+        for b in self.button_list:
+            if b.is_mouse_on_buttom(x, y):
+                b.click()
 
+# Klass för att skapa rektangulära knappar
 class Button():
 
     def __init__(self, x, y, width, height, text, font_size):
@@ -130,6 +131,21 @@ class Button():
     def draw(self):
         arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
         arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
+
+    # Kolla om angiven x y är inom knappens ramar
+    # self.x och self.y är mitten av knappen
+    def is_mouse_on_buttom(self, x, y):
+		# OBSOBS!!! Släng gärna ett öga på om den här kan göras bättre/snyggare
+        if (x > (self.x - self.width / 2) and x < (self.x + self.width / 2) and y < (self.y + self.height / 2) and y > (self.y - self.height / 2)):
+            return True
+        else:
+            return False
+
+    # Vad som händer när man klickar på en knapp
+    # Detta behöver på något sätt definieras när en nytt objekt skapas
+    # annars gör alla knappar samma sak
+    def click(self):
+        print("You clicked the", self.text, "button!")
 
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
