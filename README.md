@@ -7,9 +7,11 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ### v0.3
 
 - [ ] Pausemeny istället för knappar hela tiden
+- [ ] Sand i botten på akvariet som fiskarna förhåller sig till
+- [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
 
 ### v0.2
-- [ ] Gör om Pfish kod i main till en klass
+- [x] Gör om Pfish kod i main till en klass
 - [x] Få fisken att röra sig inom skärmen
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [x] Få fisken att röra sig någorlunda trovärdigt
