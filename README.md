@@ -6,8 +6,9 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ### v0.3
 
-- [ ] Game state (Running, Paused osv)
-- [ ] Pausemeny istället för knappar hela tiden
+- [x] Game state (Running, Paused osv)
+- [x] Pausemeny istället för knappar hela tiden
+- [ ] Snyggare pausemeny
 - [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
 - [ ] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
