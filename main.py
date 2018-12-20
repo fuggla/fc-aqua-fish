@@ -35,7 +35,8 @@ class MyGame(arcade.Window):
         # and set them to None
 
         self.pfish_list = None                  # Skapa en lista där lila fiskar kommer simma
-                                                # (Jag fattar inte varför den måste in här)
+        self.button_list = None                 # (Jag fattar inte varför den måste in här)
+
         #self.player_list = None
 
     def setup(self):
@@ -50,6 +51,10 @@ class MyGame(arcade.Window):
             pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
+        # Skapa en lista på knappar
+        self.button_list = []
+        self.button_list.append(Button(30, 585, 50, 20, "Exit"))
+
     def on_draw(self):
         """
         Render the screen.
@@ -59,6 +64,9 @@ class MyGame(arcade.Window):
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
         self.pfish_list.draw()
+
+        # Rita bara knapp 1 just nu (ändra till loop sen)
+        self.button_list[0].draw()
 
         # Call draw() on all your sprite lists below
 
