@@ -159,8 +159,7 @@ class Button():
     # Kolla om angiven x y är inom knappens ramar
     # self.x och self.y är mitten av knappen
     def is_mouse_on_buttom(self, x, y):
-		# OBSOBS!!! Släng gärna ett öga på om den här kan göras bättre/snyggare
-        if (x > (self.x - self.width / 2) and x < (self.x + self.width / 2) and y < (self.y + self.height / 2) and y > (self.y - self.height / 2)):
+        if (self.x + self.width / 2) > x > (self.x - self.width / 2) and y > (self.y - self.height / 2):
             return True
         else:
             return False
