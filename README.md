@@ -5,6 +5,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ## Roadmap
 
 ### v0.2
+- [ ] Gör om Pfish kod i main till en klass
 - [x] Få fisken att röra sig inom skärmen
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [x] Få fisken att röra sig någorlunda trovärdigt
