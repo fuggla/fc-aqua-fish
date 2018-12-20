@@ -5,9 +5,9 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ## Roadmap
 
 ### v0.2
-- [ ] Få fisken att röra sig inom skärmen
+- [x] Få fisken att röra sig inom skärmen
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
-- [ ] Få fisken att röra sig någorlunda trovärdigt
+- [x] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
 - [ ] Game state (Running, Paused osv)
 - [x] En knapp som gör något
