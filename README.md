@@ -28,7 +28,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 - [x] Få det att fungera på Johns jobb
 - [x] Pilla med det här istället för att rätta prov
-- [ ] Kolla på tutorial(s) för arcade
+- [x] Kolla på tutorial(s) för arcade
 
 ## Tutorials / Dokumentation
 

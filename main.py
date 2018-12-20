@@ -49,6 +49,8 @@ class MyGame(arcade.Window):
             # Detta placerar dem random inom 90 % från mitten
             pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)+SCREEN_WIDTH*0.1
             pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
+            pfish.change_x = 0
+            pfish.change_y = 0
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
         # Skapa en lista på knappar
@@ -77,7 +79,11 @@ class MyGame(arcade.Window):
         Normally, you'll call update() on the sprite lists that
         need it.
         """
-        pass
+        self.pfish_list.update()
+        for pfish in self.pfish_list:
+            pfish.change_x = random.random() * 2 - 1
+            pfish.change_y = random.random() * 2 - 1
+
 
     def on_key_press(self, key, key_modifiers):
         """
