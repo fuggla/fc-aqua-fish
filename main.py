@@ -116,6 +116,10 @@ class Button():
         self.width = width
         self.text = text
 
+    # Rita knapp
+    def draw(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
+
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
