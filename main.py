@@ -60,6 +60,7 @@ class MyGame(arcade.Window):
         # Skapa en lista på knappar
         self.button_list = []
         self.button_list.append(Button(30, 585, 50, 20, "Exit", 11, arcade.window_commands.close_window))
+        self.button_list.append(Button(115, 585, 100, 20, "New Game", 11, self.setup))
 
     def on_draw(self):
         """
