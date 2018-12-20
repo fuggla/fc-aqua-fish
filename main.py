@@ -7,6 +7,7 @@ https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
 from movefunctions import *
+from classes.state import State
 
 VERSION = 0.2
 SCREEN_WIDTH = 800
@@ -17,7 +18,7 @@ PFISH_NUMBER = 5
 
 # Test att ändra två filer samtidigt
 
-class MyGame(arcade.Window):
+class MyGame(arcade.Window, State):
     """
     Main application class.
 
@@ -55,6 +56,9 @@ class MyGame(arcade.Window):
         self.button_list.append(Button(115, 585, 100, 20, "New Game", 11, self.setup))
         self.button_list.append(Button(225, 585, 100, 20, "Do it!", 11, self.do_it))
 
+        # Setup klar
+        self.state = "playing"
+
     def on_draw(self):
         """
         Render the screen.
@@ -66,8 +70,9 @@ class MyGame(arcade.Window):
         self.pfish_list.draw()
 
         # Rita alla knappar
-        for button in self.button_list:
-                button.draw()
+        if self.is_paused():
+            for button in self.button_list:
+                    button.draw()
 
         # Call draw() on all your sprite lists below
 
@@ -77,8 +82,9 @@ class MyGame(arcade.Window):
         Normally, you'll call update() on the sprite lists that
         need it.
         """
-        self.pfish_list.update()
-        pfishbehaviour(self.pfish_list,SCREEN_WIDTH,SCREEN_HEIGHT)
+        if self.is_playing():
+            self.pfish_list.update()
+            pfishbehaviour(self.pfish_list,SCREEN_WIDTH,SCREEN_HEIGHT)
 
     def on_key_press(self, key, key_modifiers):
         """
@@ -98,6 +104,8 @@ class MyGame(arcade.Window):
         # Starta om
         elif (key == arcade.key.R):
             self.setup()
+        elif (key == arcade.key.ESCAPE):
+            self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
@@ -113,9 +121,10 @@ class MyGame(arcade.Window):
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         # Kolla om vi klickat på någon knapp
-        for b in self.button_list:
-            if b.is_mouse_on_buttom(x, y):
-                b.click()
+        if self.is_paused():
+            for b in self.button_list:
+                if b.is_mouse_on_buttom(x, y):
+                    b.click()
 
     def do_it(self):
         global PFISH_NUMBER
