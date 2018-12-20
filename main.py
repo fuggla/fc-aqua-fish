@@ -13,7 +13,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 SPRITE_SCALING_PFISH = 0.1
-PFISH_NUMBER = 3
+PFISH_NUMBER = 5
 
 # Test att ändra två filer samtidigt
 
@@ -45,17 +45,8 @@ class MyGame(arcade.Window):
 
         self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
         # Loop som skapar "PFISH_NUMBER" många lila fiskar
-        # Pfish måste göras om till en klass,
-        # Detta kommer att bli jätterörigt
         for i in range(PFISH_NUMBER):
-            pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
-            # Detta placerar dem random inom 90 % från mitten
-            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)+SCREEN_WIDTH*0.1
-            pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
-            pfish.change_x = 0                              # x_hastighet
-            pfish.change_y = 0                              # y_hastighet
-            pfish.pathcounter = random.random()*200         # Variable som styr hur länge de gör saker
-            pfish.relaxed = [True,True]                     # Pfish blir nervös nära kanter
+            pfish = PfishSprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
         # Skapa en lista på knappar
@@ -125,6 +116,22 @@ class MyGame(arcade.Window):
         for b in self.button_list:
             if b.is_mouse_on_buttom(x, y):
                 b.click()
+
+# Klass för lila fiskar (Purple_fish)
+class PfishSprite(arcade.Sprite):
+    def __init__(self,image_file_name,scale):
+        # Anropa Sprite konstruktor
+        super().__init__(image_file_name,scale=scale)
+
+        # Placera ut fiskarna
+        self.center_x = random.randrange(SCREEN_WIDTH * 0.8) + SCREEN_WIDTH * 0.1
+        self.center_y = random.randrange(SCREEN_HEIGHT * 0.8) + SCREEN_HEIGHT * 0.1
+        # Starthastihet
+        self.change_x = 0  # x_hastighet
+        self.change_y = 0  # y_hastighet
+        self.pathcounter = random.random() * 200        # Variable som styr hur länge de gör saker
+        self.relaxed = [True, True]                     # Pfish blir nervös nära kanter
+
 
 # Klass för att skapa rektangulära knappar
 class Button():
