@@ -24,9 +24,11 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [ ] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
-- [ ] Någon form av klickbar knapp
 - [ ] Game state (Running, Paused osv)
-- [ ] En knapp som gör något (new game? Exit?)
+- [ ] En fyrkantig knapp som gör något
+  - [ ] Någon form av klickbar knapp
+  - [ ] Trigga funktion vid klick (New Game? Exit?) 
+  - [ ] Göra en klass för knappar (ev flytta till 0.3)
 
 ## Tutorials / Dokumentation
 
