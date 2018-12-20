@@ -129,10 +129,14 @@ class PfishSprite(arcade.Sprite):
         super().__init__()
 
         # texture för höger och vänster
-        self.texture_left = arcade.load_texture("images/purple_fish1.png",mirrored = True, scale=SPRITE_SCALING_PFISH)
-        self.texture_right = arcade.load_texture("images/purple_fish1.png", scale=SPRITE_SCALING_PFISH)
+        self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
+        self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
+        self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=SPRITE_SCALING_PFISH)
+        self.texture_right2 = arcade.load_texture("images/purple_fish2.png", scale=SPRITE_SCALING_PFISH)
         # Default = right
-        self.texture = self.texture_right
+        self.texture = self.texture_right1
+        self.ani_left = 0       # variabler som styr animeringen
+        self.ani_right = 0
 
         # Placera ut fiskarna
         self.center_x = random.randrange(SCREEN_WIDTH * 0.8) + SCREEN_WIDTH * 0.1
