@@ -4,21 +4,6 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ## Roadmap
 
-### pre v0.1
-
-- [x] Få det att fungera på Johns jobb
-- [x] Pilla med det här istället för att rätta prov
-- [ ] Kolla på tutorial(s) för arcade
-
-### v0.1
-
-- [x] Påbörja readme
-- [x] Skapa .gitignore för pythonprojekt
-- [x] Importera mall från arcade library
-- [x] Ändra färg påbakgrund
-- [x] Visa en fisk
-- [x] Funktion för att avsluta (tex tryck på `esc` eller liknande)
-
 ### v0.2
 - [ ] Få fisken att röra sig inom skärmen
 - [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
@@ -29,6 +14,21 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
   - [ ] Någon form av klickbar knapp
   - [ ] Trigga funktion vid klick (New Game? Exit?) 
   - [ ] Göra en klass för knappar (ev flytta till 0.3)
+
+### v0.1
+
+- [x] Påbörja readme
+- [x] Skapa .gitignore för pythonprojekt
+- [x] Importera mall från arcade library
+- [x] Ändra färg påbakgrund
+- [x] Visa en fisk
+- [x] Funktion för att avsluta (tex tryck på `esc` eller liknande)
+
+### pre v0.1
+
+- [x] Få det att fungera på Johns jobb
+- [x] Pilla med det här istället för att rätta prov
+- [ ] Kolla på tutorial(s) för arcade
 
 ## Tutorials / Dokumentation
 
