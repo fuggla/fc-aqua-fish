@@ -46,7 +46,7 @@ class MyGame(arcade.Window):
         self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
         # Loop som skapar "PFISH_NUMBER" många lila fiskar
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
+            pfish = PfishSprite()
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
         # Skapa en lista på knappar
@@ -79,7 +79,6 @@ class MyGame(arcade.Window):
         """
         self.pfish_list.update()
         pfishbehaviour(self.pfish_list,SCREEN_WIDTH,SCREEN_HEIGHT)
-
 
     def on_key_press(self, key, key_modifiers):
         """
@@ -125,9 +124,15 @@ class MyGame(arcade.Window):
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):
-    def __init__(self,image_file_name,scale):
+    def __init__(self):
         # Anropa Sprite konstruktor
-        super().__init__(image_file_name,scale=scale)
+        super().__init__()
+
+        # texture för höger och vänster
+        self.texture_left = arcade.load_texture("images/purple_fish1.png",mirrored = True, scale=SPRITE_SCALING_PFISH)
+        self.texture_right = arcade.load_texture("images/purple_fish1.png", scale=SPRITE_SCALING_PFISH)
+        # Default = right
+        self.texture = self.texture_right
 
         # Placera ut fiskarna
         self.center_x = random.randrange(SCREEN_WIDTH * 0.8) + SCREEN_WIDTH * 0.1
@@ -137,7 +142,6 @@ class PfishSprite(arcade.Sprite):
         self.change_y = 0  # y_hastighet
         self.pathcounter = random.random() * 200        # Variable som styr hur länge de gör saker
         self.relaxed = [True, True]                     # Pfish blir nervös nära kanter
-
 
 # Klass för att skapa rektangulära knappar
 class Button():

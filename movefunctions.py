@@ -39,6 +39,12 @@ def pfishbehaviour(list,sw,sh):
             fish.change_y = 2
             fish.pathcounter = 100
             fish.relaxed[1] = False
+
+        # Vänd dem i x-hastighetens riktning
+        if fish.change_x < 0:
+            fish.texture = fish.texture_left
+        if fish.change_x > 0:
+            fish.texture = fish.texture_right
+
         # Stega upp variabeln som styr hur länge de gör saker
         fish.pathcounter += 1
-

@@ -14,7 +14,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ### v0.2
 - [x] Gör om Pfish kod i main till en klass
 - [x] Få fisken att röra sig inom skärmen
-- [ ] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
+- [x] Fixa fiskens orientering (vänd mot rörelsens x-riktning)
 - [x] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
 - [ ] Game state (Running, Paused osv)
