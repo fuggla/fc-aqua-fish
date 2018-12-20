@@ -53,6 +53,7 @@ class MyGame(arcade.Window):
         self.button_list = []
         self.button_list.append(Button(30, 585, 50, 20, "Exit", 11, arcade.window_commands.close_window))
         self.button_list.append(Button(115, 585, 100, 20, "New Game", 11, self.setup))
+        self.button_list.append(Button(225, 585, 100, 20, "Do it!", 11, self.do_it))
 
     def on_draw(self):
         """
@@ -116,6 +117,11 @@ class MyGame(arcade.Window):
         for b in self.button_list:
             if b.is_mouse_on_buttom(x, y):
                 b.click()
+
+    def do_it(self):
+        global PFISH_NUMBER
+        PFISH_NUMBER = PFISH_NUMBER * 50
+        self.setup()
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):

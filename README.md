@@ -4,6 +4,10 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ## Roadmap
 
+### v0.3
+
+- [ ] Pausemeny istället för knappar hela tiden
+
 ### v0.2
 - [ ] Gör om Pfish kod i main till en klass
 - [x] Få fisken att röra sig inom skärmen
@@ -15,6 +19,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
   - [x] Någon form av klickbar knapp
   - [x] Trigga funktion vid klick (New Game? Exit?)
   - [x] Göra en klass för knappar
+- [ ] Flytta klass Button till separat fil
 
 ### v0.1
 
