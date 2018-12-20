@@ -45,8 +45,9 @@ class MyGame(arcade.Window):
         # Loop som skapar "PFISH_NUMBER" många lila fiskar
         for i in range(PFISH_NUMBER):
             pfish = arcade.Sprite("images/purple_fish1.png",SPRITE_SCALING_PFISH)
-            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)     # Detta placerar dem random inom 80 % från mitten
-            pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)
+            # Detta placerar dem random inom 90 % från mitten
+            pfish.center_x = random.randrange(SCREEN_WIDTH*0.8)+SCREEN_WIDTH*0.1
+            pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
     def on_draw(self):
