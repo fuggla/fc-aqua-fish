@@ -8,7 +8,7 @@ https://github.com/owlnical/fc-aqua-fish
 import arcade, random, types
 from movefunctions import *
 
-VERSION = 0.1
+VERSION = 0.2
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
