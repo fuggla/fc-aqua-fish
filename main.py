@@ -53,7 +53,7 @@ class MyGame(arcade.Window):
 
         # Skapa en lista på knappar
         self.button_list = []
-        self.button_list.append(Button(30, 585, 50, 20, "Exit"))
+        self.button_list.append(Button(30, 585, 50, 20, "Exit", 11))
 
     def on_draw(self):
         """
@@ -117,16 +117,18 @@ class MyGame(arcade.Window):
 
 class Button():
 
-    def __init__(self, x, y, width, height, text):
+    def __init__(self, x, y, width, height, text, font_size):
         self.x = x
         self.y = y
         self.height = height
         self.width = width
         self.text = text
+        self.font_size = font_size
 
     # Rita knapp
     def draw(self):
         arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
+        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
 
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
