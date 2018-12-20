@@ -6,6 +6,7 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
+from movefunctions import *
 
 VERSION = 0.1
 SCREEN_WIDTH = 800
@@ -51,6 +52,9 @@ class MyGame(arcade.Window):
             pfish.center_y = random.randrange(SCREEN_HEIGHT*0.8)+SCREEN_HEIGHT*0.1
             pfish.change_x = 0
             pfish.change_y = 0
+            pfish.daydream = 0
+            pfish.pathcounter = random.random()*100+50
+            pfish.relaxed = [True,True]
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
 
         # Skapa en lista på knappar
@@ -80,9 +84,7 @@ class MyGame(arcade.Window):
         need it.
         """
         self.pfish_list.update()
-        for pfish in self.pfish_list:
-            pfish.change_x = random.random() * 2 - 1
-            pfish.change_y = random.random() * 2 - 1
+        pfishbehaviour(self.pfish_list,SCREEN_WIDTH,SCREEN_HEIGHT)
 
 
     def on_key_press(self, key, key_modifiers):
