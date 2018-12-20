@@ -10,10 +10,10 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Få fisken att röra sig någorlunda trovärdigt
 - [x] Lägg till flera (likadana) fiskar
 - [ ] Game state (Running, Paused osv)
-- [ ] En knapp som gör något
+- [x] En knapp som gör något
   - [x] Någon form av klickbar knapp
   - [x] Trigga funktion vid klick (New Game? Exit?)
-  - [x] Göra en klass för knappar (ev flytta till 0.3)
+  - [x] Göra en klass för knappar
 
 ### v0.1
 
