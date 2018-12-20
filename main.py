@@ -53,7 +53,7 @@ class MyGame(arcade.Window):
 
         # Skapa en lista på knappar
         self.button_list = []
-        self.button_list.append(Button(30, 585, 50, 20, "Exit", 11))
+        self.button_list.append(Button(30, 585, 50, 20, "Exit", 11, exit_click))
 
     def on_draw(self):
         """
@@ -142,11 +142,9 @@ class Button():
         else:
             return False
 
-    # Vad som händer när man klickar på en knapp
-    # Detta behöver på något sätt definieras när en nytt objekt skapas
-    # annars gör alla knappar samma sak
-    def click(self):
-        print("You clicked the", self.text, "button!")
+# Funktion för när man klickar på exit
+def exit_click(self):
+    arcade.window_commands.close_window()
 
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
