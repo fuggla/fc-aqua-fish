@@ -65,8 +65,9 @@ class MyGame(arcade.Window):
         arcade.start_render()
         self.pfish_list.draw()
 
-        # Rita bara knapp 1 just nu (ändra till loop sen)
-        self.button_list[0].draw()
+        # Rita alla knappar
+        for button in self.button_list:
+                button.draw()
 
         # Call draw() on all your sprite lists below
 
