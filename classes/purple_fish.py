@@ -59,8 +59,8 @@ class PfishSprite(arcade.Sprite):
             if random.randrange(1000) < self.eager:
                 self.change_x = random.random() * 2 - 1
                 self.change_y = random.random() * 2 - 1
-            # Slumpfaktor som gör att de stannar upp och funderar
-        if random.randrange(1000) < self.daydream:
+        # Slumpfaktor som gör att de stannar upp och dagdrömmer
+        if random.randrange(1000) < self.daydream and self.relaxed == [True, True]:
             self.change_x = 0
             self.change_y = 0
 
