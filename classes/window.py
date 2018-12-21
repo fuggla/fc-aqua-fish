@@ -9,6 +9,8 @@ class Window():
         self.y = y
         self.height = height
         self.width = width
+        self.left = x - width / 2
+        self.top = y + height / 2
         self.title = title
         self.font_size = 14
         self.visible = True
@@ -48,10 +50,10 @@ class Window():
                 button.draw()
 
     # Lägg till knapp i fönster
-    def add_button(self, x, y, width, height, text, font_size, function):
+    def add_button(self, margin_top, margin_left, width, height, text, font_size, function):
         self.button_list.append(Button(
-            self.x + x,
-            self.y + y,
+            self.left + margin_left + width / 2,
+            self.top - margin_top - height / 2,
             width,
             height,
             text,
