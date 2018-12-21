@@ -146,7 +146,9 @@ class PfishSprite(arcade.Sprite):
         # Default = right
         self.texture = self.texture_right1
         self.ani_left = 0       # variabler som styr animeringen
+        self.ani_left_add = 0
         self.ani_right = 0
+        self.ani_right_add = 0
 
         # Placera ut fiskarna
         self.center_x = random.randrange(SCREEN_WIDTH * 0.8) + SCREEN_WIDTH * 0.1

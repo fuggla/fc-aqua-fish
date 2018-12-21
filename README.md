@@ -13,8 +13,8 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
 - [ ] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
 - [ ] Gör om pfish rörelsefunktion till en metod i update
-- [ ] Lägg till animering till "purple_fish"
-- [ ] Evetuellt flytta klasser till separat fil
+- [x] Lägg till animering till "purple_fish"
+- [x] Evetuellt flytta klasser till separat fil
 
 ### v0.2
 - [x] Gör om Pfish kod i main till en klass

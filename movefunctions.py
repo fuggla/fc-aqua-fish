@@ -41,22 +41,30 @@ def pfishbehaviour(list,sw,sh):
             fish.relaxed[1] = False
 
         # Vänd dem i x-hastighetens riktning
-        add_ani_left = 0
-        add_ani_right = 0
-        if fish.change_x < 0 and fish.ani_left == 0:
-            fish.texture = fish.texture_left1
-            add_ani_left = 1
-        if fish.change_x < 0 and fish.ani_left == 10:
-            fish.texture = fish.texture_left2
-            add_ani_left = -1
-        if fish.change_x > 0 and fish.ani_right == 0:
-            fish.texture = fish.texture_right1
-            add_ani_right = 1
-        if fish.change_x > 0 and fish.ani_right == 10:
-            fish.texture = fish.texture_right2
-            add_ani_right = -1
-        fish.ani_left = add_ani_left
-        fish.ani_right = add_ani_right
+        if fish.change_x < 0:
+            if fish.ani_left <= 0:
+                fish.texture = fish.texture_left1
+                fish.ani_left_add = 1
+            if fish.ani_left >= 10:
+                fish.texture = fish.texture_left2
+                fish.ani_left_add = -1
+            fish.ani_right = 0
+
+        if fish.change_x > 0:
+            if fish.ani_right <= 0:
+                fish.texture = fish.texture_right1
+                fish.ani_right_add = 1
+            if fish.ani_right >= 10:
+                fish.texture = fish.texture_right2
+                fish.ani_right_add = -1
+            fish.ani_left = 0
+
+        if fish.change_x == 0:
+            fish.ani_left = 0
+            fish.ani_right = 0
+
+        fish.ani_left = fish.ani_left + fish.ani_left_add
+        fish.ani_right = fish.ani_right + fish.ani_right_add
 
         # Stega upp variabeln som styr hur länge de gör saker
         fish.pathcounter += 1
