@@ -3,7 +3,7 @@ import arcade,random,math
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):
-    def __init__(self,SPRITE_SCALING_PFISH,SCREEN_WIDTH,SCREEN_HEIGHT):
+    def __init__(self, SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT):
         # Anropa Sprite konstruktor
         super().__init__()
 

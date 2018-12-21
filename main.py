@@ -9,6 +9,7 @@ import arcade, random, types
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
+from classes.carrot import Carrot
 
 VERSION = 0.2
 SCREEN_WIDTH = 800
@@ -16,6 +17,8 @@ SCREEN_HEIGHT = 600
 
 SPRITE_SCALING_PFISH = 0.1
 PFISH_NUMBER = 5
+
+SPRITE_SCALING_CARROT = 1
 
 # Test att ändra två filer samtidigt
 
