@@ -21,22 +21,27 @@ class PfishSprite(arcade.Sprite):
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
             self.texture = self.texture_left1
+            self.whichtexture = 11              # 11 = left1
         else:
             self.texture = self.texture_right1
-        self.ani_left = 0       # variabler som styr animeringen
-        self.ani_left_add = 0
-        self.ani_right = 0
-        self.ani_right_add = 0
+            self.whichtexture = 21              # 21 = right1
+
+        self.frame_count = 0
+
 
         # Placera ut fiskarna
         self.center_x = random.randrange(sw * 0.8) + sw * 0.1
         self.center_y = random.randrange(sh * 0.8) + sh * 0.1
+
         # Starthastihet
         self.change_x = 0  # x_hastighet
         self.change_y = 0  # y_hastighet
+        self.relaxed = [True, True]  # Pfish blir nervös nära kanter
+
+        # Fiskarnas personlighet
         self.eager = 10
         self.daydream = 2
-        self.relaxed = [True, True]                     # Pfish blir nervös nära kanter
+        self.findelay = 15       # Hur ofta viftar de med fenorna
 
     def update(self):
         # De blir lugna av att befinna sig i mitter av akvariet
@@ -70,31 +75,36 @@ class PfishSprite(arcade.Sprite):
             self.change_y = 2
             self.relaxed[1] = False
 
-        # Vänd dem i x-hastighetens riktning
-        if self.change_x < 0:
-            if self.ani_left <= 0:
-                self.texture = self.texture_left1
-                self.ani_left_add = 1
-            if self.ani_left >= 10:
-                self.texture = self.texture_left2
-                self.ani_left_add = -1
-            self.ani_right = 0
-
-        if self.change_x > 0:
-            if self.ani_right <= 0:
-                self.texture = self.texture_right1
-                self.ani_right_add = 1
-            if self.ani_right >= 10:
-                self.texture = self.texture_right2
-                self.ani_right_add = -1
-            self.ani_left = 0
-
-        if self.change_x == 0:
-            self.ani_left = 0
-            self.ani_right = 0
-
-        self.ani_left = self.ani_left + self.ani_left_add
-        self.ani_right = self.ani_right + self.ani_right_add
-
+        self.animate()
         # Anropa huvudklassen
         super().update()
+
+    def animate(self):
+        # Animering av fiskarna
+        # Vänd dem i x-hastighetens riktning
+        if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
+            self.texture = self.texture_left1
+            self.whichtexture = 11
+        if self.change_x > 0 and not (self.whichtexture == 21 or self.whichtexture == 22):
+            self.texture = self.texture_right1
+            self.whichtexture = 21
+
+        # Vänster
+        if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
+            self.texture = self.texture_left2
+            self.whichtexture = 12
+        elif self.frame_count % self.findelay == 0 and self.whichtexture == 12:
+            self.texture = self.texture_left1
+            self.whichtexture = 11
+        # Höger
+        if self.frame_count % self.findelay == 0 and self.whichtexture == 21:
+            self.texture = self.texture_right2
+            self.whichtexture = 22
+        elif self.frame_count % self.findelay == 0 and self.whichtexture == 22:
+            self.texture = self.texture_right1
+            self.whichtexture = 21
+
+        self.frame_count += 1
+
+        # Anropa huvudklassen
+        #super().update()
