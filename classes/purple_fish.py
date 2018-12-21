@@ -82,6 +82,9 @@ class PfishSprite(arcade.Sprite):
     def animate(self):
         # Animering av fiskarna
         # Vänd dem i x-hastighetens riktning
+
+        # self.whichtexture = 11 betyder left texture 1
+        # self.whichtexture = 22 betyder right texture 2
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
             self.texture = self.texture_left1
             self.whichtexture = 11
@@ -104,7 +107,5 @@ class PfishSprite(arcade.Sprite):
             self.texture = self.texture_right1
             self.whichtexture = 21
 
+        # Stega upp fiskarnas intärna klocka
         self.frame_count += 1
-
-        # Anropa huvudklassen
-        #super().update()
