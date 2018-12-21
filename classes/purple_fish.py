@@ -41,7 +41,9 @@ class PfishSprite(arcade.Sprite):
         # Fiskarnas personlighet
         self.eager = 10
         self.daydream = 2
-        self.findelay = 15       # Hur ofta viftar de med fenorna
+        self.findelay = 15              # Hur ofta viftar de med fenorna
+        self.findelay_relaxed = 15      # För hög och låg stressfaktor
+        self.findelay_stressed = 7
 
     def update(self):
         # De blir lugna av att befinna sig i mitter av akvariet
@@ -81,25 +83,31 @@ class PfishSprite(arcade.Sprite):
 
     def animate(self):
         # Animering av fiskarna
-        # Vänd dem i x-hastighetens riktning
 
-        # self.whichtexture = 11 betyder left texture 1
-        # self.whichtexture = 22 betyder right texture 2
+        # Ändra fenfrekvens utifrån stressnivå
+        if self.relaxed == [True, True]:
+            self.findelay = self.findelay_relaxed
+        if self.relaxed == [False, True] or self.relaxed == [True, False]:
+            self.findelay = self.findelay_stressed
+
+        # Vänd dem i x-hastighetens riktning
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
             self.texture = self.texture_left1
             self.whichtexture = 11
         if self.change_x > 0 and not (self.whichtexture == 21 or self.whichtexture == 22):
             self.texture = self.texture_right1
             self.whichtexture = 21
+        # self.whichtexture = 11 betyder left texture 1
+        # self.whichtexture = 22 betyder right texture 2
 
-        # Vänster
+        # Animation riktad åt vänster
         if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
             self.texture = self.texture_left2
             self.whichtexture = 12
         elif self.frame_count % self.findelay == 0 and self.whichtexture == 12:
             self.texture = self.texture_left1
             self.whichtexture = 11
-        # Höger
+        # Animation riktad åt höger
         if self.frame_count % self.findelay == 0 and self.whichtexture == 21:
             self.texture = self.texture_right2
             self.whichtexture = 22
