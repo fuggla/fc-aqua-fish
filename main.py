@@ -36,22 +36,22 @@ class MyGame(arcade.Window, State):
 
         self.frame_count = 0
 
-        # If you have sprite lists, you should create them here,
-        # and set them to None
-
-        self.pfish_list = None                  # Skapa en lista där lila fiskar kommer simma
-        self.button_list = None                 # (Jag fattar inte varför den måste in här)
+        # If you have sprite lists, you should create them here
+        self.pfish_list = None
+        self.button_list = None
+        self.all_sprite_list = None
 
         #self.player_list = None
 
     def setup(self):
-        # Create your sprites and sprite lists here
+        # Alla arcade sprites och sprites_list här
+        self.pfish_list = arcade.SpriteList()
 
-        self.pfish_list = arcade.SpriteList()   # Listan blir en arcadelista
-        # Loop som skapar "PFISH_NUMBER" många lila fiskar
+        # Skapa lila fiskar
         for i in range(PFISH_NUMBER):
             pfish = PfishSprite(SPRITE_SCALING_PFISH,SCREEN_WIDTH,SCREEN_HEIGHT)
             self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
+            self.all_sprite_list.append(pfish)      # och i totallistan
 
         # Skapa en lista på knappar
         self.button_list = []
@@ -70,7 +70,7 @@ class MyGame(arcade.Window, State):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
-        self.pfish_list.draw()
+        self.all_sprite_list.draw()
 
         # Rita alla knappar
         if self.is_paused():
@@ -88,7 +88,7 @@ class MyGame(arcade.Window, State):
         self.frame_count += 1
 
         if self.is_playing():
-            self.pfish_list.update()
+            self.all_sprite_list.update()
 
     def on_key_press(self, key, key_modifiers):
         """
