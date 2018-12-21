@@ -46,6 +46,7 @@ class MyGame(arcade.Window, State):
     def setup(self):
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
+        self.all_sprite_list = arcade.SpriteList()
 
         # Skapa lila fiskar
         for i in range(PFISH_NUMBER):
