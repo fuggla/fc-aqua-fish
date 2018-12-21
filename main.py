@@ -144,7 +144,7 @@ class MyGame(arcade.Window, State):
 
     def do_it(self):
         global PFISH_NUMBER
-        PFISH_NUMBER = PFISH_NUMBER * 50
+        PFISH_NUMBER = PFISH_NUMBER * 25
         self.setup()
 
 def main():
