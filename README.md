@@ -14,7 +14,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
 - [ ] Gör om pfish rörelsefunktion till en metod i update
 - [x] Lägg till animering till "purple_fish"
-- [x] Evetuellt flytta klasser till separat fil
+- [x] Flytta klasser till separat fil
 
 ### v0.2
 - [x] Gör om Pfish kod i main till en klass
