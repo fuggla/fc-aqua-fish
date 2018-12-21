@@ -1,5 +1,6 @@
 
 import arcade,random,math
+from classes.carrot import CarrotSprite
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):
@@ -100,6 +101,8 @@ class PfishSprite(arcade.Sprite):
 
         # Anropa huvudklassen
         super().update()
+
+        print(CarrotSprite.get_coordinates(self))
 
     def animate(self):
         # Animering av fiskarna

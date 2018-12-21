@@ -96,10 +96,11 @@ class MyGame(arcade.Window, State):
         Normally, you'll call update() on the sprite lists that
         need it.
         """
-        self.frame_count += 1
 
         if self.is_playing():
             self.all_sprite_list.update()
+
+        self.frame_count += 1
 
     def on_key_press(self, key, key_modifiers):
         """
