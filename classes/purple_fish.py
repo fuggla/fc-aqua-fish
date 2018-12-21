@@ -42,9 +42,8 @@ class PfishSprite(arcade.Sprite):
         # Fiskarnas personlighet
         self.eager = 5
         self.daydream = 10
-        self.findelay = 15              # Hur ofta viftar de med fenorna
-        self.findelay_relaxed = 15      # För hög och låg stressfaktor
-        self.findelay_stressed = 7
+        self.findelay = 20              # Hur ofta viftar de med fenorna
+        self.findelay_base = 20
 
         self.waterres = 0.99            # Bromsande kraft på fisken från vattnet
         self.maxspeed = 2               # Fiskens maxxhastighet (gäller då fisken är lugn)
@@ -105,11 +104,11 @@ class PfishSprite(arcade.Sprite):
     def animate(self):
         # Animering av fiskarna
 
-        # Ändra fenfrekvens utifrån stressnivå
-        if self.relaxed == [True, True]:
-            self.findelay = self.findelay_relaxed
-        if self.relaxed == [False, True] or self.relaxed == [True, False]:
-            self.findelay = self.findelay_stressed
+        # Beräkning av totalhastighet
+        self.change_tot = math.sqrt(self.change_x**2+self.change_y**2)
+
+        # Ändra fenfrekvens utifrån hastighet
+        self.findelay = int(self.findelay_base/(math.fabs(self.change_tot)+1))
 
         # Vänd dem i x-hastighetens riktning
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
@@ -118,8 +117,8 @@ class PfishSprite(arcade.Sprite):
         if self.change_x > 0 and not (self.whichtexture == 21 or self.whichtexture == 22):
             self.texture = self.texture_right1
             self.whichtexture = 21
-        # self.whichtexture = 11 betyder left texture 1
-        # self.whichtexture = 22 betyder right texture 2
+        # "self.whichtexture = 11" betyder "left texture 1"
+        # "self.whichtexture = 22" betyder "right texture 2"
 
         # Animation riktad åt vänster
         if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
