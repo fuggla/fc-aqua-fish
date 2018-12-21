@@ -34,8 +34,10 @@ class PfishSprite(arcade.Sprite):
         self.center_y = random.randrange(sh * 0.8) + sh * 0.1
 
         # Starthastihet
-        self.change_x = 0  # x_hastighet
-        self.change_y = 0  # y_hastighet
+        self.change_x = 0   # x_hastighet
+        self.change_y = 0   # y_hastighet
+        self.acc_x = 0      # x_acceleration
+        self.acc_y = 0      # y_acceleration
         self.relaxed = [True, True]  # Pfish blir nervös nära kanter
 
         # Fiskarnas personlighet
@@ -47,9 +49,9 @@ class PfishSprite(arcade.Sprite):
 
     def update(self):
         # De blir lugna av att befinna sig i mitter av akvariet
-        if 0.10 * sw < self.center_x < 0.90 * sw:
+        if 0.15 * sw < self.center_x < 0.85 * sw:
             self.relaxed[0] = True
-        if 0.10 * sh < self.center_y < 0.90 * sh:
+        if 0.15 * sh < self.center_y < 0.85 * sh:
             self.relaxed[1] = True
 
         if self.relaxed == [True, True]:
