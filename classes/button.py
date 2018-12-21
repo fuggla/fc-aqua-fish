@@ -14,6 +14,7 @@ class Button():
 
     # Rita knapp
     def draw(self):
+        arcade.draw_rectangle_filled(self.x, self.y, self.width + 5, self.height + 5, arcade.color.BLACK)
         arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
         arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
 
