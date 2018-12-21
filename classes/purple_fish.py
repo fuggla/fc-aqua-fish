@@ -34,7 +34,8 @@ class PfishSprite(arcade.Sprite):
         # Starthastihet
         self.change_x = 0  # x_hastighet
         self.change_y = 0  # y_hastighet
-        self.eager = 5 + random.randrange(5)
+        self.eager = 10
+        self.daydream = 2
         self.relaxed = [True, True]                     # Pfish blir nervös nära kanter
 
     def update(self):
@@ -46,11 +47,11 @@ class PfishSprite(arcade.Sprite):
 
         if self.relaxed == [True, True]:
             # Om de är lugna så rör de sig normalt
-            if random.randrange(100) < self.eager:
+            if random.randrange(1000) < self.eager:
                 self.change_x = random.random() * 2 - 1
                 self.change_y = random.random() * 2 - 1
             # Slumpfaktor som gör att de stannar upp och funderar
-        if random.randrange(100) == 0:
+        if random.randrange(1000) < self.daydream:
             self.change_x = 0
             self.change_y = 0
 
