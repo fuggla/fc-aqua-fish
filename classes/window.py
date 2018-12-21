@@ -52,13 +52,16 @@ class Window():
                 button.draw()
 
     # Lägg till knapp i fönster
-    def add_button(self, margin_top, margin_left, width, height, text, font_size, function):
+    def add_button(self, margin_top, margin_left, width, height, text, font_size, release):
         self.button_list.append(Button(
-            self.left + margin_left + width / 2,
-            self.top - margin_top - height / 2,
-            width,
-            height,
-            text,
-            font_size,
-            function
+            x = self.left + margin_left + width / 2,
+            y = self.top - margin_top - height / 2,
+            width = width,
+            height = height,
+            outline_size = 2,
+            outline_color = arcade.color.BLACK,
+            background_color = arcade.color.GRAY,
+            text = text,
+            font_size = font_size,
+            release = release
         ))
