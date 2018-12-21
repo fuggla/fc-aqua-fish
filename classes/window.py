@@ -11,18 +11,23 @@ class Window():
         self.width = width
         self.title = title
         self.font_size = 14
+        self.visible = True
         self.button_list = []
-        self.open = True
-        self.button_list.append(Button(x - 10 + width / 2, y - 10 + width / 2, 20, 20, "X", 20, self.close))
+        self.button_list.append(Button(x - 10 + width / 2, y - 10 + height / 2, 20, 20, "X", 20, self.close))
 
+    # Öppna fönster
+    def open(self):
+        self.visible = True
+
+    # Stäng fönster
     def close(self):
-        self.open = False
+        self.visible = False
 
     def is_open(self):
-        return True if self.open else False
+        return True if self.visible else False
 
     def is_closed(self):
-        return False if self.open else True
+        return False if self.visible else True
 
     def get_buttons(self):
         return self.button_list
