@@ -12,15 +12,17 @@ class Window():
         self.title = title
         self.font_size = 14
         self.button_list = []
-        self.visible = True
+        self.open = True
         self.button_list.append(Button(x - 10 + width / 2, y - 10 + width / 2, 20, 20, "X", 20, self.close))
 
     def close(self):
-        self.visible = False
-        print(self.title, "visible", self.visible)
+        self.open = False
 
-    def is_visible(self):
-        return self.visible
+    def is_open(self):
+        return True if self.open else False
+
+    def is_closed(self):
+        return False if self.open else True
 
     def get_buttons(self):
         return self.button_list
@@ -31,7 +33,7 @@ class Window():
 
     # Rita meny
     def draw(self):
-        if self.is_visible():
+        if self.is_open():
             arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
             for button in self.button_list:
                 button.draw()
