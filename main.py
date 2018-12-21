@@ -6,7 +6,6 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
-from movefunctions import *
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
@@ -34,6 +33,8 @@ class MyGame(arcade.Window, State):
 
         # BLUE_SAPPHIRE eller BLUE_YONDER, båda är rätt snygga
         arcade.set_background_color(arcade.color.BLUE_YONDER)
+
+        self.frame_count = 0
 
         # If you have sprite lists, you should create them here,
         # and set them to None
@@ -84,9 +85,10 @@ class MyGame(arcade.Window, State):
         Normally, you'll call update() on the sprite lists that
         need it.
         """
+        self.frame_count += 1
+
         if self.is_playing():
             self.pfish_list.update()
-            pfishbehaviour(self.pfish_list,SCREEN_WIDTH,SCREEN_HEIGHT)
 
     def on_key_press(self, key, key_modifiers):
         """
