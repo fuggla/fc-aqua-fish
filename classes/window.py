@@ -1,7 +1,6 @@
 # Klass för att skapa rektangulära knappar
 import arcade
 from classes.button import Button
-#from classes.button import *
 
 class Window():
 
@@ -15,11 +14,6 @@ class Window():
         self.button_list = []
         self.visible = True
         self.button_list.append(Button(x - 10 + width / 2, y - 10 + width / 2, 20, 20, "X", 20, self.close))
-
-    # Lägg till knapp i meny
-    def add_button(self, button):
-        self.button_list.append(Button(x - 10 + width / 2, y - 10 + width / 2, 20, 20, "X", 20, self.close))
-        pass
 
     def close(self):
         self.visible = False
