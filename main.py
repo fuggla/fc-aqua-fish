@@ -9,7 +9,7 @@ import arcade, random, types
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
-from classes.carrot import Carrot
+from classes.carrot import CarrotSprite
 
 VERSION = 0.2
 SCREEN_WIDTH = 800
@@ -18,7 +18,7 @@ SCREEN_HEIGHT = 600
 SPRITE_SCALING_PFISH = 0.1
 PFISH_NUMBER = 5
 
-SPRITE_SCALING_CARROT = 1
+SPRITE_SCALING_CARROT = 0.3
 
 # Test att ändra två filer samtidigt
 
@@ -41,6 +41,7 @@ class MyGame(arcade.Window, State):
 
         # If you have sprite lists, you should create them here
         self.pfish_list = None
+        self.carrot_list = None
         self.button_list = None
         self.all_sprite_list = None
 
@@ -49,13 +50,19 @@ class MyGame(arcade.Window, State):
     def setup(self):
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
+        self.carrot_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
         # Skapa lila fiskar
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(SPRITE_SCALING_PFISH,SCREEN_WIDTH,SCREEN_HEIGHT)
-            self.pfish_list.append(pfish)           # Lägg till fiskarna i fisklistan
-            self.all_sprite_list.append(pfish)      # och i totallistan
+            pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT)
+            self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
+            self.all_sprite_list.append(pfish)                      # och i totallistan
+
+        # Skapa en morot
+        carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.carrot_list.append(carrot)
+        self.all_sprite_list.append(carrot)
 
         # Skapa en lista på knappar
         self.button_list = []
