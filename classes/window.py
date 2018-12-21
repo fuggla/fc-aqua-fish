@@ -14,10 +14,38 @@ class Window():
         self.bottom = y - height / 2
         self.right = x + width / 2
         self.title = title
+        self.bar_height = 30
         self.font_size = 14
         self.visible = True
         self.button_list = []
-        self.button_list.append(Button(x - 10 + width / 2, y - 10 + height / 2, 20, 20, "X", 20, self.close))
+
+        # Kant längst upp på fönstret
+        self.button_list.append(Button(
+            x = self.left + self.width / 2,
+            y = self.top + self.bar_height / 2,
+            height = self.bar_height,
+            width = self.width,
+            outline_size = 2,
+            outline_color = arcade.color.RED,
+            background_color = arcade.color.PINK,
+            text = "",
+            font_size = 20,
+            release = self.is_open
+        ))
+
+        # En X knapp i höger hörn för att stänga fönstret
+        self.button_list.append(Button(
+            x = self.right - self.bar_height / 2,
+            y = self.top + self.bar_height / 2,
+            height = self.bar_height,
+            width = self.bar_height,
+            outline_size = 2,
+            outline_color = arcade.color.RED,
+            background_color = arcade.color.PINK,
+            text = "X",
+            font_size = 20,
+            release = self.close
+        ))
 
     # Öppna fönster
     def open(self):
