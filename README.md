@@ -4,6 +4,13 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ## Roadmap
 
+### v0.4
+
+- [ ] Slumpmässig spawn av maten
+- [ ] Maten sjunker i vattnet tills den når botten
+- [ ] Maten droppas in ovanifrån
+- [ ] Fiskarna äter upp maten
+
 ### v0.3
 
 - [x] Game state (Running, Paused osv)
