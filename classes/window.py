@@ -11,6 +11,8 @@ class Window():
         self.width = width
         self.left = x - width / 2
         self.top = y + height / 2
+        self.bottom = y - height / 2
+        self.right = x + width / 2
         self.title = title
         self.font_size = 14
         self.visible = True
