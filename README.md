@@ -10,12 +10,16 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Maten sjunker i vattnet tills den når botten
 - [ ] Maten droppas in ovanifrån
 - [ ] Fiskarna äter upp maten
+- [ ] Klass för "flytande" fönster
+- [ ] Lägg pausmeny i eget fönster
+- [ ] Stäng fönster med `X`
+- [ ] Flytta fönster med musen?
+- [ ] Ett till fönster med andra funktioner? Tex Spawn Fish osv
 
 ### v0.3
 
 - [x] Game state (Running, Paused osv)
 - [x] Pausemeny istället för knappar hela tiden
-- [ ] Snyggare pausemeny
 - [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [x] Ändra fiskarnas animation utifrån hastighet
 - [x] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
