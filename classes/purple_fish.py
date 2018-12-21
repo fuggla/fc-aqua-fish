@@ -1,5 +1,5 @@
 
-import arcade,random
+import arcade,random,math
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):
@@ -34,18 +34,21 @@ class PfishSprite(arcade.Sprite):
         self.center_y = random.randrange(sh * 0.8) + sh * 0.1
 
         # Starthastihet
-        self.change_x = 0   # x_hastighet
-        self.change_y = 0   # y_hastighet
-        self.acc_x = 0      # x_acceleration
-        self.acc_y = 0      # y_acceleration
-        self.relaxed = [True, True]  # Pfish blir nervös nära kanter
+        self.change_x = 0       # x_hastighet
+        self.change_y = 0       # y_hastighet
+        self.acc_x = 0          # x_acceleration
+        self.acc_y = 0          # y_acceleration
 
         # Fiskarnas personlighet
-        self.eager = 10
-        self.daydream = 2
+        self.eager = 5
+        self.daydream = 10
         self.findelay = 15              # Hur ofta viftar de med fenorna
         self.findelay_relaxed = 15      # För hög och låg stressfaktor
         self.findelay_stressed = 7
+
+        self.waterres = 0.99            # Bromsande kraft på fisken från vattnet
+        self.maxspeed = 2               # Fiskens maxxhastighet (gäller då fisken är lugn)
+        self.relaxed = [True, True]     # Pfish blir nervös nära kanter
 
     def update(self):
         # De blir lugna av att befinna sig i mitter av akvariet
@@ -54,32 +57,48 @@ class PfishSprite(arcade.Sprite):
         if 0.15 * sh < self.center_y < 0.85 * sh:
             self.relaxed[1] = True
 
-        if self.relaxed == [True, True]:
-            # Om de är lugna så rör de sig normalt
-            if random.randrange(1000) < self.eager:
-                self.change_x = random.random() * 2 - 1
-                self.change_y = random.random() * 2 - 1
-        # Slumpfaktor som gör att de stannar upp och dagdrömmer
-        if random.randrange(1000) < self.daydream and self.relaxed == [True, True]:
-            self.change_x = 0
-            self.change_y = 0
+        # Om de är lugna kan de vilja ändra riktning
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
+            self.acc_x = random.random() * 0.1 - 0.05
+            self.acc_y = random.random() * 0.1 - 0.05
+
+        # Om de är lugna kan de börja dagdrömma
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
+            self.acc_x = 0
+            self.acc_y = 0
 
         # Alla dessa if kollar kanter, styr in dem mot mitten och stressar upp dem
-        if self.center_x > sw * 0.95:
-            self.change_x = -2
+        if self.center_x > sw * 0.90:
+            self.acc_x = -0.1
             self.relaxed[0] = False
-        if self.center_x < sw * 0.05:
-            self.change_x = 2
+        if self.center_x < sw * 0.10:
+            self.acc_x = 0.1
             self.relaxed[0] = False
 
-        if self.center_y > sh * 0.95:
-            self.change_y = -2
+        if self.center_y > sh * 0.90:
+            self.acc_y = -0.1
             self.relaxed[1] = False
-        if self.center_y < sh * 0.05:
-            self.change_y = 2
+        if self.center_y < sh * 0.10:
+            self.acc_y = 0.1
             self.relaxed[1] = False
 
+        # Accelerera ifall maxhastigheten inte är nådd
+        if math.sqrt(self.change_x**2 + self.change_y**2) <= self.maxspeed:
+            self.change_x = self.change_x + self.acc_x
+            self.change_y = self.change_y + self.acc_y
+
+        # Accelerationen minskar ifall den är avslappnad
+        if self.relaxed == [True, True]:
+            self.acc_x = self.acc_x * self.waterres
+            self.acc_y = self.acc_y * self.waterres
+
+        # Bromsa upp vattnet
+        self.change_x = self.change_x * self.waterres
+        self.change_y = self.change_y * self.waterres
+
+        # Updatera animationen
         self.animate()
+
         # Anropa huvudklassen
         super().update()
 

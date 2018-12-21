@@ -12,7 +12,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [x] Ändra fiskarnas animation utifrån stressnivå
 - [ ] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
-- [ ] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
+- [x] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
 - [x] Gör om pfish rörelsefunktion till en metod i update
 - [x] Lägg till animering till "purple_fish"
 - [x] Flytta klasser till separat fil
