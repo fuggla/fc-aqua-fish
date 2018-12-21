@@ -104,11 +104,8 @@ class PfishSprite(arcade.Sprite):
     def animate(self):
         # Animering av fiskarna
 
-        # Beräkning av totalhastighet
-        self.change_tot = math.sqrt(self.change_x**2+self.change_y**2)
-
-        # Ändra fenfrekvens utifrån hastighet
-        self.findelay = int(self.findelay_base/(math.fabs(self.change_tot)+1))
+        # Ändra fenfrekvens utifrån totalhastighet
+        self.findelay = int(self.findelay_base/(math.sqrt(self.change_x**2+self.change_y**2)+1))
 
         # Vänd dem i x-hastighetens riktning
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
