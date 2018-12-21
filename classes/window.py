@@ -1,4 +1,4 @@
-# Klass för att skapa rektangulära knappar
+# Klass för att visa fönster
 import arcade
 from classes.button import Button
 
@@ -23,20 +23,24 @@ class Window():
     def close(self):
         self.visible = False
 
+    # Returnera true om fönstret är öppet
     def is_open(self):
         return True if self.visible else False
 
+    # Returnera true om fönstret är stängt
     def is_closed(self):
         return False if self.visible else True
 
+    # Returnera lista på alla knappar
     def get_buttons(self):
         return self.button_list
 
+    # Kolla om det har klickats på en knapp i fönstret
     def on_mouse_release(self, x, y):
         for b in self.button_list:
             b.on_mouse_release(x, y)
 
-    # Rita meny
+    # Rita fönster
     def draw(self):
         if self.is_open():
             arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
