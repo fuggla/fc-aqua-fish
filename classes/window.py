@@ -46,3 +46,15 @@ class Window():
             arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
             for button in self.button_list:
                 button.draw()
+
+    # Lägg till knapp i fönster
+    def add_button(self, x, y, width, height, text, font_size, function):
+        self.button_list.append(Button(
+            self.x + x,
+            self.y + y,
+            width,
+            height,
+            text,
+            font_size,
+            function
+        ))
