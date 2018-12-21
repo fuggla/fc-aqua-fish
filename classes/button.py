@@ -3,14 +3,14 @@ import arcade
 
 class Button():
 
-    def __init__(self, x, y, width, height, text, font_size, click):
+    def __init__(self, x, y, width, height, text, font_size, release):
         self.x = x
         self.y = y
         self.height = height
         self.width = width
         self.text = text
         self.font_size = font_size
-        self.click = click
+        self.release = release
 
     # Rita knapp
     def draw(self):
@@ -19,8 +19,12 @@ class Button():
 
     # Kolla om angiven x y är inom knappens ramar
     # self.x och self.y är mitten av knappen
-    def is_mouse_on_buttom(self, x, y):
+    def is_mouse_on_button(self, x, y):
         if (self.x + self.width / 2) > x > (self.x - self.width / 2) and (self.y + self.height / 2) > y > (self.y - self.height / 2):
             return True
         else:
             return False
+
+    def on_mouse_release(self, x, y):
+        if self.is_mouse_on_button(x, y):
+            self.release()

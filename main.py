@@ -86,7 +86,7 @@ class MyGame(arcade.Window, State):
         # Rita alla knappar
         if self.is_paused():
             for button in self.button_list:
-                    button.draw()
+                button.draw()
 
         # Call draw() on all your sprite lists below
 
@@ -139,8 +139,7 @@ class MyGame(arcade.Window, State):
         # Kolla om vi klickat på någon knapp
         if self.is_paused():
             for b in self.button_list:
-                if b.is_mouse_on_buttom(x, y):
-                    b.click()
+                b.on_mouse_release(x, y)
 
     def do_it(self):
         global PFISH_NUMBER
