@@ -42,6 +42,7 @@ class PfishSprite(arcade.Sprite):
 
         # Fiskarnas personlighet
         self.eager = 5
+        self.hungry = 5
         self.daydream = 10
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20
@@ -51,6 +52,10 @@ class PfishSprite(arcade.Sprite):
         self.relaxed = [True, True]     # Pfish blir nervös nära kanter
 
     def update(self):
+
+        # Anrop till CarrotSprite som ger morotens coordinater
+        carrot_cor = CarrotSprite.get_coordinates(self)
+
         # De blir lugna av att befinna sig i mitter av akvariet
         if 0.15 * sw < self.center_x < 0.85 * sw:
             self.relaxed[0] = True
@@ -61,6 +66,17 @@ class PfishSprite(arcade.Sprite):
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
             self.acc_x = random.random() * 0.1 - 0.05
             self.acc_y = random.random() * 0.1 - 0.05
+
+        # Om de är lugna kan de vilja ändra riktning mot moroten
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
+            if self.get_position()[0] < carrot_cor[0]:
+                self.acc_x = 0.1
+            if self.get_position()[0] > carrot_cor[0]:
+                self.acc_x = -0.1
+            if self.get_position()[1] < carrot_cor[1]:
+                self.acc_y = 0.1
+            if self.get_position()[1] > carrot_cor[1]:
+                self.acc_y = -0.1
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
@@ -102,7 +118,6 @@ class PfishSprite(arcade.Sprite):
         # Anropa huvudklassen
         super().update()
 
-        print(CarrotSprite.get_coordinates(self))
 
     def animate(self):
         # Animering av fiskarna
