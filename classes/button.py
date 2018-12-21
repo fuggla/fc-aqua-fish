@@ -3,19 +3,22 @@ import arcade
 
 class Button():
 
-    def __init__(self, x, y, width, height, text, font_size, release):
+    def __init__(self, x, y, width, height, padding_size, padding_color, background_color, text, font_size, release):
         self.x = x
         self.y = y
         self.height = height
         self.width = width
+        self.padding_size = padding_size
+        self.padding_color = padding_color
+        self.background_color = background_color
         self.text = text
         self.font_size = font_size
         self.release = release
 
     # Rita knapp
     def draw(self):
-        arcade.draw_rectangle_filled(self.x, self.y, self.width + 5, self.height + 5, arcade.color.BLACK)
-        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
+        arcade.draw_rectangle_filled(self.x, self.y, self.width + self.padding_size * 2, self.height + self.padding_size * 2, self.padding_color)
+        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.background_color)
         arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
 
     # Kolla om angiven x y är inom knappens ramar
