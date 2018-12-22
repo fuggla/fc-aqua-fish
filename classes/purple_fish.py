@@ -45,12 +45,12 @@ class PfishSprite(arcade.Sprite):
         # Fiskarnas personlighet
         self.eager = 5
         self.hungry = 5
-        self.daydream = 10
+        self.daydream = 15
 
-        # Fiskarnas fysiska egenskaper (från 0 till 100)
-        self.finforce = 5
-        self.size = 10
-        self.mass = 10      # Default är samma som .size
+        # Fiskarnas fysiska egenskaper
+        self.finforce = 2
+        self.size = 8
+        self.mass = 8      # Default är samma som .size
 
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20
@@ -124,7 +124,7 @@ class PfishSprite(arcade.Sprite):
         # Animering av fiskarna
 
         # Ändra fenfrekvens utifrån totalacceleration
-        self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/5 + 1))
+        self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
 
         # Vänd dem i x-hastighetens riktning
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
