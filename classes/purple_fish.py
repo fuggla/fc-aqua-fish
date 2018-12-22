@@ -34,7 +34,7 @@ class PfishSprite(arcade.Sprite):
         self.center_x = random.randrange(sw * 0.8) + sw * 0.1
         self.center_y = random.randrange(sh * 0.8) + sh * 0.1
 
-        # Starthastihet
+        # Definiera hastighet och acceleration
         self.change_x = 0       # x_hastighet
         self.change_y = 0       # y_hastighet
         self.acc_x = 0          # x_acceleration
@@ -44,11 +44,19 @@ class PfishSprite(arcade.Sprite):
         self.eager = 5
         self.hungry = 5
         self.daydream = 10
+
+        # Fiskarnas fysiska egenskaper (från 0 till 100)
+        self.finforce = 5
+        self.size = 10
+        self.mass = 10      # Default är samma som .size
+
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20
 
+        """ Dessa ska bort så småningom, de ersätts av fysiska egenskaper """
         self.waterres = 0.99            # Bromsande kraft på fisken från vattnet
         self.maxspeed = 2               # Fiskens maxxhastighet (gäller då fisken är lugn)
+
         self.relaxed = [True, True]     # Pfish blir nervös nära kanter
 
     def update(self):
