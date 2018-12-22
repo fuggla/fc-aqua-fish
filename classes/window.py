@@ -4,18 +4,19 @@ from classes.button import Button
 
 class Window():
 
-    def __init__(self, x, y, width, height, title):
+    def __init__(self, x, y, width, height, title, title_height=None, font_size=None, outline_size=None):
 
         # Position och storlek
         self.x = x
         self.y = y
         self.height = height
         self.width = width
+        self.outline_size = outline_size or 2
 
         # Text längst upp på fönstret
         self.title = title
-        self.title_height = 30
-        self.font_size = 14
+        self.title_height = title_height or 30
+        self.font_size = font_size or 14
 
         # Fönstrets kanter
         self.left = x - width / 2
@@ -35,7 +36,7 @@ class Window():
             y = self.top + self.title_height / 2,
             height = self.title_height,
             width = self.width,
-            outline_size = 2,
+            outline_size = self.outline_size,
             outline_color = (0, 0, 0, 128),
             background_color = arcade.color.PINK,
             text = title,
@@ -49,7 +50,7 @@ class Window():
             y = self.top + self.title_height / 2,
             height = self.title_height,
             width = self.title_height,
-            outline_size = 2,
+            outline_size = self.outline_size,
             outline_color = (0, 0, 0, 0),
             background_color = (100, 0, 0, 100),
             text = "X",
@@ -96,7 +97,7 @@ class Window():
             y = self.top - margin_top - height / 2,
             width = width,
             height = height,
-            outline_size = 2,
+            outline_size = self.outline_size,
             outline_color = arcade.color.BLACK,
             background_color = arcade.color.GRAY,
             text = text,
