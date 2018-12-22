@@ -5,45 +5,55 @@ from classes.button import Button
 class Window():
 
     def __init__(self, x, y, width, height, title):
+
+        # Position och storlek
         self.x = x
         self.y = y
         self.height = height
         self.width = width
+
+        # Text längst upp på fönstret
+        self.title = title
+        self.title_height = 30
+        self.font_size = 14
+
+        # Fönstrets kanter
         self.left = x - width / 2
         self.top = y + height / 2
         self.bottom = y - height / 2
         self.right = x + width / 2
-        self.title = title
-        self.bar_height = 30
-        self.font_size = 14
+
+        # Avgör om fönstret är synligt
         self.visible = True
+
+        # Fönstret innehåller knappar
         self.button_list = []
 
-        # Kant längst upp på fönstret
+        # Stor ram längst upp på fönstret fungerar som en knapp
         self.button_list.append(Button(
             x = self.left + self.width / 2,
-            y = self.top + self.bar_height / 2,
-            height = self.bar_height,
+            y = self.top + self.title_height / 2,
+            height = self.title_height,
             width = self.width,
             outline_size = 2,
             outline_color = (0, 0, 0, 128),
             background_color = arcade.color.PINK,
-            text = "",
-            font_size = 20,
+            text = title,
+            font_size = self.font_size,
             release = self.is_open
         ))
 
         # En X knapp i höger hörn för att stänga fönstret
         self.button_list.append(Button(
-            x = self.right - self.bar_height / 2,
-            y = self.top + self.bar_height / 2,
-            height = self.bar_height,
-            width = self.bar_height,
+            x = self.right - self.title_height / 2,
+            y = self.top + self.title_height / 2,
+            height = self.title_height,
+            width = self.title_height,
             outline_size = 2,
             outline_color = (0, 0, 0, 0),
             background_color = (100, 0, 0, 100),
             text = "X",
-            font_size = 20,
+            font_size = self.title_height - 10,
             release = self.close
         ))
 
