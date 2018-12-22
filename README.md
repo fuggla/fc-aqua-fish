@@ -4,7 +4,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ## Roadmap
 
-### v1.0
+### v1.0 (är detta en bra ide?)
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten
 - [ ] Fullscreen
 
