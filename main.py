@@ -11,7 +11,7 @@ from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.carrot import CarrotSprite
 
-VERSION = 0.2
+VERSION = 0.3
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 

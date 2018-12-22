@@ -4,6 +4,10 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ## Roadmap
 
+### v1.0
+- [ ] Någon form av exekverbar fil eller bibliotek för allmänheten
+- [ ] Fullscreen
+
 ### v0.4
 
 - [ ] Slumpmässig spawn av maten
@@ -15,12 +19,12 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Stäng fönster med `X`
 - [ ] Flytta fönster med musen?
 - [ ] Ett till fönster med andra funktioner? Tex Spawn Fish osv
+- [ ] Ändra rörelsebeteendet från accelerationsbaserat till kraftbaserat
 
 ### v0.3
 
 - [x] Game state (Running, Paused osv)
 - [x] Pausemeny istället för knappar hela tiden
-- [ ] Sand i botten på akvariet som fiskarna förhåller sig till
 - [x] Ändra fiskarnas animation utifrån hastighet
 - [x] Skapa ett objekt som fiskarna vill simma mot (bra till framtida behov)
 - [x] Ändra rörelsemönster från hastighetsbasserat till accelerationsbaserat
