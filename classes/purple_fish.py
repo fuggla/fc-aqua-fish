@@ -48,7 +48,7 @@ class PfishSprite(arcade.Sprite):
         self.daydream = 15
 
         # Fiskarnas fysiska egenskaper
-        self.finforce = 2
+        self.finforce = 5
         self.size = 8
         self.mass = 8      # Default är samma som .size
 
@@ -70,19 +70,19 @@ class PfishSprite(arcade.Sprite):
 
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
-            self.acc_x = (random.random() * 1 - 0.5) * self.finforce
-            self.acc_y = (random.random() * 1 - 0.5) * self.finforce
+            self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
+            self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
 
-        # Om de är lugna kan de vilja ändra riktning mot moroten
+        # Om de är lugna kan de vilja ändra
         if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
             if self.get_position()[0] < carrot_cor[0]:
-                self.acc_x = self.finforce
+                self.acc_x = random.random() * self.finforce / self.mass
             if self.get_position()[0] > carrot_cor[0]:
-                self.acc_x = -self.finforce
+                self.acc_x = - random.random() * self.finforce / self.mass
             if self.get_position()[1] < carrot_cor[1]:
-                self.acc_y = self.finforce
+                self.acc_y = random.random() * self.finforce / self.mass
             if self.get_position()[1] > carrot_cor[1]:
-                self.acc_y = -self.finforce
+                self.acc_y = - random.random() * self.finforce / self.mass
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
@@ -91,27 +91,26 @@ class PfishSprite(arcade.Sprite):
 
         # Alla dessa if kollar kanter, styr in dem mot mitten och stressar upp dem
         if self.center_x > sw * 0.90:
-            self.acc_x = - self.finforce
+            self.acc_x = - self.finforce / self.mass
             self.relaxed[0] = False
         if self.center_x < sw * 0.10:
-            self.acc_x = self.finforce
+            self.acc_x = self.finforce / self.mass
             self.relaxed[0] = False
 
         if self.center_y > sh * 0.90:
-            self.acc_y = -self.finforce
+            self.acc_y = -self.finforce / self.mass
             self.relaxed[1] = False
         if self.center_y < sh * 0.10:
-            self.acc_y = self.finforce
+            self.acc_y = self.finforce / self.mass
             self.relaxed[1] = False
 
-        # Beräkna bromskraft från vattnet
-        self.break_x = self.size/100 * self.change_x * math.fabs(self.change_x)
-        self.break_y = self.size/100 * self.change_y * math.fabs(self.change_y)
+        # Beräkna negativ acceleration från vattnet
+        self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
+        self.break_y = self.size * self.change_y * math.fabs(self.change_y) / self.mass
 
-        # Accelerera ifall maxhastigheten inte är nådd
-        #if math.sqrt(self.change_x**2 + self.change_y**2) <= self.maxspeed:
-        self.change_x = self.change_x + self.acc_x/self.mass - self.break_x
-        self.change_y = self.change_y + self.acc_y/self.mass - self.break_y
+        # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
+        self.change_x = self.change_x + (self.acc_x - self.break_x)/30
+        self.change_y = self.change_y + (self.acc_y - self.break_y)/30
 
         # Updatera animationen
         self.animate()
