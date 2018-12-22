@@ -25,10 +25,15 @@ class CarrotSprite(arcade.Sprite):
 
 
     def update(self):
+        # Updatera koordinaterna innan de skickas iväg
         global carrot_cor
         carrot_cor = self.get_position()
+
+
+
         # Anropa huvudklassen
         super().update()
 
     def get_coordinates(self):
+        # Metod som skickar iväg morotens koordinater
         return carrot_cor
