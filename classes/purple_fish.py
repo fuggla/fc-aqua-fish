@@ -39,6 +39,8 @@ class PfishSprite(arcade.Sprite):
         self.change_y = 0       # y_hastighet
         self.acc_x = 0          # x_acceleration
         self.acc_y = 0          # y_acceleration
+        self.break_x = 0        # negativ x_acceleration
+        self.break_y = 0        # negativ y_acceleration
 
         # Fiskarnas personlighet
         self.eager = 5
@@ -52,10 +54,6 @@ class PfishSprite(arcade.Sprite):
 
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20
-
-        """ Dessa ska bort så småningom, de ersätts av fysiska egenskaper """
-        self.waterres = 0.99            # Bromsande kraft på fisken från vattnet
-        self.maxspeed = 2               # Fiskens maxxhastighet (gäller då fisken är lugn)
 
         self.relaxed = [True, True]     # Pfish blir nervös nära kanter
 
@@ -72,19 +70,19 @@ class PfishSprite(arcade.Sprite):
 
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
-            self.acc_x = random.random() * 0.1 - 0.05
-            self.acc_y = random.random() * 0.1 - 0.05
+            self.acc_x = (random.random() * 1 - 0.5) * self.finforce
+            self.acc_y = (random.random() * 1 - 0.5) * self.finforce
 
         # Om de är lugna kan de vilja ändra riktning mot moroten
         if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
             if self.get_position()[0] < carrot_cor[0]:
-                self.acc_x = 0.1
+                self.acc_x = self.finforce
             if self.get_position()[0] > carrot_cor[0]:
-                self.acc_x = -0.1
+                self.acc_x = -self.finforce
             if self.get_position()[1] < carrot_cor[1]:
-                self.acc_y = 0.1
+                self.acc_y = self.finforce
             if self.get_position()[1] > carrot_cor[1]:
-                self.acc_y = -0.1
+                self.acc_y = -self.finforce
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
@@ -93,32 +91,27 @@ class PfishSprite(arcade.Sprite):
 
         # Alla dessa if kollar kanter, styr in dem mot mitten och stressar upp dem
         if self.center_x > sw * 0.90:
-            self.acc_x = -0.1
+            self.acc_x = - self.finforce
             self.relaxed[0] = False
         if self.center_x < sw * 0.10:
-            self.acc_x = 0.1
+            self.acc_x = self.finforce
             self.relaxed[0] = False
 
         if self.center_y > sh * 0.90:
-            self.acc_y = -0.1
+            self.acc_y = -self.finforce
             self.relaxed[1] = False
         if self.center_y < sh * 0.10:
-            self.acc_y = 0.1
+            self.acc_y = self.finforce
             self.relaxed[1] = False
 
+        # Beräkna bromskraft från vattnet
+        self.break_x = self.size/100 * self.change_x * math.fabs(self.change_x)
+        self.break_y = self.size/100 * self.change_y * math.fabs(self.change_y)
+
         # Accelerera ifall maxhastigheten inte är nådd
-        if math.sqrt(self.change_x**2 + self.change_y**2) <= self.maxspeed:
-            self.change_x = self.change_x + self.acc_x
-            self.change_y = self.change_y + self.acc_y
-
-        # Accelerationen minskar ifall den är avslappnad
-        if self.relaxed == [True, True]:
-            self.acc_x = self.acc_x * self.waterres
-            self.acc_y = self.acc_y * self.waterres
-
-        # Bromsa upp vattnet
-        self.change_x = self.change_x * self.waterres
-        self.change_y = self.change_y * self.waterres
+        #if math.sqrt(self.change_x**2 + self.change_y**2) <= self.maxspeed:
+        self.change_x = self.change_x + self.acc_x/self.mass - self.break_x
+        self.change_y = self.change_y + self.acc_y/self.mass - self.break_y
 
         # Updatera animationen
         self.animate()
@@ -130,8 +123,8 @@ class PfishSprite(arcade.Sprite):
     def animate(self):
         # Animering av fiskarna
 
-        # Ändra fenfrekvens utifrån totalhastighet
-        self.findelay = int(self.findelay_base/(math.sqrt(self.change_x**2+self.change_y**2)+1))
+        # Ändra fenfrekvens utifrån totalacceleration
+        self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/5 + 1))
 
         # Vänd dem i x-hastighetens riktning
         if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):

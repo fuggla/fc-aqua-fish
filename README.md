@@ -14,12 +14,13 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Maten sjunker i vattnet tills den når botten
 - [ ] Maten droppas in ovanifrån
 - [ ] Fiskarna äter upp maten
+- [ ] Fiskarna riktar in sig mot maten
 - [ ] Klass för "flytande" fönster
 - [ ] Lägg pausmeny i eget fönster
 - [ ] Stäng fönster med `X`
 - [ ] Flytta fönster med musen?
 - [ ] Ett till fönster med andra funktioner? Tex Spawn Fish osv
-- [ ] Ändra rörelsebeteendet från accelerationsbaserat till kraftbaserat
+- [x] Ändra rörelsebeteendet från accelerationsbaserat till kraftbaserat
 
 ### v0.3
 
