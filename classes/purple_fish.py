@@ -8,12 +8,12 @@ class PfishSprite(arcade.Sprite):
         # Anropa Sprite konstruktor
         super().__init__()
 
-        global sw
-        global sh
+        global sw       # Screen Width
+        global sh       # Screen Height
         sw = SCREEN_WIDTH
         sh = SCREEN_HEIGHT
 
-        # texture för höger och vänster
+        # texture 1 & 2 för höger och vänster
         self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
         self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
         self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=SPRITE_SCALING_PFISH)
@@ -27,8 +27,8 @@ class PfishSprite(arcade.Sprite):
             self.texture = self.texture_right1
             self.whichtexture = 21              # 21 = right1
 
+        # Fiskarnas intärna klocka difinieras
         self.frame_count = 0
-
 
         # Placera ut fiskarna
         self.center_x = random.randrange(sw * 0.8) + sw * 0.1
@@ -37,20 +37,20 @@ class PfishSprite(arcade.Sprite):
         # Definiera hastighet och acceleration
         self.change_x = 0       # x_hastighet
         self.change_y = 0       # y_hastighet
-        self.acc_x = 0          # x_acceleration
-        self.acc_y = 0          # y_acceleration
+        self.acc_x = 0          # positiv x_acceleration
+        self.acc_y = 0          # negativ y_acceleration
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
 
         # Fiskarnas personlighet
-        self.eager = 5
-        self.hungry = 5
+        self.eager = 5                  # Hur ofta byter fiskarna riktning
+        self.hungry = 5                 # Hur intresserade är de av mat
         self.daydream = 15
 
         # Fiskarnas fysiska egenskaper
-        self.finforce = 5
+        self.finforce = 6
         self.size = 8
-        self.mass = 8      # Default är samma som .size
+        self.mass = 8                # Default är samma som .size
 
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20
