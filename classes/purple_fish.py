@@ -1,5 +1,5 @@
 
-import arcade,random,math
+import arcade, random, math
 from classes.carrot import CarrotSprite
 
 # Klass för lila fiskar (Purple_fish)
@@ -45,7 +45,7 @@ class PfishSprite(arcade.Sprite):
         # Fiskarnas personlighet
         self.eager = 5                  # Hur ofta byter fiskarna riktning
         self.hungry = 5                 # Hur intresserade är de av mat
-        self.daydream = 15
+        self.daydream = 10
 
         # Fiskarnas fysiska egenskaper
         self.finforce = 6
@@ -73,16 +73,13 @@ class PfishSprite(arcade.Sprite):
             self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
             self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
 
-        # Om de är lugna kan de vilja ändra
+        # Om de är lugna kan de vilja ändra riktning mot maten
         if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
-            if self.get_position()[0] < carrot_cor[0]:
-                self.acc_x = random.random() * self.finforce / self.mass
-            if self.get_position()[0] > carrot_cor[0]:
-                self.acc_x = - random.random() * self.finforce / self.mass
-            if self.get_position()[1] < carrot_cor[1]:
-                self.acc_y = random.random() * self.finforce / self.mass
-            if self.get_position()[1] > carrot_cor[1]:
-                self.acc_y = - random.random() * self.finforce / self.mass
+            # Beräkna vinkel mot moroten
+            ang = math.atan2((self.get_position()[1] - carrot_cor[1]), (self.get_position()[0] - carrot_cor[0])) + 3.14
+            foodspeed = random.random() * self.finforce / self.mass
+            self.acc_x = foodspeed * math.cos(ang)
+            self.acc_y = foodspeed * math.sin(ang)
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
@@ -98,7 +95,7 @@ class PfishSprite(arcade.Sprite):
             self.relaxed[0] = False
 
         if self.center_y > sh * 0.90:
-            self.acc_y = -self.finforce / self.mass
+            self.acc_y = - self.finforce / self.mass
             self.relaxed[1] = False
         if self.center_y < sh * 0.10:
             self.acc_y = self.finforce / self.mass
@@ -109,6 +106,7 @@ class PfishSprite(arcade.Sprite):
         self.break_y = self.size * self.change_y * math.fabs(self.change_y) / self.mass
 
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
+        # Här ska programmets framerate in stället för 30
         self.change_x = self.change_x + (self.acc_x - self.break_x)/30
         self.change_y = self.change_y + (self.acc_y - self.break_y)/30
 
