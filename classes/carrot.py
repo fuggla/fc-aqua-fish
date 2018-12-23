@@ -11,7 +11,6 @@ class CarrotSprite(arcade.Sprite):
         sw = SCREEN_WIDTH
         sh = SCREEN_HEIGHT
 
-        # Cordinaterna som ska skickas till fiskarna
         global carrot_cor
         carrot_cor = [0, 0]
 
@@ -21,7 +20,7 @@ class CarrotSprite(arcade.Sprite):
 
         # Placera ut moroten
         self.center_x = random.randrange(sw * 0.8) + sw * 0.1
-        self.center_y = random.randrange(sh * 0.8) + sh * 0.1
+        self.center_y = sh
 
         # Definiera variabler
         self.change_x = 0

@@ -59,7 +59,6 @@ class MyGame(arcade.Window, State):
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
 
-        # Skapa en morot
         carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
@@ -99,6 +98,15 @@ class MyGame(arcade.Window, State):
 
         if self.is_playing():
             self.all_sprite_list.update()
+            # Skapa en morot
+            if random.randrange(3000) < 1:
+                carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
+                self.carrot_list.append(carrot)
+                self.all_sprite_list.append(carrot)
+            # Ta bort morötter som ramlat ner
+            for carrot in self.carrot_list:
+                if carrot.top < 0:
+                    carrot.kill()
 
         self.frame_count += 1
 

@@ -15,9 +15,9 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ### v0.4
 
-- [ ] Slumpmässig spawn av maten
+- [x] Slumpmässig spawn av maten
 - [ ] Maten sjunker i vattnet tills den når botten
-- [ ] Maten droppas in ovanifrån
+- [x] Maten droppas in ovanifrån
 - [ ] Fiskarna äter upp maten
 - [x] Fiskarna riktar in sig mot maten
 - [ ] Klass för "flytande" fönster

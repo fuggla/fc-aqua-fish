@@ -43,9 +43,9 @@ class PfishSprite(arcade.Sprite):
         self.break_y = 0        # negativ y_acceleration
 
         # Fiskarnas personlighet
-        self.eager = 5                  # Hur ofta byter fiskarna riktning
-        self.hungry = 5                 # Hur intresserade är de av mat
-        self.daydream = 10
+        self.eager = 0                  # Hur ofta byter fiskarna riktning
+        self.hungry = 25                 # Hur intresserade är de av mat
+        self.daydream = 0
 
         # Fiskarnas fysiska egenskaper
         self.finforce = 6
