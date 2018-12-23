@@ -101,15 +101,21 @@ class MyGame(arcade.Window, State):
         if self.is_playing():
             self.all_sprite_list.update()
 
-            # Skapa en morot med sannolikheten 1 på 1000 varje frame
-            if random.randrange(1000) < 1:
+            """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
+            if random.randrange(500) < 1:
                 carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            # Ta bort morötter som ramlat ner
+            """ Ta bort morötter som ramlat ner """
             for carrot in self.carrot_list:
                 if carrot.top < 0:
+                    carrot.kill()
+
+            """ Ta bort morötter som fiskarna äter upp """
+            for fish in self.pfish_list:
+                hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
+                for carrot in hit_list:
                     carrot.kill()
 
         self.frame_count += 1

@@ -29,7 +29,7 @@ class CarrotSprite(arcade.Sprite):
         self.framerate = 30         # Ska fixas sen
         # Morotens egenskaper
         self.size = 1
-        self.mass = 0.1
+        self.mass = 0.5
 
 
     def update(self):
