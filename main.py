@@ -55,13 +55,15 @@ class MyGame(arcade.Window, State):
 
         # Skapa lila fiskar
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT)
+            pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, self.carrot_list)
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
 
+        #"""
         carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
+        #"""
 
         # Skapa en lista på knappar
         self.button_list = []
@@ -98,11 +100,13 @@ class MyGame(arcade.Window, State):
 
         if self.is_playing():
             self.all_sprite_list.update()
-            # Skapa en morot
-            if random.randrange(3000) < 1:
+
+            # Skapa en morot med sannolikheten 1 på 1000 varje frame
+            if random.randrange(1000) < 1:
                 carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
+
             # Ta bort morötter som ramlat ner
             for carrot in self.carrot_list:
                 if carrot.top < 0:

@@ -4,14 +4,17 @@ from classes.carrot import CarrotSprite
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(arcade.Sprite):
-    def __init__(self, SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT):
+    def __init__(self, SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, carrot_list):
         # Anropa Sprite konstruktor
         super().__init__()
 
         global sw       # Screen Width
         global sh       # Screen Height
+        global carrots
+
         sw = SCREEN_WIDTH
         sh = SCREEN_HEIGHT
+        carrots = carrot_list
 
         # texture 1 & 2 för höger och vänster
         self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
@@ -43,9 +46,9 @@ class PfishSprite(arcade.Sprite):
         self.break_y = 0        # negativ y_acceleration
 
         # Fiskarnas personlighet
-        self.eager = 0                  # Hur ofta byter fiskarna riktning
-        self.hungry = 25                 # Hur intresserade är de av mat
-        self.daydream = 0
+        self.eager = 5                  # Hur ofta byter fiskarna riktning
+        self.hungry = 5                 # Hur intresserade är de av mat
+        self.daydream = 10
 
         # Fiskarnas fysiska egenskaper
         self.finforce = 6
@@ -60,7 +63,7 @@ class PfishSprite(arcade.Sprite):
     def update(self):
 
         # Anrop till CarrotSprite som ger morotens coordinater
-        carrot_cor = CarrotSprite.get_coordinates(self)
+        # carrot_cor = CarrotSprite.get_coordinates(self)
 
         # De blir lugna av att befinna sig i mitter av akvariet
         if 0.15 * sw < self.center_x < 0.85 * sw:
@@ -73,13 +76,23 @@ class PfishSprite(arcade.Sprite):
             self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
             self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
 
-        # Om de är lugna kan de vilja ändra riktning mot maten
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
-            # Beräkna vinkel mot moroten
-            ang = math.atan2((self.get_position()[1] - carrot_cor[1]), (self.get_position()[0] - carrot_cor[0])) + 3.14
-            foodspeed = random.random() * self.finforce / self.mass
-            self.acc_x = foodspeed * math.cos(ang)
-            self.acc_y = foodspeed * math.sin(ang)
+        # Om det finns morötter, de är lugna och hungriga vänder de sig mot närmaste morot
+        if carrots:
+            carrot_cor = []
+            for carrot in carrots:
+                carrot_cor.append([carrot.center_x, carrot.center_y])
+
+            nerest_carrot = [(carrot_cor[0][0] - self.center_x), (carrot_cor[0][1] - self.center_y)]
+            for carrot in carrot_cor:
+                if ((carrot[0] - self.center_x) ** 2 + (carrot[1] - self.center_y) ** 2) < (nerest_carrot[0] ** 2 + nerest_carrot[1] ** 2):
+                    nerest_carrot = [(carrot[0] - self.center_x), (carrot[1] - self.center_y)]
+
+            if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
+                # Beräkna vinkel mot moroten
+                ang = math.atan2(nerest_carrot[1], nerest_carrot[0])
+                foodspeed = random.random() * self.finforce / self.mass
+                self.acc_x = foodspeed * math.cos(ang)
+                self.acc_y = foodspeed * math.sin(ang)
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
