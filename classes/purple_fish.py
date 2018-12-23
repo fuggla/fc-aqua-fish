@@ -70,49 +70,20 @@ class PfishSprite(arcade.Sprite):
 
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
-            self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
-            self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
+            self.random_move()
 
-        # Om det finns morötter, de är lugna och hungriga vänder de sig mot närmaste morot
-        if carrots:
-            carrot_cor = []
-            # Spara alla morätternas koordinater i carrot_cor
-            for carrot in carrots:
-                carrot_cor.append([carrot.center_x, carrot.center_y])
-
-            # Beräkna avståndet till moroten som är närmast
-            nerest_carrot = [(carrot_cor[0][0] - self.center_x), (carrot_cor[0][1] - self.center_y)]
-            for carrot in carrot_cor:
-                if ((carrot[0] - self.center_x) ** 2 + (carrot[1] - self.center_y) ** 2) < (nerest_carrot[0] ** 2 + nerest_carrot[1] ** 2):
-                    nerest_carrot = [(carrot[0] - self.center_x), (carrot[1] - self.center_y)]
-
-            # Om den är lugn och hungerfaktorn slår in: rikta fisken mot närmaste moroten och accelerera ditåt
-            if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
-                # Beräkna vinkel mot moroten
-                ang = math.atan2(nerest_carrot[1], nerest_carrot[0])
-                foodspeed = random.random() * self.finforce / self.mass
-                self.acc_x = foodspeed * math.cos(ang)
-                self.acc_y = foodspeed * math.sin(ang)
+        # Om de är lugna och kan de vilja jaga mat
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
+            self.chase_food()
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
             self.acc_x = 0
             self.acc_y = 0
 
-        # Alla dessa if kollar kanter, styr in dem mot mitten och stressar upp dem
-        if self.center_x > sw * 0.90:
-            self.acc_x = - self.finforce / self.mass
-            self.relaxed[0] = False
-        if self.center_x < sw * 0.10:
-            self.acc_x = self.finforce / self.mass
-            self.relaxed[0] = False
-
-        if self.center_y > sh * 0.90:
-            self.acc_y = - self.finforce / self.mass
-            self.relaxed[1] = False
-        if self.center_y < sh * 0.10:
-            self.acc_y = self.finforce / self.mass
-            self.relaxed[1] = False
+        # Kolla om fisken är nära kansten och styr in den mot mitten
+        # Stressa även upp den
+        self.check_edge()
 
         # Beräkna negativ acceleration från vattnet
         self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
@@ -128,6 +99,49 @@ class PfishSprite(arcade.Sprite):
 
         # Anropa huvudklassen
         super().update()
+
+
+    def chase_food(self):
+        # Om det finns morötter, de är lugna och hungriga vänder de sig mot närmaste morot
+        if carrots:
+            carrot_cor = []
+            # Spara alla morätternas koordinater i carrot_cor
+            for carrot in carrots:
+                carrot_cor.append([carrot.center_x, carrot.center_y])
+
+            # Beräkna avståndet till moroten som är närmast
+            nerest_carrot = [(carrot_cor[0][0] - self.center_x), (carrot_cor[0][1] - self.center_y)]
+            for carrot in carrot_cor:
+                if ((carrot[0] - self.center_x) ** 2 + (carrot[1] - self.center_y) ** 2) < (
+                        nerest_carrot[0] ** 2 + nerest_carrot[1] ** 2):
+                    nerest_carrot = [(carrot[0] - self.center_x), (carrot[1] - self.center_y)]
+
+            # Beräkna vinkel mot moroten
+            ang = math.atan2(nerest_carrot[1], nerest_carrot[0])
+            foodspeed = random.random() * self.finforce / self.mass
+            self.acc_x = foodspeed * math.cos(ang)
+            self.acc_y = foodspeed * math.sin(ang)
+
+    def random_move(self):
+        # Ändra accelerationen slumpartat
+        self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
+        self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
+
+    def check_edge(self):
+        # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
+        if self.center_x > sw * 0.90:
+            self.acc_x = - self.finforce / self.mass
+            self.relaxed[0] = False
+        if self.center_x < sw * 0.10:
+            self.acc_x = self.finforce / self.mass
+            self.relaxed[0] = False
+
+        if self.center_y > sh * 0.90:
+            self.acc_y = - self.finforce / self.mass
+            self.relaxed[1] = False
+        if self.center_y < sh * 0.10:
+            self.acc_y = self.finforce / self.mass
+            self.relaxed[1] = False
 
 
     def animate(self):
