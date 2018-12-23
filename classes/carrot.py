@@ -11,11 +11,7 @@ class CarrotSprite(arcade.Sprite):
         sw = SCREEN_WIDTH
         sh = SCREEN_HEIGHT
 
-        global carrot_cor
-        carrot_cor = [0, 0]
-
         self.texture_carrot1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
-
         self.texture = self.texture_carrot1
 
         # Placera ut moroten
@@ -37,10 +33,6 @@ class CarrotSprite(arcade.Sprite):
 
 
     def update(self):
-        # Updatera koordinaterna innan de skickas iväg
-        global carrot_cor
-        carrot_cor = self.get_position()
-
         # Beräkna acceleration i x-led
         self.acc_right = 0
         self.acc_left = 0
@@ -56,7 +48,3 @@ class CarrotSprite(arcade.Sprite):
 
         # Anropa huvudklassen
         super().update()
-
-    def get_coordinates(self):
-        # Metod som skickar iväg morotens koordinater
-        return carrot_cor

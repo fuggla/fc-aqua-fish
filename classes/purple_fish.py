@@ -62,9 +62,6 @@ class PfishSprite(arcade.Sprite):
 
     def update(self):
 
-        # Anrop till CarrotSprite som ger morotens coordinater
-        # carrot_cor = CarrotSprite.get_coordinates(self)
-
         # De blir lugna av att befinna sig i mitter av akvariet
         if 0.15 * sw < self.center_x < 0.85 * sw:
             self.relaxed[0] = True
@@ -79,14 +76,17 @@ class PfishSprite(arcade.Sprite):
         # Om det finns morötter, de är lugna och hungriga vänder de sig mot närmaste morot
         if carrots:
             carrot_cor = []
+            # Spara alla morätternas koordinater i carrot_cor
             for carrot in carrots:
                 carrot_cor.append([carrot.center_x, carrot.center_y])
 
+            # Beräkna avståndet till moroten som är närmast
             nerest_carrot = [(carrot_cor[0][0] - self.center_x), (carrot_cor[0][1] - self.center_y)]
             for carrot in carrot_cor:
                 if ((carrot[0] - self.center_x) ** 2 + (carrot[1] - self.center_y) ** 2) < (nerest_carrot[0] ** 2 + nerest_carrot[1] ** 2):
                     nerest_carrot = [(carrot[0] - self.center_x), (carrot[1] - self.center_y)]
 
+            # Om den är lugn och hungerfaktorn slår in: rikta fisken mot närmaste moroten och accelerera ditåt
             if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
                 # Beräkna vinkel mot moroten
                 ang = math.atan2(nerest_carrot[1], nerest_carrot[0])
