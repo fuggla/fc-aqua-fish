@@ -53,7 +53,7 @@ class PfishSprite(arcade.Sprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = 6
         self.size = 8
-        self.mass = 8                # Default är samma som .size
+        self.mass = 8                # Default är samma som .siz<e
 
         self.findelay = 20              # Hur ofta viftar de med fenorna
         self.findelay_base = 20

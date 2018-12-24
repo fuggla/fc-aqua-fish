@@ -59,12 +59,6 @@ class MyGame(arcade.Window, State):
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
 
-        #"""
-        carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT)
-        self.carrot_list.append(carrot)
-        self.all_sprite_list.append(carrot)
-        #"""
-
         # Skapa en lista på knappar
         self.button_list = []
         self.button_list.append(Button(30, 585, 50, 20, "Exit", 11, arcade.window_commands.close_window))
