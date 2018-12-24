@@ -87,6 +87,7 @@ class Window():
     def draw(self):
         if self.is_open():
             arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
+            arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, (0, 0, 0, 128), self.outline_size)
             for button in self.button_list:
                 button.draw()
 
