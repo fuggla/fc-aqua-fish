@@ -44,6 +44,9 @@ class Window():
         self.bottom = y - height / 2
         self.right = x + width / 2
 
+        # Skugga bakom fönstret
+        self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.width, self.height + self.title_height, (0, 0, 0, 64))
+
         # Avgör om fönstret är synligt
         self.visible = True
 
@@ -105,6 +108,7 @@ class Window():
     # Rita fönster
     def draw(self):
         if self.is_open():
+            arcade.draw_rectangle_filled(*self.drop_shadow)
             arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.background_color)
             arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, self.outline_color, self.outline_size)
             for button in self.button_list:
