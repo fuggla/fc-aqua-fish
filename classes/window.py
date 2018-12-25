@@ -50,6 +50,9 @@ class Window():
         # Avgör om fönstret är synligt
         self.visible = True
 
+        # Avgör om fönstret flyttas
+        self.dragging = False
+
         # Fönstret innehåller knappar
         self.button_list = []
 
@@ -63,7 +66,8 @@ class Window():
             background_color = title_background_color,
             text = title,
             font_size = self.font_size,
-            release = self.is_open
+            release = self.stop_dragging,
+            press = self.start_dragging
         ))
 
         # En X knapp i höger hörn för att stänga fönstret
@@ -105,6 +109,11 @@ class Window():
         for b in self.button_list:
             b.on_mouse_release(x, y)
 
+    # Kolla om det har klickats på en knapp i fönstret
+    def on_mouse_press(self, x, y):
+        for b in self.button_list:
+            b.on_mouse_press(x, y)
+
     # Rita fönster
     def draw(self):
         if self.is_open():
@@ -127,3 +136,35 @@ class Window():
             font_size = font_size,
             release = release
         ))
+
+    def update_buttons(self, x, y):
+        for b in self.button_list:
+            b.set_position(x, y)
+
+    def stop_dragging(self):
+        self.dragging = False
+
+    def start_dragging(self):
+        self.dragging = True
+
+    def is_dragged(self):
+         return True if self.dragging else False
+
+    # Flytta fönster relativt
+    def move(self, x, y):
+        # Flytta fönster
+        self.x += x
+        self.y += y
+
+        # Flytta skugga
+        self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.width, self.height + self.title_height, (0, 0, 0, 64))
+
+        # Rökna ut kanternas nya position
+        self.left = x - self.width / 2
+        self.top = y + self.height / 2
+        self.bottom = y - self.height / 2
+        self.right = x + self.width / 2
+
+        # Flytta knappar
+        for b in self.button_list:
+            b.move(x, y)

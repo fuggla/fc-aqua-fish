@@ -122,16 +122,13 @@ class MyGame(arcade.Window, State):
             self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
-        """
-        Called whenever the mouse moves.
-        """
-        pass
+        if self.is_paused():
+            if self.main_menu.is_dragged():
+                self.main_menu.move(delta_x, delta_y)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
-        """
-        Called when the user presses a mouse button.
-        """
-        pass
+        if self.is_paused():
+            self.main_menu.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         # Kolla om vi klickat på någon knapp i huvudmenyn
