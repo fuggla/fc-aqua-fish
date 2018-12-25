@@ -46,6 +46,12 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list = None
         self.window_list = None
 
+        # FPS
+        self.fps = 0
+        self.tick = 0
+        self.delta_count = 0
+        self.show_fps = False
+        
         #self.player_list = None
 
     def setup(self):
@@ -69,8 +75,9 @@ class MyGame(arcade.Window, State):
         self.window_list = []
 
         # Skapa meny för att interagera med akvariet
-        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 200, 50, "Store")
+        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 390, 50, "Store")
         self.interaction_menu.add_button(10, 10, 180, 30, "Buy Fish", 11, self.add_fish)
+        self.interaction_menu.add_button(10, 200, 180, 30, "Buy FPS counter", 11, self.enable_fps)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
@@ -102,6 +109,9 @@ class MyGame(arcade.Window, State):
             w.draw()
         # Call draw() on all your sprite lists below
 
+        if self.show_fps:
+            arcade.draw_text(str(self.fps), 10, SCREEN_HEIGHT - 10, arcade.color.BLACK, font_size=8, width=10, align="left", anchor_x="center", anchor_y="center")
+
     def update(self, delta_time):
         """
         All the logic to move, and the game logic goes here.
@@ -130,6 +140,14 @@ class MyGame(arcade.Window, State):
                     carrot.kill()
 
         self.frame_count += 1
+
+        if self.show_fps:
+            self.tick += 1
+            self.delta_count += delta_time
+            if self.delta_count >= 1:
+                self.fps = self.tick
+                self.delta_count = 0
+                self.tick = 0
 
     def on_key_press(self, key, key_modifiers):
         """
@@ -178,6 +196,9 @@ class MyGame(arcade.Window, State):
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
     
+    def enable_fps(self):
+        self.show_fps = True
+
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
