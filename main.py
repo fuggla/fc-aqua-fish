@@ -10,6 +10,7 @@ from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.carrot import CarrotSprite
+from classes.window import Window
 
 VERSION = 0.2
 SCREEN_WIDTH = 800
@@ -42,7 +43,6 @@ class MyGame(arcade.Window, State):
         # If you have sprite lists, you should create them here
         self.pfish_list = None
         self.carrot_list = None
-        self.button_list = None
         self.all_sprite_list = None
 
         #self.player_list = None
@@ -64,11 +64,10 @@ class MyGame(arcade.Window, State):
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
 
-        # Skapa en lista på knappar
-        self.button_list = []
-        self.button_list.append(Button(30, 585, 50, 20, "Exit", 11, arcade.window_commands.close_window))
-        self.button_list.append(Button(115, 585, 100, 20, "New Game", 11, self.setup))
-        self.button_list.append(Button(225, 585, 100, 20, "Do it!", 11, self.do_it))
+        # Skapa huvudmeny att visa med escape
+        self.main_menu = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 90, "Aqua Fish")
+        self.main_menu.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
+        self.main_menu.add_button(50, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
 
         # Setup klar
         self.state = "playing"
@@ -83,11 +82,9 @@ class MyGame(arcade.Window, State):
         arcade.start_render()
         self.all_sprite_list.draw()
 
-        # Rita alla knappar
+        # Rita bara huvudmeny om vi har pausat spelet
         if self.is_paused():
-            for button in self.button_list:
-                button.draw()
-
+            self.main_menu.draw()
         # Call draw() on all your sprite lists below
 
     def update(self, delta_time):
@@ -121,6 +118,7 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.R):
             self.setup()
         elif (key == arcade.key.ESCAPE):
+            self.main_menu.open()
             self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
@@ -136,10 +134,13 @@ class MyGame(arcade.Window, State):
         pass
 
     def on_mouse_release(self, x, y, button, key_modifiers):
-        # Kolla om vi klickat på någon knapp
+        # Kolla om vi klickat på någon knapp i huvudmenyn
         if self.is_paused():
-            for b in self.button_list:
-                b.on_mouse_release(x, y)
+            self.main_menu.on_mouse_release(x, y)
+
+            # Ingen mer paus om huvudmenyn är stängd
+            if self.main_menu.is_closed():
+                self.toggle_pause()
 
     def do_it(self):
         global PFISH_NUMBER
