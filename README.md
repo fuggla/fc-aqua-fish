@@ -28,7 +28,9 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [x] Stäng fönster med `X`
 - [x] Flytta fönster med musen?
 - [x] Testa a merga en branch
-- [ ] Ett till fönster med andra funktioner? Tex Spawn Fish osv
+- [x] Ett till fönster med andra funktioner?
+  - [x] Köp fisk
+  - [x] Köp FPS-räknare (mycket nödvändigt)
 - [x] Ändra rörelsebeteendet från accelerationsbaserat till kraftbaserat
 
 ### v0.3
