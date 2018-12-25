@@ -3,17 +3,17 @@ import arcade
 
 class Button():
 
-    def __init__(self, x, y, width, height, outline_size, outline_color, background_color, text, font_size, release):
+    def __init__(self, x, y, width, height, text, release, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11):
         self.x = x
         self.y = y
         self.height = height
         self.width = width
+        self.text = text
+        self.release = release
         self.outline_size = outline_size
         self.outline_color = outline_color
         self.background_color = background_color
-        self.text = text
         self.font_size = font_size
-        self.release = release
 
     # Rita knapp
     def draw(self):

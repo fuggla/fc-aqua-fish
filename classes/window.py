@@ -4,19 +4,22 @@ from classes.button import Button
 
 class Window():
 
-    def __init__(self, x, y, width, height, title, title_height=None, font_size=None, outline_size=None):
+    def __init__(self, x, y, width, height, title, title_height=30, title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
 
-        # Position och storlek
+        # Position, storlekt och färg
         self.x = x
         self.y = y
         self.height = height
         self.width = width
-        self.outline_size = outline_size or 2
+        self.outline_size = outline_size
+        self.outline_color = outline_color
+        self.background_color = background_color
 
         # Text längst upp på fönstret
         self.title = title
-        self.title_height = title_height or 30
-        self.font_size = font_size or 14
+        self.title_height = title_height
+        self.title_background_color = title_background_color
+        self.font_size = font_size
 
         # Fönstrets kanter
         self.left = x - width / 2
@@ -37,8 +40,7 @@ class Window():
             height = self.title_height,
             width = self.width,
             outline_size = self.outline_size,
-            outline_color = (0, 0, 0, 128),
-            background_color = arcade.color.PINK,
+            background_color = title_background_color,
             text = title,
             font_size = self.font_size,
             release = self.is_open
@@ -86,8 +88,8 @@ class Window():
     # Rita fönster
     def draw(self):
         if self.is_open():
-            arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, arcade.color.LIGHT_GRAY)
-            arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, (0, 0, 0, 128), self.outline_size)
+            arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.background_color)
+            arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, self.outline_color, self.outline_size)
             for button in self.button_list:
                 button.draw()
 
@@ -98,7 +100,6 @@ class Window():
             y = self.top - margin_top - height / 2,
             width = width,
             height = height,
-            outline_size = self.outline_size,
             outline_color = arcade.color.BLACK,
             background_color = arcade.color.GRAY,
             text = text,
