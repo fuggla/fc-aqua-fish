@@ -68,10 +68,17 @@ class MyGame(arcade.Window, State):
         # Skapa fönster
         self.window_list = []
 
+        # Skapa meny för att interagera med akvariet
+        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 200, 50, "Store")
+        self.interaction_menu.add_button(10, 10, 180, 30, "Buy Fish", 11, self.add_fish)
+        self.window_list.append(self.interaction_menu)
+        self.interaction_menu.open()
+
         # Skapa huvudmeny att visa med escape
-        self.main_menu = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 90, "Aqua Fish")
+        self.main_menu = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
         self.main_menu.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
-        self.main_menu.add_button(50, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
+        self.main_menu.add_button(50, 10, 180, 30, "Open Store", 11, self.interaction_menu.open)
+        self.main_menu.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
         self.window_list.append(self.main_menu)
 
         # Setup klar
@@ -90,6 +97,9 @@ class MyGame(arcade.Window, State):
         # Rita bara huvudmeny om vi har pausat spelet
         if self.is_paused():
             self.main_menu.draw()
+
+        for w in self.window_list:
+            w.draw()
         # Call draw() on all your sprite lists below
 
     def update(self, delta_time):
@@ -151,23 +161,23 @@ class MyGame(arcade.Window, State):
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.window_list:
             if w.is_open():
-                self.main_menu.on_mouse_press(x, y)
+                w.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         # Kolla om vi klickat på någon knapp i huvudmenyn
         for w in self.window_list:
             if w.is_open():
-                self.main_menu.on_mouse_release(x, y)
+                w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängd
         if self.is_paused and self.main_menu.is_closed():
             self.play()
 
-    def do_it(self):
-        global PFISH_NUMBER
-        PFISH_NUMBER = PFISH_NUMBER * 25
-        self.setup()
-
+    def add_fish(self):
+        pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, self.carrot_list)
+        self.pfish_list.append(pfish)
+        self.all_sprite_list.append(pfish)
+    
 def main():
     print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
