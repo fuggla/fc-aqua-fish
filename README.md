@@ -22,10 +22,11 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [x] Maten droppas in ovanifrån
 - [x] Fiskarna äter upp maten
 - [x] Fiskarna riktar in sig mot maten
-- [ ] Klass för "flytande" fönster
-- [ ] Lägg pausmeny i eget fönster
-- [ ] Stäng fönster med `X`
-- [ ] Flytta fönster med musen?
+- [x] Klass för "flytande" fönster
+- [x] Lägg pausmeny i eget fönster
+- [x] Stäng fönster med `X`
+- [x] Flytta fönster med musen?
+- [x] Testa a merga en branch
 - [ ] Ett till fönster med andra funktioner? Tex Spawn Fish osv
 - [x] Ändra rörelsebeteendet från accelerationsbaserat till kraftbaserat
 
