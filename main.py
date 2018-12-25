@@ -44,6 +44,7 @@ class MyGame(arcade.Window, State):
         self.pfish_list = None
         self.carrot_list = None
         self.all_sprite_list = None
+        self.window_list = None
 
         #self.player_list = None
 
@@ -64,10 +65,14 @@ class MyGame(arcade.Window, State):
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
 
+        # Skapa fönster
+        self.window_list = []
+
         # Skapa huvudmeny att visa med escape
         self.main_menu = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 90, "Aqua Fish")
         self.main_menu.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
         self.main_menu.add_button(50, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
+        self.window_list.append(self.main_menu)
 
         # Setup klar
         self.state = "playing"
@@ -122,22 +127,20 @@ class MyGame(arcade.Window, State):
             self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
-        if self.is_paused():
-            if self.main_menu.is_dragged():
-                self.main_menu.move(delta_x, delta_y)
+        for w in self.window_list:
+            if w.is_dragged():
+                w.move(delta_x, delta_y)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
-        if self.is_paused():
-            self.main_menu.on_mouse_press(x, y)
+        for w in self.window_list:
+            if w.is_open():
+                self.main_menu.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         # Kolla om vi klickat på någon knapp i huvudmenyn
-        if self.is_paused():
-            self.main_menu.on_mouse_release(x, y)
-
-            # Ingen mer paus om huvudmenyn är stängd
-            if self.main_menu.is_closed():
-                self.toggle_pause()
+        for w in self.window_list:
+            if w.is_open():
+                self.main_menu.on_mouse_release(x, y)
 
     def do_it(self):
         global PFISH_NUMBER
