@@ -1,4 +1,21 @@
-# Klass för att visa fönster
+"""
+Klass för att visa ett fönster
+
++------------------+---+
+|       TITEL      | X |
++------------------+---+
+|                      |
+| +------------------+ |
+| |      Knapp 1     | |
+| +------------------+ |
+|                      |
+| +------------------+ |
+| |      Knapp 2     | |
+| +------------------+ |
+|                      |
++----------------------+
+"""
+
 import arcade
 from classes.button import Button
 
