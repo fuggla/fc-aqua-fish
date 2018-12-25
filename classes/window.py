@@ -48,7 +48,7 @@ class Window():
         self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.width, self.height + self.title_height, (0, 0, 0, 64))
 
         # Avgör om fönstret är synligt
-        self.visible = True
+        self.visible = False
 
         # Avgör om fönstret flyttas
         self.dragging = False

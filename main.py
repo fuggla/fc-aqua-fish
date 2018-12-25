@@ -75,7 +75,7 @@ class MyGame(arcade.Window, State):
         self.window_list.append(self.main_menu)
 
         # Setup klar
-        self.state = "playing"
+        self.play()
 
     def on_draw(self):
         """
@@ -141,6 +141,10 @@ class MyGame(arcade.Window, State):
         for w in self.window_list:
             if w.is_open():
                 self.main_menu.on_mouse_release(x, y)
+
+        # Alltid spela spel när pausmenyn är stängd
+        if self.is_paused and self.main_menu.is_closed():
+            self.play()
 
     def do_it(self):
         global PFISH_NUMBER

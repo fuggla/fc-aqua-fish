@@ -9,7 +9,7 @@ class State():
         self.state = "playing"
 
     # Ändra state till playing
-    def play(self):
+    def pause(self):
         self.state = "paused"
 
     # Return true om spelet är pausat
