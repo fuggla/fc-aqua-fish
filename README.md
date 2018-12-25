@@ -14,6 +14,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 - [ ] Hela programmet har en gemensam framerate (variabel)
 - [ ] Fiskar som simmar i stim
+- [ ] Förslag: random färg på fisk (la till 2 nya)
 
 ### v0.4
 
