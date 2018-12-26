@@ -11,16 +11,7 @@ from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.carrot import CarrotSprite
 from classes.window import Window
-
-VERSION = 0.4
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten
-
-SPRITE_SCALING_PFISH = 0.1
-PFISH_NUMBER = 4
-
-SPRITE_SCALING_CARROT = 0.3
+from vars import *
 
 # Test att ändra två filer samtidigt
 
