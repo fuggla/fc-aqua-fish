@@ -72,14 +72,11 @@ class PfishSprite(FishSprite):
         # Stressa även upp den
         self.check_edge()
 
-        # Beräkna negativ acceleration från vattnet
-        self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
-        self.break_y = self.size * self.change_y * math.fabs(self.change_y) / self.mass
+        # Beräkna vattnets motstånd
+        self.water_res()
 
-        # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
-        # Här ska programmets framerate in stället för 30
-        self.change_x = self.change_x + (self.acc_x - self.break_x)/30
-        self.change_y = self.change_y + (self.acc_y - self.break_y)/30
+        # Beräkna acceleration
+        self.move_calc()
 
         # Updatera animationen
         self.animate()

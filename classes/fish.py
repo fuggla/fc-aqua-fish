@@ -1,5 +1,6 @@
 
 import arcade, random, math
+from vars import TICK_RATE
 
 class FishSprite(arcade.Sprite):
     def __init__(self):
@@ -13,6 +14,20 @@ class FishSprite(arcade.Sprite):
         self.acc_y = 0          # negativ y_acceleration
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
+
+        self.tick_rate = TICK_RATE
+
+
+    def move_calc(self):
+        # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
+        # Här ska programmets framerate in stället för 30
+        self.change_x = self.change_x + (self.acc_x - self.break_x) / self.tick_rate
+        self.change_y = self.change_y + (self.acc_y - self.break_y) / self.tick_rate
+
+    def water_res(self):
+        # Beräkna negativ acceleration från vattnet
+        self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
+        self.break_y = self.size * self.change_y * math.fabs(self.change_y) / self.mass
 
     def random_move(self):
         # Ändra accelerationen slumpartat
