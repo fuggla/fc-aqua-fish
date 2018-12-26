@@ -15,6 +15,7 @@ from classes.window import Window
 VERSION = 0.3
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten
 
 SPRITE_SCALING_PFISH = 0.1
 PFISH_NUMBER = 5
@@ -99,6 +100,13 @@ class MyGame(arcade.Window, State):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
+
+        # Rita ut sandbotten
+        arcade.draw_rectangle_filled(SCREEN_WIDTH / 2, SCREEN_HEIGHT * SAND_RATIO / 2, SCREEN_WIDTH,
+                                     SCREEN_HEIGHT * SAND_RATIO, arcade.color.SAND)
+        arcade.draw_rectangle_outline(SCREEN_WIDTH / 2, SCREEN_HEIGHT * SAND_RATIO / 2, SCREEN_WIDTH-2,
+                                     SCREEN_HEIGHT * SAND_RATIO-2, arcade.color.BLACK, 3)
+
         self.all_sprite_list.draw()
 
         # Rita bara huvudmeny om vi har pausat spelet
