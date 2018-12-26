@@ -9,12 +9,22 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Fullscreen
 - [ ] Skippbar splashscreen med logga
+- [ ] Introfilm
+- [ ] Fiskarna lägger rom som blir nya fiskar
+
+### v0.6
+- [ ] Fiskar som simmar i stim
+- [ ] Ätanimation
+- [ ] Föremål i akvariet
+- [ ] Fiskarna påverkas av mat
+- [ ] Fiskar kan äta upp andra fiskar
 
 ### v0.5
 
 - [ ] Hela programmet har en gemensam framerate (variabel)
-- [ ] Fiskar som simmar i stim
+- [ ] Flera typer av fiskar
 - [ ] Förslag: random färg på fisk (la till 2 nya)
+- [ ] Förslag: Bakgrundsbild (förslag i imagemapp)
 
 ### v0.4
 
