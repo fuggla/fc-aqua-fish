@@ -12,7 +12,7 @@ from classes.purple_fish import PfishSprite
 from classes.carrot import CarrotSprite
 from classes.window import Window
 
-VERSION = 0.3
+VERSION = 0.4
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten

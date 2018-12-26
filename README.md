@@ -29,8 +29,8 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ### v0.4
 
 - [x] Slumpmässig spawn av maten
-- [ ] Maten sjunker i vattnet tills den når botten
-- [ ] Sand i botten
+- [x] Maten sjunker i vattnet tills den når botten
+- [x] Sand i botten
 - [x] Maten droppas in ovanifrån
 - [x] Fiskarna äter upp maten
 - [x] Fiskarna riktar in sig mot maten
