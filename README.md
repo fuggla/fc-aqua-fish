@@ -21,7 +21,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 
 ### v0.5
 
-- [ ] Hela programmet har en gemensam framerate (variabel)
+- [x] Hela programmet har en gemensam framerate (Fanns hela tiden)
 - [ ] Flera typer av fiskar
 - [ ] Flera möjligheter att sätta parametrar på nya fiskar
 - [ ] Fullscreen
