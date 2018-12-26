@@ -54,7 +54,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa lila fiskar
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, self.carrot_list)
+            pfish = PfishSprite(self.carrot_list)
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
 
@@ -186,7 +186,7 @@ class MyGame(arcade.Window, State):
             self.play()
 
     def add_fish(self):
-        pfish = PfishSprite(SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, self.carrot_list)
+        pfish = PfishSprite(self.carrot_list)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
     
