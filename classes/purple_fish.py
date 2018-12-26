@@ -8,13 +8,9 @@ class PfishSprite(arcade.Sprite):
         # Anropa Sprite konstruktor
         super().__init__()
 
-        global sw       # Screen Width
-        global sh       # Screen Height
-        global carrots
-
-        sw = SCREEN_WIDTH
-        sh = SCREEN_HEIGHT
-        carrots = carrot_list
+        self.sw = SCREEN_WIDTH
+        self.sh = SCREEN_HEIGHT
+        self.carrot_list = carrot_list
 
         # texture 1 & 2 för höger och vänster
         self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
@@ -34,8 +30,8 @@ class PfishSprite(arcade.Sprite):
         self.frame_count = 0
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(sw * 0.8) + sw * 0.1
-        self.center_y = random.randrange(sh * 0.8) + sh * 0.1
+        self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
+        self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
 
         # Definiera hastighet och acceleration
         self.change_x = 0       # x_hastighet
@@ -63,9 +59,9 @@ class PfishSprite(arcade.Sprite):
     def update(self):
 
         # De blir lugna av att befinna sig i mitter av akvariet
-        if 0.15 * sw < self.center_x < 0.85 * sw:
+        if 0.15 * self.sw < self.center_x < 0.85 * self.sw:
             self.relaxed[0] = True
-        if 0.15 * sh < self.center_y < 0.85 * sh:
+        if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
         # Om de är lugna kan de vilja ändra riktning
@@ -103,6 +99,7 @@ class PfishSprite(arcade.Sprite):
 
     def chase_food(self):
         # Om det finns morötter, de är lugna och hungriga vänder de sig mot närmaste morot
+        carrots = self.carrot_list
         if carrots:
             carrot_cor = []
             # Spara alla morätternas koordinater i carrot_cor
@@ -129,17 +126,17 @@ class PfishSprite(arcade.Sprite):
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
-        if self.center_x > sw * 0.90:
+        if self.center_x > self.sw * 0.90:
             self.acc_x = - self.finforce / self.mass
             self.relaxed[0] = False
-        if self.center_x < sw * 0.10:
+        if self.center_x < self.sw * 0.10:
             self.acc_x = self.finforce / self.mass
             self.relaxed[0] = False
 
-        if self.center_y > sh * 0.90:
+        if self.center_y > self.sh * 0.90:
             self.acc_y = - self.finforce / self.mass
             self.relaxed[1] = False
-        if self.center_y < sh * 0.10:
+        if self.center_y < self.sh * 0.10:
             self.acc_y = self.finforce / self.mass
             self.relaxed[1] = False
 

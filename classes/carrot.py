@@ -1,8 +1,9 @@
 import arcade,random,math
+from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO
 
 # Klass för lila fiskar (Purple_fish)
 class CarrotSprite(arcade.Sprite):
-    def __init__(self, SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO):
+    def __init__(self):
         # Anropa Sprite konstruktor
         super().__init__()
 

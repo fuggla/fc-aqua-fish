@@ -118,7 +118,7 @@ class MyGame(arcade.Window, State):
 
             """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
             if random.randrange(500) < 1:
-                carrot = CarrotSprite(SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO)
+                carrot = CarrotSprite()
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
