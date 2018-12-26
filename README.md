@@ -18,6 +18,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Föremål i akvariet
 - [ ] Fiskarna påverkas av mat
 - [ ] Fiskar kan äta upp andra fiskar
+- [ ] Luftbubblor
 
 ### v0.5
 
