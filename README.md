@@ -22,11 +22,13 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 ### v0.5
 
 - [x] Hela programmet har en gemensam framerate (Fanns hela tiden)
+- [ ] Överklassfisk
 - [ ] Flera typer av fiskar
 - [ ] Flera möjligheter att sätta parametrar på nya fiskar
+- [ ] Överklassruta (kanske)
 - [ ] Fullscreen
 - [ ] Förslag: random färg på fisk (la till 2 nya)
-- [ ] Förslag: Bakgrundsbild (förslag i imagemapp)
+- [ ] Bakgrundsbild
 
 ### v0.4
 
