@@ -27,9 +27,6 @@ class PfishSprite(FishSprite):
             self.texture = self.texture_right1
             self.whichtexture = 21              # 21 = right1
 
-        # Fiskarnas intärna klocka difinieras
-        self.frame_count = 0
-
         # Placera ut fiskarna
         self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
         self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
@@ -48,6 +45,7 @@ class PfishSprite(FishSprite):
         self.findelay_base = 20
 
         self.relaxed = [True, True]     # Pfish blir nervös nära kanter
+        self.frame_count = 0
 
     def update(self):
 
@@ -86,6 +84,9 @@ class PfishSprite(FishSprite):
         # Updatera animationen
         self.animate()
 
+        # Stega upp intärna klocka
+        self.frame_count += 1
+
         # Anropa huvudklassen
         super().update()
 
@@ -121,5 +122,4 @@ class PfishSprite(FishSprite):
             self.texture = self.texture_right1
             self.whichtexture = 21
 
-        # Stega upp fiskarnas intärna klocka
-        self.frame_count += 1
+
