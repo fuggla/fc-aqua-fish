@@ -136,12 +136,16 @@ class MyGame(arcade.Window, State):
         self.frame_count += 1
 
         if self.show_fps:
+            self.fps = int(1 / delta_time)
+        """
+        if self.show_fps:
             self.tick += 1
             self.delta_count += delta_time
             if self.delta_count >= 1:
                 self.fps = self.tick
                 self.delta_count = 0
                 self.tick = 0
+        """
 
     def on_key_press(self, key, key_modifiers):
         """
