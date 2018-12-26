@@ -2,14 +2,16 @@ import arcade,random,math
 
 # Klass för lila fiskar (Purple_fish)
 class CarrotSprite(arcade.Sprite):
-    def __init__(self, SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT):
+    def __init__(self, SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO):
         # Anropa Sprite konstruktor
         super().__init__()
 
         global sw
         global sh
+        global sr
         sw = SCREEN_WIDTH
         sh = SCREEN_HEIGHT
+        sr = SAND_RATIO
 
         self.texture_carrot1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
         self.texture = self.texture_carrot1
@@ -26,6 +28,9 @@ class CarrotSprite(arcade.Sprite):
         self.acc_grav_float = 0             # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
 
+        self.sand_position = random.randint(int(sh * sr / 2), int(sh * sr))
+        self.bounce_number = 1
+
         self.framerate = 30         # Ska fixas sen
         # Morotens egenskaper
         self.size = 1
@@ -41,9 +46,17 @@ class CarrotSprite(arcade.Sprite):
         self.acc_grav_float = - 1
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
+        if self.center_y < self.sand_position and self.bounce_number <= 5:
+            self.acc_grav_float = 100 / self.bounce_number
+            self.bounce_number += 1
+
         # Beräkna hastighet i x-led och y-led
-        self.change_x = self.change_x + (self.acc_right - self.acc_left) / self.framerate
-        self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
+        if self.bounce_number > 5:
+            self.change_y = 0
+            self.change_x = 0
+        else:
+            self.change_x = self.change_x + (self.acc_right - self.acc_left) / self.framerate
+            self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
 
         # Anropa huvudklassen
