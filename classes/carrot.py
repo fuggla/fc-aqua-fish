@@ -7,19 +7,16 @@ class CarrotSprite(arcade.Sprite):
         # Anropa Sprite konstruktor
         super().__init__()
 
-        global sw
-        global sh
-        global sr
-        sw = SCREEN_WIDTH
-        sh = SCREEN_HEIGHT
-        sr = SAND_RATIO
+        self.sw = SCREEN_WIDTH
+        self.sh = SCREEN_HEIGHT
+        self.sr = SAND_RATIO
 
         self.texture_carrot1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
         self.texture = self.texture_carrot1
 
         # Placera ut moroten
-        self.center_x = random.randrange(sw * 0.8) + sw * 0.1
-        self.center_y = sh
+        self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
+        self.center_y = self.sh
 
         # Definiera variabler
         self.change_x = 0
@@ -29,7 +26,7 @@ class CarrotSprite(arcade.Sprite):
         self.acc_grav_float = 0             # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
 
-        self.sand_position = random.randint(int(sh * sr / 2), int(sh * sr))
+        self.sand_position = random.randint(int(self.sh * self.sr / 2), int(self.sh * self.sr))
         self.bounce_number = 1
 
         self.framerate = 30         # Ska fixas sen

@@ -4,6 +4,6 @@ SCREEN_HEIGHT = 600
 SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten
 
 SPRITE_SCALING_PFISH = 0.1
-PFISH_NUMBER = 5
+PFISH_NUMBER = 4
 
 SPRITE_SCALING_CARROT = 0.3
