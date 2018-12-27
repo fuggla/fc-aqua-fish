@@ -27,7 +27,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Flera typer av fiskar
 - [ ] Flera möjligheter att sätta parametrar på nya fiskar
 - [ ] Överklassruta (kanske)
-- [ ] Fullscreen
+- [x] Fullscreen
 - [ ] Förslag: random färg på fisk (la till 2 nya)
 - [x] Bakgrundsbild
 
