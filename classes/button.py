@@ -1,14 +1,11 @@
 # Klass för att skapa rektangulära knappar
 import arcade
+from classes.shape import Shape
 
-class Button():
+class Button(Shape):
 
     def __init__(self, x, y, width, height, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11):
-        # Position och storlek
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
+        super().__init__(x, y, width, height)
 
         # Text
         self.text = text

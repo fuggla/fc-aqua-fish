@@ -18,16 +18,14 @@ Klass för att visa ett fönster
 
 import arcade
 from classes.button import Button
+from classes.shape import Shape
 
-class Window():
+class Window(Shape):
 
     def __init__(self, x, y, width, height, title, title_height=30, title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
+        super().__init__(x, y, width, height)
 
-        # Position, storlekt och färg
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
+        # Ram och bakgrund
         self.outline_size = outline_size
         self.outline_color = outline_color
         self.background_color = background_color
