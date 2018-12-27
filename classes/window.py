@@ -82,6 +82,10 @@ class Window(Shape):
             release = self.close
         ))
 
+    # Öpnna eller stäng fönster
+    def toggle(self):
+        self.visible = not self.visible
+
     # Öppna fönster
     def open(self):
         self.visible = True

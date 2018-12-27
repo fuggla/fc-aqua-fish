@@ -163,7 +163,7 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.R):
             self.setup()
         elif (key == arcade.key.ESCAPE):
-            self.main_menu.open()
+            self.main_menu.toggle()
             self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
