@@ -29,7 +29,7 @@ A game by Furniture Corp. The latest release can be found [here](https://github.
 - [ ] Överklassruta (kanske)
 - [ ] Fullscreen
 - [ ] Förslag: random färg på fisk (la till 2 nya)
-- [ ] Bakgrundsbild
+- [x] Bakgrundsbild
 
 ### v0.4
 

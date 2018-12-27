@@ -37,6 +37,7 @@ class MyGame(arcade.Window, State):
         self.carrot_list = None
         self.all_sprite_list = None
         self.window_list = None
+        self.background = None
 
         # FPS
         self.fps = 0
@@ -75,6 +76,9 @@ class MyGame(arcade.Window, State):
         self.main_menu.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
         self.window_list.append(self.main_menu)
 
+        # Ladda backgrund
+        self.background = arcade.load_texture("images/background.png")
+
         # Setup klar
         self.play()
 
@@ -87,11 +91,8 @@ class MyGame(arcade.Window, State):
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
 
-        # Rita ut sandbotten
-        arcade.draw_rectangle_filled(SCREEN_WIDTH / 2, SCREEN_HEIGHT * SAND_RATIO / 2, SCREEN_WIDTH,
-                                     SCREEN_HEIGHT * SAND_RATIO, arcade.color.SAND)
-        arcade.draw_rectangle_outline(SCREEN_WIDTH / 2, SCREEN_HEIGHT * SAND_RATIO / 2, SCREEN_WIDTH-2,
-                                     SCREEN_HEIGHT * SAND_RATIO-2, arcade.color.BLACK, 3)
+        # Rita bakgrund
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
 
         self.all_sprite_list.draw()
 
