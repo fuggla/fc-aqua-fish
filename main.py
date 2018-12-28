@@ -9,6 +9,7 @@ import arcade, random, types
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
+from classes.blue_small_fish import BfishSprite
 from classes.carrot import CarrotSprite
 from classes.window import Window
 from vars import *
@@ -22,6 +23,7 @@ class MyGame(arcade.Window, State):
 
         # If you have sprite lists, you should create them here
         self.pfish_list = None
+        self.bfish_list = None
         self.carrot_list = None
         self.all_sprite_list = None
         self.window_list = None
@@ -36,14 +38,20 @@ class MyGame(arcade.Window, State):
     def setup(self):
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
+        self.bfish_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
-        # Skapa lila fiskar
+        # Skapa purple_fish
         for i in range(PFISH_NUMBER):
             pfish = PfishSprite(self.carrot_list)
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
+        # Skapa blue_small_fish
+        for i in range(BFISH_NUMBER):
+            bfish = BfishSprite(self.carrot_list)
+            self.bfish_list.append(bfish)  # Lägg till fiskarna i fisklistan
+            self.all_sprite_list.append(bfish)  # och i totallistan
 
         # Skapa fönster
         self.window_list = []

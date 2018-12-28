@@ -28,7 +28,7 @@ bfish_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
 bfish_finforce = 6          # Kraften i fenorna
 bfish_size = 5              # Påverkan av vattenmotstånd
-bfish_mass = 85             # Default är samma som siz<e
+bfish_mass = 5              # Default är samma som siz<e
 bfish_findelay = 15         # Hur ofta viftar de med fenorna
 
 """ Egenskaper för morötterna """
