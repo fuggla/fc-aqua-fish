@@ -76,14 +76,10 @@ class MyGame(arcade.Window, State):
         # Ladda backgrund
         self.background = arcade.load_texture("images/background.png")
 
-        # Setup klar
+        # Setup klar, starta spelet
         self.play()
 
     def on_draw(self):
-        """
-        Render the screen.
-        """
-
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         arcade.start_render()
@@ -105,12 +101,8 @@ class MyGame(arcade.Window, State):
             arcade.draw_text(str(self.fps), 10, SCREEN_HEIGHT - 10, arcade.color.BLACK, font_size=8, width=10, align="left", anchor_x="center", anchor_y="center")
 
     def update(self, delta_time):
-        """
-        All the logic to move, and the game logic goes here.
-        Normally, you'll call update() on the sprite lists that
-        need it.
-        """
 
+        # Uppdatera all när spelet är igång
         if self.is_playing():
             self.all_sprite_list.update()
 
@@ -131,8 +123,7 @@ class MyGame(arcade.Window, State):
                 for carrot in hit_list:
                     carrot.kill()
 
-        self.frame_count += 1
-
+        # Räkna ut FPS en gång per sekund
         if self.show_fps:
             self.tick += 1
             self.delta_count += delta_time
@@ -141,53 +132,52 @@ class MyGame(arcade.Window, State):
                 self.delta_count = 0
                 self.tick = 0
 
-    def on_key_press(self, key, key_modifiers):
-        """
-        Called whenever a key on the keyboard is pressed.
+        self.frame_count += 1
 
-        For a full list of keys, see:
-        http://arcade.academy/arcade.key.html
-        """
+    def on_key_press(self, key, key_modifiers):
         pass
 
-        # key är en int
-        # Se: http://arcade.academy/arcade.key.html
     def on_key_release(self, key, key_modifiers):
-        # Avsluta AL
+        # Avsluta spel
         if (key == arcade.key.Q):
             arcade.window_commands.close_window()
         # Starta om
         elif (key == arcade.key.R):
             self.setup()
+        # Visa pausemeny
         elif (key == arcade.key.ESCAPE):
             self.main_menu.toggle()
             self.toggle_pause()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
+        # Fönster som är i läge "dragged" följer musens kordinater
         for w in self.window_list:
             if w.is_dragged():
                 w.move(delta_x, delta_y)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
+        # Fönster kan triggas av att muspekaren klickas ovanför en knapp
         for w in self.window_list:
             if w.is_open():
                 w.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
-        # Kolla om vi klickat på någon knapp i huvudmenyn
+        # Fönster kan triggas av att muspekaren släpps ovan för en knapp
         for w in self.window_list:
             if w.is_open():
                 w.on_mouse_release(x, y)
 
-        # Alltid spela spel när pausmenyn är stängd
+        # Alltid spela spel när pausmenyn är stängs
         if self.is_paused and self.main_menu.is_closed():
             self.play()
 
+    # Lägg till en fisk i fisklistan
     def add_fish(self):
         pfish = PfishSprite(self.carrot_list)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
 
+    # Visa FPS längst upp till vänster
     def enable_fps(self):
         self.show_fps = True
 
