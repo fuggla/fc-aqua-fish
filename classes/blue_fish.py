@@ -53,3 +53,40 @@ class BfishSprite(FishSprite):
         # Placera ut fiskarna
         self.center_x = random.randrange(self.sw * 0.7) + self.sw * 0.1
         self.center_y = random.randrange(self.sh * 0.7) + self.sh * 0.1
+
+    def update(self):
+
+        # De blir lugna av att befinna sig i mitter av akvariet
+        if 0.15 * self.sw < self.center_x < 0.85 * self.sw:
+            self.relaxed[0] = True
+        if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
+            self.relaxed[1] = True
+
+        # Om de är lugna kan de vilja ändra riktning
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
+            self.random_move()
+
+        # Om de är lugna kan de börja dagdrömma
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
+            self.acc_x = 0
+            self.acc_y = 0
+
+        # Kolla om fisken är nära kansten och styr in den mot mitten
+        # Stressa även upp den
+        self.check_edge()
+
+        # Beräkna vattnets motstånd
+        self.water_res()
+
+        # Beräkna acceleration
+        self.move_calc()
+
+        # Updatera animationen
+        #self.animate()
+
+        # Stega upp intärna klocka
+        self.frame_count += 1
+
+        # Anropa huvudklassen
+        super().update()
+
