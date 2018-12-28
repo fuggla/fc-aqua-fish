@@ -35,7 +35,7 @@ A simulator by Furniture Corp.
   -[x] Lägg in fiskarnas grundegenskaper i "vars"
   -[x] Möjlighet att skapa fisk och ställa in personlighet
   -[x] Möjlighet att skapa fisk och ställa in utseende
-- [ ] Överklassruta (kanske)
+- [x] Överklassruta (kanske)
 - [x] Fullscreen
 - [x] Förslag: random färg på fisk (lägger in dem som input till fisken)
 - [x] Bakgrundsbild
