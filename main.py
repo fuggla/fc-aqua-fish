@@ -78,10 +78,6 @@ class MyGame(arcade.Window, State):
 
         self.all_sprite_list.draw()
 
-        # Rita bara huvudmeny om vi har pausat spelet
-        if self.is_paused():
-            self.main_menu.draw()
-
         for w in self.window_list:
             w.draw()
 
