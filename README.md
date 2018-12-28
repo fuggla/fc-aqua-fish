@@ -19,9 +19,9 @@ A simulator by Furniture Corp.
 - [ ] Namn på fiskar
 - [ ] Föremål i akvariet
 - [ ] Fiskarna påverkas av mat
-  -[ ] Fiskarna blir hungriga av att inte äta
-  -[ ] Fiskarna dör ifall de inte äter
-  -[ ] Fiskarna växer ifall de äter mycket
+  - [ ] Fiskarna blir hungriga av att inte äta
+  - [ ] Fiskarna dör ifall de inte äter
+  - [ ] Fiskarna växer ifall de äter mycket
 - [ ] Fiskar kan äta upp andra fiskar
 - [ ] Luftbubblor
 - [ ] Fler knappar för att köpa fiskar
