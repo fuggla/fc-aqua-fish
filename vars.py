@@ -1,6 +1,12 @@
+import tkinter
 VERSION = 0.4
-SCREEN_WIDTH = 1920
-SCREEN_HEIGHT = 1080
+
+# För att ta fram upplösning
+screen = tkinter.Tk()
+screen.withdraw()
+SCREEN_WIDTH = screen.winfo_screenwidth()
+SCREEN_HEIGHT = screen.winfo_screenheight()
+
 SAND_RATIO = 0.12      # Andel av skärmen täckt av sandbotten
 
 TICK_RATE = 60
