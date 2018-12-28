@@ -22,9 +22,9 @@ pfish_findelay = 20         # Hur ofta viftar de med fenorna
 BFISH_NUMBER = 12
 SPRITE_SCALING_BFISH = 0.1
 
-bfish_eager = 0             # Hur ofta byter fiskarna riktning
-bfish_hungry = 0            # Hur intresserade är de av mat (har ingen effekt nu)
-bfish_conformity = 100      # Hu måna är fiskarna om att vara som alla andra
+bfish_eager = 10            # Hur ofta byter fiskarna riktning
+bfish_hungry = 5            # Hur intresserade är de av mat (har ingen effekt nu)
+bfish_conformity = 10       # Hu måna är fiskarna om att vara som alla andra
 bfish_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
 bfish_finforce = 6          # Kraften i fenorna

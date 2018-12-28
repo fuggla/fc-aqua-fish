@@ -95,13 +95,13 @@ class BfishSprite(FishSprite):
         super().update()
     def shoal_move(self):
         # Hämta in koordinater och hastihet från närmsta två blue_small_fish
-        dist1 = 10000000
-        dist2 = 10000000
-        dist3 = 10000000
-        index = 0
+        dist1 = 1000000000
+        dist2 = 1000000000
+
         fish1 = 0
         fish2 = 0
-        fish3 = 0
+
+        index = 0
 
         for fish in self.shoal_objects:
             if fish.center_x == self.center_x and fish.center_y == self.center_y:
@@ -112,9 +112,6 @@ class BfishSprite(FishSprite):
             elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist2:
                 dist2 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
                 fish2 = index
-            elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist3:
-                dist3 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
-                fish3 = index
             index += 1
 
         pos1_x = self.shoal_objects[fish1].center_x
@@ -123,13 +120,10 @@ class BfishSprite(FishSprite):
         pos2_x = self.shoal_objects[fish2].center_x
         pos2_y = self.shoal_objects[fish2].center_y
 
-        pos3_x = self.shoal_objects[fish3].center_x
-        pos3_y = self.shoal_objects[fish3].center_y
+        midpos_x = (pos1_x + pos2_x) / 2
+        midpos_y = (pos1_y + pos2_y) / 2
 
-        midpos_x = (pos1_x + pos2_x + pos3_x) / 3
-        midpos_y = (pos1_y + pos2_y + pos3_y) / 3
-
-        ang = math.atan2((midpos_y - self.center_y), (midpos_x - self.center_y))
+        ang = math.atan2((midpos_y - self.center_y), (midpos_x - self.center_x))
         shoal_speed = random.random() * self.finforce / self.mass
         self.acc_x = shoal_speed * math.cos(ang)
         self.acc_y = shoal_speed * math.sin(ang)
