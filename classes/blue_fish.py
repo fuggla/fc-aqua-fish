@@ -37,10 +37,10 @@ class BfishSprite(FishSprite):
             self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
             self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
         else:
-            self.texture_left1 = arcade.load_texture("images/blue_fish1.png", mirrored=True, scale=scale_factor)
-            self.texture_left2 = arcade.load_texture("images/blue_fish2.png", mirrored=True, scale=scale_factor)
-            self.texture_right1 = arcade.load_texture("images/blue_fish1.png", scale=scale_factor)
-            self.texture_right2 = arcade.load_texture("images/blue_fish2.png", scale=scale_factor)
+            self.texture_left1 = arcade.load_texture("images/blue_small_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/blue_small_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/blue_small_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/blue_small_fish2.png", scale=scale_factor)
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -51,5 +51,5 @@ class BfishSprite(FishSprite):
             self.whichtexture = 21  # 21 = right1
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
-        self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
+        self.center_x = random.randrange(self.sw * 0.7) + self.sw * 0.1
+        self.center_y = random.randrange(self.sh * 0.7) + self.sh * 0.1
