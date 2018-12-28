@@ -13,16 +13,7 @@ from classes.carrot import CarrotSprite
 from classes.window import Window
 from vars import *
 
-# Test att ändra två filer samtidigt
-
 class MyGame(arcade.Window, State):
-    """
-    Main application class.
-
-    NOTE: Go ahead and delete the methods you don't need.
-    If you do need a method, delete the 'pass' and replace it
-    with your own code. Don't leave 'pass' in this program.
-    """
 
     def __init__(self, width, height):
         super().__init__(width, height, fullscreen=True)
@@ -41,8 +32,6 @@ class MyGame(arcade.Window, State):
         self.tick = 0
         self.delta_count = 0
         self.show_fps = False
-
-        #self.player_list = None
 
     def setup(self):
         # Alla arcade sprites och sprites_list här
@@ -89,14 +78,10 @@ class MyGame(arcade.Window, State):
 
         self.all_sprite_list.draw()
 
-        # Rita bara huvudmeny om vi har pausat spelet
-        if self.is_paused():
-            self.main_menu.draw()
-
         for w in self.window_list:
             w.draw()
-        # Call draw() on all your sprite lists below
 
+        # Rita FPS uppe i högra hörnet
         if self.show_fps:
             arcade.draw_text(str(self.fps), 10, SCREEN_HEIGHT - 10, arcade.color.BLACK, font_size=8, width=10, align="left", anchor_x="center", anchor_y="center")
 
