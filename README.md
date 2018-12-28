@@ -24,6 +24,7 @@ A simulator by Furniture Corp.
   -[ ] Fiskarna dör ifall de inte äter
   -[ ] Fiskarna växer ifall de äter mycket
 - [ ] Fiskar kan äta upp andra fiskar
+- [ ] Testa laddningstiden i setup
 - [ ] Luftbubblor
 
 ### v0.5
