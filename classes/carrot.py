@@ -15,7 +15,7 @@ class CarrotSprite(arcade.Sprite):
         self.texture = self.texture_carrot1
 
         # Placera ut moroten
-        self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
+        self.center_x = random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)
         self.center_y = self.sh
 
         # Definiera variabler

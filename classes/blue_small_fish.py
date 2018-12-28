@@ -53,8 +53,8 @@ class BfishSprite(FishSprite):
             self.whichtexture = 21  # 21 = right1
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(self.sw * 0.7) + self.sw * 0.1
-        self.center_y = random.randrange(self.sh * 0.7) + self.sh * 0.1
+        self.center_x = random.randrange(int(self.sw * 0.7)) + int(self.sw * 0.1)
+        self.center_y = random.randrange(int(self.sh * 0.7)) + int(self.sh * 0.1)
 
     def update(self):
 
