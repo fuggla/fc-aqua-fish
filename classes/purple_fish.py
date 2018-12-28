@@ -42,7 +42,7 @@ class PfishSprite(FishSprite):
         self.mass = 8                # Default är samma som .siz<e
 
         self.findelay = 20              # Hur ofta viftar de med fenorna
-        self.findelay_base = 20
+        self.findelay_base = self.findelay
 
         self.relaxed = [True, True]     # Pfish blir nervös nära kanter
         self.frame_count = 0
