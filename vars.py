@@ -1,5 +1,5 @@
 import tkinter
-VERSION = 0.4
+VERSION = 0.5
 
 # För att ta fram upplösning
 screen = tkinter.Tk()
