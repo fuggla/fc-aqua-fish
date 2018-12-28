@@ -1,6 +1,8 @@
 # Aqua Fish
 
-A game by Furniture Corp. The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
+Experience what it's like to watch fish eat carrots! The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
+
+A simulator by Furniture Corp.
 
 ## Roadmap
 
