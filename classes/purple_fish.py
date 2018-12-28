@@ -5,7 +5,7 @@ from vars import SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, pfish_eager,
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
-    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None):
+    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None, color=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -18,6 +18,7 @@ class PfishSprite(FishSprite):
         self.finforce = finforce or pfish_finforce
         self.size = size or pfish_size
         self.mass = mass or pfish_mass
+        self.color = color or "purple"
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
@@ -31,10 +32,21 @@ class PfishSprite(FishSprite):
 
         # texture 1 & 2 för höger och vänster
         scale_factor = SPRITE_SCALING_PFISH*self.size/8
-        self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture("images/purple_fish2.png", scale=scale_factor)
+        if color == "green":
+            self.texture_left1 = arcade.load_texture("images/green_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/green_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
+        elif color == "orange":
+            self.texture_left1 = arcade.load_texture("images/orange_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/orange_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/orange_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/orange_fish2.png", scale=scale_factor)
+        else:
+            self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/purple_fish2.png", scale=scale_factor)
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:

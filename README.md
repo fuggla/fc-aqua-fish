@@ -30,13 +30,13 @@ A simulator by Furniture Corp.
 - [x] Hela programmet har en gemensam framerate (Fanns hela tiden)
 - [x] Överklassfisk
 - [ ] Flera typer av fiskar
-- [ ] Flera möjligheter att sätta parametrar på nya fiskar
+- [x] Flera möjligheter att sätta parametrar på nya fiskar
   -[x] Lägg in fiskarnas grundegenskaper i "vars"
   -[x] Möjlighet att skapa fisk och ställa in personlighet
-  -[ ] Möjlighet att skapa fisk och ställa in utseende
+  -[x] Möjlighet att skapa fisk och ställa in utseende
 - [ ] Överklassruta (kanske)
 - [x] Fullscreen
-- [ ] Förslag: random färg på fisk (lägger in dem som input till fisken)
+- [x] Förslag: random färg på fisk (lägger in dem som input till fisken)
 - [x] Bakgrundsbild
 
 ### v0.4
