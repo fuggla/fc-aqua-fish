@@ -14,7 +14,8 @@ A simulator by Furniture Corp.
 - [ ] Fiskarna lägger rom som blir nya fiskar
 
 ### v0.6
-- [ ] Fiskar som simmar i stim
+- [x] Fiskar som simmar i stim
+- [ ] Köttätande fisk
 - [ ] Ätanimation
 - [ ] Namn på fiskar
 - [ ] Föremål i akvariet

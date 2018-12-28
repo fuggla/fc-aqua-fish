@@ -57,16 +57,16 @@ class FishSprite(arcade.Sprite):
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
-        if self.center_x > self.sw * 0.92:
+        if self.center_x > self.sw * 0.94:
             self.acc_x = - self.finforce / self.mass
             self.relaxed[0] = False
-        if self.center_x < self.sw * 0.08:
+        if self.center_x < self.sw * 0.06:
             self.acc_x = self.finforce / self.mass
             self.relaxed[0] = False
 
-        if self.center_y > self.sh * 0.92:
+        if self.center_y > self.sh * 0.94:
             self.acc_y = - self.finforce / self.mass
             self.relaxed[1] = False
-        if self.center_y < self.sh * 0.08:
+        if self.center_y < self.sh * 0.06:
             self.acc_y = self.finforce / self.mass
             self.relaxed[1] = False
