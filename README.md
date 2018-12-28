@@ -14,7 +14,6 @@ A simulator by Furniture Corp.
 - [ ] Fiskarna lägger rom som blir nya fiskar
 
 ### v0.6
-- [x] Fiskar som simmar i stim
 - [ ] Köttätande fisk
 - [ ] Ätanimation
 - [ ] Namn på fiskar
@@ -25,9 +24,11 @@ A simulator by Furniture Corp.
   -[ ] Fiskarna växer ifall de äter mycket
 - [ ] Fiskar kan äta upp andra fiskar
 - [ ] Luftbubblor
+- [ ] Fler knappar för att köpa fiskar
 
 ### v0.5
 
+- [x] Fiskar som simmar i stim
 - [x] Hela programmet har en gemensam framerate (Fanns hela tiden)
 - [x] Överklassfisk
 - [x] Flera typer av fiskar
