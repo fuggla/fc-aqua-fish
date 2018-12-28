@@ -29,7 +29,7 @@ A simulator by Furniture Corp.
 
 - [x] Hela programmet har en gemensam framerate (Fanns hela tiden)
 - [x] Överklassfisk
-- [ ] Flera typer av fiskar
+- [x] Flera typer av fiskar
 - [x] Flera möjligheter att sätta parametrar på nya fiskar
   -[x] Lägg in fiskarnas grundegenskaper i "vars"
   -[x] Möjlighet att skapa fisk och ställa in personlighet

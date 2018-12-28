@@ -1,16 +1,17 @@
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SPRITE_SCALING_BFISH, SCREEN_WIDTH, SCREEN_HEIGHT, bfish_eager, bfish_hungry, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
+from vars import SPRITE_SCALING_BFISH, SCREEN_WIDTH, SCREEN_HEIGHT, bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
-    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None, color=None):
+    def __init__(self, carrot_list, bfish_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None, size=None, mass=None, color=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
         # Fiskarnas personlighet
         self.eager = eager or bfish_eager           # Hur ofta byter fiskarna riktning
         self.hungry = hungry or bfish_hungry        # Hur intresserade är de av mat
+        self.conformity = conformity or bfish_conformity
         self.daydream = daydream or bfish_daydream
 
         # Fiskarnas fysiska egenskaper
@@ -28,6 +29,7 @@ class BfishSprite(FishSprite):
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
         self.food_objects = carrot_list
+        self.shoal_objects = bfish_list
 
         # texture 1 & 2 för höger och vänster
         scale_factor = SPRITE_SCALING_BFISH * self.size / 8
@@ -66,6 +68,8 @@ class BfishSprite(FishSprite):
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
             self.random_move()
 
+        if self.relaxed == [True, True] and random.randrange(1000) < self.conformity:
+            self.shoal_move()
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
             self.acc_x = 0
@@ -89,6 +93,46 @@ class BfishSprite(FishSprite):
 
         # Anropa huvudklassen
         super().update()
+    def shoal_move(self):
+        # Hämta in koordinater och hastihet från närmsta två blue_small_fish
+        dist1 = 10000000
+        dist2 = 10000000
+        dist3 = 10000000
+        index = 0
+        fish1 = 0
+        fish2 = 0
+        fish3 = 0
+
+        for fish in self.shoal_objects:
+            if fish.center_x == self.center_x and fish.center_y == self.center_y:
+                pass
+            elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist1:
+                dist1 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
+                fish1 = index
+            elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist2:
+                dist2 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
+                fish2 = index
+            elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist3:
+                dist3 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
+                fish3 = index
+            index += 1
+
+        pos1_x = self.shoal_objects[fish1].center_x
+        pos1_y = self.shoal_objects[fish1].center_y
+
+        pos2_x = self.shoal_objects[fish2].center_x
+        pos2_y = self.shoal_objects[fish2].center_y
+
+        pos3_x = self.shoal_objects[fish3].center_x
+        pos3_y = self.shoal_objects[fish3].center_y
+
+        midpos_x = (pos1_x + pos2_x + pos3_x) / 3
+        midpos_y = (pos1_y + pos2_y + pos3_y) / 3
+
+        ang = math.atan2((midpos_y - self.center_y), (midpos_x - self.center_y))
+        shoal_speed = random.random() * self.finforce / self.mass
+        self.acc_x = shoal_speed * math.cos(ang)
+        self.acc_y = shoal_speed * math.sin(ang)
 
     def animate(self):
         # Animering av fiskarna

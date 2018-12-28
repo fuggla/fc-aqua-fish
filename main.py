@@ -49,7 +49,7 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.append(pfish)                      # och i totallistan
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
-            bfish = BfishSprite(self.carrot_list)
+            bfish = BfishSprite(self.carrot_list, self.bfish_list)
             self.bfish_list.append(bfish)  # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(bfish)  # och i totallistan
 
