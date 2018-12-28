@@ -7,3 +7,15 @@ class Shape():
         self.y = y
         self.height = height
         self.width = width
+
+    def set_position(self, x, y):
+        self.x = x
+        self.y = y
+
+    def get_position(self):
+        return self.x, self.y
+
+    # Flytta relativt
+    def move(self, x, y):
+        self.x += x
+        self.y += y
