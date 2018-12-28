@@ -1,7 +1,7 @@
 VERSION = 0.4
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
-SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten
+SAND_RATIO = 0.1      # Andel av skärmen täckt av sandbotten
 
 TICK_RATE = 60
 
