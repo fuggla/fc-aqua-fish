@@ -6,6 +6,8 @@ SAND_RATIO = 0.08      # Andel av skärmen täckt av sandbotten
 SPRITE_SCALING_PFISH = 0.1
 PFISH_NUMBER = 4
 
+SPRITE_SCALING_BFISH = 0.1
+
 SPRITE_SCALING_CARROT = 0.3
 
 TICK_RATE = 60
