@@ -12,20 +12,28 @@ A simulator by Furniture Corp.
 - [ ] Skippbar splashscreen med logga
 - [ ] Introfilm
 - [ ] Fiskarna lägger rom som blir nya fiskar
+- [ ] Fiskar kan äta upp andra fiskar
+- [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
+- [ ] Styr en fisk och gör det som fiskarna gör
+- [ ] Flytta ner delar av todo från 1.0 till 0.x
+
+### v0.7
+- [ ] Köttätande fisk
+- [ ] Föremål i akvariet
 
 ### v0.6
-- [ ] Köttätande fisk
 - [ ] Ätanimation
+- [ ] Dödsanimation
+- [ ] Snygga till sättet maten försvinner på
 - [ ] Namn på fiskar
-- [ ] Föremål i akvariet
 - [ ] Fiskarna påverkas av mat
   - [ ] Fiskarna blir hungriga av att inte äta
   - [ ] Fiskarna dör ifall de inte äter
   - [ ] Fiskarna växer ifall de äter mycket
-- [ ] Fiskar kan äta upp andra fiskar
 - [ ] Testa laddningstiden i setup
 - [ ] Luftbubblor
 - [ ] Fler knappar för att köpa fiskar
+- [ ] Resize av bakgrunden till skärmstorleken? (skulle bli snyggare på mina datorer)
 
 ### v0.5
 
