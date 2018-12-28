@@ -27,9 +27,6 @@ class MyGame(arcade.Window, State):
     def __init__(self, width, height):
         super().__init__(width, height, fullscreen=True)
 
-        # BLUE_SAPPHIRE eller BLUE_YONDER, båda är rätt snygga
-        arcade.set_background_color(arcade.color.BLUE_YONDER)
-
         self.frame_count = 0
 
         # If you have sprite lists, you should create them here
@@ -44,7 +41,7 @@ class MyGame(arcade.Window, State):
         self.tick = 0
         self.delta_count = 0
         self.show_fps = False
-        
+
         #self.player_list = None
 
     def setup(self):
@@ -190,7 +187,7 @@ class MyGame(arcade.Window, State):
         pfish = PfishSprite(self.carrot_list)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
-    
+
     def enable_fps(self):
         self.show_fps = True
 
