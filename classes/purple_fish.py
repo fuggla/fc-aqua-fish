@@ -1,7 +1,7 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT
+from vars import SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, pfish_eager, pfish_hungry, pfish_daydream, pfish_finforce, pfish_mass, pfish_size, pfish_findelay
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
@@ -32,19 +32,19 @@ class PfishSprite(FishSprite):
         self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
 
         # Fiskarnas personlighet
-        self.eager = 5                  # Hur ofta byter fiskarna riktning
-        self.hungry = 5                 # Hur intresserade är de av mat
-        self.daydream = 10
+        self.eager = pfish_eager                # Hur ofta byter fiskarna riktning
+        self.hungry = pfish_hungry              # Hur intresserade är de av mat
+        self.daydream = pfish_daydream
 
         # Fiskarnas fysiska egenskaper
-        self.finforce = 6
-        self.size = 8
-        self.mass = 8                # Default är samma som .siz<e
+        self.finforce = pfish_finforce
+        self.size = pfish_size
+        self.mass = pfish_mass
 
-        self.findelay = 20              # Hur ofta viftar de med fenorna
+        self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
 
-        self.relaxed = [True, True]     # Pfish blir nervös nära kanter
+        self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
 
     def update(self):
