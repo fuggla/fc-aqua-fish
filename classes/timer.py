@@ -1,4 +1,17 @@
-# Class for measuring elapsed time between calls to self.print
+""" 
+Class for measuring elapsed time between calls to self.print()
+ 
+Example: 
+
+# Create new timer
+timer = Performance_timer("Starting new timer")
+
+# Print message with time
+timer.print("Some time has elapsed") 
+
+# Call done when the timer isn't needed anymore
+timer.done("Stopping timer") 
+"""
 import time
 
 class Performance_timer():
