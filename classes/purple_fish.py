@@ -5,19 +5,36 @@ from vars import SPRITE_SCALING_PFISH, SCREEN_WIDTH, SCREEN_HEIGHT, pfish_eager,
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
-    def __init__(self, carrot_list):
+    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None):
         # Anropa Sprite konstruktor
         super().__init__()
+
+        # Fiskarnas personlighet
+        self.eager = eager or pfish_eager                # Hur ofta byter fiskarna riktning
+        self.hungry = hungry or pfish_hungry              # Hur intresserade är de av mat
+        self.daydream = daydream or pfish_daydream
+
+        # Fiskarnas fysiska egenskaper
+        self.finforce = finforce or pfish_finforce
+        self.size = size or pfish_size
+        self.mass = mass or pfish_mass
+
+        self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
+        self.findelay_base = self.findelay
+
+        self.relaxed = [True, True]             # Pfish blir nervös nära kanter
+        self.frame_count = 0
 
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
         self.food_objects = carrot_list
 
         # texture 1 & 2 för höger och vänster
-        self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
-        self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=SPRITE_SCALING_PFISH)
-        self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=SPRITE_SCALING_PFISH)
-        self.texture_right2 = arcade.load_texture("images/purple_fish2.png", scale=SPRITE_SCALING_PFISH)
+        scale_factor = SPRITE_SCALING_PFISH*self.size/8
+        self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=scale_factor)
+        self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=scale_factor)
+        self.texture_right1 = arcade.load_texture("images/purple_fish1.png", scale=scale_factor)
+        self.texture_right2 = arcade.load_texture("images/purple_fish2.png", scale=scale_factor)
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -30,22 +47,6 @@ class PfishSprite(FishSprite):
         # Placera ut fiskarna
         self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
         self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
-
-        # Fiskarnas personlighet
-        self.eager = pfish_eager                # Hur ofta byter fiskarna riktning
-        self.hungry = pfish_hungry              # Hur intresserade är de av mat
-        self.daydream = pfish_daydream
-
-        # Fiskarnas fysiska egenskaper
-        self.finforce = pfish_finforce
-        self.size = pfish_size
-        self.mass = pfish_mass
-
-        self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
-        self.findelay_base = self.findelay
-
-        self.relaxed = [True, True]             # Pfish blir nervös nära kanter
-        self.frame_count = 0
 
     def update(self):
 
