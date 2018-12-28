@@ -31,6 +31,9 @@ A simulator by Furniture Corp.
 - [x] Överklassfisk
 - [ ] Flera typer av fiskar
 - [ ] Flera möjligheter att sätta parametrar på nya fiskar
+  -[ ] Lägg in fiskarnas grundegenskaper i "vars"
+  -[ ] Möjlighet att skapa fisk och ställa in personlighet
+  -[ ] Möjlighet att skapa fisk och ställa in utseende
 - [ ] Överklassruta (kanske)
 - [x] Fullscreen
 - [ ] Förslag: random färg på fisk (la till 2 nya)
