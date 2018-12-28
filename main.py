@@ -12,6 +12,7 @@ from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.carrot import CarrotSprite
 from classes.window import Window
+from classes.timer import Performance_timer
 from vars import *
 
 class MyGame(arcade.Window, State):
@@ -36,6 +37,8 @@ class MyGame(arcade.Window, State):
         self.show_fps = False
 
     def setup(self):
+        self.timer = Performance_timer("Setup started")
+
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
@@ -47,11 +50,14 @@ class MyGame(arcade.Window, State):
             pfish = PfishSprite(self.carrot_list)
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
+        self.timer.print("Created purple_fish")
+
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
             bfish = BfishSprite(self.carrot_list)
             self.bfish_list.append(bfish)  # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(bfish)  # och i totallistan
+        self.timer.print("Created blue_small fish")
 
         # Skapa fönster
         self.window_list = []
@@ -69,11 +75,13 @@ class MyGame(arcade.Window, State):
         self.main_menu.add_button(50, 10, 180, 30, "Open Store", 11, self.interaction_menu.open)
         self.main_menu.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
         self.window_list.append(self.main_menu)
+        self.timer.print("Created windows")
 
         # Ladda backgrund
         self.background = arcade.load_texture("images/background.png")
 
         # Setup klar, starta spelet
+        self.timer.done("Setup done")
         self.play()
 
     def on_draw(self):
