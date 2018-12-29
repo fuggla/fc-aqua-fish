@@ -4,6 +4,7 @@ Lägg till namn som fiskarna kan ha här
 Namnen följs av ett "f" för female eller "m" för male eller "g" för gender fluid
 
 Namnen sparas som en lista med element med strukturen ["John", "m"]
+Varje fisk har egenskapen self.name_gender som innehåller listelementet
 
 """
 
@@ -14,7 +15,12 @@ fish_names = [
     ["Anna", "f"],
     ["Kim", "g"],
     ["Tor", "m"],
-    ["Sara", "f"]
+    ["Sara", "f"],
+    ["Tim", "m"],
+    ["Daniella", "f"],
+    ["Sunshine", "g"],
+    ["Jens", "m"],
+    ["Tora", "f"]
 
 
 
