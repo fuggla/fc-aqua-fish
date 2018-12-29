@@ -143,9 +143,9 @@ class MyGame(arcade.Window, State):
                 self.all_sprite_list.append(carrot)
 
             """ Ta bort morötter som ramlat ner """
-            for carrot in self.carrot_list:
-                if carrot.top < 0:
-                    carrot.kill()
+            for object in self.all_sprite_list:
+                if object.bottom > SCREEN_HEIGHT:
+                    object.kill()
 
             """ Ta bort morötter som fiskarna äter upp """
             # Ätalgoritm för purple fish

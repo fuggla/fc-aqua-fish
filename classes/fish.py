@@ -25,7 +25,7 @@ class FishSprite(arcade.Sprite):
 
         self.name_gender = fish_names[random.randrange(fish_names_length)]
 
-        self.health = random.randint(10000, 20000)
+        self.health = random.randint(5000, 10000)
         self.base_health = self.health
         self.isalive = True
         self.eat_speed = 0
@@ -109,7 +109,7 @@ class FishSprite(arcade.Sprite):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
-        self.health += 100
+        self.health += 25
 
         # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
