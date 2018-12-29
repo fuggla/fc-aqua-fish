@@ -141,18 +141,20 @@ class MyGame(arcade.Window, State):
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
-                for carrot in hit_list:
-                    if fish.isalive:
-                        fish.eat_food(carrot, 10)
+                # Om fisken lever och det finns en morot äter fisken på den
+                if hit_list and fish.isalive:
+                    fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
+                # print("p: ", fish.health)
+
             # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
-                for carrot in hit_list:
-                    if fish.isalive:
-                        fish.eat_food(carrot, 1)
-
+                # Om fisken lever och det finns en morot äter fisken på den
+                if hit_list and fish.isalive:
+                    fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
+                # print("b: ", fish.health)
             """ Flytta bubblor """
             for b in self.bubble_list:
                 b.update(delta_time)
