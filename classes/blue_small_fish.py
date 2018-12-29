@@ -139,37 +139,3 @@ class BfishSprite(FishSprite):
             shoal_speed = random.random() * self.finforce / self.mass
             self.acc_x = shoal_speed * math.cos(ang)
             self.acc_y = shoal_speed * math.sin(ang)
-
-    def animate(self):
-        # Animering av fiskarna
-
-        # Ändra fenfrekvens utifrån totalacceleration
-        self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
-
-        # Vänd dem i x-hastighetens riktning
-        if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
-            self.texture = self.texture_left1
-            self.whichtexture = 11
-        if self.change_x > 0 and not (self.whichtexture == 21 or self.whichtexture == 22):
-            self.texture = self.texture_right1
-            self.whichtexture = 21
-        # "self.whichtexture = 11" betyder "left texture 1"
-        # "self.whichtexture = 22" betyder "right texture 2"
-
-        # Animation riktad åt vänster
-        if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
-            self.texture = self.texture_left2
-            self.whichtexture = 12
-        elif self.frame_count % self.findelay == 0 and self.whichtexture == 12:
-            self.texture = self.texture_left1
-            self.whichtexture = 11
-        # Animation riktad åt höger
-        if self.frame_count % self.findelay == 0 and self.whichtexture == 21:
-            self.texture = self.texture_right2
-            self.whichtexture = 22
-        elif self.frame_count % self.findelay == 0 and self.whichtexture == 22:
-            self.texture = self.texture_right1
-            self.whichtexture = 21
-
-
-
