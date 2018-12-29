@@ -1,13 +1,15 @@
-import tkinter
 VERSION = 0.5
 
-# För att ta fram upplösning
+""" Hämta skärmupplösning """
+import tkinter
 screen = tkinter.Tk()
 screen.withdraw()
 SCREEN_WIDTH = screen.winfo_screenwidth()
 SCREEN_HEIGHT = screen.winfo_screenheight()
 
-SAND_RATIO = 0.18      # Andel av skärmen täckt av sandbotten
+""" Bakgrundsbild """
+BACKGROUND_IMAGE = "images/background.png"
+SAND_RATIO = 0.18           # Andel av skärmen täckt av sandbotten
 
 TICK_RATE = 60
 
@@ -44,3 +46,15 @@ carrot_food_value = 100
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
+
+"""
+Importera debug.py om den existerar
+Filen spåras inte av repo utan är lokal
+Ha kvar längst ner, ifall den skriver över några vars
+"""
+try:
+    from debug import *
+    DEBUG = True
+    print("Debug enabled")
+except:
+    DEBUG = False
