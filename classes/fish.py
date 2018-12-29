@@ -16,7 +16,7 @@ class FishSprite(arcade.Sprite):
         self.break_y = 0        # negativ y_acceleration
 
         self.tick_rate = TICK_RATE
-
+        self.iseating = False
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
@@ -56,15 +56,27 @@ class FishSprite(arcade.Sprite):
             self.acc_y = foodspeed * math.sin(ang)
 
     def eat_food(self, carrot):
-        ang_rad = math.atan((carrot.center_y - self.center_y) / (carrot.center_x - self.center_x))
+        self.iseating = True
+
+        ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
         ang_deg = math.degrees(ang_rad)
-        if self.whichtexture < 20:
-            ang_deg += 180
         self.angle = ang_deg
+        self.animate_eat_food()
         carrot.food_value -= 1
         if carrot.food_value == 0:
             carrot.kill()
-            self.angle = 0
+
+    def animate_eat_food(self):
+        # Animation riktad åt höger
+        self.texture = self.texture_right1
+        self.whichtexture = 21
+
+        if self.frame_count % 5 == 0 and self.whichtexture == 21:
+            self.texture = self.texture_right2
+            self.whichtexture = 22
+        elif self.frame_count % 5 == 0 and self.whichtexture == 22:
+            self.texture = self.texture_right1
+            self.whichtexture = 21
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
