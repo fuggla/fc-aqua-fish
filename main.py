@@ -70,7 +70,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa meny för att interagera med akvariet
         self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 390, 50, "Store")
-        self.interaction_menu.add_button(10, 10, 180, 30, "Buy Fish", 11, self.add_fish)
+        self.interaction_menu.add_button(10, 10, 180, 30, "Buy a Pfish", 11, self.buy_pfish)
         self.interaction_menu.add_button(10, 200, 180, 30, "Buy FPS counter", 11, self.enable_fps)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
@@ -218,9 +218,9 @@ class MyGame(arcade.Window, State):
         if self.is_paused and self.main_menu.is_closed():
             self.play()
 
-    # Lägg till en fisk i fisklistan
-    def add_fish(self):
-        pfish = PfishSprite(self.carrot_list)
+    def buy_pfish(self):
+        color = ["purple", "orange", "green"]
+        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)])
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
 
