@@ -15,6 +15,7 @@ class FishSprite(arcade.Sprite):
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
 
+        self.eat_speed = 0
         self.tick_rate = TICK_RATE
         self.iseating = False
 
@@ -56,27 +57,45 @@ class FishSprite(arcade.Sprite):
             self.acc_y = foodspeed * math.sin(ang)
 
     def eat_food(self, carrot):
+        # Sätt vatiabel så att fiskarna vet att de äter
         self.iseating = True
 
+        # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
-        ang_deg = math.degrees(ang_rad)
+        ang_deg = math.degrees(ang_rad)     # omvandla till grader
         self.angle = ang_deg
         self.animate_eat_food()
-        carrot.food_value -= 1
-        if carrot.food_value == 0:
+        carrot.food_value -= 1              # Fiskarna äter moroten
+        if carrot.food_value == 0:          # När moroten är slut försvinner den
             carrot.kill()
 
     def animate_eat_food(self):
-        # Animation riktad åt höger
-        self.texture = self.texture_right1
-        self.whichtexture = 21
+        # Denna variabel styr hur intensivt de äter
+        self.eat_speed = 5
 
-        if self.frame_count % 5 == 0 and self.whichtexture == 21:
-            self.texture = self.texture_right2
-            self.whichtexture = 22
-        elif self.frame_count % 5 == 0 and self.whichtexture == 22:
+        # Ätanimation då fisken är riktad åt höger
+        if -90 < self.angle < 90:
             self.texture = self.texture_right1
             self.whichtexture = 21
+
+            if self.frame_count % self.eat_speed == 0 and self.whichtexture == 21:
+                self.texture = self.texture_right2
+                self.whichtexture = 22
+            elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 22:
+                self.texture = self.texture_right1
+                self.whichtexture = 21
+        # Ätanimation då fisken är riktad åt vänster
+        else:
+            self.angle += 180
+            self.texture = self.texture_left1
+            self.whichtexture = 11
+
+            if self.frame_count % self.eat_speed == 0 and self.whichtexture == 11:
+                self.texture = self.texture_left2
+                self.whichtexture = 12
+            elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
+                self.texture = self.texture_left1
+                self.whichtexture = 11
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
@@ -93,3 +112,36 @@ class FishSprite(arcade.Sprite):
         if self.center_y < self.sh * 0.06:
             self.acc_y = self.finforce / self.mass
             self.relaxed[1] = False
+
+    def animate(self):
+        # Animering av fiskarna
+        if self.iseating == False:
+            # Ändra fenfrekvens utifrån totalacceleration
+            self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
+
+            # Vänd dem i x-hastighetens riktning
+            if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
+                self.texture = self.texture_left1
+                self.whichtexture = 11
+            if self.change_x > 0 and not (self.whichtexture == 21 or self.whichtexture == 22):
+                self.texture = self.texture_right1
+                self.whichtexture = 21
+            # "self.whichtexture = 11" betyder "left texture 1"
+            # "self.whichtexture = 22" betyder "right texture 2"
+
+            # Animation riktad åt vänster
+            if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
+                self.texture = self.texture_left2
+                self.whichtexture = 12
+            elif self.frame_count % self.findelay == 0 and self.whichtexture == 12:
+                self.texture = self.texture_left1
+                self.whichtexture = 11
+            # Animation riktad åt höger
+            if self.frame_count % self.findelay == 0 and self.whichtexture == 21:
+                self.texture = self.texture_right2
+                self.whichtexture = 22
+            elif self.frame_count % self.findelay == 0 and self.whichtexture == 22:
+                self.texture = self.texture_right1
+                self.whichtexture = 21
+
+
