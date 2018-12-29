@@ -111,6 +111,15 @@ class MyGame(arcade.Window, State):
 
         self.all_sprite_list.draw()
 
+        # "True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
+        if False:
+            for fish in self.pfish_list:
+                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 24)
+                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 24, anchor_x="left", anchor_y="top")
+            for fish in self.bfish_list:
+                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 24)
+                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 24, anchor_x="left", anchor_y="top")
+
         for w in self.window_list:
             w.draw()
 
@@ -144,7 +153,6 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
-                # print("p: ", fish.health)
 
             # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
