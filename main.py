@@ -100,14 +100,13 @@ class MyGame(arcade.Window, State):
         # Rita bakgrund
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
 
+        for b in self.bubble_list:
+            b.draw()
+
         self.all_sprite_list.draw()
 
         for w in self.window_list:
             w.draw()
-
-        # Rita bubblor
-        for b in self.bubble_list:
-            b.draw()
 
         # Rita FPS uppe i högra hörnet
         if self.show_fps:
