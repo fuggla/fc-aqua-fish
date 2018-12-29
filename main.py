@@ -15,6 +15,7 @@ from classes.window import Window
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from vars import *
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER
 
 class MyGame(arcade.Window, State):
 

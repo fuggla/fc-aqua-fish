@@ -1,8 +1,8 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SPRITE_SCALING_BFISH, SCREEN_WIDTH, SCREEN_HEIGHT
-from fish_vars import bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
+from vars import SCREEN_WIDTH, SCREEN_HEIGHT
+from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
