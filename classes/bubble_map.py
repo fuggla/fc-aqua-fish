@@ -25,17 +25,20 @@ class Bubble_map():
         # Kalla direkt på objektet för att rita listan
         self.draw = self.bubble_list.draw
 
-        # Första gången visas bubblor direkt istället för att flyta upp från botten
-        self.move_below_screen()
-        self.bubble_list.center_y += h
+        # Slumpa fram en synlig startposition och hastighet
+        self.bubble_list.center_y = random.randrange(-h, h)
+        self.new_speed()
         
-    # Flytta ner random distans under skärmen och ändra till ny hastighet
-    def move_below_screen(self, depth=1):
-        self.bubble_list.center_y -= random.randrange(self.h, depth * self.h + 1)
+    # Flytta ner under skärmen och ändra till ny hastighet
+    def move_down(self):
+        self.bubble_list.center_y = -self.h
+
+    def new_speed(self):
         self.speed = random.randrange(self.base_speed * 0.5, self.base_speed * 1.5)
         
     # Flyt uppåt och flytta ner vid behov
     def update(self, dt):
         self.bubble_list.center_y += self.speed * dt
         if (self.bubble_list.center_y > self.h - 50):
-            self.move_below_screen()
+            self.move_down()
+            self.new_speed()
