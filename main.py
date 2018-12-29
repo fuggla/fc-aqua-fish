@@ -138,9 +138,8 @@ class MyGame(arcade.Window, State):
             """ Ta bort morötter som fiskarna äter upp """
             for fish in self.pfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
-                if len(hit_list) == 0:
-                    fish.angle = 0
-                    fish.iseating = False
+                if len(hit_list) == 0 and fish.iseating > 0:
+                    fish.iseating -= 1
                 for carrot in hit_list:
                     fish.eat_food(carrot)
 
