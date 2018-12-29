@@ -1,6 +1,7 @@
 
 import arcade, random, math
 from vars import TICK_RATE
+from fish_names import fish_names, fish_names_length
 
 class FishSprite(arcade.Sprite):
     def __init__(self):
@@ -14,6 +15,8 @@ class FishSprite(arcade.Sprite):
         self.acc_y = 0          # negativ y_acceleration
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
+
+        self.name_gender = fish_names[random.randrange(fish_names_length)]
 
         self.eat_speed = 0
         self.iseating = 0
