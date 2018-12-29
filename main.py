@@ -83,6 +83,7 @@ class MyGame(arcade.Window, State):
         self.bubble_list = []
         for i in range(BUBBLE_MAPS):
             self.bubble_list.append(Bubble_map())
+        self.timer.print("Created bubbles")
 
         # Ladda backgrund
         self.background = arcade.load_texture("images/background.png")
