@@ -70,19 +70,22 @@ class BfishSprite(FishSprite):
             self.relaxed[1] = True
 
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
             self.random_move()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
             self.chase_food()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.conformity:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.conformity and self.isalive:
             self.shoal_move()
 
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
             self.acc_x = 0
             self.acc_y = 0
+
+        if self.health <= 0:
+            self.die()
 
         # Kolla om fisken är nära kansten och styr in den mot mitten
         # Stressa även upp den
@@ -95,10 +98,14 @@ class BfishSprite(FishSprite):
         self.move_calc()
 
         # Updatera animationen
-        self.animate()
+        if self.isalive:
+            self.animate()
 
         # Stega upp intärna klocka
         self.frame_count += 1
+
+        # Stega ner livsmätaren
+        self.health -= 1
 
         # Anropa huvudklassen
         super().update()

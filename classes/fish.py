@@ -25,6 +25,8 @@ class FishSprite(arcade.Sprite):
 
         self.name_gender = fish_names[random.randrange(fish_names_length)]
 
+        self.health = 100000
+        self.isalive = True
         self.eat_speed = 0
         self.iseating = 0
         self.tick_rate = TICK_RATE
@@ -86,6 +88,7 @@ class FishSprite(arcade.Sprite):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
+        self.health += 1
 
         # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
@@ -103,11 +106,22 @@ class FishSprite(arcade.Sprite):
         if carrot.food_value <= 0:              # När moroten är slut försvinner den
             carrot.kill()
 
+    def die(self):
+        self.isalive = False
+        self.acc_x = 0
+        self.acc_y = .1
+        if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
+            self.angle = 180
+            self.texture = self.texture_right1
+        if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
+            self.angle = 180
+            self.texture = self.texture_left1
+
     def animate_eat_food(self):
 
         if -90 < self.angle < 90:
             # Ätanimation då fisken är riktad åt höger
-            if self.whichtexture == 11 or self.whichtexture == 12or self.whichtexture == 18:
+            if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
                 self.texture = self.texture_right1
                 self.whichtexture = 21
 
