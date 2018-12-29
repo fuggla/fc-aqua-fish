@@ -74,11 +74,11 @@ class BfishSprite(FishSprite):
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
             self.random_move()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
-            self.chase_food()
-
         if self.relaxed == [True, True] and random.randrange(1000) < self.conformity and self.isalive:
             self.shoal_move()
+
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+            self.chase_food()
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
