@@ -1,5 +1,5 @@
 import arcade,random,math
-from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO
+from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, carrot_food_value
 
 # Klass för lila fiskar (Purple_fish)
 class CarrotSprite(arcade.Sprite):
@@ -23,8 +23,10 @@ class CarrotSprite(arcade.Sprite):
         self.change_y = 0
         self.acc_right = 0
         self.acc_left = 0
-        self.acc_grav_float = 0             # Fulvariabel, summan av gravitationen och lyftkraften
+        self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
+
+        self.food_value = carrot_food_value     # Hur mycket mat finns på moroten
 
         self.sand_position = random.randint(int(self.sh * self.sr / 2), int(self.sh * self.sr))
         self.bounce_number = 1
@@ -56,6 +58,10 @@ class CarrotSprite(arcade.Sprite):
             self.change_x = self.change_x + (self.acc_right - self.acc_left) / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
-
         # Anropa huvudklassen
         super().update()
+
+    def eaten(self):
+        self.food_value -= 1
+        if self.food_value == 0:
+            self.kill()

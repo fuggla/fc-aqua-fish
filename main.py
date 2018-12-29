@@ -122,9 +122,9 @@ class MyGame(arcade.Window, State):
             for fish in self.pfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 for carrot in hit_list:
-                    # fish.eat_food(carrot)
-                    # carrot.eaten()
-                    carrot.kill()
+                    fish.eat_food(carrot)
+                    #carrot.eaten()
+                    #carrot.kill()
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:

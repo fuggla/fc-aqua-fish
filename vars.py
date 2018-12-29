@@ -40,5 +40,6 @@ bfish_findelay = 10         # Hur ofta viftar de med fenorna
 
 """ Egenskaper för morötterna """
 SPRITE_SCALING_CARROT = 0.3
+carrot_food_value = 100
 
 
