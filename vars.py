@@ -18,7 +18,7 @@ PFISH_NUMBER = 4
 SPRITE_SCALING_PFISH = 0.1
 
 pfish_eager = 5             # Hur ofta byter fiskarna riktning
-pfish_hungry = 5            # Hur intresserade är de av mat
+pfish_hungry = 500            # Hur intresserade är de av mat
 pfish_daydream = 10         # Hur ofta de stannar upp och dagdrömmer
 
 pfish_finforce = 6          # Kraften i fenorna
@@ -42,7 +42,7 @@ bfish_findelay = 10         # Hur ofta viftar de med fenorna
 
 """ Egenskaper för morötterna """
 SPRITE_SCALING_CARROT = 0.3
-carrot_food_value = 100
+carrot_food_value = 1000
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
