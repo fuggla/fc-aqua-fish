@@ -44,3 +44,15 @@ carrot_food_value = 100
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
+
+"""
+Importera debug.py om den existerar
+Filen spåras inte av repo utan är lokal
+Ha kvar längst ner, ifall den skriver över några vars
+"""
+try:
+    from debug import *
+    DEBUG = True
+    print("Debug enabled")
+except:
+    DEBUG = False
