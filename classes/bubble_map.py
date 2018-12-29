@@ -25,12 +25,13 @@ class Bubble_map():
         # Kalla direkt på objektet för att rita listan
         self.draw = self.bubble_list.draw
 
-        # Slumpa ett djup (och hastighet) så inte alla kartor börjar synkroniserat på samma ställe
-        self.move_below_screen(2)
+        # Första gången visas bubblor direkt istället för att flyta upp från botten
+        self.move_below_screen()
+        self.bubble_list.center_y += h
         
     # Flytta ner random distans under skärmen och ändra till ny hastighet
     def move_below_screen(self, depth=1):
-        self.bubble_list.center_y = 0 - (random.randrange(self.h, depth * self.h + 1))
+        self.bubble_list.center_y -= random.randrange(self.h, depth * self.h + 1)
         self.speed = random.randrange(self.base_speed * 0.5, self.base_speed * 1.5)
         
     # Flyt uppåt och flytta ner vid behov
