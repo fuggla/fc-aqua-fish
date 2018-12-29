@@ -87,22 +87,25 @@ class FishSprite(arcade.Sprite):
 
     def animate_eat_food(self):
 
-        # Ätanimation då fisken är riktad åt höger
         if -90 < self.angle < 90:
-            self.texture = self.texture_right1
-            self.whichtexture = 21
+            # Ätanimation då fisken är riktad åt höger
+            if self.whichtexture == 11 or self.whichtexture == 12:
+                self.texture = self.texture_right1
+                self.whichtexture = 21
 
             if self.frame_count % self.eat_speed == 0 and self.whichtexture == 21:
                 self.texture = self.texture_right8
                 self.whichtexture = 28
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 28:
-                self.texture = self.texture_right8
+                self.texture = self.texture_right1
                 self.whichtexture = 21
-        # Ätanimation då fisken är riktad åt vänster
+
         else:
+            # Ätanimation då fisken är riktad åt vänster
             self.angle += 180
-            self.texture = self.texture_left1
-            self.whichtexture = 11
+            if self.whichtexture == 21 or self.whichtexture == 22:
+                self.texture = self.texture_left1
+                self.whichtexture = 11
 
             if self.frame_count % self.eat_speed == 0 and self.whichtexture == 11:
                 self.texture = self.texture_left8
@@ -110,7 +113,6 @@ class FishSprite(arcade.Sprite):
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 18:
                 self.texture = self.texture_left1
                 self.whichtexture = 11
-
 
     def animate(self):
         # Animering av fiskarna

@@ -22,7 +22,7 @@ class PfishSprite(FishSprite):
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
-        self.eat_speed = 20                     # Denna variabel styr hur intensivt de äter
+        self.eat_speed = 5                      # Denna variabel styr hur intensivt de äter
 
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
