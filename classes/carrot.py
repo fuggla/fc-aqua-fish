@@ -12,6 +12,9 @@ class CarrotSprite(arcade.Sprite):
         self.sr = SAND_RATIO
 
         self.texture_carrot1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_carrot2 = arcade.load_texture("images/carrot2.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_carrot3 = arcade.load_texture("images/carrot3.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_carrot4 = arcade.load_texture("images/carrot4.png", scale=SPRITE_SCALING_CARROT)
         self.texture = self.texture_carrot1
 
         # Placera ut moroten

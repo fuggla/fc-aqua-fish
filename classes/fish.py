@@ -84,6 +84,12 @@ class FishSprite(arcade.Sprite):
         self.animate_eat_food()
 
         carrot.food_value -= chew               # Fiskarna äter moroten
+        if carrot.food_value <= 750:
+            carrot.texture = carrot.texture_carrot2
+        if carrot.food_value <= 500:
+            carrot.texture = carrot.texture_carrot3
+        if carrot.food_value <= 250:
+            carrot.texture = carrot.texture_carrot4
         if carrot.food_value <= 0:              # När moroten är slut försvinner den
             carrot.kill()
 
