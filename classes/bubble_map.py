@@ -10,17 +10,14 @@ class Bubble_map():
 
     def __init__(self, w=SCREEN_WIDTH, h=SCREEN_HEIGHT, amount=50, size=3, border_width=1, color=(255,255,255,random.randrange(32, 128)), speed=50):
 
-        # Höjd / Bredd
-        self.w = w
+        # Höjd / Grundhastighet / nuvarande hastighet
         self.h = h
-
-        # Grundhastighet / nuvarande hastighet
         self.speed = speed
         self.base_speed = speed
 
         # Rita alla bubblor i lista
         self.bubble_list = arcade.ShapeElementList()
-        #self.bubble_list.append(arcade.create_rectangle_outline((self.w/2), (self.h/2), self.w, self.h, (random.randrange(255),random.randrange(255),random.randrange(255)), border_width * 2))
+        #self.bubble_list.append(arcade.create_rectangle_outline((w/2), (h/2), w, h, (random.randrange(255),random.randrange(255),random.randrange(255)), border_width * 2))
         for b in range(0, amount):
             radius = random.randrange(1, size)
             self.bubble_list.append(arcade.create_ellipse_outline(random.randrange(w), random.randrange(h), radius, radius, color, border_width))
