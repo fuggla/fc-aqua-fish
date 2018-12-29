@@ -12,6 +12,7 @@ class PfishSprite(FishSprite):
         # Fiskarnas personlighet
         self.eager = eager or pfish_eager                # Hur ofta byter fiskarna riktning
         self.hungry = hungry or pfish_hungry              # Hur intresserade är de av mat
+        self.base_hungry = self.hungry
         self.daydream = daydream or pfish_daydream
 
         # Fiskarnas fysiska egenskaper
@@ -98,18 +99,15 @@ class PfishSprite(FishSprite):
         # Beräkna vattnets motstånd
         self.water_res()
 
-        # Beräkna acceleration
+        # Gör beräkningar för acceleration
         self.move_calc()
+
+        # Gör beräkningar för hälsa
+        self.health_calc()
 
         # Updatera animationen
         if self.isalive:
             self.animate()
-
-        # Stega upp intärna klocka
-        self.frame_count += 1
-
-        # Stega ner livsmätaren
-        self.health -= 1
 
         # Anropa huvudklassen
         super().update()

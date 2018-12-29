@@ -18,7 +18,8 @@ class FishSprite(arcade.Sprite):
 
         self.name_gender = fish_names[random.randrange(fish_names_length)]
 
-        self.health = 100000
+        self.health = random.randint(10000, 20000)
+        self.base_health = self.health
         self.isalive = True
         self.eat_speed = 0
         self.iseating = 0
@@ -29,6 +30,26 @@ class FishSprite(arcade.Sprite):
         # Här ska programmets framerate in stället för 30
         self.change_x = self.change_x + (self.acc_x - self.break_x) / self.tick_rate
         self.change_y = self.change_y + (self.acc_y - self.break_y) / self.tick_rate
+
+    def health_calc(self):
+
+        if self.health < self.base_health * 0.75:
+            self.hungry = self.base_hungry * 2
+
+        if self.health < self.base_health * 0.60:
+            self.hungry = self.base_hungry * 5
+
+        if self.health < self.base_health * 0.50:
+            self.hungry = self.base_hungry * 10
+
+        if self.health < self.base_health * 0.25:
+            self.hungry = self.base_hungry * 100
+
+        # Stega upp intärna klocka
+        self.frame_count += 1
+
+        # Stega ner livsmätaren
+        self.health -= 1
 
     def water_res(self):
         # Beräkna negativ acceleration från vattnet
@@ -81,7 +102,7 @@ class FishSprite(arcade.Sprite):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
-        self.health += 1
+        self.health += 100
 
         # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))

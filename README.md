@@ -20,16 +20,16 @@ A simulator by Furniture Corp.
 ### v0.7
 - [ ] Köttätande fisk
 - [ ] Föremål i akvariet
+- [ ] Fiskarna lägger ägg ifall de äter mycket
 
 ### v0.6
 - [x] Ätanimation
-- [ ] Dödsanimation
+- [x] Dödsanimation
 - [x] Snygga till sättet maten försvinner på
 - [x] Namn på fiskar
-- [ ] Fiskarna påverkas av mat
-  - [ ] Fiskarna blir hungriga av att inte äta
-  - [ ] Fiskarna dör ifall de inte äter
-  - [ ] Fiskarna växer ifall de äter mycket
+- [x] Fiskarna påverkas av mat
+  - [x] Fiskarna blir hungriga av att inte äta
+  - [x] Fiskarna dör ifall de inte äter
 - [x] Testa laddningstiden i setup
 - [x] Luftbubblor
 - [ ] Fler knappar för att köpa fiskar
