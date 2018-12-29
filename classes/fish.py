@@ -57,20 +57,23 @@ class FishSprite(arcade.Sprite):
             self.acc_y = foodspeed * math.sin(ang)
 
     def eat_food(self, carrot):
+        # Sätt vatiabel så att fiskarna vet att de äter
         self.iseating = True
 
+        # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
-        ang_deg = math.degrees(ang_rad)
+        ang_deg = math.degrees(ang_rad)     # omvandla till grader
         self.angle = ang_deg
         self.animate_eat_food()
-        carrot.food_value -= 1
-        if carrot.food_value == 0:
+        carrot.food_value -= 1              # Fiskarna äter moroten
+        if carrot.food_value == 0:          # När moroten är slut försvinner den
             carrot.kill()
 
     def animate_eat_food(self):
-
+        # Denna variabel styr hur intensivt de äter
         self.eat_speed = 5
 
+        # Ätanimation då fisken är riktad åt höger
         if -90 < self.angle < 90:
             self.texture = self.texture_right1
             self.whichtexture = 21
@@ -81,6 +84,7 @@ class FishSprite(arcade.Sprite):
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 22:
                 self.texture = self.texture_right1
                 self.whichtexture = 21
+        # Ätanimation då fisken är riktad åt vänster
         else:
             self.angle += 180
             self.texture = self.texture_left1
