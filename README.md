@@ -24,8 +24,8 @@ A simulator by Furniture Corp.
 ### v0.6
 - [x] Ätanimation
 - [ ] Dödsanimation
-- [ ] Snygga till sättet maten försvinner på
-- [ ] Namn på fiskar
+- [x] Snygga till sättet maten försvinner på
+- [x] Namn på fiskar
 - [ ] Fiskarna påverkas av mat
   - [ ] Fiskarna blir hungriga av att inte äta
   - [ ] Fiskarna dör ifall de inte äter

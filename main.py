@@ -142,14 +142,14 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 for carrot in hit_list:
-                    fish.eat_food(carrot)
+                    fish.eat_food(carrot, 10)
             # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 for carrot in hit_list:
-                    fish.eat_food(carrot)
+                    fish.eat_food(carrot, 1)
 
             """ Flytta bubblor """
             for b in self.bubble_list:
