@@ -55,6 +55,13 @@ class FishSprite(arcade.Sprite):
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
 
+    def eat_food(self, carrot):
+        ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
+        ang_deg = math.degrees(ang_rad)
+        if self.whichtexture < 20:
+            ang_deg += 180
+        self.angle = ang_deg
+
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
         if self.center_x > self.sw * 0.94:
