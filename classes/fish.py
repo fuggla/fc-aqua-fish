@@ -16,8 +16,8 @@ class FishSprite(arcade.Sprite):
         self.break_y = 0        # negativ y_acceleration
 
         self.eat_speed = 0
+        self.iseating = 0
         self.tick_rate = TICK_RATE
-        self.iseating = False
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
@@ -74,11 +74,12 @@ class FishSprite(arcade.Sprite):
 
     def eat_food(self, carrot):
         # Sätt vatiabel så att fiskarna vet att de äter
-        self.iseating = True
+        if self.iseating <= 10:
+            self.iseating += 1
 
         # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
-        ang_deg = math.degrees(ang_rad)     # omvandla till grader
+        ang_deg = math.degrees(ang_rad)     # omvandla till degrees
         self.angle = ang_deg
         self.animate_eat_food()
         carrot.food_value -= 1              # Fiskarna äter moroten
@@ -116,7 +117,9 @@ class FishSprite(arcade.Sprite):
 
     def animate(self):
         # Animering av fiskarna
-        if self.iseating == False:
+        if self.iseating == 0:
+            self.angle = 0
+
             # Ändra fenfrekvens utifrån totalacceleration
             self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
 
