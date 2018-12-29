@@ -7,7 +7,7 @@ screen.withdraw()
 SCREEN_WIDTH = screen.winfo_screenwidth()
 SCREEN_HEIGHT = screen.winfo_screenheight()
 
-SAND_RATIO = 0.12      # Andel av skärmen täckt av sandbotten
+SAND_RATIO = 0.18      # Andel av skärmen täckt av sandbotten
 
 TICK_RATE = 60
 
