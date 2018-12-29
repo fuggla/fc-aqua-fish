@@ -121,3 +121,7 @@ Länkar till material om Python, Arcade Library mm.
 - [Arcade API](http://arcade.academy/arcade.html)
 - [Pycharm: Getting Started](https://confluence.jetbrains.com/display/PYH/Getting+Started+with+PyCharm)
 - [Pycharm: Tutorials](https://confluence.jetbrains.com/display/PYH/PyCharm+Tutorials)
+
+## Names
+
+Generated using [mockaroo](https://mockaroo.com/) and stolen from [anishsingh20 and GRRM](https://github.com/anishsingh20/Network-Analysis-of-Game-of-Thrones).
