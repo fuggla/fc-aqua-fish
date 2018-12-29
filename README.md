@@ -31,7 +31,7 @@ A simulator by Furniture Corp.
   - [ ] Fiskarna dör ifall de inte äter
   - [ ] Fiskarna växer ifall de äter mycket
 - [x] Testa laddningstiden i setup
-- [ ] Luftbubblor
+- [x] Luftbubblor
 - [ ] Fler knappar för att köpa fiskar
 - [x] Resize av bakgrunden till skärmstorleken? (skulle bli snyggare på mina datorer)
 
