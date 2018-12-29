@@ -112,13 +112,15 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list.draw()
 
         # "True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
-        if False:
+        if True:
             for fish in self.pfish_list:
-                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 24)
-                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 24, anchor_x="left", anchor_y="top")
+                arcade.draw_text(fish.name_gender[0] + " " + fish.name_gender[1], fish.center_x, fish.center_y + 24, arcade.color.BLACK, 18)
+                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 18)
+                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 18, anchor_x="left", anchor_y="top")
             for fish in self.bfish_list:
-                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 24)
-                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 24, anchor_x="left", anchor_y="top")
+                arcade.draw_text(fish.name_gender[0] + " " + fish.name_gender[1], fish.center_x, fish.center_y + 24, arcade.color.BLACK, 18)
+                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 18)
+                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 18, anchor_x="left", anchor_y="top")
 
         for w in self.window_list:
             w.draw()
