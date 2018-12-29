@@ -22,7 +22,7 @@ A simulator by Furniture Corp.
 - [ ] Föremål i akvariet
 
 ### v0.6
-- [ ] Ätanimation
+- [x] Ätanimation
 - [ ] Dödsanimation
 - [ ] Snygga till sättet maten försvinner på
 - [ ] Namn på fiskar

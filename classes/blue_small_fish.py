@@ -22,6 +22,7 @@ class BfishSprite(FishSprite):
 
         self.findelay = bfish_findelay  # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
+        self.eat_speed = 5
 
         self.relaxed = [True, True]  # Pfish blir nervös nära kanter
         self.frame_count = 0
@@ -36,13 +37,17 @@ class BfishSprite(FishSprite):
         if color == "green":
             self.texture_left1 = arcade.load_texture("images/green_fish1.png", mirrored=True, scale=scale_factor)
             self.texture_left2 = arcade.load_texture("images/green_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
             self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
             self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)
         else:
             self.texture_left1 = arcade.load_texture("images/blue_small_fish1.png", mirrored=True, scale=scale_factor)
             self.texture_left2 = arcade.load_texture("images/blue_small_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
             self.texture_right1 = arcade.load_texture("images/blue_small_fish1.png", scale=scale_factor)
             self.texture_right2 = arcade.load_texture("images/blue_small_fish2.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -68,8 +73,12 @@ class BfishSprite(FishSprite):
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager:
             self.random_move()
 
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry:
+            self.chase_food()
+
         if self.relaxed == [True, True] and random.randrange(1000) < self.conformity:
             self.shoal_move()
+
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream:
             self.acc_x = 0

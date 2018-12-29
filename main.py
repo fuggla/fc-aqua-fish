@@ -136,7 +136,15 @@ class MyGame(arcade.Window, State):
                     carrot.kill()
 
             """ Ta bort morötter som fiskarna äter upp """
+            # Ätalgoritm för purple fish
             for fish in self.pfish_list:
+                hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
+                if len(hit_list) == 0 and fish.iseating > 0:
+                    fish.iseating -= 1
+                for carrot in hit_list:
+                    fish.eat_food(carrot)
+            # Ätalgoritm för blue small fish
+            for fish in self.bfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
