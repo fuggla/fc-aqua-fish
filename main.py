@@ -112,7 +112,7 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list.draw()
 
         # "True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
-        if True:
+        if DIAGNOSE:
             for fish in self.pfish_list:
                 arcade.draw_text(fish.name_gender[0] + " " + fish.name_gender[1], fish.center_x, fish.center_y + 24, arcade.color.BLACK, 18)
                 arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 18)
