@@ -25,7 +25,7 @@ class Bubble_map():
         # Kalla direkt på objektet för att rita listan
         self.draw = self.bubble_list.draw
 
-        # Flytta ner karta en liten bit under skärmen
+        # Slumpa ett djup (och hastighet) så inte alla kartor börjar synkroniserat på samma ställe
         self.move_below_screen(2)
         
     # Flytta ner random distans under skärmen och ändra till ny hastighet
