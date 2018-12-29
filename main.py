@@ -142,11 +142,6 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Ta bort morötter som ramlat ner """
-            for object in self.all_sprite_list:
-                if object.bottom > SCREEN_HEIGHT:
-                    object.kill()
-
             """ Ta bort morötter som fiskarna äter upp """
             # Ätalgoritm för purple fish
             for fish in self.pfish_list:
@@ -156,6 +151,8 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
+                if fish.bottom > SCREEN_HEIGHT:
+                    fish.kill()
 
             # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
@@ -165,7 +162,9 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-                # print("b: ", fish.health)
+                if fish.bottom > SCREEN_HEIGHT:
+                    fish.kill()
+
             """ Flytta bubblor """
             for b in self.bubble_list:
                 b.update(delta_time)
