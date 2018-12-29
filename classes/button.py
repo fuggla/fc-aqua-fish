@@ -47,12 +47,3 @@ class Button(Shape):
     def on_mouse_press(self, x, y):
         if self.is_mouse_on_button(x, y):
             self.press()
-
-    def set_position(self, x, y):
-        self.x = x
-        self.y = y
-
-    # Flytta knapp relativt
-    def move(self, x, y):
-        self.x += x
-        self.y += y

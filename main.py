@@ -13,6 +13,7 @@ from classes.blue_small_fish import BfishSprite
 from classes.carrot import CarrotSprite
 from classes.window import Window
 from classes.timer import Performance_timer
+from classes.bubble_map import Bubble_map
 from vars import *
 
 class MyGame(arcade.Window, State):
@@ -29,6 +30,7 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list = None
         self.window_list = None
         self.background = None
+        self.bubble_list = None
 
         # FPS
         self.fps = 0
@@ -77,6 +79,12 @@ class MyGame(arcade.Window, State):
         self.window_list.append(self.main_menu)
         self.timer.print("Created windows")
 
+        # Skapa bubblor
+        self.bubble_list = []
+        for i in range(BUBBLE_MAPS):
+            self.bubble_list.append(Bubble_map())
+        self.timer.print("Created bubbles")
+
         # Ladda backgrund
         self.background = arcade.load_texture("images/background.png")
 
@@ -96,6 +104,10 @@ class MyGame(arcade.Window, State):
 
         for w in self.window_list:
             w.draw()
+
+        # Rita bubblor
+        for b in self.bubble_list:
+            b.draw()
 
         # Rita FPS uppe i högra hörnet
         if self.show_fps:
@@ -127,6 +139,10 @@ class MyGame(arcade.Window, State):
                 for carrot in hit_list:
                     fish.eat_food(carrot)
 
+
+        # Uppdatera bubblor
+        for b in self.bubble_list:
+            b.update(delta_time)
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
