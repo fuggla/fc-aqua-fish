@@ -22,7 +22,6 @@ class PfishSprite(FishSprite):
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
-
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
 
@@ -57,8 +56,8 @@ class PfishSprite(FishSprite):
             self.whichtexture = 21              # 21 = right1
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(self.sw * 0.8) + self.sw * 0.1
-        self.center_y = random.randrange(self.sh * 0.8) + self.sh * 0.1
+        self.center_x = random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)
+        self.center_y = random.randrange(int(self.sh * 0.8)) + int(self.sh * 0.1)
 
     def update(self):
 
