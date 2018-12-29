@@ -208,7 +208,8 @@ class MyGame(arcade.Window, State):
         self.show_fps = True
 
 def main():
-    print("Starting Aqua Fish v", VERSION, sep="")
+    if DEBUG:
+        print("Starting Aqua Fish v", VERSION, sep="")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     game.setup()
     arcade.run()
