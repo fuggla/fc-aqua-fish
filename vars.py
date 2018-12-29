@@ -41,4 +41,5 @@ bfish_findelay = 10         # Hur ofta viftar de med fenorna
 """ Egenskaper för morötterna """
 SPRITE_SCALING_CARROT = 0.3
 
-
+""" Egenskaper för bubbelkartor """
+BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
