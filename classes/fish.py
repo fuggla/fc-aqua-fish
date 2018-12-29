@@ -109,7 +109,7 @@ class FishSprite(arcade.Sprite):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
-        self.health += 25
+        self.health += 50
 
         # Beräkna vinkel mot moroten fisken äter
         ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
