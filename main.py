@@ -86,7 +86,7 @@ class MyGame(arcade.Window, State):
         self.timer.print("Created bubbles")
 
         # Ladda backgrund
-        self.background = arcade.load_texture("images/background.png")
+        self.background = arcade.load_texture(BACKGROUND_IMAGE)
 
         # Setup klar, starta spelet
         self.timer.done("Setup done")
