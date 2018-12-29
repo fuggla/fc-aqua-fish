@@ -144,10 +144,9 @@ class MyGame(arcade.Window, State):
                 for carrot in hit_list:
                     fish.eat_food(carrot)
 
-
-        # Uppdatera bubblor
-        for b in self.bubble_list:
-            b.update(delta_time)
+            """ Flytta bubblor """
+            for b in self.bubble_list:
+                b.update(delta_time)
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
