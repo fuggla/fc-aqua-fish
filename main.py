@@ -19,7 +19,7 @@ from vars import *
 class MyGame(arcade.Window, State):
 
     def __init__(self, width, height):
-        super().__init__(width, height, fullscreen=True)
+        super().__init__(width, height, fullscreen=FULLSCREEN)
 
         self.frame_count = 0
 

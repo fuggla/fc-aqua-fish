@@ -1,7 +1,14 @@
 
-import arcade, random, math
+import arcade, random, math, csv
 from vars import TICK_RATE
-from fish_names import fish_names, fish_names_length
+
+# Läs fisknamn från names.csv
+fish_names = []
+with open('names.csv') as file:
+    reader = csv.reader(file, delimiter=',')
+    for row in reader:
+        fish_names.append([row[1], row[0]])
+fish_names_length = len(fish_names)
 
 class FishSprite(arcade.Sprite):
     def __init__(self):
