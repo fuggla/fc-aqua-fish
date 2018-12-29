@@ -64,6 +64,7 @@ class Window(Shape):
             background_color = title_background_color,
             text = title,
             font_size = self.font_size,
+            align = "left",
             release = self.stop_dragging,
             press = self.start_dragging
         ))
