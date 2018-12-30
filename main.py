@@ -17,7 +17,7 @@ from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, pfish_egg_freq, bfish_egg_freq
 from log import Logger
 log = Logger()
 
@@ -160,7 +160,7 @@ class MyGame(arcade.Window, State):
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < 10:
+                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < pfish_egg_freq:
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
@@ -178,7 +178,7 @@ class MyGame(arcade.Window, State):
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < 10:
+                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < bfish_egg_freq:
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
