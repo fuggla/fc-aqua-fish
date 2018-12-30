@@ -28,11 +28,11 @@ A simulator by Furniture Corp.
 - [ ] Föremål i akvariet
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
-- [ ] System för äggläggning 
+- [x] System för äggläggning 
   - [x] Fiskarna lägger ägg ifall de ätit mycket
   - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
   - [x] Endast damerna lägger ägg
-  - [ ] En ny fisk kläcks efter ett tag
+  - [x] En ny fisk kläcks efter ett tag
 - [ ] Mer info om fisken man köper
 - [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
 

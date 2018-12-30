@@ -186,17 +186,19 @@ class MyGame(arcade.Window, State):
 
             """ Stega igenom äggen """
             for egg in self.fish_egg_list:
-                if egg.age == egg.hatch_age:
-                    egg.texture = egg.texture_egg1
+                if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
+                    egg.texture = egg.texture_egg1  # Denna ska fixas, ägget ska vara trasigt då fisken kläcks
                     if egg.origin == "pfish":
-                        pfish = PfishSprite(self.carrot_list)
+                        # Kläck en pfish om ägget kom från pfish
+                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.pfish_list.append(pfish)
                         self.all_sprite_list.append(pfish)
                     if egg.origin == "bfish":
-                        bfish = BfishSprite(self.carrot_list, self.bfish_list)
+                        # Kläck en bfish om ägget kom från bfish
+                        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
-                if egg.age > egg.disapear_age:
+                if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
                     egg.kill()
                 egg.age += 1
 
