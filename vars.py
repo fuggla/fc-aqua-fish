@@ -7,7 +7,7 @@ screen.withdraw()
 SCREEN_WIDTH = screen.winfo_screenwidth()
 SCREEN_HEIGHT = screen.winfo_screenheight()
 FULLSCREEN = True
-DIAGNOSE = True
+DIAGNOSE_FISH = False
 
 """ Bakgrundsbild """
 BACKGROUND_IMAGE = "images/background.png"
