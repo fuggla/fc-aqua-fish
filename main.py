@@ -148,7 +148,7 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
-                if fish.bottom > SCREEN_HEIGHT:
+                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
 
             # Ätalgoritm för blue small fish
@@ -159,7 +159,7 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-                if fish.bottom > SCREEN_HEIGHT:
+                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
 
             """ Flytta bubblor """
