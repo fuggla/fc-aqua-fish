@@ -72,6 +72,7 @@ class MyGame(arcade.Window, State):
         self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 400, " Store")
         self.interaction_menu.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
         self.interaction_menu.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
+        self.interaction_menu.add_button(90, 10, 80, 30, "Carrot", 11, self.buy_carrot)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
@@ -233,6 +234,11 @@ class MyGame(arcade.Window, State):
         bfish = BfishSprite(self.carrot_list, self.bfish_list)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
+
+    def buy_carrot(self):
+        carrot = CarrotSprite()
+        self.carrot_list.append(carrot)
+        self.all_sprite_list.append(carrot)
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):
