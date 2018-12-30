@@ -22,7 +22,7 @@ from classes.shape import Shape
 
 class Window(Shape):
 
-    def __init__(self, x, y, width, height, title, title_height=30, title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
+    def __init__(self, x, y, width, height, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
         super().__init__(x, y, width, height)
 
         # Ram och bakgrund
@@ -64,7 +64,7 @@ class Window(Shape):
             background_color = title_background_color,
             text = title,
             font_size = self.font_size,
-            align = "left",
+            align = title_align,
             release = self.stop_dragging,
             press = self.start_dragging
         ))
