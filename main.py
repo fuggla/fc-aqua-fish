@@ -17,6 +17,8 @@ from classes.bubble_map import Bubble_map
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER
+from log import Logger
+log = Logger()
 
 class MyGame(arcade.Window, State):
 
@@ -122,6 +124,8 @@ class MyGame(arcade.Window, State):
         for w in self.window_list:
             w.draw()
 
+        log.draw()
+
         # Rita FPS uppe i högra hörnet
         if self.show_fps:
             arcade.draw_text(str(self.fps), 10, SCREEN_HEIGHT - 10, arcade.color.BLACK, font_size=8, width=10, align="left", anchor_x="center", anchor_y="center")
@@ -164,6 +168,8 @@ class MyGame(arcade.Window, State):
             """ Flytta bubblor """
             for b in self.bubble_list:
                 b.update(delta_time)
+
+            log.update()
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
@@ -223,16 +229,19 @@ class MyGame(arcade.Window, State):
         pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)])
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
+        log.put("Bought pfish" + pfish.get_name())
 
     def buy_bfish(self):
         bfish = BfishSprite(self.carrot_list, self.bfish_list)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
+        log.put("Bought bfish" + bfish.get_name())
 
     def buy_carrot(self):
         carrot = CarrotSprite()
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
+        log.put("Bought a carrot")
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):
