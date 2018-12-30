@@ -229,6 +229,11 @@ class MyGame(arcade.Window, State):
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
 
+    def buy_bfish(self):
+        bfish = BfishSprite(self.carrot_list, self.bfish_list)
+        self.bfish_list.append(bfish)
+        self.all_sprite_list.append(bfish)
+
     # Visa FPS längst upp till vänster
     def enable_fps(self):
         self.show_fps = True
