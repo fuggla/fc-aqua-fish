@@ -21,6 +21,8 @@ A simulator by Furniture Corp.
 - [ ] Köttätande fisk
 - [ ] Föremål i akvariet
 - [ ] Fiskarna lägger ägg ifall de äter mycket
+- [ ] Mer info om fisken man köper
+- [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
 
 ### v0.6
 - [x] Ätanimation
@@ -42,9 +44,9 @@ A simulator by Furniture Corp.
 - [x] Överklassfisk
 - [x] Flera typer av fiskar
 - [x] Flera möjligheter att sätta parametrar på nya fiskar
-  -[x] Lägg in fiskarnas grundegenskaper i "vars"
-  -[x] Möjlighet att skapa fisk och ställa in personlighet
-  -[x] Möjlighet att skapa fisk och ställa in utseende
+  - [x] Lägg in fiskarnas grundegenskaper i "vars"
+  - [x] Möjlighet att skapa fisk och ställa in personlighet
+  - [x] Möjlighet att skapa fisk och ställa in utseende
 - [x] Överklassruta (kanske)
 - [x] Fullscreen
 - [x] Förslag: random färg på fisk (lägger in dem som input till fisken)
