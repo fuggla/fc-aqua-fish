@@ -32,7 +32,7 @@ A simulator by Furniture Corp.
   - [x] Fiskarna dör ifall de inte äter
 - [x] Testa laddningstiden i setup
 - [x] Luftbubblor
-- [ ] Fler knappar för att köpa fiskar
+- [x] Fler knappar för att köpa fiskar och morötter
 - [x] Resize av bakgrunden till skärmstorleken? (skulle bli snyggare på mina datorer)
 
 ### v0.5

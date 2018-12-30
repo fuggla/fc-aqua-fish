@@ -4,12 +4,13 @@ from classes.shape import Shape
 
 class Button(Shape):
 
-    def __init__(self, x, y, width, height, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11):
+    def __init__(self, x, y, width, height, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11, align="center"):
         super().__init__(x, y, width, height)
 
         # Text
         self.text = text
         self.font_size = font_size
+        self.align = align
 
         # Bakgrund och ram
         self.outline_size = outline_size
@@ -24,7 +25,7 @@ class Button(Shape):
     def draw(self):
         arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.background_color)
         arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, self.outline_color, self.outline_size)
-        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align="center", anchor_x="center", anchor_y="center")
+        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True

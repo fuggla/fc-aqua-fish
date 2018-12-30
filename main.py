@@ -69,9 +69,10 @@ class MyGame(arcade.Window, State):
         self.window_list = []
 
         # Skapa meny för att interagera med akvariet
-        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 390, 50, "Store")
-        self.interaction_menu.add_button(10, 10, 180, 30, "Buy Fish", 11, self.add_fish)
-        self.interaction_menu.add_button(10, 200, 180, 30, "Buy FPS counter", 11, self.enable_fps)
+        self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 130, " Store", title_height=20, title_align="left")
+        self.interaction_menu.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
+        self.interaction_menu.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
+        self.interaction_menu.add_button(90, 10, 80, 30, "Carrot", 11, self.buy_carrot)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
@@ -194,6 +195,11 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.ESCAPE):
             self.main_menu.toggle()
             self.toggle_pause()
+        elif (key == arcade.key.F1):
+            global DIAGNOSE
+            DIAGNOSE = not DIAGNOSE
+        elif (key == arcade.key.F2):
+            self.show_fps = not self.show_fps
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
@@ -217,11 +223,21 @@ class MyGame(arcade.Window, State):
         if self.is_paused and self.main_menu.is_closed():
             self.play()
 
-    # Lägg till en fisk i fisklistan
-    def add_fish(self):
-        pfish = PfishSprite(self.carrot_list)
+    def buy_pfish(self):
+        color = ["purple", "orange", "green"]
+        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)])
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
+
+    def buy_bfish(self):
+        bfish = BfishSprite(self.carrot_list, self.bfish_list)
+        self.bfish_list.append(bfish)
+        self.all_sprite_list.append(bfish)
+
+    def buy_carrot(self):
+        carrot = CarrotSprite()
+        self.carrot_list.append(carrot)
+        self.all_sprite_list.append(carrot)
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):
