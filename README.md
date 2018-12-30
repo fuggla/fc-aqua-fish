@@ -23,16 +23,16 @@ A simulator by Furniture Corp.
 
 ### v0.7
 - [ ] System för köttätande fisk
-  -[ ] En ny typ av fisk som äter andra fiskar
-  -[ ] Bytesfiskarna blir rädda och flyt när de är nära den
+  - [ ] En ny typ av fisk som äter andra fiskar
+  - [ ] Bytesfiskarna blir rädda och flyt när de är nära den
 - [ ] Föremål i akvariet
-  -[ ] Slumpat valda och utplacerade
-  -[ ] Fruktväxt som det växer mat på
+  - [ ] Slumpat valda och utplacerade
+  - [ ] Fruktväxt som det växer mat på
 -[ ] System för äggläggning 
-  -[ ] Fiskarna lägger ägg ifall de ätit mycket
-  -[ ] Tydliga ägg för blå och lila fiskarna
-  -[ ] Endast damerna lägger ägg
-  -[ ] En ny fisk kläcks efter ett tag
+  - [ ] Fiskarna lägger ägg ifall de ätit mycket
+  - [ ] Tydliga ägg för blå och lila fiskarna
+  - [ ] Endast damerna lägger ägg
+  - [ ] En ny fisk kläcks efter ett tag
 - [ ] Mer info om fisken man köper
 - [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
 
