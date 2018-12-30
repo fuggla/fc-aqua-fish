@@ -1,5 +1,5 @@
 import arcade, random, math
-from vars import FISH_EGG_SCALING_CARROT, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE
+from vars import SCALING_FISH_EGG, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE
 
 
 class FishEggSprite(arcade.Sprite):
@@ -10,8 +10,9 @@ class FishEggSprite(arcade.Sprite):
 
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
+        self.scale_factor = SCALING_FISH_EGG
 
-        self.texture_egg1 = arcade.load_texture("images/egg1.png", scale=FISH_EGG_SCALING_CARROT)
+        self.texture_egg1 = arcade.load_texture("images/egg1.png", scale=self.scale_factor)
         self.texture = self.texture_egg1
 
         # Placera ut ägget

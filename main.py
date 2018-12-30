@@ -11,6 +11,7 @@ from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.carrot import CarrotSprite
+from classes.fish_egg import FishEggSprite
 from classes.window import Window
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
@@ -30,6 +31,7 @@ class MyGame(arcade.Window, State):
         self.pfish_list = None
         self.bfish_list = None
         self.carrot_list = None
+        self.fish_egg_list = None
         self.all_sprite_list = None
         self.window_list = None
         self.background = None
@@ -49,6 +51,7 @@ class MyGame(arcade.Window, State):
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
+        self.fish_egg_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
         # Skapa purple_fish
@@ -139,28 +142,43 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Ätalgoritmerna för fiskarna """
-            # Ätalgoritm för purple fish
+            """ Här stegas alla fiskar igenom för mat, död oc ägg mm """
+
             for fish in self.pfish_list:
+                # Ätalgoritm för purple fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
+                # Ta bort döda fiskar som flytit upp
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
+                # Lägg ägg ifall fisken är mätt
+                if fish.health > fish.base_health and fish.name_gender[1] == "f" and random.randrange(1000) < 10:
+                    fish.health = fish.base_health
+                    egg = FishEggSprite(fish, "medium")
+                    self.fish_egg_list.append(egg)
+                    self.all_sprite_list.append(egg)
 
-            # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
+                # Ätalgoritm för blue small fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
+                # Ta bort döda fiskar som flytit upp
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
+                # Lägg ägg ifall fisken är mätt
+                if fish.health > fish.base_health and fish.name_gender[1] == "f" and random.randrange(1000) < 10:
+                    fish.health = fish.base_health
+                    egg = FishEggSprite(fish, "small")
+                    self.fish_egg_list.append(egg)
+                    self.all_sprite_list.append(egg)
 
             """ Flytta bubblor """
             for b in self.bubble_list:

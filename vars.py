@@ -20,7 +20,7 @@ SPRITE_SCALING_CARROT = 0.3
 carrot_food_value = 1000
 
 """ Egenskaper för fiskägg """
-FISH_EGG_SCALING_CARROT = 0.1
+SCALING_FISH_EGG = 0.1
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
