@@ -180,6 +180,22 @@ class MyGame(arcade.Window, State):
                     self.fish_egg_list.append(egg)
                     self.all_sprite_list.append(egg)
 
+            """ Stega igenom äggen """
+            for egg in self.fish_egg_list:
+                if egg.age == egg.hatch_age:
+                    egg.texture = egg.texture_egg1
+                    if egg.origin == "pfish":
+                        pfish = PfishSprite(self.carrot_list)
+                        self.pfish_list.append(pfish)
+                        self.all_sprite_list.append(pfish)
+                    if egg.origin == "bfish":
+                        bfish = BfishSprite(self.carrot_list, self.bfish_list)
+                        self.bfish_list.append(bfish)
+                        self.all_sprite_list.append(bfish)
+                if egg.age > egg.disapear_age:
+                    egg.kill()
+                egg.age += 1
+
             """ Flytta bubblor """
             for b in self.bubble_list:
                 b.update(delta_time)

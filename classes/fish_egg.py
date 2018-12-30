@@ -1,5 +1,5 @@
 import arcade, random, math
-from vars import SCALING_FISH_EGG, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE
+from vars import SCALING_FISH_EGG, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE, fish_egg_hatch_age, fish_egg_disapear_age
 
 
 class FishEggSprite(arcade.Sprite):
@@ -32,6 +32,10 @@ class FishEggSprite(arcade.Sprite):
         self.acc_left = 0
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
+        self.origin = fish.type
+        self.age = 0
+        self.hatch_age = fish_egg_hatch_age
+        self.disapear_age = fish_egg_disapear_age
 
         self.sand_position = random.randint(int(self.sh * self.sr / 2), int(self.sh * self.sr))
 

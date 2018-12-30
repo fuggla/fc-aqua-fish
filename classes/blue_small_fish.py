@@ -22,6 +22,7 @@ class BfishSprite(FishSprite):
         self.size = size or bfish_size
         self.mass = mass or bfish_mass
         self.color = color or "blue"
+        self.type = "bfish"
 
         self.findelay = bfish_findelay  # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay

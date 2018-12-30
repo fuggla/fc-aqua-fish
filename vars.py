@@ -21,6 +21,8 @@ carrot_food_value = 1000
 
 """ Egenskaper för fiskägg """
 SCALING_FISH_EGG = 0.15
+fish_egg_hatch_age = 1000
+fish_egg_disapear_age = 1500
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera

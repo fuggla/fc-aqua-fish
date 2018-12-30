@@ -21,6 +21,7 @@ class PfishSprite(FishSprite):
         self.size = size or pfish_size
         self.mass = mass or pfish_mass
         self.color = color or "purple"
+        self.type = "pfish"
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
