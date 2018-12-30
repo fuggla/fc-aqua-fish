@@ -261,13 +261,13 @@ class MyGame(arcade.Window, State):
 
     def buy_pfish(self):
         color = ["purple", "orange", "green"]
-        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)])
+        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
         log.put("Bought pfish " + pfish.get_name())
 
     def buy_bfish(self):
-        bfish = BfishSprite(self.carrot_list, self.bfish_list)
+        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
         log.put("Bought bfish" + bfish.get_name())
