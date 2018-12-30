@@ -138,7 +138,7 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Ta bort morötter som fiskarna äter upp """
+            """ Ätalgoritmerna för fiskarna """
             # Ätalgoritm för purple fish
             for fish in self.pfish_list:
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
