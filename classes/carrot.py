@@ -1,8 +1,9 @@
 import arcade,random,math
-from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, carrot_food_value
+from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE, carrot_food_value
 
-# Klass för lila fiskar (Purple_fish)
+
 class CarrotSprite(arcade.Sprite):
+    # Klass för morötter
     def __init__(self):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -34,7 +35,7 @@ class CarrotSprite(arcade.Sprite):
         self.sand_position = random.randint(int(self.sh * self.sr / 2), int(self.sh * self.sr))
         self.bounce_number = 1
 
-        self.framerate = 30         # Ska fixas sen
+        self.framerate = TICK_RATE
         # Morotens egenskaper
         self.size = 1
         self.mass = 0.5
