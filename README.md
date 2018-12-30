@@ -18,8 +18,8 @@ A simulator by Furniture Corp.
 - [ ] Flytta ner delar av todo från 1.0 till 0.x
 
 ### v0.8
--[ ] Fiskarna lägger bara ägg på speciella ställen
--[ ] Herrarna måste befrukta äggen innan de kan kläckas
+- [ ] Fiskarna lägger bara ägg på speciella ställen
+- [ ] Herrarna måste befrukta äggen innan de kan kläckas
 
 ### v0.7
 - [ ] System för köttätande fisk
