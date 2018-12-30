@@ -22,11 +22,14 @@ A simulator by Furniture Corp.
 -[ ] Herrarna måste befrukta äggen innan de kan kläckas
 
 ### v0.7
-- [ ] Köttätande fisk
+- [ ] System för köttätande fisk
+  -[ ] En ny typ av fisk som äter andra fiskar
+  -[ ] Bytesfiskarna blir rädda och flyt när de är nära den
 - [ ] Föremål i akvariet
   -[ ] Slumpat valda och utplacerade
   -[ ] Fruktväxt som det växer mat på
-- [ ] Fiskarna lägger ägg ifall de ätit mycket
+-[ ] System för äggläggning 
+  -[ ] Fiskarna lägger ägg ifall de ätit mycket
   -[ ] Tydliga ägg för blå och lila fiskarna
   -[ ] Endast damerna lägger ägg
   -[ ] En ny fisk kläcks efter ett tag
