@@ -195,6 +195,9 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.ESCAPE):
             self.main_menu.toggle()
             self.toggle_pause()
+        elif (key == arcade.key.F1):
+            global DIAGNOSE
+            DIAGNOSE = not DIAGNOSE
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
