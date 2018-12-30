@@ -28,7 +28,7 @@ A simulator by Furniture Corp.
 - [ ] Föremål i akvariet
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
--[ ] System för äggläggning 
+- [ ] System för äggläggning 
   - [ ] Fiskarna lägger ägg ifall de ätit mycket
   - [ ] Tydliga ägg för blå och lila fiskarna
   - [ ] Endast damerna lägger ägg
