@@ -69,9 +69,9 @@ class MyGame(arcade.Window, State):
         self.window_list = []
 
         # Skapa meny för att interagera med akvariet
-        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 390, 50, "Store")
-        self.interaction_menu.add_button(10, 10, 180, 30, "Buy a Pfish", 11, self.buy_pfish)
-        self.interaction_menu.add_button(10, 200, 180, 30, "Buy FPS counter", 11, self.enable_fps)
+        self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 400, " Store")
+        self.interaction_menu.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
+        self.interaction_menu.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
