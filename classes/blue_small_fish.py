@@ -6,7 +6,8 @@ from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_con
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
-    def __init__(self, carrot_list, bfish_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None, size=None, mass=None, color=None):
+    def __init__(self, carrot_list, bfish_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None,
+                 size=None, mass=None, color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -62,8 +63,9 @@ class BfishSprite(FishSprite):
             self.whichtexture = 21  # 21 = right1
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(int(self.sw * 0.7)) + int(self.sw * 0.1)
-        self.center_y = random.randrange(int(self.sh * 0.7)) + int(self.sh * 0.1)
+        self.center_x = setpos_x or random.randrange(int(self.sw * 0.7)) + int(self.sw * 0.1)
+        self.center_y = setpos_y or random.randrange(int(self.sh * 0.7)) + int(self.sh * 0.1)
+        self.change_y = setspeed_y or 0
 
     def update(self):
 
