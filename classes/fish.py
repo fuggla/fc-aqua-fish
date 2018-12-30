@@ -200,4 +200,5 @@ class FishSprite(arcade.Sprite):
                 self.texture = self.texture_right1
                 self.whichtexture = 21
 
-
+    def get_name(self):
+        return self.name_gender[0]
