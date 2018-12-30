@@ -18,6 +18,7 @@ from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_he
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER
 
+
 class MyGame(arcade.Window, State):
 
     def __init__(self, width, height):
