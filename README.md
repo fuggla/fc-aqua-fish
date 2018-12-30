@@ -29,9 +29,9 @@ A simulator by Furniture Corp.
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
 - [ ] System för äggläggning 
-  - [ ] Fiskarna lägger ägg ifall de ätit mycket
-  - [ ] Tydliga ägg för blå och lila fiskarna
-  - [ ] Endast damerna lägger ägg
+  - [x] Fiskarna lägger ägg ifall de ätit mycket
+  - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
+  - [x] Endast damerna lägger ägg
   - [ ] En ny fisk kläcks efter ett tag
 - [ ] Mer info om fisken man köper
 - [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
