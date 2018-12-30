@@ -17,10 +17,19 @@ A simulator by Furniture Corp.
 - [ ] Styr en fisk och gör det som fiskarna gör
 - [ ] Flytta ner delar av todo från 1.0 till 0.x
 
+### v0.8
+-[ ] Fiskarna lägger bara ägg på speciella ställen
+-[ ] Herrarna måste befrukta äggen innan de kan kläckas
+
 ### v0.7
 - [ ] Köttätande fisk
 - [ ] Föremål i akvariet
-- [ ] Fiskarna lägger ägg ifall de äter mycket
+  -[ ] Slumpat valda och utplacerade
+  -[ ] Fruktväxt som det växer mat på
+- [ ] Fiskarna lägger ägg ifall de ätit mycket
+  -[ ] Tydliga ägg för blå och lila fiskarna
+  -[ ] Endast damerna lägger ägg
+  -[ ] En ny fisk kläcks efter ett tag
 - [ ] Mer info om fisken man köper
 - [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
 
