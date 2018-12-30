@@ -198,6 +198,8 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.F1):
             global DIAGNOSE
             DIAGNOSE = not DIAGNOSE
+        elif (key == arcade.key.F2):
+            self.show_fps = not self.show_fps
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
