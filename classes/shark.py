@@ -1,7 +1,7 @@
 import arcade, random, math
 from classes.fish import FishSprite
 from vars import SCREEN_WIDTH, SCREEN_HEIGHT
-from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_daydream, pfish_finforce, pfish_mass, pfish_size, pfish_findelay
+from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
@@ -22,7 +22,7 @@ class SharkSprite(FishSprite):
         self.mass = mass or shark_mass
         self.type = "shark"
 
-        self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
+        self.findelay = shark_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
         self.eat_speed = 8                      # Denna variabel styr hur intensivt de äter
 
@@ -34,7 +34,7 @@ class SharkSprite(FishSprite):
         self.food_fish_list = food_fish_list
 
         # texture 1 & 2 för höger och vänster
-        scale_factor = SPRITE_SCALING_PFISH*self.size/8
+        scale_factor = SPRITE_SCALING_SHARK*self.size/8
         self.texture_left1 = arcade.load_texture("images/shark1.png", mirrored=True, scale=scale_factor)
         self.texture_left2 = arcade.load_texture("images/shark2.png", mirrored=True, scale=scale_factor)
         self.texture_left_eat1 = arcade.load_texture("images/shark_eat1.png", mirrored=True, scale=scale_factor)
