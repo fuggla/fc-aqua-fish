@@ -208,7 +208,7 @@ class MyGame(arcade.Window, State):
                 # Lägg ägg ifall fisken är mätt
                 if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < shark_egg_freq:
                     fish.health = fish.base_health
-                    egg = FishEggSprite(fish, "big")
+                    egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
                     self.all_sprite_list.append(egg)
 
@@ -227,6 +227,11 @@ class MyGame(arcade.Window, State):
                         bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
+                    if egg.origin == "shark":
+                        # Kläck en shark om ägget kom från haj
+                        shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.shark_list.append(shark)
+                        self.all_sprite_list.append(shark)
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
                     egg.kill()
                 egg.age += 1

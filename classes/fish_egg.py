@@ -12,7 +12,7 @@ class FishEggSprite(arcade.Sprite):
         self.sr = SAND_RATIO
 
         if size == "large":
-            self.scale_factor = SCALING_FISH_EGG * 4
+            self.scale_factor = SCALING_FISH_EGG * 3
         elif size == "medium":
             self.scale_factor = SCALING_FISH_EGG * 2
         else:
