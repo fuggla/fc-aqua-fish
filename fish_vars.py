@@ -43,6 +43,6 @@ shark_finforce = 15          # Kraften i fenorna
 shark_size = 10              # Påverkan av vattenmotstånd
 shark_mass = 10              # Default är samma som siz<e
 shark_findelay = 25         # Hur ofta viftar de med fenorna
-shark_hunting_spirit = 500
+shark_hunting_spirit = 600
 
 shark_egg_freq = 5

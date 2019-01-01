@@ -86,12 +86,12 @@ class BfishSprite(FishSprite):
         if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
             self.chase_food()
 
-        self.flee_from_close_fish()
-
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
             self.acc_x = 0
             self.acc_y = 0
+
+        self.flee_from_close_fish()
 
         if self.health <= 0:
             self.die()
