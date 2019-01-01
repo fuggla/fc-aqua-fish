@@ -196,6 +196,23 @@ class MyGame(arcade.Window, State):
                     self.fish_egg_list.append(egg)
                     self.all_sprite_list.append(egg)
 
+            for fish in self.shark_list:
+                # Ätalgoritm för blue shark
+                hit_list = arcade.check_for_collision_with_list(fish, self.bfish_list)
+                # Om fisken lever och det finns en blue small fish äter fisken den
+                if hit_list and fish.isalive:
+                    fish.eat_fish(hit_list[0])
+                # Ta bort döda fiskar som flytit upp
+                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
+                    fish.kill()
+                # Lägg ägg ifall fisken är mätt
+                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < shark_egg_freq:
+                    fish.health = fish.base_health
+                    egg = FishEggSprite(fish, "big")
+                    self.fish_egg_list.append(egg)
+                    self.all_sprite_list.append(egg)
+
+
             """ Stega igenom äggen """
             for egg in self.fish_egg_list:
                 if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
