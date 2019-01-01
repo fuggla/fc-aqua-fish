@@ -129,11 +129,11 @@ class FishSprite(arcade.Sprite):
                     nerest_hunter = [(hunter[0] - self.center_x), (hunter[1] - self.center_y)]
 
             # Om närmaste jägaren är nära så beräkna vinkel dit och simma så snabbt en kan
-            if ((nerest_hunter[0] - self.center_x) ** 2 + (nerest_hunter[1] - self.center_y) ** 2) < (500 ** 2):
+            if (nerest_hunter[0] ** 2 + nerest_hunter[1] ** 2) < (250 ** 2):
                 ang = math.atan2(nerest_hunter[1], nerest_hunter[0]) + 3.14
-                fleespeed = self.finforce/ self.mass
-                self.acc_x = fleespeed * math.cos(ang)
-                self.acc_y = fleespeed * math.sin(ang)
+                flee_speed = random.random() * self.finforce / self.mass
+                self.acc_x = flee_speed * math.cos(ang)
+                self.acc_y = flee_speed * math.sin(ang)
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
