@@ -129,9 +129,9 @@ class FishSprite(arcade.Sprite):
                     nerest_hunter = [(hunter[0] - self.center_x), (hunter[1] - self.center_y)]
 
             # Om närmaste jägaren är nära så beräkna vinkel dit och simma så snabbt en kan
-            if ((nerest_hunter[0] - self.center_x) ** 2 + (nerest_hunter[1] - self.center_y) ** 2) < 300 ** 2:
+            if ((nerest_hunter[0] - self.center_x) ** 2 + (nerest_hunter[1] - self.center_y) ** 2) < (500 ** 2):
                 ang = math.atan2(nerest_hunter[1], nerest_hunter[0]) + 3.14
-                fleespeed = self.finforce / self.mass
+                fleespeed = self.finforce/ self.mass
                 self.acc_x = fleespeed * math.cos(ang)
                 self.acc_y = fleespeed * math.sin(ang)
 
@@ -265,7 +265,7 @@ class FishSprite(arcade.Sprite):
 
             # Vänd dem i x-hastighetens riktning
 
-            if (self.angle < -90 or self.angle > 90) and not (self.whichtexture == 11 or self.whichtexture == 12):
+            if (self.angle <= -90 or self.angle >= 90) and not (self.whichtexture == 11 or self.whichtexture == 12):
                 self.angle += 180
                 self.whichtexture = 11
             if -90 < self.angle < 90 and not (self.whichtexture == 21 or self.whichtexture == 22):
@@ -274,7 +274,7 @@ class FishSprite(arcade.Sprite):
             # "self.whichtexture = 11" betyder "left texture 1"
             # "self.whichtexture = 22" betyder "right texture 2"
 
-            if self.angle < -90 or self.angle > 90:
+            if self.angle <= -90 or self.angle >= 90:
                 self.angle += 180
 
             # Animation riktad åt vänster

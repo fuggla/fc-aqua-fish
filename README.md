@@ -22,10 +22,10 @@ A simulator by Furniture Corp.
 - [ ] Herrarna måste befrukta äggen innan de kan kläckas
 
 ### v0.7
-- [ ] System för köttätande fisk
+- [x] System för köttätande fisk
   - [x] En ny typ av fisk som äter andra fiskar
   - [x] Bytesfiskarna blir rädda och flyt när de är nära den
-  - [ ] Bytesfiskarna blir uppätna av hungriga köttätande fiskar
+  - [x] Bytesfiskarna blir uppätna av hungriga köttätande fiskar
 - [ ] Föremål i akvariet
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
