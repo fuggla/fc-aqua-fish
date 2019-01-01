@@ -170,6 +170,17 @@ class FishSprite(arcade.Sprite):
         if carrot.food_value <= 0:              # När moroten är slut försvinner den
             carrot.kill()
 
+    def eat_fish(self, prey):
+        self.health += 1000
+
+        # Beräkna vinkel mot moroten fisken äter
+        ang_rad = math.atan2((prey.center_y - self.center_y), (prey.center_x - self.center_x))
+        ang_deg = math.degrees(ang_rad)     # omvandla till degrees
+        self.angle = ang_deg
+        #self.animate_eat_fish()
+
+        prey.kill()
+
     def die(self):
         self.isalive = False
         self.acc_x = 0
