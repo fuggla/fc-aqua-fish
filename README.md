@@ -23,8 +23,9 @@ A simulator by Furniture Corp.
 
 ### v0.7
 - [ ] System för köttätande fisk
-  - [ ] En ny typ av fisk som äter andra fiskar
-  - [ ] Bytesfiskarna blir rädda och flyt när de är nära den
+  - [x] En ny typ av fisk som äter andra fiskar
+  - [x] Bytesfiskarna blir rädda och flyt när de är nära den
+  - [ ] Bytesfiskarna blir uppätna av hungriga köttätande fiskar
 - [ ] Föremål i akvariet
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
