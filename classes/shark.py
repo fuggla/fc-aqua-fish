@@ -70,7 +70,7 @@ class SharkSprite(FishSprite):
             self.relaxed[1] = True
 
         # Om de är lugna och kan de vilja börja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.food_fish_list and self.isalive:
             self.hunting_spirit = random.randint(self.base_hunting_spirit / 2, self.base_hunting_spirit)
 
         # Om hajarna jagar så jagar dom ordentligt
@@ -92,7 +92,8 @@ class SharkSprite(FishSprite):
 
         # Kolla om fisken är nära kansten och styr in den mot mitten
         # Stressa även upp den
-        self.check_edge()
+        if self.hunting_spirit <= 0:
+            self.check_edge()
 
         # Beräkna vattnets motstånd
         self.water_res()
