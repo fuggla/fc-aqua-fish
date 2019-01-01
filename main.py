@@ -10,6 +10,7 @@ from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
+from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
 from classes.fish_egg import FishEggSprite
 from classes.window import Window
@@ -17,7 +18,7 @@ from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, pfish_egg_freq, bfish_egg_freq
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
 from log import Logger
 log = Logger()
 
@@ -32,6 +33,7 @@ class MyGame(arcade.Window, State):
         # If you have sprite lists, you should create them here
         self.pfish_list = None
         self.bfish_list = None
+        self.shark_list = None
         self.carrot_list = None
         self.fish_egg_list = None
         self.all_sprite_list = None
@@ -52,10 +54,12 @@ class MyGame(arcade.Window, State):
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
+        self.shark_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
         self.fish_egg_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
+        """ Skapa alla fiskar """
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
             pfish = PfishSprite(self.carrot_list)
@@ -67,10 +71,18 @@ class MyGame(arcade.Window, State):
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
             bfish = BfishSprite(self.carrot_list, self.bfish_list)
-            self.bfish_list.append(bfish)  # Lägg till fiskarna i fisklistan
-            self.all_sprite_list.append(bfish)  # och i totallistan
+            self.bfish_list.append(bfish)                           # Lägg till fiskarna i fisklistan
+            self.all_sprite_list.append(bfish)                      # och i totallistan
         if DEBUG:
             self.timer.print("Created blue_small fish")
+
+        # Skapa shark
+        for i in range(SHARK_NUMBER):
+            shark = SharkSprite(self.bfish_list)
+            self.shark_list.append(shark)                           # Lägg till fiskarna i fisklistan
+            self.all_sprite_list.append(shark)                      # och i totallistan
+        if DEBUG:
+            self.timer.print("Created shark")
 
         # Skapa fönster
         self.window_list = []
