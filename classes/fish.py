@@ -183,6 +183,10 @@ class FishSprite(arcade.Sprite):
             ang_deg = math.degrees(ang_rad)     # omvandla till degrees
             self.angle = ang_deg
             self.hunting_spirit = 0
+            if -90 < self.angle < 90:
+                self.texture = self.texture_right1
+            else:
+                self.texture = self.texture_left1
 
             prey.kill()
 

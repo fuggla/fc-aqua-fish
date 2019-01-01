@@ -13,7 +13,7 @@ pfish_size = 8              # Påverkan av vattenmotstånd
 pfish_mass = 8              # Default är samma som siz<e
 pfish_findelay = 20         # Hur ofta viftar de med fenorna
 
-pfish_egg_freq = 3
+pfish_egg_freq = 1
 
 """ Egenskaper för blue fish """
 BFISH_NUMBER = 12
@@ -29,7 +29,7 @@ bfish_size = 5              # Påverkan av vattenmotstånd
 bfish_mass = 5              # Default är samma som siz<e
 bfish_findelay = 10         # Hur ofta viftar de med fenorna
 
-bfish_egg_freq = 3
+bfish_egg_freq = 1
 
 """ Egenskaper för shark """
 SHARK_NUMBER = 2
@@ -46,4 +46,4 @@ shark_mass = 10              # Default är samma som siz<e
 shark_findelay = 25         # Hur ofta viftar de med fenorna
 shark_hunting_spirit = 600
 
-shark_egg_freq = 5
+shark_egg_freq = 1

@@ -30,6 +30,7 @@ class SharkSprite(FishSprite):
         self.food_fish_list = food_fish_list
         self.hunting_spirit = 0
         self.base_hunting_spirit = shark_hunting_spirit
+        self.tired = 0
 
 
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
@@ -70,14 +71,19 @@ class SharkSprite(FishSprite):
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
-        # Om de är lugna och kan de vilja börja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hunt_will and self.food_fish_list and self.hunting_spirit <= 0 and self.isalive:
+        # Om de är lugna och pigga kan de vilja börja jaga mat
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hunt_will and self.food_fish_list \
+                and self.hunting_spirit <= 0 and self.tired <= 0 and self.isalive:
             self.hunting_spirit = random.randint(self.base_hunting_spirit / 2, self.base_hunting_spirit)
+
+        if self.hunting_spirit <= 0 < self.tired:
+            self.tired -= 1
 
         # Om hajarna jagar så jagar dom ordentligt
         if self.hunting_spirit > 0:
             self.chase_fish()
             self.hunting_spirit -= 1
+            self.tired = 500
 
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive and self.hunting_spirit <= 0:
