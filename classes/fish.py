@@ -137,19 +137,20 @@ class FishSprite(arcade.Sprite):
 
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
-        if self.center_x > self.sw * 0.94:
-            self.acc_x = - self.finforce / self.mass
-            self.relaxed[0] = False
-        if self.center_x < self.sw * 0.06:
-            self.acc_x = self.finforce / self.mass
-            self.relaxed[0] = False
+        if self.isalive:
+            if self.center_x > self.sw * 0.94:
+                self.acc_x = - self.finforce / self.mass
+                self.relaxed[0] = False
+            if self.center_x < self.sw * 0.06:
+                self.acc_x = self.finforce / self.mass
+                self.relaxed[0] = False
 
-        if self.center_y > self.sh * 0.94:
-            self.acc_y = - self.finforce / self.mass
-            self.relaxed[1] = False
-        if self.center_y < self.sh * 0.06:
-            self.acc_y = self.finforce / self.mass
-            self.relaxed[1] = False
+            if self.center_y > self.sh * 0.94:
+                self.acc_y = - self.finforce / self.mass
+                self.relaxed[1] = False
+            if self.center_y < self.sh * 0.06:
+                self.acc_y = self.finforce / self.mass
+                self.relaxed[1] = False
 
     def eat_food(self, carrot, chew):
         # Sätt vatiabel så att fiskarna vet att de äter
@@ -267,8 +268,10 @@ class FishSprite(arcade.Sprite):
 
             if (self.angle <= -90 or self.angle >= 90) and not (self.whichtexture == 11 or self.whichtexture == 12):
                 self.angle += 180
+                self.texture = self.texture_left_eat1
                 self.whichtexture = 11
             if -90 < self.angle < 90 and not (self.whichtexture == 21 or self.whichtexture == 22):
+                self.texture = self.texture_right_eat1
                 self.whichtexture = 21
 
             # "self.whichtexture = 11" betyder "left texture 1"
