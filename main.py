@@ -70,7 +70,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
-            bfish = BfishSprite(self.carrot_list, self.bfish_list)
+            bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list)
             self.bfish_list.append(bfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(bfish)                      # och i totallistan
         if DEBUG:
@@ -207,7 +207,7 @@ class MyGame(arcade.Window, State):
                         self.all_sprite_list.append(pfish)
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
@@ -281,7 +281,7 @@ class MyGame(arcade.Window, State):
         log.put("Bought pfish " + pfish.get_name())
 
     def buy_bfish(self):
-        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+        bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
         log.put("Bought bfish" + bfish.get_name())
