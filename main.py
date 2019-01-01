@@ -198,6 +198,8 @@ class MyGame(arcade.Window, State):
 
             for fish in self.shark_list:
                 # Ätalgoritm för blue shark
+                if fish.iseating > 0:
+                    fish.iseating -= 1
                 hit_list = arcade.check_for_collision_with_list(fish, self.bfish_list)
                 # Om fisken lever och det finns en blue small fish äter fisken den
                 if hit_list and fish.isalive:

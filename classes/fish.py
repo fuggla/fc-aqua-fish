@@ -177,11 +177,8 @@ class FishSprite(arcade.Sprite):
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:
             self.health += 10000
+            self.iseating = 10
 
-            # Beräkna vinkel mot moroten fisken äter
-            ang_rad = math.atan2((prey.center_y - self.center_y), (prey.center_x - self.center_x))
-            ang_deg = math.degrees(ang_rad)     # omvandla till degrees
-            self.angle = ang_deg
             self.hunting_spirit = 0
             if -90 < self.angle < 90:
                 self.texture = self.texture_right1
