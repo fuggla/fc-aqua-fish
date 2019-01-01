@@ -30,3 +30,19 @@ bfish_mass = 5              # Default är samma som siz<e
 bfish_findelay = 10         # Hur ofta viftar de med fenorna
 
 bfish_egg_freq = 5
+
+""" Egenskaper för shark """
+SHARK_NUMBER = 12
+SPRITE_SCALING_SHARK = 0.1
+
+shark_eager = 10            # Hur ofta byter fiskarna riktning
+shark_hungry = 5            # Hur intresserade är de av mat (har ingen effekt nu)
+shark_conformity = 10       # Hu måna är fiskarna om att vara som alla andra
+shark_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
+
+shark_finforce = 6          # Kraften i fenorna
+shark_size = 5              # Påverkan av vattenmotstånd
+shark_mass = 5              # Default är samma som siz<e
+shark_findelay = 10         # Hur ofta viftar de med fenorna
+
+shark_egg_freq = 5
