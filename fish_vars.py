@@ -42,6 +42,6 @@ shark_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 shark_finforce = 15          # Kraften i fenorna
 shark_size = 10              # Påverkan av vattenmotstånd
 shark_mass = 10              # Default är samma som siz<e
-shark_findelay = 10         # Hur ofta viftar de med fenorna
+shark_findelay = 25         # Hur ofta viftar de med fenorna
 
 shark_egg_freq = 5
