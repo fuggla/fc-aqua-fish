@@ -56,3 +56,43 @@ class SharkSprite(FishSprite):
         self.center_x = setpos_x or random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)
         self.center_y = setpos_y or random.randrange(int(self.sh * 0.8)) + int(self.sh * 0.1)
         self.change_y = setspeed_y or 0
+
+    def update(self):
+
+        # De blir lugna av att befinna sig i mitter av akvariet
+        if 0.15 * self.sw < self.center_x < 0.85 * self.sw:
+            self.relaxed[0] = True
+        if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
+            self.relaxed[1] = True
+
+        # Om de är lugna kan de vilja ändra riktning
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
+            self.random_move()
+
+        # Om de är lugna kan de börja dagdrömma
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
+            self.acc_x = 0
+            self.acc_y = 0
+
+        if self.health <= 0:
+            self.die()
+
+        # Kolla om fisken är nära kansten och styr in den mot mitten
+        # Stressa även upp den
+        self.check_edge()
+
+        # Beräkna vattnets motstånd
+        self.water_res()
+
+        # Gör beräkningar för acceleration
+        self.move_calc()
+
+        # Gör beräkningar för hälsa
+        self.health_calc()
+
+        # Updatera animationen
+        if self.isalive:
+            self.animate()
+
+        # Anropa huvudklassen
+        super().update()
