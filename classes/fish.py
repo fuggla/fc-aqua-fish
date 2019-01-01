@@ -27,10 +27,12 @@ class FishSprite(arcade.Sprite):
 
         self.health = random.randint(5000, 10000)
         self.base_health = self.health
+        self.hunting_spirit = 0
         self.isalive = True
         self.eat_speed = 0
         self.iseating = 0
         self.tick_rate = TICK_RATE
+
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
@@ -106,6 +108,7 @@ class FishSprite(arcade.Sprite):
 
             # Beräkna vinkel mot maten
             ang = math.atan2(nerest_fish[1], nerest_fish[0])
+            self.angle = math.degrees(ang)
             foodspeed = random.random() * self.finforce / self.mass
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
@@ -171,15 +174,16 @@ class FishSprite(arcade.Sprite):
             carrot.kill()
 
     def eat_fish(self, prey):
-        self.health += 1000
+        if self.hunting_spirit > 0:
+            self.health += 1000
 
-        # Beräkna vinkel mot moroten fisken äter
-        ang_rad = math.atan2((prey.center_y - self.center_y), (prey.center_x - self.center_x))
-        ang_deg = math.degrees(ang_rad)     # omvandla till degrees
-        self.angle = ang_deg
-        #self.animate_eat_fish()
+            # Beräkna vinkel mot moroten fisken äter
+            ang_rad = math.atan2((prey.center_y - self.center_y), (prey.center_x - self.center_x))
+            ang_deg = math.degrees(ang_rad)     # omvandla till degrees
+            self.angle = ang_deg
+            self.hunting_spirit = 0
 
-        prey.kill()
+            prey.kill()
 
     def die(self):
         self.isalive = False
@@ -253,6 +257,43 @@ class FishSprite(arcade.Sprite):
             elif self.frame_count % self.findelay == 0 and self.whichtexture == 22:
                 self.texture = self.texture_right1
                 self.whichtexture = 21
+
+    def animate_hunt(self):
+        # Animering av jakten
+            # Ändra fenfrekvens utifrån totalacceleration
+            self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
+
+            # Vänd dem i x-hastighetens riktning
+
+            if (self.angle < -90 or self.angle > 90) and not (self.whichtexture == 11 or self.whichtexture == 12):
+                self.angle += 180
+                self.texture = self.texture_left_eat1
+                self.whichtexture = 11
+            if -90 < self.angle < 90 and not (self.whichtexture == 21 or self.whichtexture == 22):
+                self.texture = self.texture_right_eat1
+                self.whichtexture = 21
+            # "self.whichtexture = 11" betyder "left texture 1"
+            # "self.whichtexture = 22" betyder "right texture 2"
+
+            if self.angle < -90 or self.angle > 90:
+                self.angle += 180
+
+            # Animation riktad åt vänster
+            if self.frame_count % self.findelay == 0 and self.whichtexture == 11:
+                self.texture = self.texture_left_eat2
+                self.whichtexture = 12
+            elif self.frame_count % self.findelay == 0 and self.whichtexture == 12:
+                self.texture = self.texture_left_eat1
+                self.whichtexture = 11
+
+            # Animation riktad åt höger
+            if self.frame_count % self.findelay == 0 and self.whichtexture == 21:
+                self.texture = self.texture_right_eat2
+                self.whichtexture = 22
+            elif self.frame_count % self.findelay == 0 and self.whichtexture == 22:
+                self.texture = self.texture_right_eat1
+                self.whichtexture = 21
+
 
     def get_name(self):
         return self.name_gender[0]

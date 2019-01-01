@@ -104,8 +104,12 @@ class SharkSprite(FishSprite):
         self.health_calc()
 
         # Updatera animationen
-        if self.isalive:
+        if self.hunting_spirit <= 0 and self.isalive:
             self.animate()
+
+        # Updatera animationen ifall den jagar
+        if self.hunting_spirit > 0 and self.isalive:
+            self.animate_hunt()
 
         # Anropa huvudklassen
         super().update()

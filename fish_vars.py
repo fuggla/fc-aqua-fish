@@ -36,13 +36,13 @@ SHARK_NUMBER = 2
 SPRITE_SCALING_SHARK = 0.8
 
 shark_eager = 10            # Hur ofta byter fiskarna riktning
-shark_hungry = 1            # Hur intresserade är de av mat (har ingen effekt nu)
+shark_hungry = 100            # Hur intresserade är de av mat (har ingen effekt nu)
 shark_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
 shark_finforce = 15          # Kraften i fenorna
 shark_size = 10              # Påverkan av vattenmotstånd
 shark_mass = 10              # Default är samma som siz<e
 shark_findelay = 25         # Hur ofta viftar de med fenorna
-shark_hunting_spirit = 10000
+shark_hunting_spirit = 1000
 
 shark_egg_freq = 5
