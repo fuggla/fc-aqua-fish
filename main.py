@@ -11,11 +11,16 @@ from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.carrot import CarrotSprite
+from classes.fish_egg import FishEggSprite
 from classes.window import Window
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
+from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, pfish_egg_freq, bfish_egg_freq
+from log import Logger
+log = Logger()
+
 
 class MyGame(arcade.Window, State):
 
@@ -28,6 +33,7 @@ class MyGame(arcade.Window, State):
         self.pfish_list = None
         self.bfish_list = None
         self.carrot_list = None
+        self.fish_egg_list = None
         self.all_sprite_list = None
         self.window_list = None
         self.background = None
@@ -47,6 +53,7 @@ class MyGame(arcade.Window, State):
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
+        self.fish_egg_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
         # Skapa purple_fish
@@ -69,9 +76,10 @@ class MyGame(arcade.Window, State):
         self.window_list = []
 
         # Skapa meny för att interagera med akvariet
-        self.interaction_menu = Window(SCREEN_WIDTH / 2, 30, 390, 50, "Store")
-        self.interaction_menu.add_button(10, 10, 180, 30, "Buy Fish", 11, self.add_fish)
-        self.interaction_menu.add_button(10, 200, 180, 30, "Buy FPS counter", 11, self.enable_fps)
+        self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 130, " Store", title_height=20, title_align="left")
+        self.interaction_menu.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
+        self.interaction_menu.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
+        self.interaction_menu.add_button(90, 10, 80, 30, "Carrot", 11, self.buy_carrot)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
@@ -112,19 +120,15 @@ class MyGame(arcade.Window, State):
 
         self.all_sprite_list.draw()
 
-        # "True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
-        if DIAGNOSE:
-            for fish in self.pfish_list:
-                arcade.draw_text(fish.name_gender[0] + " " + fish.name_gender[1], fish.center_x, fish.center_y + 24, arcade.color.BLACK, 18)
-                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 18)
-                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 18, anchor_x="left", anchor_y="top")
-            for fish in self.bfish_list:
-                arcade.draw_text(fish.name_gender[0] + " " + fish.name_gender[1], fish.center_x, fish.center_y + 24, arcade.color.BLACK, 18)
-                arcade.draw_text(str(fish.health), fish.center_x, fish.center_y, arcade.color.BLACK, 18)
-                arcade.draw_text(str(fish.hungry), fish.center_x, fish.center_y, arcade.color.BLACK, 18, anchor_x="left", anchor_y="top")
+        # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
+        if DIAGNOSE_FISH:
+            diagnose_name_gender_health_hungry(self.pfish_list)
+            diagnose_name_gender_health_hungry(self.bfish_list)
 
         for w in self.window_list:
             w.draw()
+
+        log.draw()
 
         # Rita FPS uppe i högra hörnet
         if self.show_fps:
@@ -142,32 +146,67 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Ta bort morötter som fiskarna äter upp """
-            # Ätalgoritm för purple fish
+            """ Här stegas alla fiskar igenom för mat, död oc ägg mm """
+
             for fish in self.pfish_list:
+                # Ätalgoritm för purple fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
-                if fish.bottom > SCREEN_HEIGHT:
+                # Ta bort döda fiskar som flytit upp
+                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
+                # Lägg ägg ifall fisken är mätt
+                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < pfish_egg_freq:
+                    fish.health = fish.base_health
+                    egg = FishEggSprite(fish, "medium")
+                    self.fish_egg_list.append(egg)
+                    self.all_sprite_list.append(egg)
 
-            # Ätalgoritm för blue small fish
             for fish in self.bfish_list:
+                # Ätalgoritm för blue small fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-                if fish.bottom > SCREEN_HEIGHT:
+                # Ta bort döda fiskar som flytit upp
+                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
+                # Lägg ägg ifall fisken är mätt
+                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < bfish_egg_freq:
+                    fish.health = fish.base_health
+                    egg = FishEggSprite(fish, "small")
+                    self.fish_egg_list.append(egg)
+                    self.all_sprite_list.append(egg)
+
+            """ Stega igenom äggen """
+            for egg in self.fish_egg_list:
+                if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
+                    egg.texture = egg.texture_egg1  # Denna ska fixas, ägget ska vara trasigt då fisken kläcks
+                    if egg.origin == "pfish":
+                        # Kläck en pfish om ägget kom från pfish
+                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.pfish_list.append(pfish)
+                        self.all_sprite_list.append(pfish)
+                    if egg.origin == "bfish":
+                        # Kläck en bfish om ägget kom från bfish
+                        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.bfish_list.append(bfish)
+                        self.all_sprite_list.append(bfish)
+                if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
+                    egg.kill()
+                egg.age += 1
 
             """ Flytta bubblor """
             for b in self.bubble_list:
                 b.update(delta_time)
+
+            log.update()
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
@@ -194,6 +233,11 @@ class MyGame(arcade.Window, State):
         elif (key == arcade.key.ESCAPE):
             self.main_menu.toggle()
             self.toggle_pause()
+        elif (key == arcade.key.F1):
+            global DIAGNOSE
+            DIAGNOSE = not DIAGNOSE
+        elif (key == arcade.key.F2):
+            self.show_fps = not self.show_fps
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
@@ -217,11 +261,24 @@ class MyGame(arcade.Window, State):
         if self.is_paused and self.main_menu.is_closed():
             self.play()
 
-    # Lägg till en fisk i fisklistan
-    def add_fish(self):
-        pfish = PfishSprite(self.carrot_list)
+    def buy_pfish(self):
+        color = ["purple", "orange", "green"]
+        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
+        log.put("Bought pfish " + pfish.get_name())
+
+    def buy_bfish(self):
+        bfish = BfishSprite(self.carrot_list, self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+        self.bfish_list.append(bfish)
+        self.all_sprite_list.append(bfish)
+        log.put("Bought bfish" + bfish.get_name())
+
+    def buy_carrot(self):
+        carrot = CarrotSprite()
+        self.carrot_list.append(carrot)
+        self.all_sprite_list.append(carrot)
+        log.put("Bought a carrot")
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):

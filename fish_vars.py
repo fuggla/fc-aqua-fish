@@ -13,6 +13,8 @@ pfish_size = 8              # Påverkan av vattenmotstånd
 pfish_mass = 8              # Default är samma som siz<e
 pfish_findelay = 20         # Hur ofta viftar de med fenorna
 
+pfish_egg_freq = 5
+
 """ Egenskaper för blue fish """
 BFISH_NUMBER = 12
 SPRITE_SCALING_BFISH = 0.1
@@ -26,3 +28,5 @@ bfish_finforce = 6          # Kraften i fenorna
 bfish_size = 5              # Påverkan av vattenmotstånd
 bfish_mass = 5              # Default är samma som siz<e
 bfish_findelay = 10         # Hur ofta viftar de med fenorna
+
+bfish_egg_freq = 5

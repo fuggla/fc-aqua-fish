@@ -17,10 +17,24 @@ A simulator by Furniture Corp.
 - [ ] Styr en fisk och gör det som fiskarna gör
 - [ ] Flytta ner delar av todo från 1.0 till 0.x
 
+### v0.8
+- [ ] Fiskarna lägger bara ägg på speciella ställen
+- [ ] Herrarna måste befrukta äggen innan de kan kläckas
+
 ### v0.7
-- [ ] Köttätande fisk
+- [ ] System för köttätande fisk
+  - [ ] En ny typ av fisk som äter andra fiskar
+  - [ ] Bytesfiskarna blir rädda och flyt när de är nära den
 - [ ] Föremål i akvariet
-- [ ] Fiskarna lägger ägg ifall de äter mycket
+  - [ ] Slumpat valda och utplacerade
+  - [ ] Fruktväxt som det växer mat på
+- [x] System för äggläggning 
+  - [x] Fiskarna lägger ägg ifall de ätit mycket
+  - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
+  - [x] Endast damerna lägger ägg
+  - [x] En ny fisk kläcks efter ett tag
+- [ ] Mer info om fisken man köper
+- [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
 
 ### v0.6
 - [x] Ätanimation
@@ -32,7 +46,7 @@ A simulator by Furniture Corp.
   - [x] Fiskarna dör ifall de inte äter
 - [x] Testa laddningstiden i setup
 - [x] Luftbubblor
-- [ ] Fler knappar för att köpa fiskar
+- [x] Fler knappar för att köpa fiskar och morötter
 - [x] Resize av bakgrunden till skärmstorleken? (skulle bli snyggare på mina datorer)
 
 ### v0.5
@@ -42,9 +56,9 @@ A simulator by Furniture Corp.
 - [x] Överklassfisk
 - [x] Flera typer av fiskar
 - [x] Flera möjligheter att sätta parametrar på nya fiskar
-  -[x] Lägg in fiskarnas grundegenskaper i "vars"
-  -[x] Möjlighet att skapa fisk och ställa in personlighet
-  -[x] Möjlighet att skapa fisk och ställa in utseende
+  - [x] Lägg in fiskarnas grundegenskaper i "vars"
+  - [x] Möjlighet att skapa fisk och ställa in personlighet
+  - [x] Möjlighet att skapa fisk och ställa in utseende
 - [x] Överklassruta (kanske)
 - [x] Fullscreen
 - [x] Förslag: random färg på fisk (lägger in dem som input till fisken)

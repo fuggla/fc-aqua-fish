@@ -6,7 +6,8 @@ from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_day
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
-    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None, color=None):
+    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
+                 color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -21,6 +22,7 @@ class PfishSprite(FishSprite):
         self.size = size or pfish_size
         self.mass = mass or pfish_mass
         self.color = color or "purple"
+        self.type = "pfish"
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
@@ -66,8 +68,9 @@ class PfishSprite(FishSprite):
             self.whichtexture = 21              # 21 = right1
 
         # Placera ut fiskarna
-        self.center_x = random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)
-        self.center_y = random.randrange(int(self.sh * 0.8)) + int(self.sh * 0.1)
+        self.center_x = setpos_x or random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)
+        self.center_y = setpos_y or random.randrange(int(self.sh * 0.8)) + int(self.sh * 0.1)
+        self.change_y = setspeed_y or 0
 
     def update(self):
 

@@ -1,4 +1,4 @@
-VERSION = 0.5
+VERSION = 0.6
 
 """ Hämta skärmupplösning """
 import tkinter
@@ -7,7 +7,7 @@ screen.withdraw()
 SCREEN_WIDTH = screen.winfo_screenwidth()
 SCREEN_HEIGHT = screen.winfo_screenheight()
 FULLSCREEN = True
-DIAGNOSE = True
+DIAGNOSE_FISH = False
 
 """ Bakgrundsbild """
 BACKGROUND_IMAGE = "images/background.png"
@@ -18,6 +18,11 @@ TICK_RATE = 60
 """ Egenskaper för morötterna """
 SPRITE_SCALING_CARROT = 0.3
 carrot_food_value = 1000
+
+""" Egenskaper för fiskägg """
+SCALING_FISH_EGG = 0.15
+fish_egg_hatch_age = 1000
+fish_egg_disapear_age = 1500
 
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
