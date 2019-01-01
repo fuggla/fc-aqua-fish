@@ -264,8 +264,7 @@ class FishSprite(arcade.Sprite):
             # Ändra fenfrekvens utifrån totalacceleration
             self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
 
-            # Vänd dem i x-hastighetens riktning
-
+            # Vänd dem i riktning mot bytet
             if -90 < self.angle < 90:
                 # Ätanimation då fisken är riktad åt höger
                 if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:

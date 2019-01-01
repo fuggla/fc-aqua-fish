@@ -20,7 +20,7 @@ BFISH_NUMBER = 12
 SPRITE_SCALING_BFISH = 0.1
 
 bfish_eager = 10            # Hur ofta byter fiskarna riktning
-bfish_hungry = 5            # Hur intresserade är de av mat (har ingen effekt nu)
+bfish_hungry = 5            # Hur intresserade är de av mat
 bfish_conformity = 10       # Hu måna är fiskarna om att vara som alla andra
 bfish_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
@@ -37,6 +37,7 @@ SPRITE_SCALING_SHARK = 0.8
 
 shark_eager = 10            # Hur ofta byter fiskarna riktning
 shark_hungry = 1            # Hur intresserade är de av mat (har ingen effekt nu)
+shark_hunt_will = 1         # Hur taggade de är på att börja jaga
 shark_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
 shark_finforce = 15          # Kraften i fenorna

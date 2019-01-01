@@ -1,11 +1,11 @@
 import arcade, random, math
 from classes.fish import FishSprite
 from vars import SCREEN_WIDTH, SCREEN_HEIGHT
-from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
+from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hunt_will, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
-    def __init__(self, food_fish_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
+    def __init__(self, food_fish_list, eager=None, hungry=None, hunt_will=None, daydream=None, finforce=None, size=None, mass=None,
                  color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -13,6 +13,7 @@ class SharkSprite(FishSprite):
         # Fiskarnas personlighet
         self.eager = eager or shark_eager                 # Hur ofta byter fiskarna riktning
         self.hungry = hungry or shark_hungry              # Hur intresserade är de av mat
+        self.hunt_will = hunt_will or shark_hunt_will
         self.base_hungry = self.hungry
         self.daydream = daydream or shark_daydream
 
@@ -70,7 +71,7 @@ class SharkSprite(FishSprite):
             self.relaxed[1] = True
 
         # Om de är lugna och kan de vilja börja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.food_fish_list and self.hunting_spirit <= 0 and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hunt_will and self.food_fish_list and self.hunting_spirit <= 0 and self.isalive:
             self.hunting_spirit = random.randint(self.base_hunting_spirit / 2, self.base_hunting_spirit)
 
         # Om hajarna jagar så jagar dom ordentligt
