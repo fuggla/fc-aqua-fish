@@ -89,6 +89,27 @@ class FishSprite(arcade.Sprite):
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
 
+    def chase_fish(self):
+        # metod för att vända sig mot och accelerera mot mat
+        if self.food_fish_list:
+            food_cor = []
+            # Spara alla morätternas koordinater i food_cor
+            for food in self.food_fish_list:
+                food_cor.append([food.center_x, food.center_y])
+
+            # Beräkna avståndet till maten som är närmast
+            nerest_fish = [(food_cor[0][0] - self.center_x), (food_cor[0][1] - self.center_y)]
+            for food in food_cor:
+                if ((food[0] - self.center_x) ** 2 + (food[1] - self.center_y) ** 2) < (
+                        nerest_fish[0] ** 2 + nerest_fish[1] ** 2):
+                    nerest_fish = [(food[0] - self.center_x), (food[1] - self.center_y)]
+
+            # Beräkna vinkel mot maten
+            ang = math.atan2(nerest_fish[1], nerest_fish[0])
+            foodspeed = random.random() * self.finforce / self.mass
+            self.acc_x = foodspeed * math.cos(ang)
+            self.acc_y = foodspeed * math.sin(ang)
+
     def check_edge(self):
         # Kolla om fisken är nära kanten, styr in dem mot mitten och stressa upp den
         if self.center_x > self.sw * 0.94:

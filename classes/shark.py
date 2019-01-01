@@ -32,6 +32,7 @@ class SharkSprite(FishSprite):
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
         self.food_fish_list = food_fish_list
+        self.ishunting = False
 
         # texture 1 & 2 för höger och vänster
         scale_factor = SPRITE_SCALING_SHARK*self.size/8
@@ -68,6 +69,11 @@ class SharkSprite(FishSprite):
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
             self.random_move()
+
+        # Om de är lugna och kan de vilja jaga mat
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+            self.chase_fish()
+            self.ishunting = True
 
         # Om de är lugna kan de börja dagdrömma
         if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
