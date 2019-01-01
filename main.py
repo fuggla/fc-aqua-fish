@@ -187,7 +187,7 @@ class MyGame(arcade.Window, State):
             """ Stega igenom äggen """
             for egg in self.fish_egg_list:
                 if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
-                    egg.texture = egg.texture_egg1  # Denna ska fixas, ägget ska vara trasigt då fisken kläcks
+                    egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
                         pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)

@@ -19,6 +19,7 @@ class FishEggSprite(arcade.Sprite):
             self.scale_factor = SCALING_FISH_EGG
 
         self.texture_egg1 = arcade.load_texture("images/egg1.png", scale=self.scale_factor)
+        self.texture_egg_cracked = arcade.load_texture("images/egg_cracked.png", scale=self.scale_factor)
         self.texture = self.texture_egg1
 
         # Placera ut ägget
