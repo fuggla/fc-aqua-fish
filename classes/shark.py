@@ -1,7 +1,7 @@
 import arcade, random, math
 from classes.fish import FishSprite
 from vars import SCREEN_WIDTH, SCREEN_HEIGHT
-from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay
+from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
@@ -26,13 +26,16 @@ class SharkSprite(FishSprite):
         self.findelay_base = self.findelay
         self.eat_speed = 8                      # Denna variabel styr hur intensivt de äter
 
+        self.food_fish_list = food_fish_list
+        self.hunting_spirit = 0
+        self.base_hunting_spirit = shark_hunting_spirit
+
+
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
 
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
-        self.food_fish_list = food_fish_list
-        self.ishunting = False
 
         # texture 1 & 2 för höger och vänster
         scale_factor = SPRITE_SCALING_SHARK*self.size/8
@@ -66,17 +69,21 @@ class SharkSprite(FishSprite):
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
+        # Om de är lugna och kan de vilja börja jaga mat
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+            self.hunting_spirit = random.randint(self.base_hunting_spirit / 2, self.base_hunting_spirit)
+
+        # Om hajarna jagar så jagar dom ordentligt
+        if self.hunting_spirit > 0:
+            self.chase_fish()
+            self.hunting_spirit -= 1
+
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive and self.hunting_spirit <= 0:
             self.random_move()
 
-        # Om de är lugna och kan de vilja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
-            self.chase_fish()
-            self.ishunting = True
-
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive and self.hunting_spirit <= 0:
             self.acc_x = 0
             self.acc_y = 0
 
