@@ -146,6 +146,7 @@ class MyGame(arcade.Window, State):
         for b in self.bubble_list:
             b.draw()
 
+        self.fish_egg_list.draw()
         self.all_sprite_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
@@ -167,6 +168,7 @@ class MyGame(arcade.Window, State):
 
         # Uppdatera all när spelet är igång
         if self.is_playing():
+            self.fish_egg_list.update()
             self.all_sprite_list.update()
 
             """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
@@ -175,7 +177,7 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Här stegas alla fiskar igenom för mat, död oc ägg mm """
+            """ Här stegas alla fiskar igenom för mat, död och ägg mm """
 
             for fish in self.pfish_list:
                 # Ätalgoritm för purple fish
@@ -193,7 +195,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
-                    self.all_sprite_list.append(egg)
+                    #self.all_sprite_list.append(egg)
 
             for fish in self.bfish_list:
                 # Ätalgoritm för blue small fish
@@ -211,7 +213,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
-                    self.all_sprite_list.append(egg)
+                    #self.all_sprite_list.append(egg)
 
             for fish in self.shark_list:
                 # Ätalgoritm för blue shark
@@ -229,7 +231,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
-                    self.all_sprite_list.append(egg)
+                    #self.all_sprite_list.append(egg)
 
 
             """ Stega igenom äggen """
