@@ -12,7 +12,12 @@ class PlantBlueberry(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
 
-        self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+        if random.random() < 0.5:
+            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png",
+                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+        else:
+            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", mirrored=True,
+                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
         self.texture = self.texture_plant_blueberry
 
         # Placera ut blåbärsplantan
