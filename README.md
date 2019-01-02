@@ -28,7 +28,7 @@ A simulator by Furniture Corp.
   - [ ] Slumpad chans för ägg när de pussas
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
 - [ ] Snyggare muspekare?
-- [ ] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
+- [x] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
 - [ ] Spara statistik
   - [ ] Haj kills
   - [ ] Fisk livstid
