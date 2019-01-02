@@ -40,6 +40,5 @@ Ha kvar längst ner, ifall den skriver över några vars
 try:
     from debug import *
     DEBUG = True
-    print("Debug enabled")
 except:
     DEBUG = False
