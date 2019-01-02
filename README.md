@@ -34,6 +34,7 @@ A simulator by Furniture Corp.
   - [ ] Fisk livstid
   - [ ] Antal ätna morötter
   - [ ] Antal lagda ägg
+- [ ] Funktion för att visa statistik
 
 ### v0.7
 - [x] System för köttätande fisk
