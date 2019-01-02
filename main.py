@@ -88,10 +88,11 @@ class MyGame(arcade.Window, State):
         self.window_list = []
 
         # Skapa meny för att interagera med akvariet
-        self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 130, " Store", title_height=20, title_align="left")
+        self.interaction_menu = Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
         self.interaction_menu.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
         self.interaction_menu.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
-        self.interaction_menu.add_button(90, 10, 80, 30, "Carrot", 11, self.buy_carrot)
+        self.interaction_menu.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
+        self.interaction_menu.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
@@ -314,7 +315,13 @@ class MyGame(arcade.Window, State):
         carrot = CarrotSprite()
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
-        log.put("Bought a carrot")
+        log.put("Bought carrot")
+
+    def buy_shark(self):
+        shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+        self.shark_list.append(shark)
+        self.all_sprite_list.append(shark)
+        log.put("Bought shark " + shark.get_name())
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):
