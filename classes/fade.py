@@ -27,16 +27,32 @@ class Fade():
         # Vänta på startkommando
         self.fade = "wait"
 
-    def start(self):
-        self.start_out()
-
+    # Starta intoning
     def start_in(self):
         self.fade = "in"
         self.a = self.target_alpha
 
+    # Start uttoning
     def start_out(self):
         self.fade = "out"
         self.a = 0
+
+    def start(self):
+        self.start_out()
+
+    # Tona ut
+    def fade_out(self, step):
+        self.a += step
+        if (self.a > self.target_alpha):
+            self.fade = "in"
+            self.a = self.target_alpha
+
+    # Tona in
+    def fade_in(self, step):
+        self.a -= step
+        if (self.a < 0):
+            self.a = 0
+            self.fade = "wait"
 
     # Fadea in eller ut om vi inte är i "wait"
     def update(self, dt):
@@ -45,15 +61,9 @@ class Fade():
             if (step == 0):
                 step = 1
             if (self.fade == "out"):
-                self.a += step
-                if (self.a > self.target_alpha):
-                    self.fade = "in"
-                    self.a = self.target_alpha
+                self.fade_out(step)
             elif (self.fade == "in"):
-                self.a -= step
-                if (self.a < 0):
-                    self.a = 0
-                    self.fade = "wait"
+                self.fade_in(step)
 
     def draw(self):
         # Rita inte i onödan när alpha är 0
