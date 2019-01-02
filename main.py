@@ -53,6 +53,33 @@ class MyGame(arcade.Window, State):
         if DEBUG:
             self.timer = Performance_timer("Setup started")
 
+        # Skapa fönster
+        self.window_list = []
+
+        # Fönster för händelser
+        self.event_window = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
+        self.event = self.event_window.add_text(15, 12, 180, 80)
+        self.window_list.append(self.event_window)
+        self.event_window.open()
+
+        # Skapa meny för att interagera med akvariet
+        self.interaction_window = Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
+        self.interaction_window.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
+        self.interaction_window.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
+        self.interaction_window.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
+        self.interaction_window.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
+        self.window_list.append(self.interaction_window)
+        self.interaction_window.open()
+
+        # Skapa huvudmeny att visa med escape
+        self.main_menu_window = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
+        self.main_menu_window.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
+        self.main_menu_window.add_button(50, 10, 180, 30, "Open Store", 11, self.interaction_window.open)
+        self.main_menu_window.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
+        self.window_list.append(self.main_menu_window)
+        if DEBUG:
+            self.timer.print("Created windows")
+
         # Alla arcade sprites och sprites_list här
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
@@ -81,7 +108,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
-            shark = SharkSprite(self.bfish_list)
+            shark = SharkSprite(self.bfish_list, self.event)
             self.shark_list.append(shark)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(shark)                      # och i totallistan
         if DEBUG:
@@ -90,38 +117,6 @@ class MyGame(arcade.Window, State):
         # Skapa en växt
         plant_blueberry = PlantBlueberry()
         self.plant_blueberry_list.append(plant_blueberry)
-
-        # Skapa fönster
-        self.window_list = []
-
-        # Skapa meny för att interagera med akvariet
-        self.interaction_window = Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
-        self.interaction_window.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
-        self.interaction_window.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
-        self.interaction_window.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
-        self.interaction_window.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
-        self.window_list.append(self.interaction_window)
-        self.interaction_window.open()
-
-        # Fönster för händelser
-        self.event_window = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-        self.event = self.event_window.add_text(15, 12, 180, 80)
-        self.window_list.append(self.event_window)
-        self.event_window.open()
-
-        # Första händelser
-        self.event.put("Pfish: " + str(PFISH_NUMBER))
-        self.event.put("Bfish: " + str(BFISH_NUMBER))
-        self.event.put("Shark:" + str(SHARK_NUMBER))
-
-        # Skapa huvudmeny att visa med escape
-        self.main_menu_window = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
-        self.main_menu_window.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
-        self.main_menu_window.add_button(50, 10, 180, 30, "Open Store", 11, self.interaction_window.open)
-        self.main_menu_window.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
-        self.window_list.append(self.main_menu_window)
-        if DEBUG:
-            self.timer.print("Created windows")
 
         # Skapa bubblor
         self.bubble_list = []
@@ -355,7 +350,7 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def buy_shark(self):
-        shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+        shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
         self.shark_list.append(shark)
         self.all_sprite_list.append(shark)
         self.event.put("Bought shark " + shark.get_name())

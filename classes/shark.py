@@ -5,10 +5,10 @@ from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hun
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
-    def __init__(self, food_fish_list, eager=None, hungry=None, hunt_will=None, daydream=None, finforce=None, size=None, mass=None,
+    def __init__(self, food_fish_list, event=None, eager=None, hungry=None, hunt_will=None, daydream=None, finforce=None, size=None, mass=None,
                  color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
-        super().__init__()
+        super().__init__(event)
 
         # Fiskarnas personlighet
         self.eager = eager or shark_eager                 # Hur ofta byter fiskarna riktning

@@ -11,7 +11,7 @@ with open('names.csv') as file:
 fish_names_length = len(fish_names)
 
 class FishSprite(arcade.Sprite):
-    def __init__(self):
+    def __init__(self, event=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -33,6 +33,8 @@ class FishSprite(arcade.Sprite):
         self.iseating = 0
         self.tick_rate = TICK_RATE
 
+        # För kommunikation ut från objekt
+        self.event = event or None
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
@@ -186,6 +188,7 @@ class FishSprite(arcade.Sprite):
                 self.texture = self.texture_left1
 
             prey.kill()
+            self.event.put(self.get_name() + " ate " + prey.get_name())
 
     def die(self):
         self.isalive = False
