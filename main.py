@@ -281,8 +281,11 @@ class MyGame(arcade.Window, State):
             self.main_menu.toggle()
             self.toggle_pause()
         elif (key == arcade.key.F1):
-            global DIAGNOSE
-            DIAGNOSE = not DIAGNOSE
+            global DIAGNOSE_FISH
+            if DIAGNOSE_FISH:
+                DIAGNOSE_FISH = False
+            else:
+                DIAGNOSE_FISH = True
         elif (key == arcade.key.F2):
             self.show_fps = not self.show_fps
         elif (key == arcade.key.F3):
