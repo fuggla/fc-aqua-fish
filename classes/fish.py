@@ -176,6 +176,7 @@ class FishSprite(arcade.Sprite):
         if food.food_value <= 0:              # När moroten är slut försvinner den
             food.kill()
 
+
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:
             self.health += 10000
