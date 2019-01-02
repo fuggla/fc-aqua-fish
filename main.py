@@ -152,6 +152,7 @@ class MyGame(arcade.Window, State):
         if DIAGNOSE_FISH:
             diagnose_name_gender_health_hungry(self.pfish_list)
             diagnose_name_gender_health_hungry(self.bfish_list)
+            diagnose_name_gender_health_hungry(self.shark_list)
 
         for w in self.window_list:
             w.draw()
