@@ -45,6 +45,7 @@ A simulator by Furniture Corp.
   - [x] En ny fisk kläcks efter ett tag
 - [ ] Mer info om fisken man köper
 - [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
+- [x] Tona in spel vid start
 
 ## Tutorials / Dokumentation
 
