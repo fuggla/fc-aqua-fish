@@ -50,11 +50,8 @@ class MyGame(arcade.Window, State):
         if DEBUG:
             self.timer = Performance_timer("Setup started")
 
-        # Skapa fönster
-        self.window_list = self.create_windows()
-
-
         # Alla arcade sprites och sprites_list här
+        self.window_list = self.create_windows()
         self.pfish_list = arcade.SpriteList()
         self.bfish_list = arcade.SpriteList()
         self.shark_list = arcade.SpriteList()
@@ -68,20 +65,20 @@ class MyGame(arcade.Window, State):
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
             pfish = PfishSprite(self.carrot_list)
-            self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
-            self.all_sprite_list.append(pfish)                      # och i totallistan
+            self.pfish_list.append(pfish)
+            self.all_sprite_list.append(pfish)
 
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
             bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list)
-            self.bfish_list.append(bfish)                           # Lägg till fiskarna i fisklistan
-            self.all_sprite_list.append(bfish)                      # och i totallistan
+            self.bfish_list.append(bfish)
+            self.all_sprite_list.append(bfish)
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
             shark = SharkSprite(self.bfish_list, self.event)
-            self.shark_list.append(shark)                           # Lägg till fiskarna i fisklistan
-            self.all_sprite_list.append(shark)                      # och i totallistan
+            self.shark_list.append(shark)
+            self.all_sprite_list.append(shark)
 
         # Skapa blåbärsväxter
         for i in range(PLANT_BLUEBERRY_NUMBER):
@@ -160,7 +157,6 @@ class MyGame(arcade.Window, State):
                 self.all_sprite_list.append(carrot)
 
             """ Här stegas alla fiskar igenom för mat, död och ägg mm """
-
             for fish in self.pfish_list:
                 # Ätalgoritm för purple fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
@@ -215,7 +211,6 @@ class MyGame(arcade.Window, State):
                     self.fish_egg_list.append(egg)
                     self.event.put(fish.get_name() + " laid an egg")
 
-
             """ Stega igenom äggen """
             for egg in self.fish_egg_list:
                 if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
@@ -247,9 +242,6 @@ class MyGame(arcade.Window, State):
 
         self.fps_counter.calculate(delta_time)
         self.frame_count += 1
-
-    def on_key_press(self, key, key_modifiers):
-        pass
 
     def on_key_release(self, key, key_modifiers):
         # Avsluta spel
@@ -303,21 +295,21 @@ class MyGame(arcade.Window, State):
     def buy(self, thing):
         if (thing == "pfish"):
             color = ["purple", "orange", "green"]
-            pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
-            self.pfish_list.append(pfish)
-            self.all_sprite_list.append(pfish)
+            thing = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            self.pfish_list.append(thing)
         elif (thing == "bfish"):
-            bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
-            self.bfish_list.append(bfish)
-            self.all_sprite_list.append(bfish)
+            thing = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            self.bfish_list.append(thing)
+            self.all_sprite_list.append(thing)
         elif (thing == "shark"):
-            shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
-            self.shark_list.append(shark)
-            self.all_sprite_list.append(shark)
+            thing = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
+            self.shark_list.append(thing)
+            self.all_sprite_list.append(thing)
         elif (thing == "carrot"):
-            carrot = CarrotSprite()
-            self.carrot_list.append(carrot)
-            self.all_sprite_list.append(carrot)
+            thing = CarrotSprite()
+            self.carrot_list.append(thing)
+
+        self.all_sprite_list.append(thing)
         self.event.put("Bought " + thing + " " + pfish.get_name())
 
     def buy_pfish(self):
