@@ -28,19 +28,20 @@ A simulator by Furniture Corp.
   - [ ] Slumpad chans för ägg när de pussas
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
 - [ ] Snyggare muspekare?
-- [x] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
 - [ ] Spara statistik
   - [ ] Haj kills
   - [ ] Fisk livstid
   - [ ] Antal ätna morötter
   - [ ] Antal lagda ägg
 - [ ] Funktion för att visa statistik
+- [ ] Fixa sprites för pfish som är andra färger
 
 ### v0.7
 - [x] System för köttätande fisk
   - [x] En ny typ av fisk som äter andra fiskar
   - [x] Bytesfiskarna blir rädda och flyt när de är nära den
   - [x] Bytesfiskarna blir uppätna av hungriga köttätande fiskar
+- [x] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
 - [ ] Föremål i akvariet
   - [ ] Slumpat valda och utplacerade
   - [ ] Fruktväxt som det växer mat på
