@@ -19,6 +19,10 @@ TICK_RATE = 60
 SPRITE_SCALING_CARROT = 0.3
 carrot_food_value = 1000
 
+
+""" Egenskaper för blåbärsplantan """
+SPRITE_SCALING_PLANT_BLUEBERRY = 0.7
+
 """ Egenskaper för fiskägg """
 SCALING_FISH_EGG = 0.15
 fish_egg_hatch_age = 1000

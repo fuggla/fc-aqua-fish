@@ -12,6 +12,7 @@ from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
+from classes.plant_blueberry import PlantBlueberry
 from classes.fish_egg import FishEggSprite
 from classes.window import Window
 from classes.timer import Performance_timer
@@ -35,6 +36,7 @@ class MyGame(arcade.Window, State):
         self.bfish_list = None
         self.shark_list = None
         self.carrot_list = None
+        self.plant_blueberry_list = None
         self.fish_egg_list = None
         self.all_sprite_list = None
         self.window_list = None
@@ -56,6 +58,7 @@ class MyGame(arcade.Window, State):
         self.bfish_list = arcade.SpriteList()
         self.shark_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
+        self.plant_blueberry_list = arcade.SpriteList()
         self.fish_egg_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
@@ -83,6 +86,10 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.append(shark)                      # och i totallistan
         if DEBUG:
             self.timer.print("Created shark")
+
+        # Skapa en växt
+        plant_blueberry = PlantBlueberry()
+        self.plant_blueberry_list.append(plant_blueberry)
 
         # Skapa fönster
         self.window_list = []
@@ -147,6 +154,7 @@ class MyGame(arcade.Window, State):
         for b in self.bubble_list:
             b.draw()
 
+        self.plant_blueberry_list.draw()
         self.fish_egg_list.draw()
         self.all_sprite_list.draw()
 
@@ -170,6 +178,7 @@ class MyGame(arcade.Window, State):
 
         # Uppdatera all när spelet är igång
         if self.is_playing():
+            self.plant_blueberry_list.update()
             self.fish_egg_list.update()
             self.all_sprite_list.update()
 
