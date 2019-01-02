@@ -70,24 +70,18 @@ class MyGame(arcade.Window, State):
             pfish = PfishSprite(self.carrot_list)
             self.pfish_list.append(pfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(pfish)                      # och i totallistan
-        if DEBUG:
-            self.timer.print("Created purple_fish")
 
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
             bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list)
             self.bfish_list.append(bfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(bfish)                      # och i totallistan
-        if DEBUG:
-            self.timer.print("Created blue_small fish")
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
             shark = SharkSprite(self.bfish_list, self.event)
             self.shark_list.append(shark)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(shark)                      # och i totallistan
-        if DEBUG:
-            self.timer.print("Created shark")
 
         # Skapa blåbärsväxter
         for i in range(PLANT_BLUEBERRY_NUMBER):
@@ -103,8 +97,6 @@ class MyGame(arcade.Window, State):
         self.bubble_list = []
         for i in range(BUBBLE_MAPS):
             self.bubble_list.append(Bubble_map())
-        if DEBUG:
-            self.timer.print("Created bubbles")
 
         # Ladda backgrund
         self.background = arcade.load_texture(BACKGROUND_IMAGE)
@@ -119,7 +111,6 @@ class MyGame(arcade.Window, State):
         # Setup klar, starta spelet
         if DEBUG:
             self.timer.done("Setup done")
-
         self.play()
 
     def on_draw(self):
@@ -361,8 +352,6 @@ class MyGame(arcade.Window, State):
         main_menu_window.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
         window_list.append(main_menu_window)
 
-        if DEBUG:
-            self.timer.print("Created windows")
         return window_list
 
 def main():
