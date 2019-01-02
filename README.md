@@ -6,24 +6,27 @@ A simulator by Furniture Corp.
 
 ## Roadmap
 
+### v.1.x
+- [ ] Introfilm?
+
 ### v1.0
 
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Skippbar splashscreen med logga
-- [ ] Introfilm
 - [ ] Fiskarna lägger rom som blir nya fiskar
 - [ ] Fiskar kan äta upp andra fiskar
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
-- [ ] Styr en fisk och gör det som fiskarna gör
-- [ ] Alternativt mer interaktion med fiskarna
-- [ ] Flytta ner delar av todo från 1.0 till 0.x
-- [ ] Menyer i form av valar?
+- [ ] Styr en fisk och gör det som fiskarna gör?
+- [ ] Alternativt mer interaktion med fiskarna?
+- [ ] Menyer i form av valar som simmar in?
 
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
-- [ ] Herrarna måste befrukta äggen innan de kan kläckas
+- [ ] Herrarna och damerna måste pussas innan damerna kan lägga ägg
+  - [ ] De blir puss-redo när de är mätta
   - [ ] Någon form av animation då
-- [ ] Bubbla eller slå eller putta fiskarna så att de ändrar riktning
+  - [ ] Slumpad chans för ägg när de pussas
+- [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
 - [ ] Snyggare muspekare?
 - [ ] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
 
