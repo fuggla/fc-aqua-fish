@@ -19,6 +19,7 @@ Klass för att visa ett fönster
 import arcade
 from classes.button import Button
 from classes.shape import Shape
+from classes.text import Text
 
 class Window(Shape):
 
@@ -51,8 +52,9 @@ class Window(Shape):
         # Avgör om fönstret flyttas
         self.dragging = False
 
-        # Fönstret innehåller knappar
+        # Fönstret innehåller knappar och text
         self.button_list = []
+        self.text_list = []
 
         # Stor ram längst upp på fönstret fungerar som en knapp
         self.button_list.append(Button(
@@ -125,6 +127,8 @@ class Window(Shape):
             arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, self.outline_color, self.outline_size)
             for button in self.button_list:
                 button.draw()
+            for t in self.text_list:
+                arcade.render_text(t.text, t.x, t.y)
 
     # Lägg till knapp i fönster
     def add_button(self, margin_top, margin_left, width, height, text, font_size, release):
@@ -139,6 +143,19 @@ class Window(Shape):
             font_size = font_size,
             release = release
         ))
+
+    # Lägg till text i fönster
+    # Returnerar textrutan. Använd object.put("ny rad")
+    def add_text(self, margin_top, margin_left, width, height, text=""):
+        new_text = Text(
+            x = self.left + margin_left,
+            y = self.top - margin_top,
+            width = width,
+            height = height,
+            text = text
+        )
+        self.text_list.append(new_text)
+        return new_text
 
     def update_buttons(self, x, y):
         for b in self.button_list:
@@ -168,6 +185,8 @@ class Window(Shape):
         self.bottom = y - self.height / 2
         self.right = x + self.width / 2
 
-        # Flytta knappar
+        # Flytta knappar och text
         for b in self.button_list:
             b.move(x, y)
+        for t in self.text_list:
+            t.move(x, y)

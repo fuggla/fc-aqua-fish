@@ -20,8 +20,6 @@ from classes.fade import Fade
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
-from log import Logger
-log = Logger()
 
 
 class MyGame(arcade.Window, State):
@@ -97,6 +95,17 @@ class MyGame(arcade.Window, State):
         self.window_list.append(self.interaction_menu)
         self.interaction_menu.open()
 
+        # Fönster för händelser
+        self.event_window = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
+        self.event = self.event_window.add_text(15, 12, 180, 80)
+        self.window_list.append(self.event_window)
+        self.event_window.open()
+
+        # Första händelser
+        self.event.put("Pfish: " + str(PFISH_NUMBER))
+        self.event.put("Bfish: " + str(BFISH_NUMBER))
+        self.event.put("Shark:" + str(SHARK_NUMBER))
+
         # Skapa huvudmeny att visa med escape
         self.main_menu = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
         self.main_menu.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
@@ -146,8 +155,6 @@ class MyGame(arcade.Window, State):
 
         for w in self.window_list:
             w.draw()
-
-        log.draw()
 
         self.fade.draw()
 
@@ -251,9 +258,8 @@ class MyGame(arcade.Window, State):
             for b in self.bubble_list:
                 b.update(delta_time)
 
-            log.update()
+            self.event.update()
             self.fade.update(delta_time)
-
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
@@ -318,25 +324,25 @@ class MyGame(arcade.Window, State):
         pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.pfish_list.append(pfish)
         self.all_sprite_list.append(pfish)
-        log.put("Bought pfish " + pfish.get_name())
+        self.event.put("Bought pfish " + pfish.get_name())
 
     def buy_bfish(self):
         bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
-        log.put("Bought bfish" + bfish.get_name())
+        self.event.put("Bought bfish" + bfish.get_name())
 
     def buy_carrot(self):
         carrot = CarrotSprite()
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
-        log.put("Bought carrot")
+        self.event.put("Bought carrot")
 
     def buy_shark(self):
         shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.shark_list.append(shark)
         self.all_sprite_list.append(shark)
-        log.put("Bought shark " + shark.get_name())
+        self.event.put("Bought shark " + shark.get_name())
 
     # Visa FPS längst upp till vänster
     def enable_fps(self):
