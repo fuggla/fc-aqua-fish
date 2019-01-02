@@ -212,6 +212,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.bfish_list:
                 # Ätalgoritm för blue small fish
@@ -229,6 +230,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.shark_list:
                 # Ätalgoritm för blue shark
@@ -246,6 +248,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
 
             """ Stega igenom äggen """
@@ -257,16 +260,19 @@ class MyGame(arcade.Window, State):
                         pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.pfish_list.append(pfish)
                         self.all_sprite_list.append(pfish)
+                        self.event.put(pfish.get_name() + " hatched!")
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
                         bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
+                        self.event.put(bfish.get_name() + " hatched!")
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
                         shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
                         self.shark_list.append(shark)
                         self.all_sprite_list.append(shark)
+                        self.event.put(shark.get_name() + " hatched!")
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
                     egg.kill()
                 egg.age += 1
