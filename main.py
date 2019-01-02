@@ -285,6 +285,8 @@ class MyGame(arcade.Window, State):
             DIAGNOSE = not DIAGNOSE
         elif (key == arcade.key.F2):
             self.show_fps = not self.show_fps
+        elif (key == arcade.key.F3):
+            self.fade.start()
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
