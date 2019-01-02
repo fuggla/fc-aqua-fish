@@ -282,12 +282,7 @@ class MyGame(arcade.Window, State):
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
-            self.tick += 1
-            self.delta_count += delta_time
-            if self.delta_count >= 1:
-                self.fps = self.tick
-                self.delta_count = 0
-                self.tick = 0
+            self.calc_fps()
 
         self.frame_count += 1
 
@@ -371,6 +366,14 @@ class MyGame(arcade.Window, State):
     # Visa FPS längst upp till vänster
     def enable_fps(self):
         self.show_fps = True
+
+    def calc_fps(self):
+        self.tick += 1
+        self.delta_count += delta_time
+        if self.delta_count >= 1:
+            self.fps = self.tick
+            self.delta_count = 0
+            self.tick = 0
 
 def main():
     if DEBUG:
