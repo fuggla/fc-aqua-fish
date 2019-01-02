@@ -29,6 +29,7 @@ class MyGame(arcade.Window, State):
         super().__init__(width, height, fullscreen=FULLSCREEN)
 
         self.frame_count = 0
+        self.show_windows = True
 
         # If you have sprite lists, you should create them here
         self.pfish_list = None
@@ -163,8 +164,9 @@ class MyGame(arcade.Window, State):
             diagnose_name_gender_health_hungry(self.bfish_list)
             diagnose_name_gender_health_hungry(self.shark_list)
 
-        for w in self.window_list:
-            w.draw()
+        if self.show_windows:
+            for w in self.window_list:
+                w.draw()
 
         self.fade.draw()
 
@@ -305,24 +307,29 @@ class MyGame(arcade.Window, State):
             self.show_fps = not self.show_fps
         elif (key == arcade.key.F3):
             self.fade.start()
+        elif (key == arcade.key.SPACE):
+            self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         # Fönster som är i läge "dragged" följer musens kordinater
-        for w in self.window_list:
-            if w.is_dragged():
-                w.move(delta_x, delta_y)
+        if self.show_windows:
+            for w in self.window_list:
+                if w.is_dragged():
+                    w.move(delta_x, delta_y)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         # Fönster kan triggas av att muspekaren klickas ovanför en knapp
-        for w in self.window_list:
-            if w.is_open():
-                w.on_mouse_press(x, y)
+        if self.show_windows:
+            for w in self.window_list:
+                if w.is_open():
+                    w.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         # Fönster kan triggas av att muspekaren släpps ovan för en knapp
-        for w in self.window_list:
-            if w.is_open():
-                w.on_mouse_release(x, y)
+        if self.show_windows:
+            for w in self.window_list:
+                if w.is_open():
+                    w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused and self.main_menu_window.is_closed():
