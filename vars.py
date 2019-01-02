@@ -21,6 +21,7 @@ carrot_food_value = 1000
 
 
 """ Egenskaper för blåbärsplantan """
+PLANT_BLUEBERRY_NUMBER = 5
 SPRITE_SCALING_PLANT_BLUEBERRY = 0.7
 
 """ Egenskaper för fiskägg """

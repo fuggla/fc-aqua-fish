@@ -87,9 +87,10 @@ class MyGame(arcade.Window, State):
         if DEBUG:
             self.timer.print("Created shark")
 
-        # Skapa en växt
-        plant_blueberry = PlantBlueberry()
-        self.plant_blueberry_list.append(plant_blueberry)
+        # Skapa blåbärsväxter
+        for i in range(PLANT_BLUEBERRY_NUMBER):
+            plant_blueberry = PlantBlueberry(self.plant_blueberry_list)
+            self.plant_blueberry_list.append(plant_blueberry)
 
         # Skapa fönster
         self.window_list = []
