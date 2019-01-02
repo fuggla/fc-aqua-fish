@@ -113,14 +113,17 @@ class MyGame(arcade.Window, State):
         if DEBUG:
             self.timer.print("Created bubbles")
 
-        self.fade = Fade()
-
         # Ladda backgrund
         self.background = arcade.load_texture(BACKGROUND_IMAGE)
+
+        # Tona in grafik över ~2 sekunder
+        self.fade = Fade(a=255, time=2)
+        self.fade.start_in()
 
         # Setup klar, starta spelet
         if DEBUG:
             self.timer.done("Setup done")
+
         self.play()
 
     def on_draw(self):
@@ -249,8 +252,8 @@ class MyGame(arcade.Window, State):
                 b.update(delta_time)
 
             log.update()
+            self.fade.update(delta_time)
 
-            self.fade.update()
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
