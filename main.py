@@ -201,7 +201,6 @@ class MyGame(arcade.Window, State):
                 self.all_sprite_list.append(carrot)
 
             """ Här stegas alla fiskar igenom för mat, död och ägg mm """
-
             for fish in self.pfish_list:
                 # Ätalgoritm för purple fish
                 hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
@@ -286,6 +285,7 @@ class MyGame(arcade.Window, State):
                     egg.kill()
                 egg.age += 1
 
+            """ Stega igenom blåbärsplantorna """
             for plant in self.plant_blueberry_list:
                 if random.randrange(1000) < plant_blueberry_grow_rate:
                     berry = BlueberrySprite(plant.center_x, plant.center_y)
