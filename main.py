@@ -16,6 +16,7 @@ from classes.fish_egg import FishEggSprite
 from classes.window import Window
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
+from classes.fade import Fade
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
@@ -112,6 +113,8 @@ class MyGame(arcade.Window, State):
         if DEBUG:
             self.timer.print("Created bubbles")
 
+        self.fade = Fade()
+
         # Ladda backgrund
         self.background = arcade.load_texture(BACKGROUND_IMAGE)
 
@@ -142,6 +145,8 @@ class MyGame(arcade.Window, State):
             w.draw()
 
         log.draw()
+
+        self.fade.draw()
 
         # Rita FPS uppe i högra hörnet
         if self.show_fps:
@@ -244,6 +249,8 @@ class MyGame(arcade.Window, State):
                 b.update(delta_time)
 
             log.update()
+
+            self.fade.update()
 
         # Räkna ut FPS en gång per sekund
         if self.show_fps:
