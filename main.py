@@ -19,6 +19,7 @@ from classes.window import Window
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from classes.fade import Fade
+from classes.fps import Fps
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
@@ -44,12 +45,6 @@ class MyGame(arcade.Window, State):
         self.window_list = None
         self.background = None
         self.bubble_list = None
-
-        # FPS
-        self.fps = 0
-        self.tick = 0
-        self.delta_count = 0
-        self.show_fps = False
 
     def setup(self):
         if DEBUG:
@@ -141,6 +136,9 @@ class MyGame(arcade.Window, State):
         self.fade = Fade(a=255, time=2)
         self.fade.start_in()
 
+        # Räkna Frames Per Second
+        self.fps = Fps()
+
         # Setup klar, starta spelet
         if DEBUG:
             self.timer.done("Setup done")
@@ -176,8 +174,7 @@ class MyGame(arcade.Window, State):
         self.fade.draw()
 
         # Rita FPS uppe i högra hörnet
-        if self.show_fps:
-            arcade.draw_text(str(self.fps), 10, SCREEN_HEIGHT - 10, arcade.color.BLACK, font_size=8, width=10, align="left", anchor_x="center", anchor_y="center")
+        self.fps.draw()
 
     def update(self, delta_time):
 
@@ -281,8 +278,7 @@ class MyGame(arcade.Window, State):
             self.fade.update(delta_time)
 
         # Räkna ut FPS en gång per sekund
-        if self.show_fps:
-            self.calc_fps()
+        self.fps.calculate(delta_time)
 
         self.frame_count += 1
 
@@ -307,7 +303,7 @@ class MyGame(arcade.Window, State):
             else:
                 DIAGNOSE_FISH = True
         elif (key == arcade.key.F2):
-            self.show_fps = not self.show_fps
+            self.fps.toggle()
         elif (key == arcade.key.F3):
             self.fade.start()
         elif (key == arcade.key.SPACE):
@@ -362,18 +358,6 @@ class MyGame(arcade.Window, State):
         self.shark_list.append(shark)
         self.all_sprite_list.append(shark)
         self.event.put("Bought shark " + shark.get_name())
-
-    # Visa FPS längst upp till vänster
-    def enable_fps(self):
-        self.show_fps = True
-
-    def calc_fps(self):
-        self.tick += 1
-        self.delta_count += delta_time
-        if self.delta_count >= 1:
-            self.fps = self.tick
-            self.delta_count = 0
-            self.tick = 0
 
 def main():
     if DEBUG:
