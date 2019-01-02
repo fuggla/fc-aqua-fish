@@ -29,6 +29,11 @@ A simulator by Furniture Corp.
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
 - [ ] Snyggare muspekare?
 - [ ] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
+- [ ] Spara statistik
+  - [ ] Haj kills
+  - [ ] Fisk livstid
+  - [ ] Antal ätna morötter
+  - [ ] Antal lagda ägg
 
 ### v0.7
 - [x] System för köttätande fisk
