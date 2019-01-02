@@ -106,7 +106,7 @@ class MyGame(arcade.Window, State):
         self.fade.start_in()
 
         # Räkna Frames Per Second
-        self.fps = Fps()
+        self.fps_counter = Fps()
 
         # Setup klar, starta spelet
         if DEBUG:
@@ -142,7 +142,7 @@ class MyGame(arcade.Window, State):
         self.fade.draw()
 
         # Rita FPS uppe i högra hörnet
-        self.fps.draw()
+        self.fps_counter.draw()
 
     def update(self, delta_time):
 
@@ -245,9 +245,7 @@ class MyGame(arcade.Window, State):
             self.event.update()
             self.fade.update(delta_time)
 
-        # Räkna ut FPS en gång per sekund
-        self.fps.calculate(delta_time)
-
+        self.fps_counter.calculate(delta_time)
         self.frame_count += 1
 
     def on_key_press(self, key, key_modifiers):
@@ -271,7 +269,7 @@ class MyGame(arcade.Window, State):
             else:
                 DIAGNOSE_FISH = True
         elif (key == arcade.key.F2):
-            self.fps.toggle()
+            self.fps_counter.toggle()
         elif (key == arcade.key.F3):
             self.fade.start()
         elif (key == arcade.key.SPACE):
