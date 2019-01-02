@@ -44,7 +44,6 @@ class Fade():
             step = int(dt * 255 / self.time)
             if (step == 0):
                 step = 1
-            print(step)
             if (self.fade == "out"):
                 self.a += step
                 if (self.a > self.target_alpha):
