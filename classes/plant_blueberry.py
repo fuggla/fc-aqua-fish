@@ -27,17 +27,22 @@ class PlantBlueberry(arcade.Sprite):
 
         self.illegal_coordinates = []
         for plant in self.plant_blueberry_list:
-            coordinates = range(plant.center_x - 50, plant.center_x + 50)
+            coordinates = [plant.center_x - 100, plant.center_x + 100]
             self.illegal_coordinates.append(coordinates)
 
         while self.not_placed and self.try_place_number > 0:
             self.not_placed = False
-            self.center_x = random.randint(int(self.sw * 0.05), int(self.sw * 0.95))
-            self.center_y = random.randint(int(self.sh * self.sr), int(self.sh * self.sr * 1.3))
+            test_center_x = random.randint(int(self.sw * 0.05), int(self.sw * 0.95))
+            test_center_y = random.randint(int(self.sh * self.sr), int(self.sh * self.sr * 1.3))
             for coordinates in self.illegal_coordinates:
-                for x_cor in coordinates:
-                    if self.center_x == x_cor:
-                        self.not_placed = True
+                if coordinates[0] < test_center_x < coordinates[1]:
+                    self.not_placed = True
+                    test_center_y = - 1000
+                    self.try_place_number -= 1
+                    break
+
+        self.center_x = test_center_x
+        self.center_y = test_center_y
 
 
     def update(self):
