@@ -47,3 +47,14 @@ shark_findelay = 25         # Hur ofta viftar de med fenorna
 shark_hunting_spirit = 600
 
 shark_egg_freq = 1
+
+"""
+Importera debug.py om den existerar
+Filen spåras inte av repo utan är lokal
+Ha kvar längst ner, ifall den skriver över några vars
+"""
+try:
+    from debug import *
+    DEBUG = True
+except:
+    DEBUG = False
