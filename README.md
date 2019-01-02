@@ -19,6 +19,7 @@ A simulator by Furniture Corp.
 - [ ] Styr en fisk och gör det som fiskarna gör?
 - [ ] Alternativt mer interaktion med fiskarna?
 - [ ] Menyer i form av valar som simmar in?
+- [ ] Ljudeffekter 
 
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
