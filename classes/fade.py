@@ -1,22 +1,62 @@
 from vars import SCREEN_HEIGHT, SCREEN_WIDTH
-from arcade import arcade.color, arcade.draw
-
+import arcade
+from arcade.draw_commands import draw_xywh_rectangle_filled
 
 # Hantering av game state
 class Fade():
     
-    def __init__(self, color=(0,0,0,255)):
-        self.color = color
+    def __init__(self, r=0, g=0, b=0, a=0, target_alpha=255, time = 1):
+        # Position och storlek
         self.x = 0
         self.y = 0
         self.w = SCREEN_WIDTH
         self.h = SCREEN_HEIGHT
-    def fade(self, color):
-        self.color = color
-        self.fade = true
 
+        # Color vi vill nå innan vi går tillbaka till transparent
+        self.target_alpha = target_alpha
+        self.r = r
+        self.g = g
+        self.b = b
+
+        # Nuvarande alpha
+        self.a = a
+
+        # ~Sekunder för fade (mediokert pga att färg inte stödjer float)
+        self.time = time
+
+        # Vänta på startkommando
+        self.fade = "wait"
+
+    def start(self):
+        self.start_out()
+
+    def start_in(self):
+        self.fade = "in"
+        self.a = self.target_alpha
+
+    def start_out(self):
+        self.fade = "out"
+        self.a = 0
+
+    # Fadea in eller ut om vi inte är i "wait"
     def update(self, dt):
-        pass
+        if not (self.fade == "wait"):
+            step = int(dt * 255 / self.time)
+            if (step == 0):
+                step = 1
+            print(step)
+            if (self.fade == "out"):
+                self.a += step
+                if (self.a > self.target_alpha):
+                    self.fade = "in"
+                    self.a = self.target_alpha
+            elif (self.fade == "in"):
+                self.a -= step
+                if (self.a < 0):
+                    self.a = 0
+                    self.fade = "wait"
 
-    def draw(self, dt):
-        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.color)
+    def draw(self):
+        # Rita inte i onödan när alpha är 0
+        if (self.a != 0):
+            draw_xywh_rectangle_filled(self.x, self.y, self.w, self.h, (self.r, self.g, self.b, self.a))
