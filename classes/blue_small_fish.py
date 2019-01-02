@@ -6,7 +6,7 @@ from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_con
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
-    def __init__(self, carrot_list, bfish_list, hunter_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None,
+    def __init__(self, carrot_list, blueberry_list, bfish_list, hunter_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None,
                  size=None, mass=None, color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -35,6 +35,8 @@ class BfishSprite(FishSprite):
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
         self.food_objects = carrot_list
+        for berry in blueberry_list:
+            self.food_objects.append(berry)
         self.shoal_objects = bfish_list
         self.hunter_fish_list = hunter_list
 

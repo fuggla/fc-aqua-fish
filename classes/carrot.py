@@ -12,11 +12,11 @@ class CarrotSprite(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
 
-        self.texture_carrot1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_carrot2 = arcade.load_texture("images/carrot2.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_carrot3 = arcade.load_texture("images/carrot3.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_carrot4 = arcade.load_texture("images/carrot4.png", scale=SPRITE_SCALING_CARROT)
-        self.texture = self.texture_carrot1
+        self.texture_food1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_food2 = arcade.load_texture("images/carrot2.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_food3 = arcade.load_texture("images/carrot3.png", scale=SPRITE_SCALING_CARROT)
+        self.texture_food4 = arcade.load_texture("images/carrot4.png", scale=SPRITE_SCALING_CARROT)
+        self.texture = self.texture_food1
 
         # Placera ut moroten
         self.center_x = random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)

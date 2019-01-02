@@ -21,10 +21,12 @@ carrot_food_value = 1000
 
 """ Egenskaper för blåbär """
 SPRITE_SCALING_BLUEBERRY = 0.2
+blueberry_food_value = 1000
 
 """ Egenskaper för blåbärsplantan """
 PLANT_BLUEBERRY_NUMBER = 5
 SPRITE_SCALING_PLANT_BLUEBERRY = 0.7
+plant_blueberry_grow_rate = 1
 
 """ Egenskaper för förgrundsplantan """
 PLANT_FOREGROUND_NUMBER = 5

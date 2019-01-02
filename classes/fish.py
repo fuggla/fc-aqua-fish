@@ -154,27 +154,27 @@ class FishSprite(arcade.Sprite):
                 self.acc_y = self.finforce / self.mass
                 self.relaxed[1] = False
 
-    def eat_food(self, carrot, chew):
+    def eat_food(self, food, chew):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
         self.health += 75
 
         # Beräkna vinkel mot moroten fisken äter
-        ang_rad = math.atan2((carrot.center_y - self.center_y), (carrot.center_x - self.center_x))
+        ang_rad = math.atan2((food.center_y - self.center_y), (food.center_x - self.center_x))
         ang_deg = math.degrees(ang_rad)     # omvandla till degrees
         self.angle = ang_deg
         self.animate_eat_food()
 
-        carrot.food_value -= chew               # Fiskarna äter moroten
-        if carrot.food_value <= 750:
-            carrot.texture = carrot.texture_carrot2
-        if carrot.food_value <= 500:
-            carrot.texture = carrot.texture_carrot3
-        if carrot.food_value <= 250:
-            carrot.texture = carrot.texture_carrot4
-        if carrot.food_value <= 0:              # När moroten är slut försvinner den
-            carrot.kill()
+        food.food_value -= chew               # Fiskarna äter moroten
+        if food.food_value <= 750:
+            food.texture = food.texture_food2
+        if food.food_value <= 500:
+            food.texture = food.texture_food3
+        if food.food_value <= 250:
+            food.texture = food.texture_food4
+        if food.food_value <= 0:              # När moroten är slut försvinner den
+            food.kill()
 
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:
