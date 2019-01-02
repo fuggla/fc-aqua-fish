@@ -302,30 +302,37 @@ class MyGame(arcade.Window, State):
         if self.is_paused and self.main_menu_window.is_closed():
             self.play()
 
+    def buy(self, thing):
+        if (thing == "pfish"):
+            color = ["purple", "orange", "green"]
+            pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            self.pfish_list.append(pfish)
+            self.all_sprite_list.append(pfish)
+        elif (thing == "bfish"):
+            bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            self.bfish_list.append(bfish)
+            self.all_sprite_list.append(bfish)
+        elif (thing == "shark"):
+            shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
+            self.shark_list.append(shark)
+            self.all_sprite_list.append(shark)
+        elif (thing == "carrot"):
+            carrot = CarrotSprite()
+            self.carrot_list.append(carrot)
+            self.all_sprite_list.append(carrot)
+        self.event.put("Bought " + thing + " " + pfish.get_name())
+
     def buy_pfish(self):
-        color = ["purple", "orange", "green"]
-        pfish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
-        self.pfish_list.append(pfish)
-        self.all_sprite_list.append(pfish)
-        self.event.put("Bought pfish " + pfish.get_name())
+        self.buy("pfish")
 
     def buy_bfish(self):
-        bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
-        self.bfish_list.append(bfish)
-        self.all_sprite_list.append(bfish)
-        self.event.put("Bought bfish" + bfish.get_name())
+        self.buy("bfish")
 
     def buy_carrot(self):
-        carrot = CarrotSprite()
-        self.carrot_list.append(carrot)
-        self.all_sprite_list.append(carrot)
-        self.event.put("Bought carrot")
+        self.buy("carrot")
 
     def buy_shark(self):
-        shark = SharkSprite(self.bfish_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
-        self.shark_list.append(shark)
-        self.all_sprite_list.append(shark)
-        self.event.put("Bought shark " + shark.get_name())
+        self.buy("shark")
 
     def create_windows(self):
         window_list = []
