@@ -28,12 +28,12 @@ class PlantForeground(arcade.Sprite):
         while self.not_placed and self.try_place_number > 0:
             self.not_placed = False
             if random.random() < 0.5:
-                test_center_x = random.randint(int(self.sw * 0.01), int(self.sw * 0.15))
+                test_center_x = random.randrange(int(self.sw * 0.02), int(self.sw * 0.15))
                 self.texture = self.texture_plant_blueberry2
             else:
-                test_center_x = random.randint(int(self.sw * 0.85), int(self.sw * 0.99))
+                test_center_x = random.randint(int(self.sw * 0.85), int(self.sw * 0.98))
                 self.texture = self.texture_plant_blueberry1
-            test_center_y = random.randint(int(self.sh * self.sr * 0.5), int(self.sh * self.sr * 0.7))
+            test_center_y = random.randint(int(self.sh * self.sr * 0.4), int(self.sh * self.sr * 0.6))
             for coordinates in self.illegal_coordinates:
                 if coordinates[0] < test_center_x < coordinates[1]:
                     self.not_placed = True

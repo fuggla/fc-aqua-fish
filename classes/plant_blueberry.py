@@ -32,7 +32,10 @@ class PlantBlueberry(arcade.Sprite):
 
         while self.not_placed and self.try_place_number > 0:
             self.not_placed = False
-            test_center_x = random.randint(int(self.sw * 0.05), int(self.sw * 0.95))
+            if random.random() < 0.5:
+                test_center_x = random.randint(int(self.sw * 0.05), int(self.sw * 0.35))
+            else:
+                test_center_x = random.randint(int(self.sw * 0.65), int(self.sw * 0.95))
             test_center_y = random.randint(int(self.sh * self.sr), int(self.sh * self.sr * 1.3))
             for coordinates in self.illegal_coordinates:
                 if coordinates[0] < test_center_x < coordinates[1]:
