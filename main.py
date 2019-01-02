@@ -13,6 +13,7 @@ from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
 from classes.plant_blueberry import PlantBlueberry
+from classes.plant_foreground import PlantForeground
 from classes.fish_egg import FishEggSprite
 from classes.window import Window
 from classes.timer import Performance_timer
@@ -37,6 +38,7 @@ class MyGame(arcade.Window, State):
         self.shark_list = None
         self.carrot_list = None
         self.plant_blueberry_list = None
+        self.plant_foreground_list = None
         self.fish_egg_list = None
         self.all_sprite_list = None
         self.window_list = None
@@ -59,6 +61,7 @@ class MyGame(arcade.Window, State):
         self.shark_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
         self.plant_blueberry_list = arcade.SpriteList()
+        self.plant_foreground_list = arcade.SpriteList()
         self.fish_egg_list = arcade.SpriteList()
         self.all_sprite_list = arcade.SpriteList()
 
@@ -91,6 +94,11 @@ class MyGame(arcade.Window, State):
         for i in range(PLANT_BLUEBERRY_NUMBER):
             plant_blueberry = PlantBlueberry(self.plant_blueberry_list)
             self.plant_blueberry_list.append(plant_blueberry)
+
+        # Skapa förgrundsväxter
+        for i in range(PLANT_FOREGROUND_NUMBER):
+            plant_foreground = PlantForeground(self.plant_foreground_list)
+            self.plant_foreground_list.append(plant_foreground)
 
         # Skapa fönster
         self.window_list = []
@@ -158,6 +166,7 @@ class MyGame(arcade.Window, State):
         self.plant_blueberry_list.draw()
         self.fish_egg_list.draw()
         self.all_sprite_list.draw()
+        self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
         if DIAGNOSE_FISH:
@@ -182,6 +191,7 @@ class MyGame(arcade.Window, State):
             self.plant_blueberry_list.update()
             self.fish_egg_list.update()
             self.all_sprite_list.update()
+            self.plant_foreground_list.update()
 
             """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
             if random.randrange(500) < 1:

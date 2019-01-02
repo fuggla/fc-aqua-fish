@@ -24,6 +24,10 @@ carrot_food_value = 1000
 PLANT_BLUEBERRY_NUMBER = 5
 SPRITE_SCALING_PLANT_BLUEBERRY = 0.7
 
+""" Egenskaper för förgrundsplantan """
+PLANT_FOREGROUND_NUMBER = 5
+SPRITE_SCALING_PLANT_FOREGROUND = 0.9
+
 """ Egenskaper för fiskägg """
 SCALING_FISH_EGG = 0.15
 fish_egg_hatch_age = 1000
