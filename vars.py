@@ -19,6 +19,8 @@ TICK_RATE = 60
 SPRITE_SCALING_CARROT = 0.3
 carrot_food_value = 1000
 
+""" Egenskaper för blåbär """
+SPRITE_SCALING_BLUEBERRY = 0.2
 
 """ Egenskaper för blåbärsplantan """
 PLANT_BLUEBERRY_NUMBER = 5
