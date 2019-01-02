@@ -257,22 +257,18 @@ class MyGame(arcade.Window, State):
                     egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
-                        self.pfish_list.append(pfish)
-                        self.all_sprite_list.append(pfish)
-                        self.event.put(pfish.get_name() + " hatched!")
+                        fish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.pfish_list.append(fish)
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
-                        self.bfish_list.append(bfish)
-                        self.all_sprite_list.append(bfish)
-                        self.event.put(bfish.get_name() + " hatched!")
+                        fish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.bfish_list.append(fish)
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
-                        self.shark_list.append(shark)
-                        self.all_sprite_list.append(shark)
-                        self.event.put(shark.get_name() + " hatched!")
+                        fish = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
+                        self.shark_list.append(fish)
+                    self.all_sprite_list.append(fish)
+                    self.event.put(fish.get_name() + " hatched!")
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
                     egg.kill()
                 egg.age += 1
