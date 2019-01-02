@@ -12,7 +12,6 @@ from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
-from classes.blueberry import BlueberrySprite
 from classes.plant_blueberry import PlantBlueberry
 from classes.plant_foreground import PlantForeground
 from classes.fish_egg import FishEggSprite
@@ -38,7 +37,6 @@ class MyGame(arcade.Window, State):
         self.bfish_list = None
         self.shark_list = None
         self.carrot_list = None
-        self.blueberry_list = None
         self.plant_blueberry_list = None
         self.plant_foreground_list = None
         self.fish_egg_list = None
@@ -89,7 +87,6 @@ class MyGame(arcade.Window, State):
         self.bfish_list = arcade.SpriteList()
         self.shark_list = arcade.SpriteList()
         self.carrot_list = arcade.SpriteList()
-        self.blueberry_list = arcade.SpriteList()
         self.plant_blueberry_list = arcade.SpriteList()
         self.plant_foreground_list = arcade.SpriteList()
         self.fish_egg_list = arcade.SpriteList()
@@ -106,7 +103,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
-            bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list)
+            bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list)
             self.bfish_list.append(bfish)                           # Lägg till fiskarna i fisklistan
             self.all_sprite_list.append(bfish)                      # och i totallistan
         if DEBUG:
@@ -162,7 +159,6 @@ class MyGame(arcade.Window, State):
             b.draw()
 
         self.plant_blueberry_list.draw()
-        self.blueberry_list.draw()
         self.fish_egg_list.draw()
         self.all_sprite_list.draw()
         self.plant_foreground_list.draw()
@@ -188,7 +184,6 @@ class MyGame(arcade.Window, State):
         # Uppdatera all när spelet är igång
         if self.is_playing():
             self.plant_blueberry_list.update()
-            self.blueberry_list.update()
             self.fish_egg_list.update()
             self.all_sprite_list.update()
             self.plant_foreground_list.update()
@@ -217,6 +212,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.bfish_list:
                 # Ätalgoritm för blue small fish
@@ -226,14 +222,6 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-
-                hit_list = arcade.check_for_collision_with_list(fish, self.blueberry_list)
-                if len(hit_list) == 0 and fish.iseating > 0:
-                    fish.iseating -= 1
-                # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
-                    fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
                     fish.kill()
@@ -242,6 +230,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.shark_list:
                 # Ätalgoritm för blue shark
@@ -259,6 +248,7 @@ class MyGame(arcade.Window, State):
                     fish.health = fish.base_health
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
 
             """ Stega igenom äggen """
@@ -267,28 +257,21 @@ class MyGame(arcade.Window, State):
                     egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
-                        self.pfish_list.append(pfish)
-                        self.all_sprite_list.append(pfish)
+                        fish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.pfish_list.append(fish)
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
-                        self.bfish_list.append(bfish)
-                        self.all_sprite_list.append(bfish)
+                        fish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        self.bfish_list.append(fish)
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
-                        self.shark_list.append(shark)
-                        self.all_sprite_list.append(shark)
+                        fish = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
+                        self.shark_list.append(fish)
+                    self.all_sprite_list.append(fish)
+                    self.event.put(fish.get_name() + " hatched!")
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
                     egg.kill()
                 egg.age += 1
-
-            """ Stega igenom blåbärsplantorna """
-            for plant in self.plant_blueberry_list:
-                if random.randrange(1000) < plant_blueberry_grow_rate and plant.has_berry == False:
-                    blueberry = BlueberrySprite(plant.center_x, plant.center_y)
-                    self.blueberry_list.append(blueberry)
 
             """ Flytta bubblor """
             for b in self.bubble_list:
@@ -368,7 +351,7 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought pfish " + pfish.get_name())
 
     def buy_bfish(self):
-        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+        bfish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         self.bfish_list.append(bfish)
         self.all_sprite_list.append(bfish)
         self.event.put("Bought bfish" + bfish.get_name())
