@@ -34,6 +34,8 @@ class MyGame(arcade.Window, State):
         self.frame_count = 0
         self.show_windows = True
         self.background = None
+        self.center_cords = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+        self.width_height = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
         # Skapa shapes och sprites som <NAMN>_list
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
@@ -101,7 +103,7 @@ class MyGame(arcade.Window, State):
         arcade.start_render()
 
         # Rita bakgrund
-        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
+        arcade.draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
 
         for b in self.bubble_list:
             b.draw()
