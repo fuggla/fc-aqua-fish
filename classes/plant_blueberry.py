@@ -12,17 +12,20 @@ class PlantBlueberry(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
 
-        self.has_berry = False
-
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
 
         if random.random() < 0.5:
             self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png",
                                                                scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+            # Skapa ett objekt för bären med koordinater och True/False
+            self.berry_info = [[self.center_x, self.center_y], [self.center_x - 100, self.center_y], False, False]
         else:
             self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", mirrored=True,
                                                                scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+            # Skapa ett objekt för bären med koordinater och True/False
+            self.berry_info = [[self.center_x, self.center_y], [self.center_x + 100, self.center_y], False, False]
+
         self.texture = self.texture_plant_blueberry
 
         # Placera ut blåbärsplantan
