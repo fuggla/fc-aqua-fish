@@ -178,7 +178,7 @@ class MyGame(arcade.Window, State):
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
-                    fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+                    fish.eat_food(hit_list[0], 1, berry_info=self.berry_info_list)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
@@ -233,8 +233,7 @@ class MyGame(arcade.Window, State):
             for i in range(len(self.berry_info_list)):
                 for k in range(2):
                     if random.randrange(1000) < plant_blueberry_grow_rate and not self.berry_info_list[i][2 + k]:
-                        berry = BlueberrySprite(self.berry_info_list[i][k][0], self.berry_info_list[i][k][1],
-                                                self.berry_info_list[i][4], k)
+                        berry = BlueberrySprite(self.berry_info_list[i][k][0], self.berry_info_list[i][k][1], self.berry_info_list[i][4], k)
                         self.berry_info_list[i][2 + k] = True
                         self.blueberry_list.append(berry)
 

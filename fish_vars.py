@@ -1,7 +1,7 @@
 
 
 """ Egenskaper för purple fish """
-PFISH_NUMBER = 4
+PFISH_NUMBER = 0
 SPRITE_SCALING_PFISH = 0.1
 
 pfish_eager = 5             # Hur ofta byter fiskarna riktning
@@ -20,7 +20,7 @@ BFISH_NUMBER = 12
 SPRITE_SCALING_BFISH = 0.1
 
 bfish_eager = 10            # Hur ofta byter fiskarna riktning
-bfish_hungry = 5            # Hur intresserade är de av mat
+bfish_hungry = 500            # Hur intresserade är de av mat
 bfish_conformity = 10       # Hu måna är fiskarna om att vara som alla andra
 bfish_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 
@@ -32,7 +32,7 @@ bfish_findelay = 10         # Hur ofta viftar de med fenorna
 bfish_egg_freq = 1
 
 """ Egenskaper för shark """
-SHARK_NUMBER = 2
+SHARK_NUMBER = 0
 SPRITE_SCALING_SHARK = 0.8
 
 shark_eager = 10            # Hur ofta byter fiskarna riktning
