@@ -154,7 +154,7 @@ class FishSprite(arcade.Sprite):
                 self.acc_y = self.finforce / self.mass
                 self.relaxed[1] = False
 
-    def eat_food(self, food, chew, berry_info=None):
+    def eat_food(self, food, chew, berry_info_list=None):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
             self.iseating += 1
@@ -175,9 +175,8 @@ class FishSprite(arcade.Sprite):
             food.texture = food.texture_food4
         if food.food_value <= 0:              # När moroten är slut försvinner den
             food.kill()
-            if berry_info:
-                print(food.berry_index_branch)
-                berry_info[food.berry_index_plant][2 + food.berry_index_branch] = False
+            if berry_info_list:
+                berry_info_list[food.berry_index_plant][2 + food.berry_index_branch] = False
 
 
     def eat_fish(self, prey):
