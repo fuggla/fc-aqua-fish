@@ -96,7 +96,7 @@ class MyGame(arcade.Window, State):
 
         # Setup klar, starta spelet
         if DEBUG:
-            self.timer.done("Setup done")
+            self.timer = self.timer.done("Setup done")
         self.play()
 
     def on_draw(self):
