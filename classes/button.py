@@ -1,5 +1,5 @@
 # Klass för att skapa rektangulära knappar
-import arcade
+from arcade import draw_rectangle_filled, draw_rectangle_outline, draw_text, color
 from classes.shape import Shape
 
 class Button(Shape):
@@ -23,9 +23,9 @@ class Button(Shape):
 
     # Rita knapp
     def draw(self):
-        arcade.draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
-        arcade.draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
-        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
+        draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
+        draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
+        draw_text(self.text, self.x, self.y, color.BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True

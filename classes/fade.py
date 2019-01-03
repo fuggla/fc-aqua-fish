@@ -1,5 +1,4 @@
 from vars import SCREEN_HEIGHT, SCREEN_WIDTH
-import arcade
 from arcade.draw_commands import draw_xywh_rectangle_filled
 
 # Hantering av game state
