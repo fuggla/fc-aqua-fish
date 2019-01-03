@@ -340,7 +340,7 @@ class MyGame(arcade.Window, State):
         action.open()
 
         # Skapa huvudmeny att visa med escape
-        pause=Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
+        pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
         pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
         pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
         pause.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
