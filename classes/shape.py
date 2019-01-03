@@ -1,12 +1,14 @@
 # Klass för att rita diverse former
 class Shape():
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, w, h):
         # Position och storlek
         self.x = x
         self.y = y
-        self.height = height
-        self.width = width
+        self.w = w
+        self.h = h
+        self.height = h
+        self.width = w
 
     def set_position(self, x, y):
         self.x = x

@@ -4,8 +4,8 @@ from classes.shape import Shape
 
 class Button(Shape):
 
-    def __init__(self, x, y, width, height, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11, align="center"):
-        super().__init__(x, y, width, height)
+    def __init__(self, x, y, w, h, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11, align="center"):
+        super().__init__(x, y, w, h)
 
         # Text
         self.text = text
@@ -23,9 +23,9 @@ class Button(Shape):
 
     # Rita knapp
     def draw(self):
-        arcade.draw_rectangle_filled(self.x, self.y, self.width, self.height, self.background_color)
-        arcade.draw_rectangle_outline(self.x, self.y, self.width, self.height, self.outline_color, self.outline_size)
-        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.width, align=self.align, anchor_x="center", anchor_y="center")
+        arcade.draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
+        arcade.draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
+        arcade.draw_text(self.text, self.x, self.y, arcade.color.BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True
@@ -36,7 +36,7 @@ class Button(Shape):
     # Kolla om angiven x y är inom knappens ramar
     # self.x och self.y är mitten av knappen
     def is_mouse_on_button(self, x, y):
-        if (self.x + self.width / 2) > x > (self.x - self.width / 2) and (self.y + self.height / 2) > y > (self.y - self.height / 2):
+        if (self.x + self.w/ 2) > x > (self.x - self.w/ 2) and (self.y + self.h/ 2) > y > (self.y - self.h/ 2):
             return True
         else:
             return False
