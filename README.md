@@ -55,8 +55,8 @@ A simulator by Furniture Corp.
   - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
   - [x] Endast damerna lägger ägg
   - [x] En ny fisk kläcks efter ett tag
-- [ ] Mer info om fisken man köper
-- [ ] Någon form av stack för meddelanden ("X dog av svält" etc)
+- [x] Mer info om fisken man köper
+- [x] Någon form av stack för meddelanden ("X dog av svält" etc)
 - [x] Tona in spel vid start
 
 ## Tutorials / Dokumentation
