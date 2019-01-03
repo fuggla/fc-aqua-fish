@@ -7,6 +7,7 @@ https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
 from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, key, window_commands
+from arcade.key import *
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
@@ -251,26 +252,26 @@ class MyGame(arcade.Window, State):
 
     def on_key_release(self, key, key_modifiers):
         # Avsluta spel
-        if (key == key.Q):
+        if (key == Q):
             window_commands.close_window()
         # Starta om
-        elif (key == key.R):
+        elif (key == R):
             self.setup()
         # Visa pausemeny
-        elif (key == key.ESCAPE):
+        elif (key == ESCAPE):
             self.pause.toggle() # Fönster
             self.toggle_pause()  # State
-        elif (key == key.F1):
+        elif (key == F1):
             global DIAGNOSE_FISH
             if DIAGNOSE_FISH:
                 DIAGNOSE_FISH = False
             else:
                 DIAGNOSE_FISH = True
-        elif (key == key.F2):
+        elif (key == F2):
             self.fps_counter.toggle()
-        elif (key == key.F3):
+        elif (key == F3):
             self.fade.start()
-        elif (key == key.SPACE):
+        elif (key == SPACE):
             self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
