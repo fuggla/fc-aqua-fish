@@ -5,9 +5,7 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
-import arcade, random, types
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands
-from arcade.key import *
+import arcade, random, types, math
 from classes.state import State
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
@@ -37,6 +35,7 @@ class MyGame(arcade.Window, State):
         self.background = None
         self.center_cords = (width // 2, height // 2)
         self.width_height = (width, height)
+        self.berry_info_list = []
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
@@ -143,7 +142,7 @@ class MyGame(arcade.Window, State):
             self.plant_foreground_list.update()
 
             """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
-            if random.randrange(500) < 1:
+            if random.randrange(1000) < carrot_frequency:
                 carrot = CarrotSprite()
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
@@ -181,7 +180,7 @@ class MyGame(arcade.Window, State):
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
-                    fish.eat_food(hit_list[0], 1, berry_info_list=self.berry_info_list)  # 1 är hur mycket de äter varje tugga
+                    fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
@@ -233,12 +232,18 @@ class MyGame(arcade.Window, State):
                 egg.age += 1
 
             """ Stega igenom blåbärsplantorna """
-            for i in range(len(self.berry_info_list)):
+            for grow_space in self.berry_info_list:
                 for k in range(2):
-                    if random.randrange(1000) < plant_blueberry_grow_rate and not self.berry_info_list[i][2 + k]:
-                        berry = BlueberrySprite(self.berry_info_list[i][k][0], self.berry_info_list[i][k][1], self.berry_info_list[i][4], k)
-                        self.berry_info_list[i][2 + k] = True
-                        self.blueberry_list.append(berry)
+                    if random.randrange(1000) < plant_blueberry_grow_rate:
+                        test_x = grow_space[k][0]
+                        test_y = grow_space[k][1]
+                        can_grow = True
+                        for test_berry in self.blueberry_list:
+                            if math.fabs(test_berry.center_x - test_x) < 25:
+                                can_grow = False
+                        if can_grow:
+                            berry = BlueberrySprite(test_x, test_y)
+                            self.blueberry_list.append(berry)
 
             """ Flytta bubblor """
             for b in self.bubble_list:

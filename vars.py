@@ -1,4 +1,4 @@
-VERSION = 0.6
+VERSION = 0.7
 
 """ Hämta skärmupplösning """
 import tkinter
@@ -18,10 +18,11 @@ TICK_RATE = 60
 """ Egenskaper för morötterna """
 SPRITE_SCALING_CARROT = 0.3
 carrot_food_value = 1000
+carrot_frequency = 1
 
 """ Egenskaper för blåbär """
 SPRITE_SCALING_BLUEBERRY = 0.2
-blueberry_food_value = 1000
+blueberry_food_value = 500
 
 """ Egenskaper för blåbärsplantan """
 PLANT_BLUEBERRY_NUMBER = 5

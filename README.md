@@ -49,7 +49,7 @@ A simulator by Furniture Corp.
 - [x] Föremål i akvariet
   - [x] Slumpat valda och utplacerade
   - [x] Fruktväxt som det växer mat på
-  - [ ] Flera bär på varje planta
+  - [x] Flera bär på varje planta
 - [x] System för äggläggning 
   - [x] Fiskarna lägger ägg ifall de ätit mycket
   - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
