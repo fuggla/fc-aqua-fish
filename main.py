@@ -6,6 +6,7 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, key, window_commands
 from classes.state import State
 from classes.button import Button
 from classes.purple_fish import PfishSprite
@@ -34,8 +35,8 @@ class MyGame(arcade.Window, State):
         self.frame_count = 0
         self.show_windows = True
         self.background = None
-        self.center_cords = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-        self.width_height = (SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.center_cords = (width // 2, height // 2)
+        self.width_height = (width, height)
 
         # Skapa shapes och sprites som <NAMN>_list
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "berry_info" , "fish_egg", "all_sprite" ]
@@ -49,7 +50,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa listor
         for l in self.sprite_list_names:
-            setattr(self, f"{l}_list", arcade.SpriteList())
+            setattr(self, f"{l}_list", SpriteList())
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
 
@@ -84,7 +85,7 @@ class MyGame(arcade.Window, State):
             self.plant_foreground_list.append(plant_foreground)
 
         # Ladda backgrund
-        self.background = arcade.load_texture(BACKGROUND_IMAGE)
+        self.background = load_texture(BACKGROUND_IMAGE)
 
         # Tona in grafik över ~2 sekunder
         self.fade = Fade(a=255, time=2)
@@ -101,10 +102,10 @@ class MyGame(arcade.Window, State):
     def on_draw(self):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
-        arcade.start_render()
+        start_render()
 
         # Rita bakgrund
-        arcade.draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
+        draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
 
         for b in self.bubble_list:
             b.draw()
@@ -149,14 +150,14 @@ class MyGame(arcade.Window, State):
             """ Här stegas alla fiskar igenom för mat, död och ägg mm """
             for fish in self.pfish_list:
                 # Ätalgoritm för purple fish
-                hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
+                hit_list = check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
                 # Ta bort döda fiskar som flytit upp
-                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
+                if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
                 if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < pfish_egg_freq:
@@ -166,7 +167,7 @@ class MyGame(arcade.Window, State):
 
             for fish in self.bfish_list:
                 # Ätalgoritm för blue small fish
-                hit_list = arcade.check_for_collision_with_list(fish, self.carrot_list)
+                hit_list = check_for_collision_with_list(fish, self.carrot_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
@@ -174,7 +175,7 @@ class MyGame(arcade.Window, State):
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
 
                 # Ätalgoritm för blue small fish
-                hit_list = arcade.check_for_collision_with_list(fish, self.blueberry_list)
+                hit_list = check_for_collision_with_list(fish, self.blueberry_list)
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
@@ -182,7 +183,7 @@ class MyGame(arcade.Window, State):
                     fish.eat_food(hit_list[0], 1, berry_info_list=self.berry_info_list)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
-                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
+                if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
                 if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < bfish_egg_freq:
@@ -194,12 +195,12 @@ class MyGame(arcade.Window, State):
                 # Ätalgoritm för blue shark
                 if fish.iseating > 0:
                     fish.iseating -= 1
-                hit_list = arcade.check_for_collision_with_list(fish, self.bfish_list)
+                hit_list = check_for_collision_with_list(fish, self.bfish_list)
                 # Om fisken lever och det finns en blue small fish äter fisken den
                 if hit_list and fish.isalive:
                     fish.eat_fish(hit_list[0])
                 # Ta bort döda fiskar som flytit upp
-                if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
+                if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
                 if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < shark_egg_freq:
@@ -250,26 +251,26 @@ class MyGame(arcade.Window, State):
 
     def on_key_release(self, key, key_modifiers):
         # Avsluta spel
-        if (key == arcade.key.Q):
-            arcade.window_commands.close_window()
+        if (key == key.Q):
+            window_commands.close_window()
         # Starta om
-        elif (key == arcade.key.R):
+        elif (key == key.R):
             self.setup()
         # Visa pausemeny
-        elif (key == arcade.key.ESCAPE):
+        elif (key == key.ESCAPE):
             self.pause.toggle() # Fönster
             self.toggle_pause()  # State
-        elif (key == arcade.key.F1):
+        elif (key == key.F1):
             global DIAGNOSE_FISH
             if DIAGNOSE_FISH:
                 DIAGNOSE_FISH = False
             else:
                 DIAGNOSE_FISH = True
-        elif (key == arcade.key.F2):
+        elif (key == key.F2):
             self.fps_counter.toggle()
-        elif (key == arcade.key.F3):
+        elif (key == key.F3):
             self.fade.start()
-        elif (key == arcade.key.SPACE):
+        elif (key == key.SPACE):
             self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
@@ -301,12 +302,12 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
         elif (name == "bfish"):
-            fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
+            fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
         elif (name == "shark"):
-            fish = SharkSprite(self.bfish_list, setpos_y = SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
+            fish = SharkSprite(self.bfish_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
 
         # Done and done
@@ -335,7 +336,7 @@ class MyGame(arcade.Window, State):
         event.open()
 
         # Skapa meny för att interagera med akvariet
-        action= Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
+        action= Window(60, self.height/ 2, 100, 170, " Store", title_height=20, title_align="left")
         action.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
         action.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
         action.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
@@ -346,7 +347,7 @@ class MyGame(arcade.Window, State):
         pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
         pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
         pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
-        pause.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
+        pause.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
         return [event, action, pause]
