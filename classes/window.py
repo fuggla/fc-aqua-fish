@@ -244,39 +244,26 @@ class Button(Shape):
 
 # Textrutor med ett begränsat antal rader
 class Text(Shape, SimpleQueue):
-    def __init__(self, x, y, w, h, text="", font_size=8, lines=7, color=(0,0,0), align="left"):
+    def __init__(self, x, y, w, h, text="", font_size=8, rows=7, color=(0,0,0), align="left"):
         Shape.__init__(self, x, y, w, h)
 
-        # Nuvarande rader
-        self.message = []
-
-        # Maximalt antal rader
-        self.lines = lines
-
-        # Text
-        self.font_size = font_size
-        self.color = color
-        self.align = align
+        # Max och nuvarande rader
+        self.max_rows = rows
+        self.row = []
 
         # Förbered för rendering
-        self.text = create_text(text, color, font_size, w, align)
+        self.settings = [color, font_size, w, align]
+        self.text = create_text(text, *self.settings)
 
     # Rita text
     def draw(self):
         render_text(self.text, self.x, self.y)
 
+    # Töm kö och fyll på textruta med ny rad
     def update(self):
         if not self.empty():
             text = ""
-            while not self.empty():
-                self.message.insert(0, self.get())
-            i = 0
-            for m in self.message:
-                text = m + "\n" + text
-                i += 1
-                if (i == self.lines):
-                    break
-            self.set_text(text)
-
-    def set_text(self, text):
-        self.text = create_text(text, self.color, self.font_size, self.w, self.align)
+            self.row.insert(0, self.get())
+            for r in self.row[0:self.max_rows]:
+                text = f"{r}\n{text}"
+            self.text = create_text(text, *self.settings)
