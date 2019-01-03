@@ -83,11 +83,6 @@ class MyGame(arcade.Window, State):
             plant_foreground = PlantForeground(self.plant_foreground_list)
             self.plant_foreground_list.append(plant_foreground)
 
-        # Skapa bubblor
-        self.bubble_list = []
-        for i in range(BUBBLE_MAPS):
-            self.bubble_list.append(Bubble_map())
-
         # Ladda backgrund
         self.background = arcade.load_texture(BACKGROUND_IMAGE)
 
@@ -343,6 +338,12 @@ class MyGame(arcade.Window, State):
         window_list.append(main_menu_window)
 
         return window_list
+
+    def create_bubbles(self):
+        list = []
+        for i in range(BUBBLE_MAPS):
+            list.append(Bubble_map())
+        return list
 
 def main():
     if DEBUG:
