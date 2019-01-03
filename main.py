@@ -35,13 +35,10 @@ class MyGame(arcade.Window, State):
         self.show_windows = True
         self.background = None
 
-        # If you have sprite lists, you should create them here
+        # Skapa shapes och sprites
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        for l in self.sprite_list_names:
-            setattr(self, l + "_list", None)
-
         self.shape_list_names = [ "window", "bubble" ]
-        for s in self.shape_list_names:
+        for l in self.sprite_list_names + self.shape_list_names:
             setattr(self, l + "_list", None)
 
     def setup(self):
