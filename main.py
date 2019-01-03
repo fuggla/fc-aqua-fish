@@ -240,8 +240,8 @@ class MyGame(arcade.Window, State):
             self.setup()
         # Visa pausemeny
         elif (key == arcade.key.ESCAPE):
-            self.main_menu_window.toggle()
-            self.toggle_pause()
+            self.pause.toggle() # Fönster
+            self.toggle_pause()  # State
         elif (key == arcade.key.F1):
             global DIAGNOSE_FISH
             if DIAGNOSE_FISH:
@@ -277,7 +277,7 @@ class MyGame(arcade.Window, State):
                     w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
-        if self.is_paused and self.main_menu_window.is_closed():
+        if self.is_paused and self.pause.is_closed():
             self.play()
 
     def buy(self, thing):
@@ -313,31 +313,28 @@ class MyGame(arcade.Window, State):
         self.buy("shark")
 
     def create_windows(self):
-        window_list = []
 
         # Fönster för händelser
-        event_window = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-        self.event = event_window.add_text(15, 12, 180, 80)
-        window_list.append(event_window)
-        event_window.open()
+        event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
+        self.event = event.add_text(15, 12, 180, 80)
+        event.open()
 
         # Skapa meny för att interagera med akvariet
-        interaction_window = Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
-        interaction_window.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
-        interaction_window.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
-        interaction_window.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
-        interaction_window.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
-        window_list.append(interaction_window)
-        interaction_window.open()
+        action= Window(60, SCREEN_HEIGHT / 2, 100, 170, " Store", title_height=20, title_align="left")
+        action.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
+        action.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
+        action.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
+        action.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
+        action.open()
 
         # Skapa huvudmeny att visa med escape
-        main_menu_window = Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
-        main_menu_window.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
-        main_menu_window.add_button(50, 10, 180, 30, "Open Store", 11, interaction_window.open)
-        main_menu_window.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
-        window_list.append(main_menu_window)
+        pause=Window(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 200, 130, "Aqua Fish")
+        pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
+        pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
+        pause.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
+        self.pause = pause
 
-        return window_list
+        return [event, action, pause]
 
     def create_bubbles(self):
         list = []
