@@ -1,5 +1,5 @@
 """
-Klass för att visa ett fönster
+Klass för att visa ett fönster med knappar och text
 
 +------------------+---+
 |       TITEL      | X |
@@ -13,16 +13,18 @@ Klass för att visa ett fönster
 | |      Knapp 2     | |
 | +------------------+ |
 |                      |
+| +------------------+ |
+| |      Textruta    | |
+| +------------------+ |
+|                      |
 +----------------------+
 """
 
-from arcade import draw_rectangle_filled, draw_rectangle_outline, render_text, color
-from classes.button import Button
 from classes.shape import Shape
-from classes.text import Text
+from queue import SimpleQueue
+from arcade import create_text, render_text, draw_rectangle_filled, draw_rectangle_outline, draw_text, color
 
 class Window(Shape):
-
     def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
         super().__init__(x, y, w, h)
 
@@ -190,3 +192,90 @@ class Window(Shape):
             b.move(x, y)
         for t in self.text_list:
             t.move(x, y)
+
+
+# Rektanglulära knappar
+class Button(Shape):
+    def __init__(self, x, y, w, h, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11, align="center"):
+        super().__init__(x, y, w, h)
+
+        # Text
+        self.text = text
+        self.font_size = font_size
+        self.align = align
+
+        # Bakgrund och ram
+        self.outline_size = outline_size
+        self.outline_color = outline_color
+        self.background_color = background_color
+
+        # Funktioner som triggas vid musklick
+        self.release = release or self.release
+        self.press = press or self.press
+
+    # Rita knapp
+    def draw(self):
+        draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
+        draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
+        draw_text(self.text, self.x, self.y, color.BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
+
+    def release(self):
+        return True
+
+    def press(self):
+        return True
+
+    # Kolla om angiven x y är inom knappens ramar
+    # self.x och self.y är mitten av knappen
+    def is_mouse_on_button(self, x, y):
+        if (self.x + self.w/ 2) > x > (self.x - self.w/ 2) and (self.y + self.h/ 2) > y > (self.y - self.h/ 2):
+            return True
+        else:
+            return False
+
+    def on_mouse_release(self, x, y):
+        if self.is_mouse_on_button(x, y):
+            self.release()
+
+    def on_mouse_press(self, x, y):
+        if self.is_mouse_on_button(x, y):
+            self.press()
+
+# Textrutor med ett begränsat antal rader
+class Text(Shape, SimpleQueue):
+    def __init__(self, x, y, w, h, text="", font_size=8, lines=7, color=(0,0,0), align="left"):
+        Shape.__init__(self, x, y, w, h)
+
+        # Nuvarande rader
+        self.message = []
+
+        # Maximalt antal rader
+        self.lines = lines
+
+        # Text
+        self.font_size = font_size
+        self.color = color
+        self.align = align
+
+        # Förbered för rendering
+        self.text = create_text(text, color, font_size, w, align)
+
+    # Rita text
+    def draw(self):
+        render_text(self.text, self.x, self.y)
+
+    def update(self):
+        if not self.empty():
+            text = ""
+            while not self.empty():
+                self.message.insert(0, self.get())
+            i = 0
+            for m in self.message:
+                text = m + "\n" + text
+                i += 1
+                if (i == self.lines):
+                    break
+            self.set_text(text)
+
+    def set_text(self, text):
+        self.text = create_text(text, self.color, self.font_size, self.w, self.align)

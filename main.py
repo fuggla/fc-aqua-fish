@@ -9,7 +9,6 @@ import arcade, random, types
 from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands
 from arcade.key import *
 from classes.state import State
-from classes.button import Button
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
@@ -18,7 +17,7 @@ from classes.blueberry import BlueberrySprite
 from classes.plant_blueberry import PlantBlueberry
 from classes.plant_foreground import PlantForeground
 from classes.fish_egg import FishEggSprite
-from classes.window import Window
+from classes.window import Window, Button, Text
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from classes.fade import Fade
