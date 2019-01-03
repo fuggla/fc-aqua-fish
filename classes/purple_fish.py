@@ -40,17 +40,17 @@ class PfishSprite(FishSprite):
         if color == "green":
             self.texture_left1 = arcade.load_texture("images/green_fish1.png", mirrored=True, scale=scale_factor)
             self.texture_left2 = arcade.load_texture("images/green_fish2.png", mirrored=True, scale=scale_factor)
-            self.texture_left8 = arcade.load_texture("images/purple_fish_eat.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/green_fish_eat.png", mirrored=True, scale=scale_factor)
             self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
             self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
-            self.texture_right8 = arcade.load_texture("images/purple_fish_eat.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/green_fish_eat.png", scale=scale_factor)
         elif color == "orange":
             self.texture_left1 = arcade.load_texture("images/orange_fish1.png", mirrored=True, scale=scale_factor)
             self.texture_left2 = arcade.load_texture("images/orange_fish2.png", mirrored=True, scale=scale_factor)
-            self.texture_left8 = arcade.load_texture("images/purple_fish_eat.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/orange_fish_eat.png", mirrored=True, scale=scale_factor)
             self.texture_right1 = arcade.load_texture("images/orange_fish1.png", scale=scale_factor)
             self.texture_right2 = arcade.load_texture("images/orange_fish2.png", scale=scale_factor)
-            self.texture_right8 = arcade.load_texture("images/purple_fish_eat.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/orange_fish_eat.png", scale=scale_factor)
         else:
             self.texture_left1 = arcade.load_texture("images/purple_fish1.png", mirrored=True, scale=scale_factor)
             self.texture_left2 = arcade.load_texture("images/purple_fish2.png", mirrored=True, scale=scale_factor)
