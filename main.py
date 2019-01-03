@@ -39,10 +39,10 @@ class MyGame(arcade.Window, State):
         self.center_cords = (width // 2, height // 2)
         self.width_height = (width, height)
 
-        # Skapa shapes och sprites som <NAMN>_list
-        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "berry_info" , "fish_egg", "all_sprite" ]
-        self.shape_list_names = [ "window", "bubble" ]
-        for l in self.sprite_list_names + self.shape_list_names:
+        # Sätt spritelistor och vanliga listor till none
+        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
+        self.standard_list_names = [ "window", "bubble", "berry_info" ]
+        for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
     def setup(self):
@@ -52,6 +52,7 @@ class MyGame(arcade.Window, State):
         # Skapa listor
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
+        self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
 
