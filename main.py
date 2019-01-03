@@ -326,7 +326,7 @@ class MyGame(arcade.Window, State):
     def create_windows(self):
         # Fönster för händelser
         event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-        self.event = event.add_text(15, 12, 180, 80)
+        self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
         event.open()
 
         # Skapa meny för att interagera med akvariet
@@ -342,7 +342,7 @@ class MyGame(arcade.Window, State):
         pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
         pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
         pause.add_button(90, 10, 180, 30, "Exit", 11, arcade.window_commands.close_window)
-        self.pause = pause
+        self.pause = pause # Behövs för att bland annat escape ska fungera
 
         return [event, action, pause]
 
