@@ -38,7 +38,7 @@ class MyGame(arcade.Window, State):
         self.width_height = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
         # Skapa shapes och sprites som <NAMN>_list
-        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
+        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "berry_info" , "fish_egg", "all_sprite" ]
         self.shape_list_names = [ "window", "bubble" ]
         for l in self.sprite_list_names + self.shape_list_names:
             setattr(self, f"{l}_list", None)
@@ -74,8 +74,9 @@ class MyGame(arcade.Window, State):
 
         # Skapa blåbärsväxter
         for i in range(PLANT_BLUEBERRY_NUMBER):
-            plant_blueberry = PlantBlueberry(self.plant_blueberry_list)
+            plant_blueberry = PlantBlueberry(self.plant_blueberry_list, i)
             self.plant_blueberry_list.append(plant_blueberry)
+            self.berry_info_list.append(plant_blueberry.berry_info)
 
         # Skapa förgrundsväxter
         for i in range(PLANT_FOREGROUND_NUMBER):
@@ -178,7 +179,7 @@ class MyGame(arcade.Window, State):
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and fish.isalive:
-                    fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+                    fish.eat_food(hit_list[0], 1, berry_info_list=self.berry_info_list)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > SCREEN_HEIGHT and fish.health <= 0:
@@ -230,10 +231,12 @@ class MyGame(arcade.Window, State):
                 egg.age += 1
 
             """ Stega igenom blåbärsplantorna """
-            for plant in self.plant_blueberry_list:
-                if random.randrange(1000) < plant_blueberry_grow_rate:
-                    berry = BlueberrySprite(plant.center_x, plant.center_y)
-                    self.blueberry_list.append(berry)
+            for i in range(len(self.berry_info_list)):
+                for k in range(2):
+                    if random.randrange(1000) < plant_blueberry_grow_rate and not self.berry_info_list[i][2 + k]:
+                        berry = BlueberrySprite(self.berry_info_list[i][k][0], self.berry_info_list[i][k][1], self.berry_info_list[i][4], k)
+                        self.berry_info_list[i][2 + k] = True
+                        self.blueberry_list.append(berry)
 
             """ Flytta bubblor """
             for b in self.bubble_list:

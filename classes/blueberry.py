@@ -4,7 +4,7 @@ from vars import SPRITE_SCALING_BLUEBERRY, blueberry_food_value
 
 class BlueberrySprite(arcade.Sprite):
     # Klass för blueberry
-    def __init__(self, center_x, center_y):
+    def __init__(self, center_x, center_y, index_plant, index_branch):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -13,6 +13,8 @@ class BlueberrySprite(arcade.Sprite):
         self.texture_food3 = arcade.load_texture("images/blueberry3.png", scale=SPRITE_SCALING_BLUEBERRY)
         self.texture_food4 = arcade.load_texture("images/blueberry4.png", scale=SPRITE_SCALING_BLUEBERRY)
         self.texture = self.texture_food1
+        self.berry_index_plant = index_plant
+        self.berry_index_branch = index_branch
 
         # Placera ut moroten
         self.center_x = center_x
