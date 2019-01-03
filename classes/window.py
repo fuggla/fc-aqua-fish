@@ -99,11 +99,11 @@ class Window(Shape):
 
     # Returnera true om fönstret är öppet
     def is_open(self):
-        return True if self.visible else False
+        return self.visible
 
     # Returnera true om fönstret är stängt
     def is_closed(self):
-        return False if self.visible else True
+        return not self.visible
 
     # Returnera lista på alla knappar
     def get_buttons(self):
@@ -168,7 +168,7 @@ class Window(Shape):
         self.dragging = True
 
     def is_dragged(self):
-         return True if self.dragging else False
+         return self.dragging
 
     # Flytta fönster relativt
     def move(self, x, y):
