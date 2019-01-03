@@ -11,6 +11,9 @@ class PlantBlueberry(arcade.Sprite):
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
+
+        self.has_berry = False
+
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
 
