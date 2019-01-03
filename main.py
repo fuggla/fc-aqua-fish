@@ -6,7 +6,7 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, key, window_commands
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands
 from arcade.key import *
 from classes.state import State
 from classes.button import Button
@@ -98,7 +98,7 @@ class MyGame(arcade.Window, State):
 
         # Setup klar, starta spelet
         if DEBUG:
-            self.timer.done("Setup done")
+            self.timer = self.timer.done("Setup done")
         self.play()
 
     def on_draw(self):
@@ -133,7 +133,7 @@ class MyGame(arcade.Window, State):
         # Rita FPS uppe i högra hörnet
         self.fps_counter.draw()
 
-    def update(self, delta_time):
+    def update(self, dt):
 
         # Uppdatera all när spelet är igång
         if self.is_playing():
@@ -243,12 +243,12 @@ class MyGame(arcade.Window, State):
 
             """ Flytta bubblor """
             for b in self.bubble_list:
-                b.update(delta_time)
+                b.update(dt)
 
             self.event.update()
-            self.fade.update(delta_time)
+            self.fade.update(dt)
 
-        self.fps_counter.calculate(delta_time)
+        self.fps_counter.calculate(dt)
         self.frame_count += 1
 
     def on_key_release(self, key, key_modifiers):
@@ -264,10 +264,7 @@ class MyGame(arcade.Window, State):
             self.toggle_pause()  # State
         elif (key == F1):
             global DIAGNOSE_FISH
-            if DIAGNOSE_FISH:
-                DIAGNOSE_FISH = False
-            else:
-                DIAGNOSE_FISH = True
+            DIAGNOSE_FISH = not DIAGNOSE_FISH
         elif (key == F2):
             self.fps_counter.toggle()
         elif (key == F3):
@@ -275,12 +272,12 @@ class MyGame(arcade.Window, State):
         elif (key == SPACE):
             self.show_windows = not self.show_windows
 
-    def on_mouse_motion(self, x, y, delta_x, delta_y):
+    def on_mouse_motion(self, x, y, dx, dy):
         # Fönster som är i läge "dragged" följer musens kordinater
         if self.show_windows:
             for w in self.window_list:
                 if w.is_dragged():
-                    w.move(delta_x, delta_y)
+                    w.move(dx, dy)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         # Fönster kan triggas av att muspekaren klickas ovanför en knapp
@@ -305,6 +302,7 @@ class MyGame(arcade.Window, State):
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
             fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
