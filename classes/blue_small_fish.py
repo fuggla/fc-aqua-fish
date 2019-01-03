@@ -34,9 +34,9 @@ class BfishSprite(FishSprite):
 
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
-        self.food_objects = carrot_list
-        for berry in blueberry_list:
-            self.food_objects.append(berry)
+        self.food_objects_c = carrot_list
+        self.food_objects_b = blueberry_list
+        self.food_objects = self.food_objects_b
         self.shoal_objects = bfish_list
         self.hunter_fish_list = hunter_list
 
@@ -86,6 +86,11 @@ class BfishSprite(FishSprite):
             self.shoal_move()
 
         if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+            self.food_objects = self.food_objects_c
+            self.chase_food()
+
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+            self.food_objects = self.food_objects_b
             self.chase_food()
 
         # Om de är lugna kan de börja dagdrömma
