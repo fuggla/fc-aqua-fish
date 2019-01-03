@@ -40,13 +40,10 @@ class Window(Shape):
         self.font_size = font_size
 
         # Fönstrets kanter
-        self.left = x - w / 2
-        self.top = y + h / 2
-        self.bottom = y - h / 2
-        self.right = x + w / 2
+        self.calculate_edge(x, y)
 
         # Skugga bakom fönstret
-        self.drop_shadow=(x + 5, y - 5 + self.title_height / 2, w, h + self.title_height, (0, 0, 0, 64))
+        self.calculate_shadow()
 
         # Avgör om fönstret är synligt
         self.visible = False
@@ -172,22 +169,26 @@ class Window(Shape):
     def is_dragged(self):
          return self.dragging
 
+    def calculate_edge(self, x, y):
+        self.left = x - self.w / 2
+        self.top = y + self.h / 2
+        self.bottom = y - self.h / 2
+        self.right = x + self.w / 2
+
+    def calculate_shadow(self):
+        self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.w, self.h + self.title_height, (0, 0, 0, 64))
+
     # Flytta fönster relativt
     def move(self, x, y):
         # Flytta fönster
         self.x += x
         self.y += y
 
-        # Flytta skugga
-        self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.w, self.h + self.title_height, (0, 0, 0, 64))
+        # Räkna ut kanternas nya position
+        self.calculate_edge(self.x, self.y)
 
-        # Rökna ut kanternas nya position
-        self.left = x - self.w / 2
-        self.top = y + self.h / 2
-        self.bottom = y - self.h / 2
-        self.right = x + self.w / 2
-
-        # Flytta knappar och text
+        # Flytta skugga, knappar och text
+        self.calculate_shadow()
         for b in self.button_list:
             b.move(x, y)
         for t in self.text_list:
