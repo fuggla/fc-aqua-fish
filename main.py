@@ -35,11 +35,11 @@ class MyGame(arcade.Window, State):
         self.show_windows = True
         self.background = None
 
-        # Skapa shapes och sprites
+        # Skapa shapes och sprites som <NAMN>_list
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
         self.shape_list_names = [ "window", "bubble" ]
         for l in self.sprite_list_names + self.shape_list_names:
-            setattr(self, l + "_list", None)
+            setattr(self, f"{l}_list", None)
 
     def setup(self):
         if DEBUG:
@@ -47,7 +47,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa listor
         for l in self.sprite_list_names:
-            setattr(self, l + "_list", arcade.SpriteList())
+            setattr(self, f"{l}_list", arcade.SpriteList())
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
 
@@ -306,7 +306,7 @@ class MyGame(arcade.Window, State):
 
         # Done and done
         self.all_sprite_list.append(fish)
-        self.event.put("Bought " + name + " " + fish.get_name())
+        self.event.put(f"Bought {name} {fish.get_name()}")
 
     def buy_shark(self):
         self.buy_fish("shark")
@@ -354,7 +354,7 @@ class MyGame(arcade.Window, State):
 
 def main():
     if DEBUG:
-        print("Starting Aqua Fish v", VERSION, sep="")
+        print(f"Starting Aqua Fish v{VERSION}")
     game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     game.setup()
     arcade.run()
