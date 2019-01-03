@@ -32,34 +32,27 @@ class MyGame(arcade.Window, State):
 
         self.frame_count = 0
         self.show_windows = True
+        self.background = None
 
         # If you have sprite lists, you should create them here
-        self.pfish_list = None
-        self.bfish_list = None
-        self.shark_list = None
-        self.carrot_list = None
-        self.plant_blueberry_list = None
-        self.plant_foreground_list = None
-        self.fish_egg_list = None
-        self.all_sprite_list = None
-        self.window_list = None
-        self.background = None
-        self.bubble_list = None
+
+        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
+        for l in self.sprite_list_names:
+            setattr(self, l + "_list", None)
+
+        self.shape_list_names = [ "window", "bubble" ]
+        for s in self.shape_list_names:
+            setattr(self, l + "_list", None)
 
     def setup(self):
         if DEBUG:
             self.timer = Performance_timer("Setup started")
 
-        # Alla arcade sprites och sprites_list här
+        # Skapa listor
+        for l in self.sprite_list_names:
+            setattr(self, l + "_list", arcade.SpriteList())
         self.window_list = self.create_windows()
-        self.pfish_list = arcade.SpriteList()
-        self.bfish_list = arcade.SpriteList()
-        self.shark_list = arcade.SpriteList()
-        self.carrot_list = arcade.SpriteList()
-        self.plant_blueberry_list = arcade.SpriteList()
-        self.plant_foreground_list = arcade.SpriteList()
-        self.fish_egg_list = arcade.SpriteList()
-        self.all_sprite_list = arcade.SpriteList()
+        self.bubble_list = self.create_bubbles()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
