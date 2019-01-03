@@ -23,6 +23,8 @@ A simulator by Furniture Corp.
 - [ ] Credits
   - [ ] Länkar till där Jonte har snott bilderna (han jobbar på det)
 
+### v0.9
+- [ ] Fiskarna simmar ner och lägger endast ägg på marken
 
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
@@ -38,7 +40,7 @@ A simulator by Furniture Corp.
   - [ ] Antal ätna morötter
   - [ ] Antal lagda ägg
 - [ ] Funktion för att visa statistik
-- [ ] Fixa sprites för pfish som är andra färger
+- [x] Fixa sprites för pfish som är andra färger
 
 ### v0.7
 - [x] System för köttätande fisk
