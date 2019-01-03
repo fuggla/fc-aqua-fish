@@ -268,29 +268,31 @@ class MyGame(arcade.Window, State):
             self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, dx, dy):
-        # Fönster som är i läge "dragged" följer musens kordinater
-        if self.show_windows:
-            for w in self.window_list:
-                if w.is_dragged():
-                    w.move(dx, dy)
+        for w in self.get_open_windows(dragged_only=True):
+            w.move(dx, dy)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
-        # Fönster kan triggas av att muspekaren klickas ovanför en knapp
-        if self.show_windows:
-            for w in self.window_list:
-                if w.is_open():
-                    w.on_mouse_press(x, y)
+        for w in self.get_open_windows():
+            w.on_mouse_press(x, y)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
-        # Fönster kan triggas av att muspekaren släpps ovan för en knapp
-        if self.show_windows:
-            for w in self.window_list:
-                if w.is_open():
-                    w.on_mouse_release(x, y)
+        for w in self.get_open_windows():
+            w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused and self.pause.is_closed():
             self.play()
+
+    # Hämta alla tillgängliga fönster
+    def get_open_windows(self, dragged_only=False):
+        open_windows = []
+        if self.show_windows:
+            for w in self.window_list:
+                if w.is_dragged():
+                    return [ w ]
+                elif w.is_open() and not dragged_only:
+                    open_windows.append(w)
+        return open_windows
 
     def buy_fish(self, name):
         fish = None
