@@ -299,20 +299,13 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)])
-            self.pfish_list.append(fish)
+            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
         elif (name == "bfish"):
-            fish = BfishSprite(self.carrot_list, self.bfish_list, self.shark_list)
+            fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=SCREEN_HEIGHT, setspeed_y=-30)
             self.bfish_list.append(fish)
-            self.all_sprite_list.append(fish)
         elif (name == "shark"):
-            fish = SharkSprite(self.bfish_list, event=self.event)
+            fish = SharkSprite(self.bfish_list, setpos_y = SCREEN_HEIGHT, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
-            self.all_sprite_list.append(fish)
-
-        # Glid in ovanifrån
-        fish.setpos_y = SCREEN_HEIGHT
-        fish.setspeed_y = -30
 
         # Done and done
         self.all_sprite_list.append(fish)
