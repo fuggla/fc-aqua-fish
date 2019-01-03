@@ -4,7 +4,7 @@ from vars import SPRITE_SCALING_PLANT_BLUEBERRY, SCREEN_WIDTH, SCREEN_HEIGHT, SA
 
 class PlantBlueberry(arcade.Sprite):
     # Klass för blåbärsplantan
-    def __init__(self, plant_blueberry_list):
+    def __init__(self, plant_blueberry_list, index_plant):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -14,19 +14,6 @@ class PlantBlueberry(arcade.Sprite):
 
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
-
-        if random.random() < 0.5:
-            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png",
-                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
-            # Skapa ett objekt för bären med koordinater och True/False
-            self.berry_info = [[self.center_x, self.center_y], [self.center_x - 100, self.center_y], False, False]
-        else:
-            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", mirrored=True,
-                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
-            # Skapa ett objekt för bären med koordinater och True/False
-            self.berry_info = [[self.center_x, self.center_y], [self.center_x + 100, self.center_y], False, False]
-
-        self.texture = self.texture_plant_blueberry
 
         # Placera ut blåbärsplantan
         self.try_place_number = 5
@@ -42,6 +29,7 @@ class PlantBlueberry(arcade.Sprite):
                 test_center_x = random.randint(int(self.sw * 0.05), int(self.sw * 0.35))
             else:
                 test_center_x = random.randint(int(self.sw * 0.65), int(self.sw * 0.95))
+
             test_center_y = random.randint(int(self.sh * self.sr), int(self.sh * self.sr * 1.3))
             for coordinates in self.illegal_coordinates:
                 if coordinates[0] < test_center_x < coordinates[1]:
@@ -52,6 +40,21 @@ class PlantBlueberry(arcade.Sprite):
 
         self.center_x = test_center_x
         self.center_y = test_center_y
+
+        if random.random() < 0.5:
+            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png",
+                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+            # Skapa ett objekt för bären med koordinater, True/False, index för planta och index för gren
+            self.berry_info = [[self.center_x + 20, self.center_y + 20], [self.center_x - 25, self.center_y], False, False,
+                               index_plant]
+        else:
+            self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", mirrored=True,
+                                                               scale=SPRITE_SCALING_PLANT_BLUEBERRY)
+            # Skapa ett objekt för bären med koordinater, True/False, index för planta och index för gren
+            self.berry_info = [[self.center_x - 20, self.center_y + 20], [self.center_x + 25, self.center_y], False, False,
+                               index_plant]
+
+        self.texture = self.texture_plant_blueberry
 
 
     def update(self):

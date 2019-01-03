@@ -34,6 +34,7 @@ class MyGame(arcade.Window, State):
         self.frame_count = 0
         self.show_windows = True
         self.background = None
+        self.berry_info_list = []
 
         # Skapa shapes och sprites som <NAMN>_list
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
@@ -72,8 +73,9 @@ class MyGame(arcade.Window, State):
 
         # Skapa blåbärsväxter
         for i in range(PLANT_BLUEBERRY_NUMBER):
-            plant_blueberry = PlantBlueberry(self.plant_blueberry_list)
+            plant_blueberry = PlantBlueberry(self.plant_blueberry_list, i)
             self.plant_blueberry_list.append(plant_blueberry)
+            self.berry_info_list.append(plant_blueberry.berry_info)
 
         # Skapa förgrundsväxter
         for i in range(PLANT_FOREGROUND_NUMBER):
@@ -228,10 +230,13 @@ class MyGame(arcade.Window, State):
                 egg.age += 1
 
             """ Stega igenom blåbärsplantorna """
-            for plant in self.plant_blueberry_list:
-                if random.randrange(1000) < plant_blueberry_grow_rate:
-                    berry = BlueberrySprite(plant.center_x, plant.center_y)
-                    self.blueberry_list.append(berry)
+            for i in range(len(self.berry_info_list)):
+                for k in range(2):
+                    if random.randrange(1000) < plant_blueberry_grow_rate and not self.berry_info_list[i][2 + k]:
+                        berry = BlueberrySprite(self.berry_info_list[i][k][0], self.berry_info_list[i][k][1],
+                                                self.berry_info_list[i][4], k)
+                        self.berry_info_list[i][2 + k] = True
+                        self.blueberry_list.append(berry)
 
             """ Flytta bubblor """
             for b in self.bubble_list:
