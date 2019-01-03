@@ -6,6 +6,8 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types, math
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands
+from arcade.key import *
 from classes.state import State
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
@@ -35,7 +37,6 @@ class MyGame(arcade.Window, State):
         self.background = None
         self.center_cords = (width // 2, height // 2)
         self.width_height = (width, height)
-        self.berry_info_list = []
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
