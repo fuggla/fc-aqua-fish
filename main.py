@@ -130,7 +130,7 @@ class MyGame(arcade.Window, State):
         # Rita FPS uppe i högra hörnet
         self.fps_counter.draw()
 
-    def update(self, delta_time):
+    def update(self, dt):
 
         # Uppdatera all när spelet är igång
         if self.is_playing():
@@ -238,12 +238,12 @@ class MyGame(arcade.Window, State):
 
             """ Flytta bubblor """
             for b in self.bubble_list:
-                b.update(delta_time)
+                b.update(dt)
 
             self.event.update()
-            self.fade.update(delta_time)
+            self.fade.update(dt)
 
-        self.fps_counter.calculate(delta_time)
+        self.fps_counter.calculate(dt)
         self.frame_count += 1
 
     def on_key_release(self, key, key_modifiers):
@@ -270,12 +270,12 @@ class MyGame(arcade.Window, State):
         elif (key == key.SPACE):
             self.show_windows = not self.show_windows
 
-    def on_mouse_motion(self, x, y, delta_x, delta_y):
+    def on_mouse_motion(self, x, y, dx, dy):
         # Fönster som är i läge "dragged" följer musens kordinater
         if self.show_windows:
             for w in self.window_list:
                 if w.is_dragged():
-                    w.move(delta_x, delta_y)
+                    w.move(dx, dy)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         # Fönster kan triggas av att muspekaren klickas ovanför en knapp
