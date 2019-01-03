@@ -252,24 +252,19 @@ class MyGame(arcade.Window, State):
         self.frame_count += 1
 
     def on_key_release(self, key, key_modifiers):
-        # Avsluta spel
-        if (key == Q):
+        if (key == Q): # Avsluta
             window_commands.close_window()
-        # Starta om
-        elif (key == R):
+        elif (key == R): # Starta om
             self.setup()
-        # Visa pausemeny
-        elif (key == ESCAPE):
-            self.pause.toggle() # Fönster
-            self.toggle_pause()  # State
-        elif (key == F1):
+        elif (key == ESCAPE): # Visa pausmeny och pausa
+            self.pause.toggle()
+            self.toggle_pause()
+        elif (key == F1): # Info om fiskar
             global DIAGNOSE_FISH
             DIAGNOSE_FISH = not DIAGNOSE_FISH
-        elif (key == F2):
+        elif (key == F2): # Visa FPS
             self.fps_counter.toggle()
-        elif (key == F3):
-            self.fade.start()
-        elif (key == SPACE):
+        elif (key == SPACE): # Visa fönster
             self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, dx, dy):
