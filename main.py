@@ -144,7 +144,7 @@ class MyGame(arcade.Window, State):
 
             """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
             if random.randrange(1000) < carrot_frequency:
-                carrot = CarrotSprite()
+                carrot = CarrotSprite(setspeed_y=-20)
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
@@ -326,7 +326,7 @@ class MyGame(arcade.Window, State):
         self.buy_fish("bfish")
 
     def buy_carrot(self):
-        carrot = CarrotSprite()
+        carrot = CarrotSprite(setspeed_y=-20)
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")

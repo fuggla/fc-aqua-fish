@@ -4,7 +4,7 @@ from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO,
 
 class CarrotSprite(arcade.Sprite):
     # Klass för morötter
-    def __init__(self):
+    def __init__(self, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -24,7 +24,7 @@ class CarrotSprite(arcade.Sprite):
 
         # Definiera variabler
         self.change_x = 0
-        self.change_y = 0
+        self.change_y = setspeed_y or 0
         self.acc_right = 0
         self.acc_left = 0
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
