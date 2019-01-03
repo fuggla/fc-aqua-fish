@@ -298,6 +298,7 @@ class MyGame(arcade.Window, State):
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
             fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
