@@ -160,12 +160,13 @@ class FishSprite(arcade.Sprite):
                 partner_cor.append([partner.center_x, partner.center_y])
 
         if possible_partner_list:
-            # Beräkna avståndet till den partner som är närmast
+            # Beräkna avståndet till den villiga partner som är närmast
             nerest_partner = [(partner_cor[0][0] - self.center_x), (partner_cor[0][1] - self.center_y)]
             for partner in partner_cor:
                 if ((partner[0] - self.center_x) ** 2 + (partner[1] - self.center_y) ** 2) < (
                         nerest_partner[0] ** 2 + nerest_partner[1] ** 2):
                     nerest_partner = [(partner[0] - self.center_x), (partner[1] - self.center_y)]
+                    possible_partner = partner
 
             # Beräkna vinkel och avstång mot partner
             ang = math.atan2(nerest_partner[1], nerest_partner[0])
@@ -180,6 +181,11 @@ class FishSprite(arcade.Sprite):
 
             self.acc_x = kiss_speed * math.cos(ang)
             self.acc_y = kiss_speed * math.sin(ang)
+
+    def try_to_kiss(self, possible_partner):
+        kisser = arcade.check_for_collision(self, possible_partner)
+        #if self.attraction == "m" and possible_partner.name_gender[1]
+
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat
