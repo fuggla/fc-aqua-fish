@@ -14,11 +14,17 @@ class PlantForeground(arcade.Sprite):
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
 
-        self.texture_plant_blueberry1 = arcade.load_texture("images/water_plant1.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
-        self.texture_plant_blueberry2 = arcade.load_texture("images/water_plant1.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        self.texture_plant_blueberry1 = arcade.load_texture("images/water_plant2.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        self.texture_plant_blueberry2 = arcade.load_texture("images/water_plant2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
 
         # Placera ut blåbärsplantan
         self.try_place_number = 5
+
+        if random.random() < 0.5:
+            self.texture = self.texture_plant_blueberry1
+        else:
+            self.texture = self.texture_plant_blueberry2
+
 
         self.illegal_coordinates = []
         for plant in self.plant_blueberry_list:
@@ -29,10 +35,8 @@ class PlantForeground(arcade.Sprite):
             self.not_placed = False
             if random.random() < 0.5:
                 test_center_x = random.randrange(int(self.sw * 0.02), int(self.sw * 0.15))
-                self.texture = self.texture_plant_blueberry2
             else:
                 test_center_x = random.randint(int(self.sw * 0.85), int(self.sw * 0.98))
-                self.texture = self.texture_plant_blueberry1
             test_center_y = random.randint(int(self.sh * self.sr * 0.4), int(self.sh * self.sr * 0.6))
             for coordinates in self.illegal_coordinates:
                 if coordinates[0] < test_center_x < coordinates[1]:

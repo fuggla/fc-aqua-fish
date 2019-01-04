@@ -45,12 +45,12 @@ class PlantBlueberry(arcade.Sprite):
             self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png",
                                                                scale=SPRITE_SCALING_PLANT_BLUEBERRY)
             # Skapa ett objekt för bären med koordinater, True/False, index för planta och index för gren
-            self.berry_info = [[self.center_x + 20, self.center_y + 20], [self.center_x - 25, self.center_y]]
+            self.berry_info = [[self.center_x + 15, self.center_y + 15], [self.center_x - 10, self.center_y - 50]]
         else:
             self.texture_plant_blueberry = arcade.load_texture("images/water_plant1.png", mirrored=True,
                                                                scale=SPRITE_SCALING_PLANT_BLUEBERRY)
             # Skapa ett objekt för bären med koordinater, True/False, index för planta och index för gren
-            self.berry_info = [[self.center_x - 20, self.center_y + 20], [self.center_x + 25, self.center_y]]
+            self.berry_info = [[self.center_x - 15, self.center_y + 15], [self.center_x + 10, self.center_y - 50]]
 
         self.texture = self.texture_plant_blueberry
 
