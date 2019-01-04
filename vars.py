@@ -16,7 +16,7 @@ SAND_RATIO = 0.18           # Andel av skärmen täckt av sandbotten
 TICK_RATE = 60
 
 """ Egenskaper för morötterna """
-SPRITE_SCALING_CARROT = 0.3
+SPRITE_SCALING_CARROT = 0.25
 carrot_food_value = 1000
 carrot_frequency = 1
 
