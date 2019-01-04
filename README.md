@@ -42,6 +42,7 @@ A simulator by Furniture Corp.
 - [ ] Funktion för att visa statistik
 - [x] Fixa sprites för pfish som är andra färger
 - [ ] Se till att alla bilder kan användas och har länkar till källan
+- [ ] Startmeny (något separat från paus som bara visas när spelet startas)
 
 ### v0.7
 - [x] System för köttätande fisk
