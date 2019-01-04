@@ -24,14 +24,14 @@ A simulator by Furniture Corp.
   - [ ] Länkar till där Jonte har snott bilderna (han jobbar på det)
 
 ### v0.9
-- [ ] Fiskarna simmar ner och lägger endast ägg på marken
 
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
 - [ ] Herrarna och damerna måste pussas innan damerna kan lägga ägg
   - [ ] De blir puss-redo när de är mätta
-  - [ ] Någon form av animation då
-  - [ ] Slumpad chans för ägg när de pussas
+  - [ ] Någon form av pussanimation
+  - [ ] Slumpad chans för graviditet när de pussas
+  - [ ] Fiskarna simmar ner och lägger endast ägg på marken
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
 - [ ] Snyggare muspekare?
 - [ ] Spara statistik
@@ -41,6 +41,7 @@ A simulator by Furniture Corp.
   - [ ] Antal lagda ägg
 - [ ] Funktion för att visa statistik
 - [x] Fixa sprites för pfish som är andra färger
+- [ ] Se till att alla bilder kan användas och har länkar till källan
 
 ### v0.7
 - [x] System för köttätande fisk
