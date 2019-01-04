@@ -23,8 +23,6 @@ class FishSprite(arcade.Sprite):
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
 
-        self.name_gender = fish_names[random.randrange(fish_names_length)]
-
         self.health = random.randint(10000, 15000)
         self.base_health = self.health
         self.hunting_spirit = 0
@@ -35,6 +33,38 @@ class FishSprite(arcade.Sprite):
 
         # För kommunikation ut från objekt
         self.event = event or None
+
+        # Fiskarnas namn, kön och sexualitet
+        self.name_gender = fish_names[random.randrange(fish_names_length)]
+        self.pregnant = False
+        self.ready_to_lay_egg = False
+        self.kiss_spirit = 1000
+        chans = random.random()
+
+        # Damfisk
+        if self.name_gender[1] == "f":
+            if chans < 0.95:
+                self.attracted_by = "m"
+            if 0.98 >= chans >= 0.95:
+                self.attracted_by = "f"
+            else:
+                self.attracted_by = "fgm"
+        # Herrfisk
+        if self.name_gender[1] == "m":
+            if chans < 0.95:
+                self.attracted_by = "f"
+            if 0.98 >= chans >= 0.95:
+                self.attracted_by = "m"
+            else:
+                self.attracted_by = "fgm"
+        # Genderfluid
+        if self.name_gender[1] == "g":
+            if chans < 0.33:
+                self.attracted_by = "fg"
+            if 0.66 >= chans >= 0.33:
+                self.attracted_by = "mg"
+            else:
+                self.attracted_by = "fgm"
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
@@ -114,6 +144,36 @@ class FishSprite(arcade.Sprite):
             foodspeed = random.random() * self.finforce / self.mass
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
+
+    def choose_chase_partner(self, possible_partner_list):
+        # metod för att vända sig mot och accelerera mot närmaste partner
+
+        partner_cor = []
+        # Spara alla möjliga partners koordinater i partner_cor
+        for partner in possible_partner_list:
+            if self.name_gender[1] == "m" and partner.name_gender[1] == "f":
+                partner_cor.append([partner.center_x, partner.center_y])
+
+        # Beräkna avståndet till den partner som är närmast
+        nerest_partner = [(partner_cor[0][0] - self.center_x), (partner_cor[0][1] - self.center_y)]
+        for partner in partner_cor:
+            if ((partner[0] - self.center_x) ** 2 + (partner[1] - self.center_y) ** 2) < (
+                    nerest_partner[0] ** 2 + nerest_partner[1] ** 2):
+                nerest_partner = [(partner[0] - self.center_x), (partner[1] - self.center_y)]
+
+        # Beräkna vinkel och avstång mot partner
+        ang = math.atan2(nerest_partner[1], nerest_partner[0])
+        dist_square = (nerest_partner[0] ** 2 + nerest_partner[1] ** 2)
+        self.angle = math.degrees(ang)
+
+        # Om partnern är nära så saktar fisken in
+        if dist_square < 100 ** 2:
+            kiss_speed = self.finforce * (dist_square / 10000) / self.mass
+        else:
+            kiss_speed = self.finforce / self.mass
+
+        self.acc_x = kiss_speed * math.cos(ang)
+        self.acc_y = kiss_speed * math.sin(ang)
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat
