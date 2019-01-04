@@ -22,15 +22,15 @@ Klass för att visa ett fönster med knappar och text
 
 from classes.shape import Shape
 from queue import SimpleQueue
-from arcade import create_text, render_text, draw_rectangle_filled, draw_rectangle_outline, draw_text, color
+from arcade import create_text, render_text, draw_rectangle_filled, draw_rectangle_outline, draw_text, draw_lrtb_rectangle_filled
+from arcade.color import *
 
 class Window(Shape):
     def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
         super().__init__(x, y, w, h)
 
         # Ram och bakgrund
-        self.outline_size = outline_size
-        self.outline_color = outline_color
+        self.outline = [outline_color, outline_size]
         self.background_color = background_color
 
         # Text längst upp på fönstret
@@ -40,7 +40,7 @@ class Window(Shape):
         self.font_size = font_size
 
         # Fönstrets kanter
-        self.calculate_edge(x, y)
+        self.lrtb = self.calculate_edge(*self.pos)
 
         # Skugga bakom fönstret
         self.calculate_shadow()
@@ -57,14 +57,14 @@ class Window(Shape):
 
         # Stor ram längst upp på fönstret fungerar som en knapp
         self.button_list.append(Button(
-            x = self.left + self.w / 2,
-            y = self.top + self.title_height / 2,
-            h = self.title_height,
-            w = self.w,
-            outline_size = self.outline_size,
+            x = self.left + w / 2,
+            y = self.top + title_height / 2,
+            h = title_height,
+            w = w,
+            outline_size = outline_size,
             background_color = title_background_color,
             text = title,
-            font_size = self.font_size,
+            font_size = font_size,
             align = title_align,
             release = self.stop_dragging,
             press = self.start_dragging
@@ -72,15 +72,15 @@ class Window(Shape):
 
         # En X knapp i höger hörn för att stänga fönstret
         self.button_list.append(Button(
-            x = self.right - self.title_height / 2,
-            y = self.top + self.title_height / 2,
-            h = self.title_height,
-            w = self.title_height,
-            outline_size = self.outline_size,
-            outline_color = (0, 0, 0, 0),
+            x = self.right - title_height / 2,
+            y = self.top + title_height / 2,
+            h = title_height,
+            w = title_height,
+            outline_size = outline_size,
+            outline_color = BLACK,
             background_color = (100, 0, 0, 100),
             text = "X",
-            font_size = self.title_height - 10,
+            font_size = title_height - 10,
             release = self.close
         ))
 
@@ -109,21 +109,21 @@ class Window(Shape):
         return self.button_list
 
     # Kolla om det har klickats på en knapp i fönstret
-    def on_mouse_release(self, x, y):
+    def on_mouse_release(self, *pos):
         for b in self.button_list:
-            b.on_mouse_release(x, y)
+            b.on_mouse_release(*pos)
 
     # Kolla om det har klickats på en knapp i fönstret
-    def on_mouse_press(self, x, y):
+    def on_mouse_press(self, *pos):
         for b in self.button_list:
-            b.on_mouse_press(x, y)
+            b.on_mouse_press(*pos)
 
     # Rita fönster
     def draw(self):
         if self.is_open():
             draw_rectangle_filled(*self.drop_shadow)
-            draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
-            draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
+            draw_lrtb_rectangle_filled(*self.lrtb, self.background_color)
+            draw_rectangle_outline(*self.pos, *self.size, *self.outline)
             for button in self.button_list:
                 button.draw()
             for t in self.text_list:
@@ -136,8 +136,8 @@ class Window(Shape):
             y = self.top - margin_top - h / 2,
             w = w,
             h = h,
-            outline_color = color.BLACK,
-            background_color = color.GRAY,
+            outline_color = BLACK,
+            background_color = GRAY,
             text = text,
             font_size = font_size,
             release = release
@@ -174,25 +174,27 @@ class Window(Shape):
         self.top = y + self.h / 2
         self.bottom = y - self.h / 2
         self.right = x + self.w / 2
+        return [self.left, self.right, self.top, self.bottom]
 
     def calculate_shadow(self):
         self.drop_shadow=(self.x + 5, self.y - 5 + self.title_height / 2, self.w, self.h + self.title_height, (0, 0, 0, 64))
 
     # Flytta fönster relativt
-    def move(self, x, y):
+    def move(self, dx, dy):
         # Flytta fönster
-        self.x += x
-        self.y += y
+        self.x += dx
+        self.y += dy
+        self.pos = [self.x, self.y]
 
         # Räkna ut kanternas nya position
-        self.calculate_edge(self.x, self.y)
+        self.lrtb = self.calculate_edge(*self.pos)
 
         # Flytta skugga, knappar och text
         self.calculate_shadow()
         for b in self.button_list:
-            b.move(x, y)
+            b.move(dx, dy)
         for t in self.text_list:
-            t.move(x, y)
+            t.move(dx, dy)
 
 
 # Rektanglulära knappar
@@ -218,7 +220,7 @@ class Button(Shape):
     def draw(self):
         draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
         draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
-        draw_text(self.text, self.x, self.y, color.BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
+        draw_text(self.text, self.x, self.y, BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True

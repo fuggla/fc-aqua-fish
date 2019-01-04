@@ -10,9 +10,12 @@ class Shape():
         self.height = h
         self.width = w
 
-    def set_position(self, x, y):
-        self.x = x
-        self.y = y
+        # Storlek och position
+        self.size= [w, h]
+        self.pos = [x, y]
+
+    def set_position(self, pos):
+        self.pos = pos
 
     def get_position(self):
         return self.x, self.y
