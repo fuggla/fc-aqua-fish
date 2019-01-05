@@ -155,7 +155,7 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and fish.isalive and not fish.partner:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
