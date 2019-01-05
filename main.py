@@ -160,7 +160,7 @@ class MyGame(arcade.Window, State):
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
+                # Lägg ägg ifall fisken är gravid
                 if fish.pregnant:
                     fish.pregnant = False
                     egg = FishEggSprite(fish, "medium")
@@ -186,9 +186,9 @@ class MyGame(arcade.Window, State):
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < bfish_egg_freq:
-                    fish.health = fish.base_health
+                # Lägg ägg ifall fisken är gravid
+                if fish.pregnant:
+                    fish.pregnant = False
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
 
@@ -203,9 +203,9 @@ class MyGame(arcade.Window, State):
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < shark_egg_freq:
-                    fish.health = fish.base_health
+                # Lägg ägg ifall fisken är gravid
+                if fish.pregnant:
+                    fish.pregnant = False
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
 

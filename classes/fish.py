@@ -199,7 +199,7 @@ class FishSprite(arcade.Sprite):
         self.acc_y = kiss_speed * math.sin(ang)
 
         # Om de möts så pussas de. "male" + "female" kan ge graviditet
-        if arcade.check_for_collision(self, partner):
+        if (self.center_x - partner.center_x) ** 2 + (self.center_y - partner.center_y) ** 2 < self.width ** 2 * 0.7:
             self.kiss_spirit = 0
             partner.kiss_spirit = 0
             self.health = self.base_health
