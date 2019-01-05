@@ -21,6 +21,7 @@ class BfishSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or bfish_finforce
         self.size = size or bfish_size
+        self.base_size = self.size
         self.mass = mass or bfish_mass
         self.color = color or "blue"
         self.type = "bfish"

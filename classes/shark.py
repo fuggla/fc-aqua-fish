@@ -20,6 +20,7 @@ class SharkSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or shark_finforce
         self.size = size or shark_size
+        self.base_size = self.size
         self.mass = mass or shark_mass
         self.type = "shark"
         self.shark_list = shark_list

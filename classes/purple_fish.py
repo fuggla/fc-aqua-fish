@@ -20,6 +20,7 @@ class PfishSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or pfish_finforce
         self.size = size or pfish_size
+        self.base_size = self.size
         self.mass = mass or pfish_mass
         self.color = color or "purple"
         self.type = "pfish"
