@@ -81,6 +81,9 @@ class SharkSprite(FishSprite):
         if self.hunting_spirit <= 0 < self.tired:
             self.tired -= 1
 
+        if self.partner:
+            self.hunting_spirit = 0
+
         # Om hajarna jagar så jagar dom ordentligt
         if self.hunting_spirit > 0 and self.isalive:
             self.chase_fish()
