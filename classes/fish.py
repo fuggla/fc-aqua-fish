@@ -52,7 +52,7 @@ class FishSprite(arcade.Sprite):
         if self.name_gender[1] == "f":
             if rand < 0.95:
                 self.attraction = "m"
-            if 0.98 >= rand >= 0.95:
+            elif 0.98 >= rand >= 0.95:
                 self.attraction = "f"
             else:
                 self.attraction = "open minded"
@@ -60,7 +60,7 @@ class FishSprite(arcade.Sprite):
         if self.name_gender[1] == "m":
             if rand < 0.95:
                 self.attraction = "f"
-            if 0.98 >= rand >= 0.95:
+            elif 0.98 >= rand >= 0.95:
                 self.attraction = "m"
             else:
                 self.attraction = "open minded"
@@ -68,7 +68,7 @@ class FishSprite(arcade.Sprite):
         if self.name_gender[1] == "g":
             if rand < 0.2:
                 self.attraction = "f"
-            if 0.2 >= rand >= 0.4:
+            elif 0.2 >= rand >= 0.4:
                 self.attraction = "m"
             else:
                 self.attraction = "open minded"
