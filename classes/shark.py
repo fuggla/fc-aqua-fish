@@ -70,6 +70,12 @@ class SharkSprite(FishSprite):
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
+        # Kolla om de är vuxna
+        if self.size < self.base_size:
+            self.grown_up = False
+        else:
+            self.grown_up = True
+
         # Håll koll ifall fisken störs av någonting
         if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
             self.disturbed = True
@@ -77,7 +83,7 @@ class SharkSprite(FishSprite):
             self.disturbed = False
 
         # Om de är lugna och pigga kan de vilja börja jaga mat
-        if random.randrange(1000) < self.hunt_will and self.food_fish_list and self.hunting_spirit <= 0 and self.tired <= 0 and not self.disturbed:
+        if random.randrange(1000) < self.hunt_will and self.food_fish_list and self.hunting_spirit <= 0 and self.tired <= 0 and not self.disturbed and self.grown_up:
             self.hunting_spirit = random.randint(self.base_hunting_spirit / 2, self.base_hunting_spirit)
 
         if self.hunting_spirit <= 0 < self.tired:
@@ -97,7 +103,7 @@ class SharkSprite(FishSprite):
             self.random_move()
 
         # ifall fisken är mätt och pilsk och inte störd kan den bli sugen att pussas
-        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed:
+        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed and self.grown_up:
             self.kiss_spirit = 1000
 
         # Om de är sugna att pussas och inte störda letar de efter en partner
@@ -112,7 +118,7 @@ class SharkSprite(FishSprite):
         if self.partner and self.isalive:
             self.move_to_partner_kiss(self.partner)
 
-        # om fisken är gravid så flyttar den sig mot en bra plats att lägga äggen på
+        # Om fisken är gravid så flyttar den sig mot en bra plats att lägga äggen på
         if self.pregnant and self.isalive:
             self.move_lay_egg_position()
 

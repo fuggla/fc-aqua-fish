@@ -34,7 +34,7 @@ A simulator by Furniture Corp.
 - [ ] Metspö som kan fiska upp fiskarna
 
 ### v0.8
-- [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
+- [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
 - [x] System för kärlek mellan fiskarna  
   - [x] Herrarna och damerna måste pussas innan damerna kan lägga ägg
   - [x] De blir puss-redo när de är mätta

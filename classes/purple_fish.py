@@ -65,6 +65,12 @@ class PfishSprite(FishSprite):
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
+        # Kolla om de är vuxna
+        if self.size < self.base_size:
+            self.grown_up = False
+        else:
+            self.grown_up = True
+
         # Håll koll ifall fisken störs av någonting
         if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
             self.disturbed = True
@@ -80,7 +86,7 @@ class PfishSprite(FishSprite):
             self.chase_food()
 
         # ifall fisken är mätt och pilsk och inte störd kan den bli sugen att pussas
-        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed:
+        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed and self.grown_up:
             self.kiss_spirit = 1000
 
         # Om de är sugna att pussas och inte störda letar de efter en partner

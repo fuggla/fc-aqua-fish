@@ -47,6 +47,7 @@ class FishSprite(arcade.Sprite):
         self.ready_to_lay_egg = False
         self.kiss_spirit = 0
         self.egg_postition = [0, 0]
+        self.grown_up = True
 
         rand = random.random()
         # Damfisk
@@ -154,7 +155,7 @@ class FishSprite(arcade.Sprite):
             self.acc_y = foodspeed * math.sin(ang)
 
     def check_grow_up(self):
-        if self.frame_count >= 1000:
+        if self.frame_count >= 2000:
             self.size = self.base_size
             self.load_textures()
 
