@@ -34,7 +34,7 @@ class BfishSprite(FishSprite):
         self.food_objects_c = carrot_list
         self.food_objects_b = blueberry_list
         self.food_objects = self.food_objects_b
-        self.shoal_objects = bfish_list
+        self.bfish_list = bfish_list
         self.hunter_fish_list = hunter_list
 
         # texture 1 & 2 för höger och vänster
@@ -121,7 +121,7 @@ class BfishSprite(FishSprite):
         super().update()
     def shoal_move(self):
         """ Hämta in koordinater och hastihet från närmsta två blue_small_fish """
-        if len(self.shoal_objects) > 1:
+        if len(self.bfish_list) > 1:
 
             dist1 = 1000000000      # variable där avstånet (i kvadrat) till närmaste bfish sparas
             dist2 = 1000000000
@@ -132,7 +132,7 @@ class BfishSprite(FishSprite):
             index = 0
 
             # Stega igenom alla fiskar och spara index och avstånd om de är närmast eller näst närmast
-            for fish in self.shoal_objects:
+            for fish in self.bfish_list:
                 if fish.center_x == self.center_x and fish.center_y == self.center_y:   # Räkna bort sig själv
                     pass
                 elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist1:
@@ -142,19 +142,19 @@ class BfishSprite(FishSprite):
                     dist2 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
                     fish2 = index
                 index += 1
-            if len(self.shoal_objects) == 2:
+            if len(self.bfish_list) == 2:
                 # Spara x- & y-positioner för närmaste och näst närmaste fisk
-                midpos_x = self.shoal_objects[fish1].center_x
-                midpos_y = self.shoal_objects[fish1].center_y
+                midpos_x = self.bfish_list[fish1].center_x
+                midpos_y = self.bfish_list[fish1].center_y
 
 
-            elif len(self.shoal_objects) >= 3:
+            elif len(self.bfish_list) >= 3:
                 # Spara x- & y-positioner för närmaste och näst närmaste fisk
-                pos1_x = self.shoal_objects[fish1].center_x
-                pos1_y = self.shoal_objects[fish1].center_y
+                pos1_x = self.bfish_list[fish1].center_x
+                pos1_y = self.bfish_list[fish1].center_y
 
-                pos2_x = self.shoal_objects[fish2].center_x
-                pos2_y = self.shoal_objects[fish2].center_y
+                pos2_x = self.bfish_list[fish2].center_x
+                pos2_y = self.bfish_list[fish2].center_y
 
                 # Beräkna medelvärde för dessa positioner
                 midpos_x = (pos1_x + pos2_x) / 2

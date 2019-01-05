@@ -70,7 +70,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
-            shark = SharkSprite(self.bfish_list, self.event)
+            shark = SharkSprite(self.bfish_list, self.shark_list, self.event)
             self.shark_list.append(shark)
             self.all_sprite_list.append(shark)
 
@@ -173,7 +173,7 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and not fish.disturbeda:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
 
                 # Ätalgoritm för blue small fish
@@ -228,7 +228,7 @@ class MyGame(arcade.Window, State):
                         self.all_sprite_list.append(bfish)
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
+                        shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
                         self.shark_list.append(shark)
                         self.all_sprite_list.append(shark)
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
@@ -312,7 +312,7 @@ class MyGame(arcade.Window, State):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
         elif (name == "shark"):
-            fish = SharkSprite(self.bfish_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
+            fish = SharkSprite(self.bfish_list, self.shark_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
 
         # Done and done
