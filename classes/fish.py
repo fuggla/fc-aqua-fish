@@ -194,23 +194,37 @@ class FishSprite(arcade.Sprite):
         self.angle = math.degrees(ang)
         dist_square = (partner.center_x - self.center_x) ** 2 + (partner.center_y - self.center_y) ** 2
 
-        kiss_speed = self.finforce / self.mass
+
+        if self.type == "bfish":
+            break_dist = 300
+            stop_fak = 0.85
+        elif self.type == "pfish":
+            break_dist = 400
+            stop_fak = 0.6
+        elif self.type == "shark":
+            break_dist = 700
+            stop_fak = 0.8
+
+        if dist_square < break_dist ** 2:
+            kiss_speed = self.finforce * (dist_square / break_dist ** 2) / self.mass
+        else:
+            kiss_speed = self.finforce / self.mass
 
         # Accelerera mot partner
         self.acc_x = kiss_speed * math.cos(ang)
         self.acc_y = kiss_speed * math.sin(ang)
 
         # Om de möts så pussas de.
-        if (self.center_x - partner.center_x) ** 2 + (self.center_y - partner.center_y) ** 2 < self.width ** 2 * 0.7:
+        if (self.center_x - partner.center_x) ** 2 + (self.center_y - partner.center_y) ** 2 < self.width ** 2 * stop_fak:
             self.kiss_spirit = 0
             partner.kiss_spirit = 0
             self.health = self.base_health
             partner.health = partner.base_health
-            # "male" + "female" kan ge graviditet med 50 % chans
-            if self.name_gender[1] == "f" and partner.name_gender[1] == "m" and random.random() < 0.5:
+            # "male" + "female" kan ge graviditet med 70 % chans
+            if self.name_gender[1] == "f" and partner.name_gender[1] == "m" and random.random() <= 0.7:
                 self.pregnant = True
                 self.get_lay_egg_position()
-            if self.name_gender[1] == "m" and partner.name_gender[1] == "f" and random.random() < 0.5:
+            if self.name_gender[1] == "m" and partner.name_gender[1] == "f" and random.random() <= 0.7:
                 partner.pregnant = True
                 partner.get_lay_egg_position()
             # Fiskarna har inga långa förhållanden efter de pussats
@@ -230,12 +244,12 @@ class FishSprite(arcade.Sprite):
         dist_square = (self.egg_postition[0] - self.center_x) ** 2 + (self.egg_postition[1] - self.center_y) ** 2
 
         if dist_square < 200 ** 2:
-            eggspeed = self.finforce * (dist_square / 200 ** 2) / self.mass
+            egg_speed = self.finforce * (dist_square / 200 ** 2) / self.mass
         else:
-            eggspeed = self.finforce / self.mass
+            egg_speed = self.finforce / self.mass
 
-        self.acc_x = eggspeed * math.cos(ang)
-        self.acc_y = eggspeed * math.sin(ang)
+        self.acc_x = egg_speed * math.cos(ang)
+        self.acc_y = egg_speed * math.sin(ang)
 
         # Om fisken är nära rätt position kan den lägga ägg
         if dist_square < 50 ** 2:
