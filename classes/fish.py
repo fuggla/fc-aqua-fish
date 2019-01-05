@@ -41,8 +41,7 @@ class FishSprite(arcade.Sprite):
         # Variabler för statistik
         self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
         self.eaten_fish = 0                             # Antal uppätna fiskar
-        self.eaten_cattors = 0                          # Antal ätna (=tagit sista tuggan på) morötter
-        self.eaten_blueberrys = 0                       # Antal ätna (=tagit sista tuggan på) blåbär
+        self.eaten_food_objects = 0                     # Antal ätna (=tagit sista tuggan på) matobjekt
         self.laid_eggs = 0                              # Antal lagda ägg
         self.kiss_amount = 0                            # Antal gånger fisken har pussats
 
@@ -245,6 +244,8 @@ class FishSprite(arcade.Sprite):
                 partner.pregnant = True
                 partner.get_lay_egg_position()
             # Fiskarna har inga långa förhållanden efter de pussats
+            partner.kiss_amount += 1
+            self.kiss_amount += 1
             partner.partner = None
             self.partner = None
 
@@ -332,6 +333,7 @@ class FishSprite(arcade.Sprite):
             food.texture = food.texture_food4
         if food.food_value <= 0:              # När moroten är slut försvinner den
             food.kill()
+            self.eaten_food_objects += 1
 
 
     def eat_fish(self, prey):

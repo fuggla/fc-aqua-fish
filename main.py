@@ -164,6 +164,7 @@ class MyGame(arcade.Window, State):
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False
                     fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
 
@@ -191,6 +192,7 @@ class MyGame(arcade.Window, State):
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False
                     fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
 
@@ -209,6 +211,7 @@ class MyGame(arcade.Window, State):
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False
                     fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
 
