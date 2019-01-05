@@ -34,6 +34,7 @@ class FishSprite(arcade.Sprite):
         self.disturbed = False
         self.eat_speed = 0
         self.iseating = 0
+        self.frame_count = 0
         self.tick_rate = TICK_RATE
 
         # För kommunikation ut från objekt
@@ -151,6 +152,11 @@ class FishSprite(arcade.Sprite):
             foodspeed = random.random() * self.finforce / self.mass
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
+
+    def check_grow_up(self):
+        if self.frame_count >= 1000:
+            self.size = self.base_size
+            self.load_textures()
 
     def find_partner(self, possible_partner_list):
         # metod för att hitta en villig partner

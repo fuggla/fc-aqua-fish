@@ -20,7 +20,8 @@ class SharkSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or shark_finforce
         self.size = size or shark_size
-        self.base_size = self.size
+        self.base_size = shark_size
+        self.scaling = SPRITE_SCALING_SHARK
         self.mass = mass or shark_mass
         self.type = "shark"
         self.shark_list = shark_list
@@ -35,18 +36,18 @@ class SharkSprite(FishSprite):
         self.tired = 0
 
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
-        self.frame_count = 0
 
-        # texture 1 & 2 för höger och vänster
-        scale_factor = SPRITE_SCALING_SHARK*self.size/8
-        self.texture_left1 = arcade.load_texture("images/shark1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture("images/shark2.png", mirrored=True, scale=scale_factor)
-        self.texture_left_eat1 = arcade.load_texture("images/shark_eat1.png", mirrored=True, scale=scale_factor)
-        self.texture_left_eat2 = arcade.load_texture("images/shark_eat2.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture("images/shark1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture("images/shark2.png", scale=scale_factor)
-        self.texture_right_eat1 = arcade.load_texture("images/shark_eat1.png", scale=scale_factor)
-        self.texture_right_eat2 = arcade.load_texture("images/shark_eat2.png", scale=scale_factor)
+        # Ladda in texturer
+        self.texture_left1 = None
+        self.texture_left2 = None
+        self.texture_left_eat1 = None
+        self.texture_left_eat2 = None
+        self.texture_right1 = None
+        self.texture_right2 = None
+        self.texture_right_eat1 = None
+        self.texture_right_eat2 = None
+
+        self.load_textures()
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -120,6 +121,9 @@ class SharkSprite(FishSprite):
             self.acc_x = 0
             self.acc_y = 0
 
+        if self.size < self.base_size:
+            self.check_grow_up()
+
         if self.health <= 0:
             self.die()
 
@@ -150,3 +154,15 @@ class SharkSprite(FishSprite):
 
         # Anropa huvudklassen
         super().update()
+
+    def load_textures(self):
+        # texture 1 & 2 för höger och vänster
+        scale_factor = self.scaling * self.size / 8
+        self.texture_left1 = arcade.load_texture("images/shark1.png", mirrored=True, scale=scale_factor)
+        self.texture_left2 = arcade.load_texture("images/shark2.png", mirrored=True, scale=scale_factor)
+        self.texture_left_eat1 = arcade.load_texture("images/shark_eat1.png", mirrored=True, scale=scale_factor)
+        self.texture_left_eat2 = arcade.load_texture("images/shark_eat2.png", mirrored=True, scale=scale_factor)
+        self.texture_right1 = arcade.load_texture("images/shark1.png", scale=scale_factor)
+        self.texture_right2 = arcade.load_texture("images/shark2.png", scale=scale_factor)
+        self.texture_right_eat1 = arcade.load_texture("images/shark_eat1.png", scale=scale_factor)
+        self.texture_right_eat2 = arcade.load_texture("images/shark_eat2.png", scale=scale_factor)

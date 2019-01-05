@@ -21,7 +21,8 @@ class BfishSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or bfish_finforce
         self.size = size or bfish_size
-        self.base_size = self.size
+        self.base_size = bfish_size
+        self.scaling = SPRITE_SCALING_BFISH
         self.mass = mass or bfish_mass
         self.color = color or "blue"
         self.type = "bfish"
@@ -31,7 +32,6 @@ class BfishSprite(FishSprite):
         self.eat_speed = 5
 
         self.relaxed = [True, True]  # Pfish blir nervös nära kanter
-        self.frame_count = 0
 
         self.food_objects_c = carrot_list
         self.food_objects_b = blueberry_list
@@ -39,22 +39,15 @@ class BfishSprite(FishSprite):
         self.bfish_list = bfish_list
         self.hunter_fish_list = hunter_list
 
-        # texture 1 & 2 för höger och vänster
-        scale_factor = SPRITE_SCALING_BFISH * self.size / 8
-        if color == "green":
-            self.texture_left1 = arcade.load_texture("images/green_fish1.png", mirrored=True, scale=scale_factor)
-            self.texture_left2 = arcade.load_texture("images/green_fish2.png", mirrored=True, scale=scale_factor)
-            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
-            self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
-            self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
-            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)
-        else:
-            self.texture_left1 = arcade.load_texture("images/blue_small_fish1.png", mirrored=True, scale=scale_factor)
-            self.texture_left2 = arcade.load_texture("images/blue_small_fish2.png", mirrored=True, scale=scale_factor)
-            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
-            self.texture_right1 = arcade.load_texture("images/blue_small_fish1.png", scale=scale_factor)
-            self.texture_right2 = arcade.load_texture("images/blue_small_fish2.png", scale=scale_factor)
-            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)
+        # Ladda in texturer
+        self.texture_left1 = None
+        self.texture_left2 = None
+        self.texture_left8 = None
+        self.texture_right1 = None
+        self.texture_right2 = None
+        self.texture_right8 = None
+
+        self.load_textures()
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -128,6 +121,9 @@ class BfishSprite(FishSprite):
 
         self.flee_from_close_fish()
 
+        if self.size < self.base_size:
+            self.check_grow_up()
+
         if self.health <= 0:
             self.die()
 
@@ -199,3 +195,21 @@ class BfishSprite(FishSprite):
             shoal_speed = random.random() * self.finforce / self.mass
             self.acc_x = shoal_speed * math.cos(ang)
             self.acc_y = shoal_speed * math.sin(ang)
+
+    def load_textures(self):
+        # texture 1 & 2 för höger och vänster
+        scale_factor = self.scaling * self.size / 8
+        if self.color == "green":
+            self.texture_left1 = arcade.load_texture("images/green_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/green_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/green_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/green_fish2.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)
+        else:
+            self.texture_left1 = arcade.load_texture("images/blue_small_fish1.png", mirrored=True, scale=scale_factor)
+            self.texture_left2 = arcade.load_texture("images/blue_small_fish2.png", mirrored=True, scale=scale_factor)
+            self.texture_left8 = arcade.load_texture("images/blue_small_fish_eat.png", mirrored=True, scale=scale_factor)
+            self.texture_right1 = arcade.load_texture("images/blue_small_fish1.png", scale=scale_factor)
+            self.texture_right2 = arcade.load_texture("images/blue_small_fish2.png", scale=scale_factor)
+            self.texture_right8 = arcade.load_texture("images/blue_small_fish_eat.png", scale=scale_factor)

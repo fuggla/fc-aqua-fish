@@ -20,7 +20,8 @@ class PfishSprite(FishSprite):
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or pfish_finforce
         self.size = size or pfish_size
-        self.base_size = self.size
+        self.base_size = pfish_size
+        self.scaling = SPRITE_SCALING_PFISH
         self.mass = mass or pfish_mass
         self.color = color or "purple"
         self.type = "pfish"
@@ -31,17 +32,17 @@ class PfishSprite(FishSprite):
         self.eat_speed = 8                      # Denna variabel styr hur intensivt de äter
 
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
-        self.frame_count = 0
         self.food_objects = carrot_list
 
-        # texture 1 & 2 för höger och vänster
-        scale_factor = SPRITE_SCALING_PFISH*self.size/8
-        self.texture_left1 = arcade.load_texture(f"images/{self.color}_fish1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture(f"images/{self.color}_fish2.png", mirrored=True, scale=scale_factor)
-        self.texture_left8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture(f"images/{self.color}_fish1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture(f"images/{self.color}_fish2.png", scale=scale_factor)
-        self.texture_right8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", scale=scale_factor)
+        # Ladda in texturer för pfish
+        self.texture_left1 = None
+        self.texture_left2 = None
+        self.texture_left8 = None
+        self.texture_right1 = None
+        self.texture_right2 = None
+        self.texture_right8 = None
+
+        self.load_textures()
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -103,6 +104,9 @@ class PfishSprite(FishSprite):
             self.acc_x = 0
             self.acc_y = 0
 
+        if self.size < self.base_size:
+            self.check_grow_up()
+
         if self.health <= 0:
             self.die()
 
@@ -128,5 +132,15 @@ class PfishSprite(FishSprite):
 
         # Anropa huvudklassen
         super().update()
+
+    def load_textures(self):
+        # texture 1 & 2 för höger och vänster
+        scale_factor = self.scaling*self.size/8
+        self.texture_left1 = arcade.load_texture(f"images/{self.color}_fish1.png", mirrored=True, scale=scale_factor)
+        self.texture_left2 = arcade.load_texture(f"images/{self.color}_fish2.png", mirrored=True, scale=scale_factor)
+        self.texture_left8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", mirrored=True, scale=scale_factor)
+        self.texture_right1 = arcade.load_texture(f"images/{self.color}_fish1.png", scale=scale_factor)
+        self.texture_right2 = arcade.load_texture(f"images/{self.color}_fish2.png", scale=scale_factor)
+        self.texture_right8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", scale=scale_factor)
 
 

@@ -24,7 +24,7 @@ from classes.fade import Fade
 from classes.fps import Fps
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
 
 class MyGame(arcade.Window, State):
@@ -218,17 +218,20 @@ class MyGame(arcade.Window, State):
                     egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, size=pfish_size*0.5)
                         self.pfish_list.append(pfish)
                         self.all_sprite_list.append(pfish)
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, size=pfish_size*0.25)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
+                        shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, event=self.event, size=pfish_size*0.6)
                         self.shark_list.append(shark)
                         self.all_sprite_list.append(shark)
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
