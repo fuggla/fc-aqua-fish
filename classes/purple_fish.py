@@ -6,7 +6,7 @@ from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_day
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
-    def __init__(self, carrot_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
+    def __init__(self, carrot_list, pfish_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
                  color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -23,6 +23,7 @@ class PfishSprite(FishSprite):
         self.mass = mass or pfish_mass
         self.color = color or "purple"
         self.type = "pfish"
+        self.pfish_list = pfish_list
 
         self.findelay = pfish_findelay          # Hur ofta viftar de med fenorna
         self.findelay_base = self.findelay
@@ -66,15 +67,25 @@ class PfishSprite(FishSprite):
             self.relaxed[1] = True
 
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and not self.partner and self.isalive:
             self.random_move()
 
         # Om de är lugna och kan de vilja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and not self.partner and self.isalive:
             self.chase_food()
 
+        if self.relaxed == [True, True] and self.health > self.base_health and random.randrange(1000) < 10 and not self.partner and self.isalive:
+            self.kiss_spirit = 1000
+
+        if self.kiss_spirit > 0:
+            self.find_partner(self.pfish_list)
+            self.kiss_spirit -= 1
+
+        if self.partner:
+            self.move_to_partner_kiss(self.partner)
+
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and not self.partner and self.isalive:
             self.acc_x = 0
             self.acc_y = 0
 

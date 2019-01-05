@@ -58,7 +58,7 @@ class MyGame(arcade.Window, State):
         """ Skapa alla fiskar """
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(self.carrot_list)
+            pfish = PfishSprite(self.carrot_list, self.pfish_list)
             self.pfish_list.append(pfish)
             self.all_sprite_list.append(pfish)
 
@@ -161,8 +161,7 @@ class MyGame(arcade.Window, State):
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < pfish_egg_freq:
-                    fish.health = fish.base_health
+                if fish.pregnant:
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
 
@@ -215,7 +214,7 @@ class MyGame(arcade.Window, State):
                     egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
                         self.pfish_list.append(pfish)
                         self.all_sprite_list.append(pfish)
                     if egg.origin == "bfish":
@@ -303,7 +302,7 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            fish = PfishSprite(self.carrot_list, self.pfish_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)

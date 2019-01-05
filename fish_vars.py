@@ -1,7 +1,7 @@
 
 
 """ Egenskaper för purple fish """
-PFISH_NUMBER = 4
+PFISH_NUMBER = 6
 SPRITE_SCALING_PFISH = 0.1
 
 pfish_eager = 5             # Hur ofta byter fiskarna riktning

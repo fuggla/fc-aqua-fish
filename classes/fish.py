@@ -148,32 +148,41 @@ class FishSprite(arcade.Sprite):
 
     def find_partner(self, possible_partner_list):
         # metod för att hitta en villig partner
-        partner_list = []
         # Spara alla möjliga partners koordinater i patner_list
         # Loopen letar efter villiga partners med kön som fisken attraheras av
+        attraction_list = []
         for partner in possible_partner_list:
             if self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0:
-                partner_list.append([partner.center_x, partner.center_y])
+                attraction_list.append(partner)
             elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0:
-                partner_list.append([partner.center_x, partner.center_y])
+                attraction_list.append(partner)
             elif self.attraction == "open minded" and partner.kiss_spirit > 0:
-                partner_list.append([partner.center_x, partner.center_y])
+                attraction_list.append(partner)
 
+        if attraction_list:
+            # Kolla vilka möjliga partners fisken attraheras av som attraheras av fisken
+            partner_list = []
+            for partner in attraction_list:
+                if partner.attraction == "m" and self.name_gender[1] == "m":
+                    partner_list.append(partner)
+                elif partner.attraction == "f" and self.name_gender[1] == "f":
+                    partner_list.append(partner)
+                elif self.attraction == "open minded":
+                    partner_list.append(partner)
 
+            # I slutändan är det omöjligt att veta vad som får två fiskar att bli kära i varandra
+            partner = random.choice(partner_list)
 
-    def move_to_partner(self):
-        # Beräkna avståndet till den villiga partner som är närmast
-        nerest_partner = [(partner_list[0][0] - self.center_x), (partner_list[0][1] - self.center_y)]
-        for partner in partner_list:
-            if ((partner[0] - self.center_x) ** 2 + (partner[1] - self.center_y) ** 2) < (
-                    nerest_partner[0] ** 2 + nerest_partner[1] ** 2):
-                nerest_partner = [(partner[0] - self.center_x), (partner[1] - self.center_y)]
-                possible_partner = partner
+            # Spara kärleken i variabeln "partner"
+            self.partner = partner
+            partner.partner = self
+
+    def move_to_partner_kiss(self, partner):
 
         # Beräkna vinkel och avstång mot partner
-        ang = math.atan2(nerest_partner[1], nerest_partner[0])
-        dist_square = (nerest_partner[0] ** 2 + nerest_partner[1] ** 2)
+        ang = math.atan2((partner.center_y - self.center_y), (partner.center_x - self.center_x))
         self.angle = math.degrees(ang)
+        dist_square = (partner.center_x - self.center_x) ** 2 + (partner.center_y - self.center_y) ** 2
 
         # Om partnern är nära så saktar fisken in
         if dist_square < 100 ** 2:
@@ -181,13 +190,22 @@ class FishSprite(arcade.Sprite):
         else:
             kiss_speed = self.finforce / self.mass
 
+        # Accelerera mot partner
         self.acc_x = kiss_speed * math.cos(ang)
         self.acc_y = kiss_speed * math.sin(ang)
 
-    def move_to_hatch(self):
-        kisser = arcade.check_for_collision(self, possible_partner)
-        #if self.attraction == "m" and possible_partner.name_gender[1]
-
+        # Om de möts så pussas de. "male" + "female" kan ge graviditet
+        if arcade.check_for_collision(self, partner):
+            self.kiss_spirit = 0
+            partner.kiss_spirit = 0
+            self.health = self.base_health
+            partner.health = partner.base_health
+            if self.name_gender[1] == "f" and partner.name_gender[1] == "m":
+                self.pregnant = True
+            if self.name_gender[1] == "m" and partner.name_gender[1] == "f":
+                partner.pregnant = True
+            partner.partner = None
+            self.partner = None
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat
@@ -308,10 +326,14 @@ class FishSprite(arcade.Sprite):
     def animate(self):
         # Animering av fiskarna
         if self.iseating == 0:
-            self.angle = 0
 
             # Ändra fenfrekvens utifrån totalacceleration
-            self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
+            self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y)) / self.finforce + 1))
+
+            if self.kiss_spirit <= 0:
+                self.angle = 0
+            else:
+                self.findelay = self.findelay * 2
 
             # Vänd dem i x-hastighetens riktning
             if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
