@@ -31,6 +31,7 @@ class FishSprite(arcade.Sprite):
         self.base_health = self.health
         self.hunting_spirit = 0
         self.isalive = True
+        self.disturbed = False
         self.eat_speed = 0
         self.iseating = 0
         self.tick_rate = TICK_RATE
@@ -178,7 +179,8 @@ class FishSprite(arcade.Sprite):
                     partner_list.append(partner)
 
             # I slutändan är det omöjligt att veta vad som får två fiskar att bli kära i varandra
-            partner = random.choice(partner_list)
+            if partner_list:
+                partner = random.choice(partner_list)
 
             # Spara kärleken i variabeln "partner"
             self.partner = partner

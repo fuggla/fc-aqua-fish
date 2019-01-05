@@ -56,6 +56,11 @@ class PfishSprite(FishSprite):
 
     def update(self):
 
+        if not self.isalive or self.pregnant or self.partner:
+            self.disturbed = True
+        else:
+            self.disturbed = False
+
         # De blir lugna av att befinna sig i mitter av akvariet
         if 0.15 * self.sw < self.center_x < 0.85 * self.sw:
             self.relaxed[0] = True
@@ -63,27 +68,30 @@ class PfishSprite(FishSprite):
             self.relaxed[1] = True
 
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and not self.partner and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and not self.disturbed:
             self.random_move()
 
         # Om de är lugna och kan de vilja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and not self.partner and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and not self.disturbed:
             self.chase_food()
 
-        if self.relaxed == [True, True] and self.health > self.base_health and random.randrange(1000) < 10 and not self.partner and self.isalive:
+        if self.relaxed == [True, True] and self.health > self.base_health and random.randrange(1000) < 10 and not self.disturbed:
             self.kiss_spirit = 1000
 
-        if self.kiss_spirit > 0 and not self.partner:
+        if self.kiss_spirit > 0 and not self.disturbed:
             self.find_partner(self.pfish_list)
 
         if self.kiss_spirit > 0:
             self.kiss_spirit -= 1
 
-        if self.partner:
+        if self.partner and self.isalive:
             self.move_to_partner_kiss(self.partner)
 
+        if self.pregnant and self.isalive:
+            self.move_lay_egg_position()
+
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and not self.partner and self.isalive:
+        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and not self.disturbed:
             self.acc_x = 0
             self.acc_y = 0
 

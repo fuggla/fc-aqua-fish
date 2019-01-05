@@ -161,7 +161,7 @@ class MyGame(arcade.Window, State):
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är gravid
-                if fish.pregnant:
+                if fish.ready_to_lay_egg:
                     fish.pregnant = False
                     fish.ready_to_lay_egg = False
                     egg = FishEggSprite(fish, "medium")
