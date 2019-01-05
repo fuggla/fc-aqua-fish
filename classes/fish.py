@@ -27,16 +27,24 @@ class FishSprite(arcade.Sprite):
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
 
+        # Definiera fiskegenskaper
         self.health = random.randint(10000, 15000)      # Detta är fiskarnas liv. Sjunker konstant men ökar av mat
         self.base_health = self.health
         self.hunting_spirit = 0                         # Denna variabel styr hur länge hajarna orkar jaga
         self.isalive = True
         self.disturbed = False                          # Denna variable är True när fiskarnas beteendemönster bryts
         self.relaxed = [True, True]                     # Fiskarna blir nervösa nära kanterna
-        self.eat_speed = 0
-        self.iseating = 0
-        self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
+        self.eat_speed = 10                             # Animationshastighet då de äter
+        self.iseating = 0                               # Variable för att stanna upp lite kort efter de ätit
         self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
+
+        # Variabler för statistik
+        self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
+        self.eaten_fish = 0                             # Antal uppätna fiskar
+        self.eaten_cattors = 0                          # Antal ätna (=tagit sista tuggan på) morötter
+        self.eaten_blueberrys = 0                       # Antal ätna (=tagit sista tuggan på) blåbär
+        self.laid_eggs = 0                              # Antal lagda ägg
+        self.kiss_amount = 0                            # Antal gånger fisken har pussats
 
         # För kommunikation ut från objekt
         self.event = event or None
@@ -338,6 +346,7 @@ class FishSprite(arcade.Sprite):
                 self.texture = self.texture_left1
 
             prey.kill()
+            self.eaten_fish += 1
             self.event.put(self.get_name() + " ate " + prey.get_name())
 
     def die(self):

@@ -49,10 +49,11 @@ A simulator by Furniture Corp.
   - [ ] Fiskarna simmar bort från bubblan
 - [ ] Snyggare muspekare?
 - [ ] Spara statistik
-  - [ ] Haj kills
-  - [ ] Fisk livstid
+  - [x] Haj kills
+  - [x] Fisk livstid
   - [ ] Antal ätna morötter
   - [ ] Antal lagda ägg
+  - [ ] Antal pussar
 - [ ] Funktion för att visa statistik
 - [x] Fixa sprites för pfish som är andra färger
 - [x] Se till att alla bilder kan användas och har länkar till källan
