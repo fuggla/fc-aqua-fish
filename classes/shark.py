@@ -1,6 +1,5 @@
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SCREEN_WIDTH, SCREEN_HEIGHT
 from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hunt_will, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
 
 # Klass för hajarna (Shark_fish)
@@ -32,12 +31,8 @@ class SharkSprite(FishSprite):
         self.base_hunting_spirit = shark_hunting_spirit
         self.tired = 0
 
-
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
-
-        self.sw = SCREEN_WIDTH
-        self.sh = SCREEN_HEIGHT
 
         # texture 1 & 2 för höger och vänster
         scale_factor = SPRITE_SCALING_SHARK*self.size/8

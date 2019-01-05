@@ -1,7 +1,6 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SCREEN_WIDTH, SCREEN_HEIGHT
 from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
 
 # Klass för små blå fiskar (blue_fish)
@@ -32,8 +31,6 @@ class BfishSprite(FishSprite):
         self.relaxed = [True, True]  # Pfish blir nervös nära kanter
         self.frame_count = 0
 
-        self.sw = SCREEN_WIDTH
-        self.sh = SCREEN_HEIGHT
         self.food_objects_c = carrot_list
         self.food_objects_b = blueberry_list
         self.food_objects = self.food_objects_b

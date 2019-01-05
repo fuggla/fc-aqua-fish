@@ -1,7 +1,6 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from vars import SCREEN_WIDTH, SCREEN_HEIGHT
 from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_daydream, pfish_finforce, pfish_mass, pfish_size, pfish_findelay
 
 # Klass för lila fiskar (Purple_fish)
@@ -31,9 +30,6 @@ class PfishSprite(FishSprite):
 
         self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.frame_count = 0
-
-        self.sw = SCREEN_WIDTH
-        self.sh = SCREEN_HEIGHT
         self.food_objects = carrot_list
 
         # texture 1 & 2 för höger och vänster

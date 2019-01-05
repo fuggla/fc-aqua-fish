@@ -1,6 +1,6 @@
 
 import arcade, random, math, csv
-from vars import TICK_RATE
+from vars import TICK_RATE, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO
 
 # Läs fisknamn från names.csv
 fish_names = []
@@ -14,6 +14,10 @@ class FishSprite(arcade.Sprite):
     def __init__(self, event=None):
         # Anropa Sprite konstruktor
         super().__init__()
+
+        self.sw = SCREEN_WIDTH
+        self.sh = SCREEN_HEIGHT
+        self.sr = SAND_RATIO
 
         # Definiera hastighet och acceleration
         self.change_x = 0       # x_hastighet
@@ -210,6 +214,8 @@ class FishSprite(arcade.Sprite):
                 partner.pregnant = True
             partner.partner = None
             self.partner = None
+    def lay_egg_move(self):
+        pass
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat
