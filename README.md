@@ -32,6 +32,9 @@ A simulator by Furniture Corp.
   - [ ] Fiskar och morötter faller ner i akvariet
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
+- [ ] Förbättra prestanda
+  - [ ] Lägre updateringsfrekvens för många fiskmetoder
+  - [ ] Lägre updateringsfrekvens för informationsdispay
 
 ### v0.8
 - [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
