@@ -83,22 +83,45 @@ class BfishSprite(FishSprite):
             self.disturbed = False
 
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:
+        if random.randrange(1000) < self.eager and not self.disturbed:
             self.random_move()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.conformity and self.isalive:
+        # Om de inte är störda kommer de att vilja simma i stim
+        if random.randrange(1000) < self.conformity and not self.disturbed:
             self.shoal_move()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+        # Om de inte är störda kan de vilja jaga morötter
+        if random.randrange(1000) < self.hungry and not self.disturbed:
             self.food_objects = self.food_objects_c
             self.chase_food()
 
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and self.isalive:
+        # Men de prioriterar blåbär
+        if random.randrange(1000) < self.hungry and not self.disturbed:
             self.food_objects = self.food_objects_b
             self.chase_food()
 
+        # ifall fisken är mätt och pilsk och inte störd kan den bli sugen att pussas
+        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed:
+            self.kiss_spirit = 1000
+
+        # Om de är sugna att pussas och inte störda letar de efter en partner
+        if self.kiss_spirit > 0 and not self.disturbed:
+            self.find_partner(self.bfish_list)
+
+        # De tröttnas ifall de inte hittar någon
+        if self.kiss_spirit > 0:
+            self.kiss_spirit -= 1
+
+        # Finns det en partner och fisken lever så flyttar den sig mot den
+        if self.partner and self.isalive:
+            self.move_to_partner_kiss(self.partner)
+
+        # om fisken är gravid så flyttar den sig mot en bra plats att lägga äggen på
+        if self.pregnant and self.isalive:
+            self.move_lay_egg_position()
+
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and self.isalive:
+        if random.randrange(1000) < self.daydream and not self.disturbed:
             self.acc_x = 0
             self.acc_y = 0
 
@@ -122,7 +145,10 @@ class BfishSprite(FishSprite):
 
         # Updatera animationen
         if self.isalive:
-            self.animate()
+            if self.partner:
+                self.animate_love()
+            else:
+                self.animate()
 
         # Anropa huvudklassen
         super().update()
