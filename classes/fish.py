@@ -44,6 +44,7 @@ class FishSprite(arcade.Sprite):
         self.pregnant = False
         self.ready_to_lay_egg = False
         self.kiss_spirit = 0
+        self.egg_postition = [0, 0]
 
         rand = random.random()
         # Damfisk
@@ -190,12 +191,6 @@ class FishSprite(arcade.Sprite):
         self.angle = math.degrees(ang)
         dist_square = (partner.center_x - self.center_x) ** 2 + (partner.center_y - self.center_y) ** 2
 
-        # Om partnern är nära så saktar fisken in
-        if dist_square < 100 ** 2:
-            kiss_speed = self.finforce * (dist_square / 10000) / self.mass
-        else:
-            kiss_speed = self.finforce / self.mass
-
         kiss_speed = self.finforce / self.mass
 
         # Accelerera mot partner
@@ -210,12 +205,31 @@ class FishSprite(arcade.Sprite):
             partner.health = partner.base_health
             if self.name_gender[1] == "f" and partner.name_gender[1] == "m":
                 self.pregnant = True
+                self.get_lay_egg_position()
             if self.name_gender[1] == "m" and partner.name_gender[1] == "f":
                 partner.pregnant = True
+                partner.get_lay_egg_position()
             partner.partner = None
             self.partner = None
-    def lay_egg_move(self):
-        pass
+
+    def get_lay_egg_position(self):
+        # Metod för att hitta en plats där fisken kan lägga ägg
+        self.egg_postition[0] = random.randrange(int(self.sw * 0.1), int(self.sw * 0.9))
+        self.egg_postition[1] = random.randrange(int(self.sh * self.sr * 0.3), int(self.sh * self.sr))
+
+    def move_lay_egg_position(self):
+        # Metd för att hitta en plats där fisken kan lägga ägg
+        # Beräkna vinkel och avstånd i kvadrat mot positionen
+        ang = math.atan2(self.egg_postition[1] - self.center_y, self.egg_postition[0] - self.center_x)
+        self.angle = math.degrees(ang)
+        dist_square = (self.egg_postition[0] - self.center_x) ** 2 + (self.egg_postition[1] - self.center_y) ** 2
+
+        eggspeed = self.finforce / self.mass
+        self.acc_x = eggspeed * math.cos(ang)
+        self.acc_y = eggspeed * math.sin(ang)
+
+        if dist_square < 50 ** 2:
+            self.ready_to_lay_egg = True
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat

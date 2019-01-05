@@ -163,6 +163,7 @@ class MyGame(arcade.Window, State):
                 # Lägg ägg ifall fisken är gravid
                 if fish.pregnant:
                     fish.pregnant = False
+                    fish.ready_to_lay_egg = False
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
 
