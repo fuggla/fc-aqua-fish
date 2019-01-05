@@ -229,7 +229,11 @@ class FishSprite(arcade.Sprite):
         self.angle = math.degrees(ang)
         dist_square = (self.egg_postition[0] - self.center_x) ** 2 + (self.egg_postition[1] - self.center_y) ** 2
 
-        eggspeed = self.finforce / self.mass
+        if dist_square < 200 ** 2:
+            eggspeed = self.finforce * (dist_square / 200 ** 2) / self.mass
+        else:
+            eggspeed = self.finforce / self.mass
+
         self.acc_x = eggspeed * math.cos(ang)
         self.acc_y = eggspeed * math.sin(ang)
 
