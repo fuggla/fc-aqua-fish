@@ -36,33 +36,33 @@ class FishSprite(arcade.Sprite):
 
         # Fiskarnas namn, kön och sexualitet
         self.name_gender = fish_names[random.randrange(fish_names_length)]
-        self.is_kissing = False
+        self.partner = None
         self.pregnant = False
         self.ready_to_lay_egg = False
         self.kiss_spirit = 0
-        chans = random.random()
 
+        rand = random.random()
         # Damfisk
         if self.name_gender[1] == "f":
-            if chans < 0.95:
+            if rand < 0.95:
                 self.attraction = "m"
-            if 0.98 >= chans >= 0.95:
+            if 0.98 >= rand >= 0.95:
                 self.attraction = "f"
             else:
                 self.attraction = "open minded"
         # Herrfisk
         if self.name_gender[1] == "m":
-            if chans < 0.95:
+            if rand < 0.95:
                 self.attraction = "f"
-            if 0.98 >= chans >= 0.95:
+            if 0.98 >= rand >= 0.95:
                 self.attraction = "m"
             else:
                 self.attraction = "open minded"
         # Genderfluid
         if self.name_gender[1] == "g":
-            if chans < 0.2:
+            if rand < 0.2:
                 self.attraction = "f"
-            if 0.2 >= chans >= 0.4:
+            if 0.2 >= rand >= 0.4:
                 self.attraction = "m"
             else:
                 self.attraction = "open minded"
@@ -146,43 +146,45 @@ class FishSprite(arcade.Sprite):
             self.acc_x = foodspeed * math.cos(ang)
             self.acc_y = foodspeed * math.sin(ang)
 
-    def choose_chase_partner(self, possible_partner_list):
-        # metod för att vända sig mot och accelerera mot närmaste villiga partner som fisken attraheras av
-        partner_cor = []
-        # Spara alla möjliga partners koordinater i partner_cor
+    def find_partner(self, possible_partner_list):
+        # metod för att hitta en villig partner
+        partner_list = []
+        # Spara alla möjliga partners koordinater i patner_list
         # Loopen letar efter villiga partners med kön som fisken attraheras av
         for partner in possible_partner_list:
             if self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0:
-                partner_cor.append([partner.center_x, partner.center_y])
+                partner_list.append([partner.center_x, partner.center_y])
             elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0:
-                partner_cor.append([partner.center_x, partner.center_y])
+                partner_list.append([partner.center_x, partner.center_y])
             elif self.attraction == "open minded" and partner.kiss_spirit > 0:
-                partner_cor.append([partner.center_x, partner.center_y])
+                partner_list.append([partner.center_x, partner.center_y])
 
-        if possible_partner_list:
-            # Beräkna avståndet till den villiga partner som är närmast
-            nerest_partner = [(partner_cor[0][0] - self.center_x), (partner_cor[0][1] - self.center_y)]
-            for partner in partner_cor:
-                if ((partner[0] - self.center_x) ** 2 + (partner[1] - self.center_y) ** 2) < (
-                        nerest_partner[0] ** 2 + nerest_partner[1] ** 2):
-                    nerest_partner = [(partner[0] - self.center_x), (partner[1] - self.center_y)]
-                    possible_partner = partner
 
-            # Beräkna vinkel och avstång mot partner
-            ang = math.atan2(nerest_partner[1], nerest_partner[0])
-            dist_square = (nerest_partner[0] ** 2 + nerest_partner[1] ** 2)
-            self.angle = math.degrees(ang)
 
-            # Om partnern är nära så saktar fisken in
-            if dist_square < 100 ** 2:
-                kiss_speed = self.finforce * (dist_square / 10000) / self.mass
-            else:
-                kiss_speed = self.finforce / self.mass
+    def move_to_partner(self):
+        # Beräkna avståndet till den villiga partner som är närmast
+        nerest_partner = [(partner_list[0][0] - self.center_x), (partner_list[0][1] - self.center_y)]
+        for partner in partner_list:
+            if ((partner[0] - self.center_x) ** 2 + (partner[1] - self.center_y) ** 2) < (
+                    nerest_partner[0] ** 2 + nerest_partner[1] ** 2):
+                nerest_partner = [(partner[0] - self.center_x), (partner[1] - self.center_y)]
+                possible_partner = partner
 
-            self.acc_x = kiss_speed * math.cos(ang)
-            self.acc_y = kiss_speed * math.sin(ang)
+        # Beräkna vinkel och avstång mot partner
+        ang = math.atan2(nerest_partner[1], nerest_partner[0])
+        dist_square = (nerest_partner[0] ** 2 + nerest_partner[1] ** 2)
+        self.angle = math.degrees(ang)
 
-    def try_to_kiss(self, possible_partner):
+        # Om partnern är nära så saktar fisken in
+        if dist_square < 100 ** 2:
+            kiss_speed = self.finforce * (dist_square / 10000) / self.mass
+        else:
+            kiss_speed = self.finforce / self.mass
+
+        self.acc_x = kiss_speed * math.cos(ang)
+        self.acc_y = kiss_speed * math.sin(ang)
+
+    def move_to_hatch(self):
         kisser = arcade.check_for_collision(self, possible_partner)
         #if self.attraction == "m" and possible_partner.name_gender[1]
 
