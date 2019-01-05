@@ -56,42 +56,48 @@ class PfishSprite(FishSprite):
 
     def update(self):
 
-        if not self.isalive or self.pregnant or self.partner:
-            self.disturbed = True
-        else:
-            self.disturbed = False
-
         # De blir lugna av att befinna sig i mitter av akvariet
         if 0.15 * self.sw < self.center_x < 0.85 * self.sw:
             self.relaxed[0] = True
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
 
+        # Håll koll ifall fisken störs av någonting
+        if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
+            self.disturbed = True
+        else:
+            self.disturbed = False
+
         # Om de är lugna kan de vilja ändra riktning
-        if self.relaxed == [True, True] and random.randrange(1000) < self.eager and not self.disturbed:
+        if random.randrange(1000) < self.eager and not self.disturbed:
             self.random_move()
 
         # Om de är lugna och kan de vilja jaga mat
-        if self.relaxed == [True, True] and random.randrange(1000) < self.hungry and not self.disturbed:
+        if random.randrange(1000) < self.hungry and not self.disturbed:
             self.chase_food()
 
-        if self.relaxed == [True, True] and self.health > self.base_health and random.randrange(1000) < 10 and not self.disturbed:
+        # ifall fisken är mätt och pilsk och inte störd kan den bli sugen att pussas
+        if self.health > self.base_health and random.randrange(1000) < 10 and not self.disturbed:
             self.kiss_spirit = 1000
 
+        # Om de är sugna att pussas och inte störda letar de efter en partner
         if self.kiss_spirit > 0 and not self.disturbed:
             self.find_partner(self.pfish_list)
 
+        # De tröttnas ifall de inte hittar någon
         if self.kiss_spirit > 0:
             self.kiss_spirit -= 1
 
+        # Finns det en partner och fisken lever så flyttar den sig mot den
         if self.partner and self.isalive:
             self.move_to_partner_kiss(self.partner)
 
+        # om fisken är gravid så flyttar den sig mot en bra plats att lägga äggen på
         if self.pregnant and self.isalive:
             self.move_lay_egg_position()
 
         # Om de är lugna kan de börja dagdrömma
-        if self.relaxed == [True, True] and random.randrange(1000) < self.daydream and not self.disturbed:
+        if random.randrange(1000) < self.daydream and not self.disturbed:
             self.acc_x = 0
             self.acc_y = 0
 

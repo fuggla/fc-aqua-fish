@@ -156,35 +156,36 @@ class FishSprite(arcade.Sprite):
         # metod för att hitta en villig partner
         # Spara alla möjliga partners koordinater i patner_list
         # Loopen letar efter villiga partners med kön som fisken attraheras av
-        attraction_list = []
-        for partner in possible_partner_list:
-            if self == partner:
-                pass
-            elif self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0 and not partner.partner:
-                attraction_list.append(partner)
-            elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0 and not partner.partner:
-                attraction_list.append(partner)
-            elif self.attraction == "open minded" and partner.kiss_spirit > 0 and not partner.partner:
-                attraction_list.append(partner)
+        if possible_partner_list:
+            attraction_list = []
+            for partner in possible_partner_list:
+                if self == partner:
+                    pass
+                elif self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0 and not partner.partner:
+                    attraction_list.append(partner)
+                elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0 and not partner.partner:
+                    attraction_list.append(partner)
+                elif self.attraction == "open minded" and partner.kiss_spirit > 0 and not partner.partner:
+                    attraction_list.append(partner)
 
-        if attraction_list:
-            # Kolla vilka möjliga partners fisken attraheras av som attraheras av fisken
-            partner_list = []
-            for partner in attraction_list:
-                if partner.attraction == "m" and self.name_gender[1] == "m":
-                    partner_list.append(partner)
-                elif partner.attraction == "f" and self.name_gender[1] == "f":
-                    partner_list.append(partner)
-                elif self.attraction == "open minded":
-                    partner_list.append(partner)
+            if attraction_list:
+                # Kolla vilka möjliga partners fisken attraheras av som attraheras av fisken
+                partner_list = []
+                for partner in attraction_list:
+                    if partner.attraction == "m" and self.name_gender[1] == "m":
+                        partner_list.append(partner)
+                    elif partner.attraction == "f" and self.name_gender[1] == "f":
+                        partner_list.append(partner)
+                    elif self.attraction == "open minded":
+                        partner_list.append(partner)
 
-            # I slutändan är det omöjligt att veta vad som får två fiskar att bli kära i varandra
-            if partner_list:
-                partner = random.choice(partner_list)
+                # I slutändan är det omöjligt att veta vad som får två fiskar att bli kära i varandra
+                if partner_list:
+                    partner = random.choice(partner_list)
 
-            # Spara kärleken i variabeln "partner"
-            self.partner = partner
-            partner.partner = self
+                    # Spara kärleken i variabeln "partner"
+                    self.partner = partner
+                    partner.partner = self
 
     def move_to_partner_kiss(self, partner):
 
