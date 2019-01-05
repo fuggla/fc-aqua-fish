@@ -1,7 +1,7 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
+from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_conformity, bfish_daydream, bfish_kiss_will, bfish_finforce, bfish_mass, bfish_size, bfish_findelay
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
@@ -16,6 +16,7 @@ class BfishSprite(FishSprite):
         self.base_hungry = self.hungry
         self.conformity = conformity or bfish_conformity
         self.daydream = daydream or bfish_daydream
+        self.kiss_will = bfish_kiss_will
 
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or bfish_finforce
@@ -74,6 +75,12 @@ class BfishSprite(FishSprite):
             self.relaxed[0] = True
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
+
+        # Håll koll ifall fisken störs av någonting
+        if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
+            self.disturbed = True
+        else:
+            self.disturbed = False
 
         # Om de är lugna kan de vilja ändra riktning
         if self.relaxed == [True, True] and random.randrange(1000) < self.eager and self.isalive:

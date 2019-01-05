@@ -1,7 +1,7 @@
 
 import arcade, random, math
 from classes.fish import FishSprite
-from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_daydream, pfish_finforce, pfish_mass, pfish_size, pfish_findelay
+from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_daydream, pfish_kiss_will, pfish_finforce, pfish_mass, pfish_size, pfish_findelay
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
@@ -15,6 +15,7 @@ class PfishSprite(FishSprite):
         self.hungry = hungry or pfish_hungry              # Hur intresserade är de av mat
         self.base_hungry = self.hungry
         self.daydream = daydream or pfish_daydream
+        self.kiss_will = pfish_kiss_will
 
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or pfish_finforce
@@ -77,7 +78,7 @@ class PfishSprite(FishSprite):
             self.chase_food()
 
         # ifall fisken är mätt och pilsk och inte störd kan den bli sugen att pussas
-        if self.health > self.base_health and random.randrange(1000) < 10 and not self.disturbed:
+        if self.health > self.base_health and random.randrange(1000) < self.kiss_will and not self.disturbed:
             self.kiss_spirit = 1000
 
         # Om de är sugna att pussas och inte störda letar de efter en partner

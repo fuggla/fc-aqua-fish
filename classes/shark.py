@@ -1,6 +1,6 @@
 import arcade, random, math
 from classes.fish import FishSprite
-from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hunt_will, shark_daydream, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
+from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hunt_will, shark_daydream, shark_kiss_will, shark_finforce, shark_mass, shark_size, shark_findelay, shark_hunting_spirit
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
@@ -15,6 +15,7 @@ class SharkSprite(FishSprite):
         self.hunt_will = hunt_will or shark_hunt_will
         self.base_hungry = self.hungry
         self.daydream = daydream or shark_daydream
+        self.kiss_will = shark_kiss_will
 
         # Fiskarnas fysiska egenskaper
         self.finforce = finforce or shark_finforce
@@ -66,6 +67,12 @@ class SharkSprite(FishSprite):
             self.relaxed[0] = True
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
+
+        # Håll koll ifall fisken störs av någonting
+        if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
+            self.disturbed = True
+        else:
+            self.disturbed = False
 
         # Om de är lugna och pigga kan de vilja börja jaga mat
         if self.relaxed == [True, True] and random.randrange(1000) < self.hunt_will and self.food_fish_list \
