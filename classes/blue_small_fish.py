@@ -31,8 +31,6 @@ class BfishSprite(FishSprite):
         self.findelay_base = self.findelay
         self.eat_speed = 5
 
-        self.relaxed = [True, True]  # Pfish blir nervös nära kanter
-
         self.food_objects_c = carrot_list
         self.food_objects_b = blueberry_list
         self.food_objects = self.food_objects_b

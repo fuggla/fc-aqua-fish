@@ -27,20 +27,21 @@ class FishSprite(arcade.Sprite):
         self.break_x = 0        # negativ x_acceleration
         self.break_y = 0        # negativ y_acceleration
 
-        self.health = random.randint(10000, 15000)
+        self.health = random.randint(10000, 15000)      # Detta är fiskarnas liv. Sjunker konstant men ökar av mat
         self.base_health = self.health
-        self.hunting_spirit = 0
+        self.hunting_spirit = 0                         # Denna variabel styr hur länge hajarna orkar jaga
         self.isalive = True
-        self.disturbed = False
+        self.disturbed = False                          # Denna variable är True när fiskarnas beteendemönster bryts
+        self.relaxed = [True, True]                     # Fiskarna blir nervösa nära kanterna
         self.eat_speed = 0
         self.iseating = 0
-        self.frame_count = 0
-        self.tick_rate = TICK_RATE
+        self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
+        self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
 
         # För kommunikation ut från objekt
         self.event = event or None
 
-        # Fiskarnas namn, kön och sexualitet
+        # Dessa variabler styr reproduktionen av fiskarna
         self.name_gender = fish_names[random.randrange(fish_names_length)]
         self.partner = None
         self.pregnant = False
@@ -49,8 +50,9 @@ class FishSprite(arcade.Sprite):
         self.egg_postition = [0, 0]
         self.grown_up = True
 
+        # Här ställs fiskaras sexualitet in
         rand = random.random()
-        # Damfisk
+        # För damfisk
         if self.name_gender[1] == "f":
             if rand < 0.95:
                 self.attraction = "m"
@@ -58,7 +60,7 @@ class FishSprite(arcade.Sprite):
                 self.attraction = "f"
             else:
                 self.attraction = "open minded"
-        # Herrfisk
+        # För herrfisk
         if self.name_gender[1] == "m":
             if rand < 0.95:
                 self.attraction = "f"
@@ -66,7 +68,7 @@ class FishSprite(arcade.Sprite):
                 self.attraction = "m"
             else:
                 self.attraction = "open minded"
-        # Genderfluid
+        # För fiskar som definierar sig som genderfluid
         if self.name_gender[1] == "g":
             if rand < 0.2:
                 self.attraction = "f"

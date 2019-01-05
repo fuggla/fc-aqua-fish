@@ -35,8 +35,6 @@ class SharkSprite(FishSprite):
         self.base_hunting_spirit = shark_hunting_spirit
         self.tired = 0
 
-        self.relaxed = [True, True]             # Pfish blir nervös nära kanter
-
         # Ladda in texturer
         self.texture_left1 = None
         self.texture_left2 = None

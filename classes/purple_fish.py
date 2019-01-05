@@ -31,7 +31,6 @@ class PfishSprite(FishSprite):
         self.findelay_base = self.findelay
         self.eat_speed = 8                      # Denna variabel styr hur intensivt de äter
 
-        self.relaxed = [True, True]             # Pfish blir nervös nära kanter
         self.food_objects = carrot_list
 
         # Ladda in texturer för pfish
