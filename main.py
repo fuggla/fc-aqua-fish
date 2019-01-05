@@ -155,7 +155,7 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive and not fish.partner:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
@@ -173,7 +173,7 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbeda:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
 
                 # Ätalgoritm för blue small fish
@@ -181,15 +181,16 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är gravid
-                if fish.pregnant:
+                if fish.ready_to_lay_egg:
                     fish.pregnant = False
+                    fish.ready_to_lay_egg = False
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
 
@@ -199,14 +200,15 @@ class MyGame(arcade.Window, State):
                     fish.iseating -= 1
                 hit_list = check_for_collision_with_list(fish, self.bfish_list)
                 # Om fisken lever och det finns en blue small fish äter fisken den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_fish(hit_list[0])
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
                 # Lägg ägg ifall fisken är gravid
-                if fish.pregnant:
+                if fish.ready_to_lay_egg:
                     fish.pregnant = False
+                    fish.ready_to_lay_egg = False
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
 
