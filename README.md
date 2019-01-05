@@ -36,11 +36,11 @@ A simulator by Furniture Corp.
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
 - [ ] System för kärlek mellan fiskarna  
-  - [ ] Herrarna och damerna måste pussas innan damerna kan lägga ägg
-  - [ ] De blir puss-redo när de är mätta
-  - [ ] Någon form av pussanimation
+  - [x] Herrarna och damerna måste pussas innan damerna kan lägga ägg
+  - [x] De blir puss-redo när de är mätta
+  - [x] Någon form av pussanimation
   - [ ] Slumpad chans för graviditet när de pussas (herr + dam)
-  - [ ] Fiskarna simmar ner och lägger endast ägg på marken
+  - [x] Fiskarna simmar ner och lägger endast ägg på marken
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
   - [ ] Skapa en bubbelring där användaren klickar
   - [ ] Fiskarna simmar bort från bubblan
