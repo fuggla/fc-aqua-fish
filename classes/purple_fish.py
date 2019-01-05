@@ -119,7 +119,7 @@ class PfishSprite(FishSprite):
         self.health_calc()
 
         # Updatera animationen
-        if self.isalive:
+        if self.isalive and self.iseating == 0:
             if self.partner:
                 self.animate_love()
             else:

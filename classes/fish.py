@@ -206,10 +206,10 @@ class FishSprite(arcade.Sprite):
             partner.kiss_spirit = 0
             self.health = self.base_health
             partner.health = partner.base_health
-            if self.name_gender[1] == "f" and partner.name_gender[1] == "m":
+            if self.name_gender[1] == "f" and partner.name_gender[1] == "m" and random.random() < 0.5:
                 self.pregnant = True
                 self.get_lay_egg_position()
-            if self.name_gender[1] == "m" and partner.name_gender[1] == "f":
+            if self.name_gender[1] == "m" and partner.name_gender[1] == "f" and random.random() < 0.5:
                 partner.pregnant = True
                 partner.get_lay_egg_position()
             partner.partner = None
