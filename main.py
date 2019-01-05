@@ -162,6 +162,7 @@ class MyGame(arcade.Window, State):
                     fish.kill()
                 # Lägg ägg ifall fisken är mätt
                 if fish.pregnant:
+                    fish.pregnant = False
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
 

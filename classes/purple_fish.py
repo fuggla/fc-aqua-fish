@@ -77,8 +77,10 @@ class PfishSprite(FishSprite):
         if self.relaxed == [True, True] and self.health > self.base_health and random.randrange(1000) < 10 and not self.partner and self.isalive:
             self.kiss_spirit = 1000
 
-        if self.kiss_spirit > 0:
+        if self.kiss_spirit > 0 and not self.partner:
             self.find_partner(self.pfish_list)
+
+        if self.kiss_spirit > 0:
             self.kiss_spirit -= 1
 
         if self.partner:
@@ -107,7 +109,10 @@ class PfishSprite(FishSprite):
 
         # Updatera animationen
         if self.isalive:
-            self.animate()
+            if self.partner:
+                self.animate_love()
+            else:
+                self.animate()
 
         # Anropa huvudklassen
         super().update()

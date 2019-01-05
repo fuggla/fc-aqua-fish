@@ -152,11 +152,13 @@ class FishSprite(arcade.Sprite):
         # Loopen letar efter villiga partners med kön som fisken attraheras av
         attraction_list = []
         for partner in possible_partner_list:
-            if self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0:
+            if self == partner:
+                pass
+            elif self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0 and not partner.partner:
                 attraction_list.append(partner)
-            elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0:
+            elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0 and not partner.partner:
                 attraction_list.append(partner)
-            elif self.attraction == "open minded" and partner.kiss_spirit > 0:
+            elif self.attraction == "open minded" and partner.kiss_spirit > 0 and not partner.partner:
                 attraction_list.append(partner)
 
         if attraction_list:
@@ -189,6 +191,8 @@ class FishSprite(arcade.Sprite):
             kiss_speed = self.finforce * (dist_square / 10000) / self.mass
         else:
             kiss_speed = self.finforce / self.mass
+
+        kiss_speed = self.finforce / self.mass
 
         # Accelerera mot partner
         self.acc_x = kiss_speed * math.cos(ang)
@@ -327,13 +331,9 @@ class FishSprite(arcade.Sprite):
         # Animering av fiskarna
         if self.iseating == 0:
 
+            self.angle = 0
             # Ändra fenfrekvens utifrån totalacceleration
             self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y)) / self.finforce + 1))
-
-            if self.kiss_spirit <= 0:
-                self.angle = 0
-            else:
-                self.findelay = self.findelay * 2
 
             # Vänd dem i x-hastighetens riktning
             if self.change_x < 0 and not (self.whichtexture == 11 or self.whichtexture == 12):
@@ -391,6 +391,39 @@ class FishSprite(arcade.Sprite):
                     self.whichtexture = 12
                 elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
                     self.texture = self.texture_left_eat1
+                    self.whichtexture = 11
+
+    def animate_love(self):
+        # Animering rörelse mot partner
+            # Ändra fenfrekvens utifrån totalacceleration
+            self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
+
+            # Vänd dem i riktning mot partnern
+            if -90 < self.angle < 90:
+                # Ätanimation då fisken är riktad åt höger
+                if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
+                    self.texture = self.texture_right1
+                    self.whichtexture = 21
+
+                if self.frame_count % self.eat_speed == 0 and self.whichtexture == 21:
+                    self.texture = self.texture_right2
+                    self.whichtexture = 22
+                elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 22:
+                    self.texture = self.texture_right1
+                    self.whichtexture = 21
+
+            else:
+                # Ätanimation då fisken är riktad åt vänster
+                self.angle += 180
+                if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
+                    self.texture = self.texture_left1
+                    self.whichtexture = 11
+
+                if self.frame_count % self.eat_speed == 0 and self.whichtexture == 11:
+                    self.texture = self.texture_left2
+                    self.whichtexture = 12
+                elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
+                    self.texture = self.texture_left1
                     self.whichtexture = 11
 
     def get_name(self):
