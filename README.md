@@ -31,7 +31,7 @@ A simulator by Furniture Corp.
   - [ ] Puss
   - [ ] Fiskar och morötter faller ner i akvariet
   - [ ] Bakgrundsljud
--[ ] Metspö som kan fiska upp fiskarna
+- [ ] Metspö som kan fiska upp fiskarna
 
 ### v0.8
 - [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
