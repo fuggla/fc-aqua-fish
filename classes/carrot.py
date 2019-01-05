@@ -12,6 +12,8 @@ class CarrotSprite(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
         self.sr = SAND_RATIO
 
+        self.type = "carrot"
+
         self.texture_food1 = arcade.load_texture("images/carrot1.png", scale=SPRITE_SCALING_CARROT)
         self.texture_food2 = arcade.load_texture("images/carrot2.png", scale=SPRITE_SCALING_CARROT)
         self.texture_food3 = arcade.load_texture("images/carrot3.png", scale=SPRITE_SCALING_CARROT)

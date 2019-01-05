@@ -8,6 +8,8 @@ class BlueberrySprite(arcade.Sprite):
         # Anropa Sprite konstruktor
         super().__init__()
 
+        self.type = "blueberry"
+
         self.texture_food1 = arcade.load_texture("images/blueberry1.png", scale=SPRITE_SCALING_BLUEBERRY)
         self.texture_food2 = arcade.load_texture("images/blueberry2.png", scale=SPRITE_SCALING_BLUEBERRY)
         self.texture_food3 = arcade.load_texture("images/blueberry3.png", scale=SPRITE_SCALING_BLUEBERRY)

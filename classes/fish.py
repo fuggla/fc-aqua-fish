@@ -41,7 +41,8 @@ class FishSprite(arcade.Sprite):
         # Variabler för statistik
         self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
         self.eaten_fish = 0                             # Antal uppätna fiskar
-        self.eaten_food_objects = 0                     # Antal ätna (=tagit sista tuggan på) matobjekt
+        self.eaten_carrots = 0                          # Antal ätna (=tagit sista tuggan på) morötter
+        self.eaten_blueberries = 0                       # Antal ätna (=tagit sista tuggan på) blåbär
         self.laid_eggs = 0                              # Antal lagda ägg
         self.kiss_amount = 0                            # Antal gånger fisken har pussats
 
@@ -324,17 +325,19 @@ class FishSprite(arcade.Sprite):
         self.angle = ang_deg
         self.animate_eat_food()
 
-        food.food_value -= chew               # Fiskarna äter moroten
+        food.food_value -= chew                     # Fiskarna äter moroten
         if food.food_value <= 750:
             food.texture = food.texture_food2
         if food.food_value <= 500:
             food.texture = food.texture_food3
         if food.food_value <= 250:
             food.texture = food.texture_food4
-        if food.food_value <= 0:              # När moroten är slut försvinner den
-            food.kill()
-            self.eaten_food_objects += 1
-
+        if food.food_value <= 0:                    # När moroten är slut försvinner den
+            if food.type == "blueberry":            # Samla statistik
+                self.eaten_blueberries += 1
+            else:
+                self.eaten_carrots += 1
+            food.kill()                             # Maten har nu hamnat i fiskmagen
 
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:

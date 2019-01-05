@@ -48,10 +48,11 @@ A simulator by Furniture Corp.
   - [ ] Skapa en bubbelring där användaren klickar
   - [ ] Fiskarna simmar bort från bubblan
 - [ ] Snyggare muspekare?
-- [ ] Spara statistik
+- [x] Spara statistik
   - [x] Haj kills
   - [x] Fisk livstid
-  - [ ] Antal ätna morötter
+  - [x] Antal ätna morötter
+  - [x] Antal ätna blåbär
   - [x] Antal lagda ägg
   - [x] Antal pussar
 - [ ] Funktion för att visa statistik
