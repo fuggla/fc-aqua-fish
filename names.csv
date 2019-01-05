@@ -23,9 +23,9 @@ f,Alla Tyrell
 m,Allard Seaworth
 m,Alliser Thorne
 g,Alyn
-m,Alyn Ambrose
-m,Alyn Estermont
-m,Alyn Stackspear
+f,Alyn Ambrose
+f,Alyn Estermont
+f,Alyn Stackspear
 f,Alys Karstark
 f,Alysane Mormont
 m,Alyx Frey
@@ -121,7 +121,7 @@ g,Byam Flint
 m,Byan Votyris
 m,Byron
 m,Cadwyn
-m,Caleotte
+f,Caleotte
 f,Catelyn Tully
 m,Cayn
 m,Cellador
@@ -146,7 +146,7 @@ m,Colen of Greenpools
 m,Conn
 m,Conwy
 m,Corliss Penny
-m,Cortnay Penrose
+f,Cortnay Penrose
 m,Cotter Pyke
 m,Cragorn
 g,Craster
@@ -339,7 +339,7 @@ m,Harys Haigh
 m,Harys Swyft
 m,Helman Tallhart
 m,Heward
-m,High Sparrow
+g,High Sparrow
 m,Hobb
 m,Hobber Redwyne
 m,Hod
@@ -359,7 +359,6 @@ m,Hugh
 m,Hugo Vance
 m,Hullen
 g,Humfrey Swyft
-m,Husband
 m,Hyle Hunt
 m,Iggo
 m,Illyrio Mopatis
@@ -419,7 +418,7 @@ m,Jyck
 f,Jynessa Blackmont
 m,Karyl Vance
 m,Kedge Whiteye
-g,Kella
+f,Kella
 m,Kennos of Kayce
 m,Ketter
 m,Kenned
@@ -428,7 +427,7 @@ m,Kevan Lannister
 f,Kezmya
 m,Khorane Sathmantes
 m,Khrazz
-m,Kindly man
+g,Kindly man
 f,Kojja Mo
 m,Koss
 m,Kraznys mo Nakloz
@@ -593,7 +592,7 @@ m,Ondrew Locke
 m,Oppo
 m,Orell
 m,Orphan Oss
-g,Orton Merryweather
+m,Orton Merryweather
 m,Osfryd Kettleblack
 f,Osha
 m,Osmund Kettleblack
@@ -607,7 +606,7 @@ m,Owen Norrey
 m,Oznak zo Pahl
 f,Palla
 m,Parmen Crane
-m,Patchface
+g,Patchface
 m,Patrek of King's Mountain
 m,Patrek Mallister
 m,Paxter Redwyne
@@ -661,13 +660,13 @@ f,Randa
 m,Randyll Tarly
 m,Rast
 f,Ravella Swann
-g,Raymar Royce
+m,Raymar Royce
 m,Raymun Darry
 m,Raymund Frey
 m,Raynald Westerling
 m,Red Alyn
 m,Red Rolfe
-m,Reek
+g,Reek
 m,Renly Baratheon
 m,Reysen
 m,Reznak mo Reznak
@@ -889,7 +888,7 @@ m,Yezzan Zo Qaggaz
 m,Torwynd the Tame
 m,Talbert Serry
 f,Bridget
-f,Olly
+m,Olly
 f,Regine
 f,Catriona
 f,Constancy
