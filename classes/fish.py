@@ -200,18 +200,20 @@ class FishSprite(arcade.Sprite):
         self.acc_x = kiss_speed * math.cos(ang)
         self.acc_y = kiss_speed * math.sin(ang)
 
-        # Om de möts så pussas de. "male" + "female" kan ge graviditet
+        # Om de möts så pussas de.
         if (self.center_x - partner.center_x) ** 2 + (self.center_y - partner.center_y) ** 2 < self.width ** 2 * 0.7:
             self.kiss_spirit = 0
             partner.kiss_spirit = 0
             self.health = self.base_health
             partner.health = partner.base_health
+            # "male" + "female" kan ge graviditet med 50 % chans
             if self.name_gender[1] == "f" and partner.name_gender[1] == "m" and random.random() < 0.5:
                 self.pregnant = True
                 self.get_lay_egg_position()
             if self.name_gender[1] == "m" and partner.name_gender[1] == "f" and random.random() < 0.5:
                 partner.pregnant = True
                 partner.get_lay_egg_position()
+            # Fiskarna har inga långa förhållanden efter de pussats
             partner.partner = None
             self.partner = None
 
@@ -221,7 +223,7 @@ class FishSprite(arcade.Sprite):
         self.egg_postition[1] = random.randrange(int(self.sh * self.sr * 0.3), int(self.sh * self.sr))
 
     def move_lay_egg_position(self):
-        # Metd för att hitta en plats där fisken kan lägga ägg
+        # Metod för att hitta en plats där fisken kan lägga ägg
         # Beräkna vinkel och avstånd i kvadrat mot positionen
         ang = math.atan2(self.egg_postition[1] - self.center_y, self.egg_postition[0] - self.center_x)
         self.angle = math.degrees(ang)
@@ -231,6 +233,7 @@ class FishSprite(arcade.Sprite):
         self.acc_x = eggspeed * math.cos(ang)
         self.acc_y = eggspeed * math.sin(ang)
 
+        # Om fisken är nära rätt position kan den lägga ägg
         if dist_square < 50 ** 2:
             self.ready_to_lay_egg = True
 
