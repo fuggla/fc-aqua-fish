@@ -41,7 +41,7 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        self.standard_list_names = [ "window", "bubble", "berry_info" ]
+        self.standard_list_names = [ "window", "bubble", "berry_info", "button" ]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
@@ -54,6 +54,7 @@ class MyGame(arcade.Window, State):
         self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
+        self.button_list = self.create_main_menu()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -132,6 +133,8 @@ class MyGame(arcade.Window, State):
         elif self.is_main_menu():
             draw_rectangle_filled(*self.center_cords, *self.width_height,
             WHITE)
+            for b in self.button_list:
+                b.draw()
 
         self.fade.draw()
 
@@ -354,6 +357,12 @@ class MyGame(arcade.Window, State):
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")
+
+    def create_main_menu(self):
+        button_list = [
+            Button(*self.center_cords, 200, 100, "New Game"),
+        ]
+        return button_list
 
     def create_windows(self):
         # Fönster för händelser
