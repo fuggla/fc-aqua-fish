@@ -122,7 +122,7 @@ class FishSprite(arcade.Sprite):
 
         if -90 < self.angle < 90:
             # Ätanimation då fisken är riktad åt höger
-            if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
+            if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18 or self.whichtexture == 22:
                 self.texture = self.texture_right1
                 self.whichtexture = 21
 
@@ -136,7 +136,7 @@ class FishSprite(arcade.Sprite):
         else:
             # Ätanimation då fisken är riktad åt vänster
             self.angle += 180
-            if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
+            if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28 or self.whichtexture == 12:
                 self.texture = self.texture_left1
                 self.whichtexture = 11
 
