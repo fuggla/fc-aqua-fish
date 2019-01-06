@@ -283,8 +283,6 @@ class MyGame(arcade.Window, State):
             window_commands.close_window()
         elif (key == R): # Starta om
             self.setup()
-        elif self.is_main_menu() and (key == C):
-            self.play()
         elif self.is_main_menu():
             return
         elif (key == ESCAPE): # Visa pausmeny och pausa
