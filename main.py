@@ -55,7 +55,7 @@ class MyGame(arcade.Window, State):
         self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
-        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(32,128)))
+        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -132,8 +132,6 @@ class MyGame(arcade.Window, State):
                     w.draw()
 
         elif self.is_main_menu():
-            draw_rectangle_filled(*self.center_cords, *self.width_height,
-            WHITE)
             self.window_list[0].draw()
             for b in self.bubble_main_list:
                 b.draw()
@@ -389,7 +387,7 @@ class MyGame(arcade.Window, State):
 
         return [main, event, action, pause]
 
-    def create_bubbles(self, color=WHITE):
+    def create_bubbles(self, color=(255,255,255,randrange(128,255))):
         list = []
         for i in range(BUBBLE_MAPS):
             list.append(Bubble_map(color=color))

@@ -9,7 +9,7 @@ from vars import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Bubble_map():
 
-    def __init__(self, w=SCREEN_WIDTH, h=SCREEN_HEIGHT, amount=50, size=3, border_width=1, color=(255,255,255, randrange(32, 128)), speed=50):
+    def __init__(self, w=SCREEN_WIDTH, h=SCREEN_HEIGHT, amount=50, size=3, border_width=1, color=(255,255,255, randrange(64, 192)), speed=50):
 
         # Höjd / Grundhastighet / nuvarande hastighet
         self.h = h
