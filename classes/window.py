@@ -204,7 +204,7 @@ class Window(Shape):
 class Button(Shape):
     def __init__(self, x, y, w, h, text, release=None, press=None,
     outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200),
-    font_size=11, font_name="Calibri", align="center"):
+    font_size=11, font_name="Calibri", align="center", font_color = BLACK):
         super().__init__(x, y, w, h)
 
         # Text
@@ -212,6 +212,7 @@ class Button(Shape):
         self.font_size = font_size
         self.align = align
         self.font_name = font_name
+        self.font_color = font_color
 
         # Bakgrund och ram
         self.outline_size = outline_size
@@ -226,7 +227,7 @@ class Button(Shape):
     def draw(self):
         draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
         draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
-        draw_text(self.text, self.x, self.y, BLACK, font_name=self.font_name, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
+        draw_text(self.text, self.x, self.y, self.font_color, font_name=self.font_name, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True

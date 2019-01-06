@@ -362,8 +362,32 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_main_menu(self):
+        x = self.width // 2
+        w = 200
+        h = 60
+        background_color = WHITE
+        outline_color = WHITE
+        font_size = 22
+        font_name = "Lato Light"
+        font_color = GRAY
+
         button_list = [
-            Button(*self.center_cords, 200, 100, "New Game", release=self.play),
+            Button(
+                y = self.height // 2 + h,
+                text = "New Game",
+                release=self.play,
+                x=x, w=w, h=h, background_color=background_color,
+                outline_color=outline_color, font_size=font_size,
+                font_name=font_name, font_color=font_color
+            ),
+            Button(
+                y = self.height // 2,
+                text = "Exit",
+                release=window_commands.close_window,
+                x=x, w=w, h=h, background_color=background_color,
+                outline_color=outline_color, font_size=font_size,
+                font_name=font_name, font_color=font_color
+            )
         ]
         return button_list
 
