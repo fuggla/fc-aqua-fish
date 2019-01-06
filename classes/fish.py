@@ -42,7 +42,7 @@ class FishSprite(arcade.Sprite):
         self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
         self.eaten_fish = 0                             # Antal uppätna fiskar
         self.eaten_carrots = 0                          # Antal ätna (=tagit sista tuggan på) morötter
-        self.eaten_blueberries = 0                       # Antal ätna (=tagit sista tuggan på) blåbär
+        self.eaten_blueberries = 0                      # Antal ätna (=tagit sista tuggan på) blåbär
         self.laid_eggs = 0                              # Antal lagda ägg
         self.kiss_amount = 0                            # Antal gånger fisken har pussats
 
@@ -132,7 +132,6 @@ class FishSprite(arcade.Sprite):
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 28:
                 self.texture = self.texture_right1
                 self.whichtexture = 21
-            print(self.whichtexture)
 
         else:
             # Ätanimation då fisken är riktad åt vänster
@@ -148,7 +147,6 @@ class FishSprite(arcade.Sprite):
                 self.texture = self.texture_left1
                 self.whichtexture = 11
             self.angle += 180
-            print(self.whichtexture)
 
     def animate_hunt(self):
         # Animering av jakten
