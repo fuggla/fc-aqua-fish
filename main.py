@@ -312,9 +312,9 @@ class MyGame(arcade.Window, State):
 
     # Hämta alla tillgängliga fönster
     def get_open_windows(self, dragged_only=False):
-        if self.is_main_menu():
-            return
         open_windows = []
+        if self.is_main_menu():
+            return open_windows
         if self.show_windows:
             for w in self.window_list:
                 if w.is_dragged():
