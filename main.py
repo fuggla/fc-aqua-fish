@@ -41,7 +41,7 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        self.standard_list_names = [ "window", "bubble", "berry_info", "button" ]
+        self.standard_list_names = [ "window", "bubble", "berry_info" ]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
@@ -54,7 +54,6 @@ class MyGame(arcade.Window, State):
         self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
-        self.button_list = self.create_main_menu()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -100,7 +99,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.play()
         else:
-            self.main_menu()
+            self.state_main_menu()
 
     def on_draw(self):
         # This command should happen before we start drawing. It will clear
@@ -133,8 +132,7 @@ class MyGame(arcade.Window, State):
         elif self.is_main_menu():
             draw_rectangle_filled(*self.center_cords, *self.width_height,
             WHITE)
-            for b in self.button_list:
-                b.draw()
+            self.window_list[0].draw()
 
         self.fade.draw()
 
@@ -308,9 +306,6 @@ class MyGame(arcade.Window, State):
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
-        if self.is_main_menu():
-            for b in self.button_list:
-                b.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused() and self.pause.is_closed():
@@ -319,8 +314,6 @@ class MyGame(arcade.Window, State):
     # Hämta alla tillgängliga fönster
     def get_open_windows(self, dragged_only=False):
         open_windows = []
-        if self.is_main_menu():
-            return open_windows
         if self.show_windows:
             for w in self.window_list:
                 if w.is_dragged():
@@ -361,41 +354,15 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")
 
-    def create_main_menu(self):
-        x = self.width // 2
-        w = 200
-        h = 60
-        background_color = WHITE
-        outline_color = WHITE
-        font_size = 22
-        font_name = "Lato Light"
-        font_color = GRAY
-
-        button_list = [
-            Button(
-                y = self.height // 2 + h,
-                text = "New Game",
-                release=self.play,
-                x=x, w=w, h=h, background_color=background_color,
-                outline_color=outline_color, font_size=font_size,
-                font_name=font_name, font_color=font_color
-            ),
-            Button(
-                y = self.height // 2,
-                text = "Exit",
-                release=window_commands.close_window,
-                x=x, w=w, h=h, background_color=background_color,
-                outline_color=outline_color, font_size=font_size,
-                font_name=font_name, font_color=font_color
-            )
-        ]
-        return button_list
-
     def create_windows(self):
+        main = Window(*self.center_cords, 200, 130, "Main Menu")
+        main.add_button(10, 10, 180, 30, "New Game", 11, self.start)
+        main.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
+        main.open()
+
         # Fönster för händelser
         event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
         self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
-        event.open()
 
         # Skapa meny för att interagera med akvariet
         action= Window(60, self.height/ 2, 100, 170, " Store", title_height=20, title_align="left")
@@ -403,7 +370,6 @@ class MyGame(arcade.Window, State):
         action.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
         action.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
         action.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
-        action.open()
 
         # Skapa huvudmeny att visa med escape
         pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
@@ -412,13 +378,19 @@ class MyGame(arcade.Window, State):
         pause.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
-        return [event, action, pause]
+        return [main, event, action, pause]
 
     def create_bubbles(self):
         list = []
         for i in range(BUBBLE_MAPS):
             list.append(Bubble_map())
         return list
+
+    def start(self):
+        self.window_list[0].close() # Main
+        self.window_list[1].open()  # Event
+        self.window_list[2].open()  # Action
+        self.play()
 
 def main():
     if DEBUG:

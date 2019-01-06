@@ -1,7 +1,7 @@
 # Hantering av game state
 class State():
     # Startmenyn
-    def main_menu(self):
+    def state_main_menu(self):
         self.state = "main"
 
     # In game
