@@ -45,8 +45,7 @@ class MyGame(arcade.Window, State):
             setattr(self, f"{l}_list", None)
 
     def setup(self):
-        if DEBUG:
-            self.timer = Performance_timer("Setup started")
+        self.timer = Performance_timer("Loading started")
 
         # Skapa listor
         for l in self.sprite_list_names:
@@ -88,16 +87,14 @@ class MyGame(arcade.Window, State):
         # Ladda backgrund
         self.background = load_texture(BACKGROUND_IMAGE)
 
-        # Tona in grafik över ~2 sekunder
-        self.fade = Fade(a=255, time=2)
-        self.fade.start_in()
-
         # Räkna Frames Per Second
         self.fps_counter = Fps()
 
-        # Setup klar, starta spelet
-        if DEBUG:
-            self.timer = self.timer.done("Setup done")
+        # Setup klar. Använd timer för att vänta med toning
+        # Tona in grafik över ~2 sekunder
+        self.fade = Fade(a=255, time=2, pause=self.timer.done("Loading done"))
+        self.fade.start_in()
+
         if SKIP_MAIN_MENU:
             self.play()
         else:
@@ -120,8 +117,6 @@ class MyGame(arcade.Window, State):
             self.fish_egg_list.draw()
             self.all_sprite_list.draw()
             self.plant_foreground_list.draw()
-        elif self.is_main_menu():
-            pass
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
             if DIAGNOSE_FISH:
@@ -134,7 +129,8 @@ class MyGame(arcade.Window, State):
                     w.draw()
 
         elif self.is_main_menu():
-            pass
+            draw_rectangle_filled(*self.center_cords, *self.width_height,
+            WHITE)
 
         self.fade.draw()
 
@@ -269,11 +265,11 @@ class MyGame(arcade.Window, State):
                 b.update(dt)
 
             self.event.update()
-            self.fade.update(dt)
 
         elif self.is_main_menu():
             pass
 
+        self.fade.update(dt)
         self.fps_counter.calculate(dt)
         self.frame_count += 1
 
