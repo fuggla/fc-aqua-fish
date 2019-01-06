@@ -99,7 +99,7 @@ class MyGame(arcade.Window, State):
         self.fade.start_in()
 
         if SKIP_MAIN_MENU:
-            self.play()
+            self.start()
         else:
             self.state_main_menu()
 
