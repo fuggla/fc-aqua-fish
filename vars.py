@@ -10,7 +10,7 @@ FULLSCREEN = True
 DIAGNOSE_FISH = False
 
 """ Bakgrundsbild """
-BACKGROUND_IMAGE = "assets/images/background.png"
+BACKGROUND_IMAGE = "assets/images/background.jpg"
 SAND_RATIO = 0.2           # Andel av skärmen täckt av sandbotten
 
 TICK_RATE = 60
