@@ -36,6 +36,7 @@ A simulator by Furniture Corp.
   - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
   - [ ] Lägre updateringsfrekvens för informationsdispay
+- [ ] Funktion för att visa statistik
 
 ### v0.8
 - [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
@@ -54,7 +55,6 @@ A simulator by Furniture Corp.
   - [x] Antal ätna blåbär
   - [x] Antal lagda ägg
   - [x] Antal pussar
-- [ ] Funktion för att visa statistik
 - [x] Fixa sprites för pfish som är andra färger
 - [x] Se till att alla bilder kan användas och har länkar till källan
 - [ ] Startmeny (något separat från paus som bara visas när spelet startas)
