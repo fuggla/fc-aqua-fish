@@ -45,9 +45,6 @@ A simulator by Furniture Corp.
   - [x] Någon form av pussanimation
   - [x] Slumpad chans för graviditet när de pussas (herr + dam)
   - [x] Fiskarna simmar ner och lägger endast ägg på marken
-- [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
-  - [ ] Skapa en bubbelring där användaren klickar
-  - [ ] Fiskarna simmar bort från bubblan
 - [ ] Snyggare muspekare?
 - [x] Spara statistik
   - [x] Haj kills
