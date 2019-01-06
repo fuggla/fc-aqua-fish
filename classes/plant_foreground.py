@@ -1,7 +1,6 @@
 import arcade, random, math
 from vars import SPRITE_SCALING_PLANT_FOREGROUND, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO
 
-
 class PlantForeground(arcade.Sprite):
     # Klass för blåbärsplantan
     def __init__(self, plant_blueberry_list):
@@ -14,8 +13,9 @@ class PlantForeground(arcade.Sprite):
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
 
-        self.texture_plant_blueberry1 = arcade.load_texture("images/water_plant2.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
-        self.texture_plant_blueberry2 = arcade.load_texture("images/water_plant2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        img = "assets/images/plant"
+        self.texture_plant_blueberry1 = arcade.load_texture(f"{img}/seaweed1.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        self.texture_plant_blueberry2 = arcade.load_texture(f"{img}/seaweed2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
 
         # Placera ut blåbärsplantan
         self.try_place_number = 5

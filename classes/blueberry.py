@@ -1,7 +1,6 @@
 import arcade,random,math
 from vars import SPRITE_SCALING_BLUEBERRY, blueberry_food_value
 
-
 class BlueberrySprite(arcade.Sprite):
     # Klass för blueberry
     def __init__(self, center_x, center_y):
@@ -10,10 +9,11 @@ class BlueberrySprite(arcade.Sprite):
 
         self.type = "blueberry"
 
-        self.texture_food1 = arcade.load_texture("images/blueberry1.png", scale=SPRITE_SCALING_BLUEBERRY)
-        self.texture_food2 = arcade.load_texture("images/blueberry2.png", scale=SPRITE_SCALING_BLUEBERRY)
-        self.texture_food3 = arcade.load_texture("images/blueberry3.png", scale=SPRITE_SCALING_BLUEBERRY)
-        self.texture_food4 = arcade.load_texture("images/blueberry4.png", scale=SPRITE_SCALING_BLUEBERRY)
+        img = "assets/images/food/blueberry"
+        self.texture_food1 = arcade.load_texture(f"{img}/blueberry1.png", scale=SPRITE_SCALING_BLUEBERRY)
+        self.texture_food2 = arcade.load_texture(f"{img}/blueberry2.png", scale=SPRITE_SCALING_BLUEBERRY)
+        self.texture_food3 = arcade.load_texture(f"{img}/blueberry3.png", scale=SPRITE_SCALING_BLUEBERRY)
+        self.texture_food4 = arcade.load_texture(f"{img}/blueberry4.png", scale=SPRITE_SCALING_BLUEBERRY)
         self.texture = self.texture_food1
 
         # Placera ut moroten

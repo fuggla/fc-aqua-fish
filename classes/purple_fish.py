@@ -140,12 +140,13 @@ class PfishSprite(FishSprite):
 
     def load_textures(self):
         # texture 1 & 2 för höger och vänster
+        img = f"assets/images/fish/pfish/{self.color}"
         scale_factor = self.scaling*self.size/8
-        self.texture_left1 = arcade.load_texture(f"images/{self.color}_fish1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture(f"images/{self.color}_fish2.png", mirrored=True, scale=scale_factor)
-        self.texture_left8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture(f"images/{self.color}_fish1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture(f"images/{self.color}_fish2.png", scale=scale_factor)
-        self.texture_right8 = arcade.load_texture(f"images/{self.color}_fish_eat.png", scale=scale_factor)
+        self.texture_left1 = arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor)
+        self.texture_left2 = arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor)
+        self.texture_left8 = arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor)
+        self.texture_right1 = arcade.load_texture(f"{img}_fish1.png", scale=scale_factor)
+        self.texture_right2 = arcade.load_texture(f"{img}_fish2.png", scale=scale_factor)
+        self.texture_right8 = arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor)
 
 
