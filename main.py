@@ -7,6 +7,7 @@ https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types, math
 from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled
+from random import randrange
 from arcade.key import *
 from arcade.color import *
 from classes.state import State
@@ -43,7 +44,7 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        self.standard_list_names = [ "window", "bubble", "berry_info" ]
+        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info" ]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
@@ -56,6 +57,7 @@ class MyGame(arcade.Window, State):
         self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
+        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(32,128)))
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -135,6 +137,8 @@ class MyGame(arcade.Window, State):
             draw_rectangle_filled(*self.center_cords, *self.width_height,
             WHITE)
             self.window_list[0].draw()
+            for b in self.bubble_main_list:
+                b.draw()
 
         self.fade.draw()
 
@@ -271,7 +275,8 @@ class MyGame(arcade.Window, State):
             self.event.update()
 
         elif self.is_main_menu():
-            pass
+            for b in self.bubble_main_list:
+                b.update(dt)
 
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
@@ -357,6 +362,7 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_windows(self):
+        # Huvudmeny
         main = Window(*self.center_cords, *self.width_height, "Main Menu",
         background_color=WHITE)
         main.add_button(self.height / 2 - 30, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
@@ -385,10 +391,10 @@ class MyGame(arcade.Window, State):
 
         return [main, event, action, pause]
 
-    def create_bubbles(self):
+    def create_bubbles(self, color=WHITE):
         list = []
         for i in range(BUBBLE_MAPS):
-            list.append(Bubble_map())
+            list.append(Bubble_map(color=color))
         return list
 
     def start(self):
