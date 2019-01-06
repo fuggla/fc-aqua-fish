@@ -39,8 +39,6 @@ class MyGame(arcade.Window, State):
         self.background = None
         self.center_cords = (width // 2, height // 2)
         self.width_height = (width, height)
-        self.width = width
-        self.height = height
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
