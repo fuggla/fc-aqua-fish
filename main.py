@@ -308,6 +308,9 @@ class MyGame(arcade.Window, State):
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
+        if self.is_main_menu():
+            for b in self.button_list:
+                b.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused() and self.pause.is_closed():
@@ -360,7 +363,7 @@ class MyGame(arcade.Window, State):
 
     def create_main_menu(self):
         button_list = [
-            Button(*self.center_cords, 200, 100, "New Game"),
+            Button(*self.center_cords, 200, 100, "New Game", release=self.play),
         ]
         return button_list
 
