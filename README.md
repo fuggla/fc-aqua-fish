@@ -33,6 +33,7 @@ A simulator by Furniture Corp.
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
 - [ ] Förbättra prestanda
+  - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
   - [ ] Lägre updateringsfrekvens för informationsdispay
 
