@@ -26,7 +26,7 @@ from arcade import create_text, render_text, draw_rectangle_filled, draw_rectang
 from arcade.color import *
 
 class Window(Shape):
-    def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=14, outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
+    def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=13, font_name="Arial", outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
         super().__init__(x, y, w, h)
 
         # Ram och bakgrund
@@ -38,6 +38,7 @@ class Window(Shape):
         self.title_height = title_height
         self.title_background_color = title_background_color
         self.font_size = font_size
+        self.font_name = font_name
 
         # Fönstrets kanter
         self.lrtb = self.calculate_edge(*self.pos)
@@ -65,6 +66,7 @@ class Window(Shape):
             background_color = title_background_color,
             text = title,
             font_size = font_size,
+            font_name = font_name,
             align = title_align,
             release = self.stop_dragging,
             press = self.start_dragging
@@ -81,6 +83,7 @@ class Window(Shape):
             background_color = (100, 0, 0, 100),
             text = "X",
             font_size = title_height - 10,
+            font_name = font_name,
             release = self.close
         ))
 
@@ -130,16 +133,20 @@ class Window(Shape):
                 render_text(t.text, t.x, t.y)
 
     # Lägg till knapp i fönster
-    def add_button(self, margin_top, margin_left, w, h, text, font_size, release):
+    def add_button(self, margin_top, margin_left, w, h, text, font_size,
+    release, outline_color=BLACK, background_color=GRAY, font_name="Arial",
+    font_color=BLACK):
         self.button_list.append(Button(
             x = self.left + margin_left + w / 2,
             y = self.top - margin_top - h / 2,
             w = w,
             h = h,
-            outline_color = BLACK,
-            background_color = GRAY,
+            outline_color = outline_color,
+            background_color = background_color,
             text = text,
             font_size = font_size,
+            font_name = font_name,
+            font_color = font_color,
             release = release
         ))
 
@@ -199,13 +206,17 @@ class Window(Shape):
 
 # Rektanglulära knappar
 class Button(Shape):
-    def __init__(self, x, y, w, h, text, release=None, press=None, outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200), font_size=11, align="center"):
+    def __init__(self, x, y, w, h, text, release=None, press=None,
+    outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200),
+    font_size=11, font_name="Calibri", align="center", font_color = BLACK):
         super().__init__(x, y, w, h)
 
         # Text
         self.text = text
         self.font_size = font_size
         self.align = align
+        self.font_name = font_name
+        self.font_color = font_color
 
         # Bakgrund och ram
         self.outline_size = outline_size
@@ -220,7 +231,7 @@ class Button(Shape):
     def draw(self):
         draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
         draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
-        draw_text(self.text, self.x, self.y, BLACK, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
+        draw_text(self.text, self.x, self.y, self.font_color, font_name=self.font_name, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
     def release(self):
         return True

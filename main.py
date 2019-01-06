@@ -6,8 +6,10 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types, math
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled
+from random import randrange
 from arcade.key import *
+from arcade.color import *
 from classes.state import State
 from classes.purple_fish import PfishSprite
 from classes.blue_small_fish import BfishSprite
@@ -40,13 +42,12 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        self.standard_list_names = [ "window", "bubble", "berry_info" ]
+        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info" ]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
     def setup(self):
-        if DEBUG:
-            self.timer = Performance_timer("Setup started")
+        self.timer = Performance_timer("Loading started")
 
         # Skapa listor
         for l in self.sprite_list_names:
@@ -54,6 +55,7 @@ class MyGame(arcade.Window, State):
         self.berry_info_list = []
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
+        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -88,44 +90,51 @@ class MyGame(arcade.Window, State):
         # Ladda backgrund
         self.background = load_texture(BACKGROUND_IMAGE)
 
-        # Tona in grafik över ~2 sekunder
-        self.fade = Fade(a=255, time=2)
-        self.fade.start_in()
-
         # Räkna Frames Per Second
         self.fps_counter = Fps()
 
-        # Setup klar, starta spelet
-        if DEBUG:
-            self.timer = self.timer.done("Setup done")
-        self.play()
+        # Setup klar. Använd timer för att vänta med toning
+        # Tona in grafik över ~2 sekunder
+        self.fade = Fade(a=255, time=2, pause=self.timer.done("Loading done"))
+        self.fade.start_in()
+
+        if SKIP_MAIN_MENU:
+            self.start()
+        else:
+            self.state_main_menu()
 
     def on_draw(self):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         start_render()
 
-        # Rita bakgrund
-        draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
+        if self.is_playing():
+            # Rita bakgrund
+            draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
 
-        for b in self.bubble_list:
-            b.draw()
+            for b in self.bubble_list:
+                b.draw()
 
-        self.plant_blueberry_list.draw()
-        self.blueberry_list.draw()
-        self.fish_egg_list.draw()
-        self.all_sprite_list.draw()
-        self.plant_foreground_list.draw()
+            self.plant_blueberry_list.draw()
+            self.blueberry_list.draw()
+            self.fish_egg_list.draw()
+            self.all_sprite_list.draw()
+            self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
-        if DIAGNOSE_FISH:
-            diagnose_name_gender_health_hungry(self.pfish_list)
-            diagnose_name_gender_health_hungry(self.bfish_list)
-            diagnose_name_gender_health_hungry(self.shark_list)
+            if DIAGNOSE_FISH:
+                diagnose_name_gender_health_hungry(self.pfish_list)
+                diagnose_name_gender_health_hungry(self.bfish_list)
+                diagnose_name_gender_health_hungry(self.shark_list)
 
-        if self.show_windows:
-            for w in self.window_list:
-                w.draw()
+            if self.show_windows:
+                for w in self.window_list:
+                    w.draw()
+
+        elif self.is_main_menu():
+            self.window_list[0].draw()
+            for b in self.bubble_main_list:
+                b.draw()
 
         self.fade.draw()
 
@@ -260,8 +269,12 @@ class MyGame(arcade.Window, State):
                 b.update(dt)
 
             self.event.update()
-            self.fade.update(dt)
 
+        elif self.is_main_menu():
+            for b in self.bubble_main_list:
+                b.update(dt)
+
+        self.fade.update(dt)
         self.fps_counter.calculate(dt)
         self.frame_count += 1
 
@@ -270,6 +283,8 @@ class MyGame(arcade.Window, State):
             window_commands.close_window()
         elif (key == R): # Starta om
             self.setup()
+        elif self.is_main_menu():
+            return
         elif (key == ESCAPE): # Visa pausmeny och pausa
             self.pause.toggle()
             self.toggle_pause()
@@ -294,7 +309,7 @@ class MyGame(arcade.Window, State):
             w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
-        if self.is_paused and self.pause.is_closed():
+        if self.is_paused() and self.pause.is_closed():
             self.play()
 
     # Hämta alla tillgängliga fönster
@@ -341,10 +356,18 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_windows(self):
+        # Huvudmeny
+        main = Window(*self.center_cords, *self.width_height, "Main Menu",
+        background_color=WHITE)
+        main.add_button(self.height / 2 - 30, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
+        WHITE, "Lato Light", GRAY)
+        main.add_button(self.height / 2 + 30, self.width / 2 - 90, 180, 30, "Exit", 22,
+        window_commands.close_window, WHITE, WHITE, "Lato Light", GRAY)
+        main.open()
+
         # Fönster för händelser
         event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
         self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
-        event.open()
 
         # Skapa meny för att interagera med akvariet
         action= Window(60, self.height/ 2, 100, 170, " Store", title_height=20, title_align="left")
@@ -352,7 +375,6 @@ class MyGame(arcade.Window, State):
         action.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
         action.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
         action.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
-        action.open()
 
         # Skapa huvudmeny att visa med escape
         pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
@@ -361,13 +383,19 @@ class MyGame(arcade.Window, State):
         pause.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
-        return [event, action, pause]
+        return [main, event, action, pause]
 
-    def create_bubbles(self):
+    def create_bubbles(self, color=(255,255,255,randrange(128,255))):
         list = []
         for i in range(BUBBLE_MAPS):
-            list.append(Bubble_map())
+            list.append(Bubble_map(color=color))
         return list
+
+    def start(self):
+        self.window_list[0].close() # Main
+        self.window_list[1].open()  # Event
+        self.window_list[2].open()  # Action
+        self.play()
 
 def main():
     if DEBUG:

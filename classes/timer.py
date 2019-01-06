@@ -28,7 +28,7 @@ class Performance_timer():
 
     def done(self, output):
         print(output, "in", self)
-        return None
+        return float(self)
 
     def __str__(self):
         return "%.4f" % (time.perf_counter()-self.timer_start)

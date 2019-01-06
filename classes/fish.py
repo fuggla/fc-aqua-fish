@@ -136,6 +136,7 @@ class FishSprite(arcade.Sprite):
 
         else:
             # Ätanimation då fisken är riktad åt vänster
+            self.angle += 180
             if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28 or self.whichtexture == 12:
                 self.texture = self.texture_left1
                 self.whichtexture = 11
