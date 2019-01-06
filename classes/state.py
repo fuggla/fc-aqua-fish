@@ -1,8 +1,8 @@
 # Hantering av game state
 class State():
     # Startmenyn
-    def start(self):
-        self.state = "start"
+    def main_menu(self):
+        self.state = "main"
 
     # In game
     def play(self):
@@ -18,8 +18,8 @@ class State():
     def is_playing(self):
         return True if self.state == "playing" else False
 
-    def is_started(self):
-        return True if self.state == "start" else False
+    def is_main_menu(self):
+        return True if self.state == "main" else False
 
     # Ändra läge mellan paused och playing
     def toggle_pause(self):

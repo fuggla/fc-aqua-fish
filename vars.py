@@ -8,6 +8,7 @@ SCREEN_WIDTH = screen.winfo_screenwidth()
 SCREEN_HEIGHT = screen.winfo_screenheight()
 FULLSCREEN = True
 DIAGNOSE_FISH = False
+SKIP_MAIN_MENU = True
 
 """ Bakgrundsbild """
 BACKGROUND_IMAGE = "assets/images/background.png"

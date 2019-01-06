@@ -98,34 +98,43 @@ class MyGame(arcade.Window, State):
         # Setup klar, starta spelet
         if DEBUG:
             self.timer = self.timer.done("Setup done")
-        self.play()
+        if SKIP_MAIN_MENU:
+            self.play()
+        else:
+            self.main_menu()
 
     def on_draw(self):
         # This command should happen before we start drawing. It will clear
         # the screen to the background color, and erase what we drew last frame.
         start_render()
 
-        # Rita bakgrund
-        draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
+        if self.is_playing():
+            # Rita bakgrund
+            draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
 
-        for b in self.bubble_list:
-            b.draw()
+            for b in self.bubble_list:
+                b.draw()
 
-        self.plant_blueberry_list.draw()
-        self.blueberry_list.draw()
-        self.fish_egg_list.draw()
-        self.all_sprite_list.draw()
-        self.plant_foreground_list.draw()
+            self.plant_blueberry_list.draw()
+            self.blueberry_list.draw()
+            self.fish_egg_list.draw()
+            self.all_sprite_list.draw()
+            self.plant_foreground_list.draw()
+        elif self.is_main_menu():
+            pass
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
-        if DIAGNOSE_FISH:
-            diagnose_name_gender_health_hungry(self.pfish_list)
-            diagnose_name_gender_health_hungry(self.bfish_list)
-            diagnose_name_gender_health_hungry(self.shark_list)
+            if DIAGNOSE_FISH:
+                diagnose_name_gender_health_hungry(self.pfish_list)
+                diagnose_name_gender_health_hungry(self.bfish_list)
+                diagnose_name_gender_health_hungry(self.shark_list)
 
-        if self.show_windows:
-            for w in self.window_list:
-                w.draw()
+            if self.show_windows:
+                for w in self.window_list:
+                    w.draw()
+
+        elif self.is_main_menu():
+            pass
 
         self.fade.draw()
 
@@ -261,6 +270,9 @@ class MyGame(arcade.Window, State):
 
             self.event.update()
             self.fade.update(dt)
+
+        elif self.is_main_menu():
+            pass
 
         self.fps_counter.calculate(dt)
         self.frame_count += 1
