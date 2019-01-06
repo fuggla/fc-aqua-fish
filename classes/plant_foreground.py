@@ -14,7 +14,7 @@ class PlantForeground(arcade.Sprite):
         self.not_placed = True
 
         img = "assets/images/plant"
-        self.texture_plant_blueberry1 = arcade.load_texture(f"{img}/seaweed1.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        self.texture_plant_blueberry1 = arcade.load_texture(f"{img}/seaweed2.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
         self.texture_plant_blueberry2 = arcade.load_texture(f"{img}/seaweed2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
 
         # Placera ut blåbärsplantan
@@ -37,7 +37,7 @@ class PlantForeground(arcade.Sprite):
                 test_center_x = random.randrange(int(self.sw * 0.02), int(self.sw * 0.15))
             else:
                 test_center_x = random.randint(int(self.sw * 0.85), int(self.sw * 0.98))
-            test_center_y = random.randint(int(self.sh * self.sr * 0.4), int(self.sh * self.sr * 0.6))
+            test_center_y = random.randint(int(self.sh * self.sr * 0.5), int(self.sh * self.sr * 0.7))
             for coordinates in self.illegal_coordinates:
                 if coordinates[0] < test_center_x < coordinates[1]:
                     self.not_placed = True
