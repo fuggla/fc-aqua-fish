@@ -310,7 +310,7 @@ class MyGame(arcade.Window, State):
             w.on_mouse_release(x, y)
 
         # Alltid spela spel när pausmenyn är stängs
-        if self.is_paused and self.pause.is_closed():
+        if self.is_paused() and self.pause.is_closed():
             self.play()
 
     # Hämta alla tillgängliga fönster
