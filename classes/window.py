@@ -133,16 +133,20 @@ class Window(Shape):
                 render_text(t.text, t.x, t.y)
 
     # Lägg till knapp i fönster
-    def add_button(self, margin_top, margin_left, w, h, text, font_size, release):
+    def add_button(self, margin_top, margin_left, w, h, text, font_size,
+    release, outline_color=BLACK, background_color=GRAY, font_name="Arial",
+    font_color=BLACK):
         self.button_list.append(Button(
             x = self.left + margin_left + w / 2,
             y = self.top - margin_top - h / 2,
             w = w,
             h = h,
-            outline_color = BLACK,
-            background_color = GRAY,
+            outline_color = outline_color,
+            background_color = background_color,
             text = text,
             font_size = font_size,
+            font_name = font_name,
+            font_color = font_color,
             release = release
         ))
 

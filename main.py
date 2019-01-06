@@ -38,6 +38,8 @@ class MyGame(arcade.Window, State):
         self.background = None
         self.center_cords = (width // 2, height // 2)
         self.width_height = (width, height)
+        self.width = width
+        self.height = height
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
@@ -355,9 +357,12 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_windows(self):
-        main = Window(*self.center_cords, 200, 130, "Main Menu")
-        main.add_button(10, 10, 180, 30, "New Game", 11, self.start)
-        main.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
+        main = Window(*self.center_cords, *self.width_height, "Main Menu",
+        background_color=WHITE)
+        main.add_button(self.height / 2 - 30, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
+        WHITE, "Lato Light", GRAY)
+        main.add_button(self.height / 2 + 30, self.width / 2 - 90, 180, 30, "Exit", 22,
+        window_commands.close_window, WHITE, WHITE, "Lato Light", GRAY)
         main.open()
 
         # Fönster för händelser
