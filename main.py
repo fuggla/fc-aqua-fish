@@ -24,7 +24,7 @@ from classes.fade import Fade
 from classes.fps import Fps
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_egg_freq, bfish_egg_freq, shark_egg_freq
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
 
 class MyGame(arcade.Window, State):
@@ -58,7 +58,7 @@ class MyGame(arcade.Window, State):
         """ Skapa alla fiskar """
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(self.carrot_list)
+            pfish = PfishSprite(self.carrot_list, self.pfish_list)
             self.pfish_list.append(pfish)
             self.all_sprite_list.append(pfish)
 
@@ -70,7 +70,7 @@ class MyGame(arcade.Window, State):
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
-            shark = SharkSprite(self.bfish_list, self.event)
+            shark = SharkSprite(self.bfish_list, self.shark_list, self.event)
             self.shark_list.append(shark)
             self.all_sprite_list.append(shark)
 
@@ -155,14 +155,16 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < pfish_egg_freq:
-                    fish.health = fish.base_health
+                # Lägg ägg ifall fisken är gravid
+                if fish.ready_to_lay_egg:
+                    fish.pregnant = False
+                    fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
 
@@ -172,7 +174,7 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
 
                 # Ätalgoritm för blue small fish
@@ -180,15 +182,17 @@ class MyGame(arcade.Window, State):
                 if len(hit_list) == 0 and fish.iseating > 0:
                     fish.iseating -= 1
                 # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
 
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < bfish_egg_freq:
-                    fish.health = fish.base_health
+                # Lägg ägg ifall fisken är gravid
+                if fish.ready_to_lay_egg:
+                    fish.pregnant = False
+                    fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
 
@@ -198,14 +202,16 @@ class MyGame(arcade.Window, State):
                     fish.iseating -= 1
                 hit_list = check_for_collision_with_list(fish, self.bfish_list)
                 # Om fisken lever och det finns en blue small fish äter fisken den
-                if hit_list and fish.isalive:
+                if hit_list and not fish.disturbed:
                     fish.eat_fish(hit_list[0])
                 # Ta bort döda fiskar som flytit upp
                 if fish.bottom > self.height and fish.health <= 0:
                     fish.kill()
-                # Lägg ägg ifall fisken är mätt
-                if fish.health > fish.base_health * 1.1 and fish.name_gender[1] == "f" and random.randrange(1000) < shark_egg_freq:
-                    fish.health = fish.base_health
+                # Lägg ägg ifall fisken är gravid
+                if fish.ready_to_lay_egg:
+                    fish.pregnant = False
+                    fish.ready_to_lay_egg = False
+                    fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
 
@@ -215,17 +221,20 @@ class MyGame(arcade.Window, State):
                     egg.texture = egg.texture_egg_cracked
                     if egg.origin == "pfish":
                         # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, size=pfish_size*0.5)
                         self.pfish_list.append(pfish)
                         self.all_sprite_list.append(pfish)
                     if egg.origin == "bfish":
                         # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x, setpos_y=egg.center_y)
+                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, size=pfish_size*0.25)
                         self.bfish_list.append(bfish)
                         self.all_sprite_list.append(bfish)
                     if egg.origin == "shark":
                         # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, setpos_x=egg.center_x, setpos_y=egg.center_y, event=self.event)
+                        shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                                            setpos_y=egg.center_y, event=self.event, size=pfish_size*0.6)
                         self.shark_list.append(shark)
                         self.all_sprite_list.append(shark)
                 if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
@@ -303,13 +312,13 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            fish = PfishSprite(self.carrot_list, self.pfish_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
         elif (name == "shark"):
-            fish = SharkSprite(self.bfish_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
+            fish = SharkSprite(self.bfish_list, self.shark_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
 
         # Done and done

@@ -7,41 +7,58 @@ A simulator by Furniture Corp.
 ## Roadmap
 
 ### v.1.x
-- [ ] Introfilm?
+- [ ] Introfilm
+- [ ] Spara användardata och sälja på svarta marknaden
 
 ### v1.0
 
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Skippbar splashscreen med logga
 - [ ] Fiskarna lägger rom som blir nya fiskar
-- [ ] Fiskar kan äta upp andra fiskar
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
-- [ ] Styr en fisk och gör det som fiskarna gör?
-- [ ] Alternativt mer interaktion med fiskarna?
+- [ ] Interaktion med fiskarna
 - [ ] Menyer i form av valar som simmar in?
 - [ ] Ljudeffekter
+- [ ] Någon form av ekonomisystem för köp av fiskar/morot
 - [ ] Credits
-  - [ ] Länkar till där Jonte har snott bilderna (han jobbar på det)
+  - [ ] Lång lista på vilka som gjort vad
+  - [ ] Länkar till där Jonte har snott bilderna
 
 ### v0.9
+- [ ] Ljudeffekter
+  - [ ] Äggkläckning
+  - [ ] Fisk äts upp
+  - [ ] Puss
+  - [ ] Fiskar och morötter faller ner i akvariet
+  - [ ] Bakgrundsljud
+- [ ] Metspö som kan fiska upp fiskarna
+- [ ] Förbättra prestanda
+  - [ ] Lägre updateringsfrekvens för många fiskmetoder
+  - [ ] Lägre updateringsfrekvens för informationsdispay
 
 ### v0.8
-- [ ] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
-- [ ] Herrarna och damerna måste pussas innan damerna kan lägga ägg
-  - [ ] De blir puss-redo när de är mätta
-  - [ ] Någon form av pussanimation
-  - [ ] Slumpad chans för graviditet när de pussas
-  - [ ] Fiskarna simmar ner och lägger endast ägg på marken
+- [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
+- [x] System för kärlek mellan fiskarna  
+  - [x] Herrarna och damerna måste pussas innan damerna kan lägga ägg
+  - [x] De blir puss-redo när de är mätta
+  - [x] Någon form av pussanimation
+  - [x] Slumpad chans för graviditet när de pussas (herr + dam)
+  - [x] Fiskarna simmar ner och lägger endast ägg på marken
 - [ ] Bubbla, slå eller putta fiskarna så att de ändrar riktning
+  - [ ] Skapa en bubbelring där användaren klickar
+  - [ ] Fiskarna simmar bort från bubblan
 - [ ] Snyggare muspekare?
-- [ ] Spara statistik
-  - [ ] Haj kills
-  - [ ] Fisk livstid
-  - [ ] Antal ätna morötter
-  - [ ] Antal lagda ägg
+- [x] Spara statistik
+  - [x] Haj kills
+  - [x] Fisk livstid
+  - [x] Antal ätna morötter
+  - [x] Antal ätna blåbär
+  - [x] Antal lagda ägg
+  - [x] Antal pussar
 - [ ] Funktion för att visa statistik
 - [x] Fixa sprites för pfish som är andra färger
-- [ ] Se till att alla bilder kan användas och har länkar till källan
+- [x] Se till att alla bilder kan användas och har länkar till källan
+- [ ] Startmeny (något separat från paus som bara visas när spelet startas)
 
 ### v0.7
 - [x] System för köttätande fisk
