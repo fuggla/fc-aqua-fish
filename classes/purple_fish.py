@@ -89,7 +89,7 @@ class PfishSprite(FishSprite):
             self.kiss_spirit = 1000
 
         # Om de är sugna att pussas och inte störda letar de efter en partner
-        if self.kiss_spirit > 0 and not self.disturbed:
+        if self.kiss_spirit > 0 and not self.disturbed and self.iseating == 0:
             self.find_partner(self.pfish_list)
 
         # De tröttnas ifall de inte hittar någon

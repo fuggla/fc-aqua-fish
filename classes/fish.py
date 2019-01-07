@@ -188,7 +188,7 @@ class FishSprite(arcade.Sprite):
             # Vänd  dem i riktning mot partnern
             if -90 < self.angle < 90:
                 # Ätanimation då fisken är riktad åt höger
-                if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
+                if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18 or self.whichtexture == 28:
                     self.texture = self.texture_right1
                     self.whichtexture = 21
 
@@ -201,7 +201,7 @@ class FishSprite(arcade.Sprite):
 
             else:
                 # Ätanimation då fisken är riktad åt vänster
-                if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
+                if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28 or self.whichtexture == 18:
                     self.texture = self.texture_left1
                     self.whichtexture = 11
 
@@ -339,11 +339,11 @@ class FishSprite(arcade.Sprite):
             for partner in possible_partner_list:
                 if self == partner:
                     pass
-                elif self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0 and not partner.partner:
+                elif self.attraction == "m" and partner.name_gender[1] == "m" and partner.kiss_spirit > 0 and partner.iseating == 0 and not partner.partner:
                     attraction_list.append(partner)
-                elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0 and not partner.partner:
+                elif self.attraction == "f" and partner.name_gender[1] == "f" and partner.kiss_spirit > 0 and partner.iseating == 0 and not partner.partner:
                     attraction_list.append(partner)
-                elif self.attraction == "open minded" and partner.kiss_spirit > 0 and not partner.partner:
+                elif self.attraction == "open minded" and partner.kiss_spirit > 0 and partner.iseating == 0 and not partner.partner:
                     attraction_list.append(partner)
 
             if attraction_list:
@@ -364,6 +364,8 @@ class FishSprite(arcade.Sprite):
                     # Spara kärleken i variabeln "partner"
                     self.partner = partner
                     partner.partner = self
+                    self.iseating = 0
+                    partner.iseating = 0
 
     def flee_from_close_fish(self):
         # metod för att vända sig mot och accelerera mot mat
