@@ -135,7 +135,6 @@ class FishSprite(arcade.Sprite):
 
         else:
             # Ätanimation då fisken är riktad åt vänster
-            self.angle += 180
             if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28 or self.whichtexture == 12:
                 self.texture = self.texture_left1
                 self.whichtexture = 11
@@ -169,7 +168,6 @@ class FishSprite(arcade.Sprite):
 
             else:
                 # Ätanimation då fisken är riktad åt vänster
-                self.angle += 180
                 if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
                     self.texture = self.texture_left_eat1
                     self.whichtexture = 11
@@ -180,13 +178,14 @@ class FishSprite(arcade.Sprite):
                 elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
                     self.texture = self.texture_left_eat1
                     self.whichtexture = 11
+                self.angle += 180
 
     def animate_love(self):
         # Animering rörelse mot partner
             # Ändra fenfrekvens utifrån totalacceleration
             self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y))/self.finforce + 1))
 
-            # Vänd dem i riktning mot partnern
+            # Vänd  dem i riktning mot partnern
             if -90 < self.angle < 90:
                 # Ätanimation då fisken är riktad åt höger
                 if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
@@ -202,7 +201,6 @@ class FishSprite(arcade.Sprite):
 
             else:
                 # Ätanimation då fisken är riktad åt vänster
-                self.angle += 180
                 if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
                     self.texture = self.texture_left1
                     self.whichtexture = 11
@@ -213,6 +211,7 @@ class FishSprite(arcade.Sprite):
                 elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
                     self.texture = self.texture_left1
                     self.whichtexture = 11
+                self.angle += 180
 
     def chase_fish(self):
         # metod för att vända sig mot och accelerera mot mat
