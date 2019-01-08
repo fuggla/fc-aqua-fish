@@ -312,7 +312,7 @@ class MyGame(arcade.Window, State):
         for w in self.get_open_windows(dragged_only=True):
             w.move(dx, dy)
         if self.dragged_sprite:
-            self.dragged_sprite[0].drag_sprite(x, y, dx ,dy)
+            self.dragged_sprite[0].drag_sprite(x, y, dx, dy)
         # Här flyttas muspekaren då musen flyttas.
         # Allt jox är för att fingret ska hamna på samma plats som orginalmusens "pekare"
         self.pointer[0].set_position(x + self.pointer[0].width*0.3, y - self.pointer[0].height*0.5)
@@ -333,7 +333,7 @@ class MyGame(arcade.Window, State):
             w.on_mouse_release(x, y)
         if self.dragged_sprite:
             self.dragged_sprite[0].change_x = self.dragged_sprite[0].drag_speed[0]
-            self.dragged_sprite[0].change_x = self.dragged_sprite[0].drag_speed[1]
+            self.dragged_sprite[0].change_y = self.dragged_sprite[0].drag_speed[1]
             self.dragged_sprite = []
         self.pointer[0].texture = self.pointer[0].texture_point  # Byt tillbaka till vanliga texturen
 
