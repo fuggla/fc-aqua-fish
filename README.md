@@ -46,7 +46,7 @@ A simulator by Furniture Corp.
   - [x] Någon form av pussanimation
   - [x] Slumpad chans för graviditet när de pussas (herr + dam)
   - [x] Fiskarna simmar ner och lägger endast ägg på marken
-- [ ] Snyggare muspekare?
+- [x] Snyggare muspekare?
 - [ ] Flytta runt fiskar med muspekarten
 - [x] Spara statistik
   - [x] Haj kills

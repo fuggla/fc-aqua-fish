@@ -315,10 +315,13 @@ class MyGame(arcade.Window, State):
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_press(x, y)
+            if w.dragging:
+                self.pointer[0].texture = self.pointer[0].texture_grab
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
+            self.pointer[0].texture = self.pointer[0].texture_point
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused() and self.pause.is_closed():
