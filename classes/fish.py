@@ -292,6 +292,11 @@ class FishSprite(arcade.Sprite):
             self.angle = 180
             self.texture = self.texture_left1
 
+    def drag_sprite(self, x, y, dx, dy):
+        self.center_x = x
+        self.center_y = y
+        self.drag_speed = [dx, dy]
+
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:
             self.health += 10000
@@ -306,11 +311,6 @@ class FishSprite(arcade.Sprite):
             prey.kill()
             self.eaten_fish += 1
             self.event.put(self.get_name() + " ate " + prey.get_name())
-
-    def drag_sprite(self, x, y, dx, dy):
-        self.center_x = x
-        self.center_y = y
-        self.drag_speed = [dx, dy]
 
     def eat_food(self, food, chew):
         # Sätt vatiabel så att fiskarna vet att de äter
@@ -434,6 +434,10 @@ class FishSprite(arcade.Sprite):
         # Här ska programmets framerate in stället för 30
         self.change_x = self.change_x + (self.acc_x - self.break_x) / self.tick_rate
         self.change_y = self.change_y + (self.acc_y - self.break_y) / self.tick_rate
+
+        # Fiskarna plaskar till när de faller tillbaka
+        if self.change_y < 0 and self.bottom > self.sh:
+            self.change_y = -30
 
     def move_lay_egg_position(self):
         # Metod för att hitta en plats där fisken kan lägga ägg
