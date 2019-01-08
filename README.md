@@ -47,7 +47,8 @@ A simulator by Furniture Corp.
   - [x] Slumpad chans för graviditet när de pussas (herr + dam)
   - [x] Fiskarna simmar ner och lägger endast ägg på marken
 - [x] Snyggare muspekare?
-- [ ] Flytta runt fiskar med muspekarten
+- [x] Flytta runt fiskar med muspekarten
+  - [x] Kaska fiskarna
 - [x] Spara statistik
   - [x] Haj kills
   - [x] Fisk livstid
