@@ -28,8 +28,7 @@ class CarrotSprite(arcade.Sprite):
         # Definiera variabler
         self.change_x = 0
         self.change_y = setspeed_y or 0
-        self.acc_right = 0
-        self.acc_left = 0
+        self.acc_x = 0
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
 
@@ -55,14 +54,9 @@ class CarrotSprite(arcade.Sprite):
         self.acc_grav_float = - 1
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
-        if self.center_y < self.sand_position and self.bounce_number <= 5:
-            self.acc_grav_float = 100 / self.bounce_number
-            self.bounce_number += 1
-
-        # Beräkna hastighet i x-led och y-led
-        if self.bounce_number > 5:
-            self.change_y = 0
-            self.change_x = 0
+        if self.center_y < self.sh * self.sr:
+            self.change_y *= 0.9
+            self.change_x *= 0.9
         else:
             self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
