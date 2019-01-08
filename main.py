@@ -310,18 +310,20 @@ class MyGame(arcade.Window, State):
     def on_mouse_motion(self, x, y, dx, dy):
         for w in self.get_open_windows(dragged_only=True):
             w.move(dx, dy)
-        self.pointer[0].set_position(x+self.pointer[0].width*0.3, y-self.pointer[0].height*0.5)
+        # Här flyttas muspekaren då musen flyttas.
+        # Allt jox är för att fingret ska hamna på samma plats som orginalmusens "pekare"
+        self.pointer[0].set_position(x + self.pointer[0].width*0.3, y - self.pointer[0].height*0.5)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_press(x, y)
-            if w.dragging:
+            if w.dragging:  # Om musen håller i ett fönster: byt textur
                 self.pointer[0].texture = self.pointer[0].texture_grab
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
-            self.pointer[0].texture = self.pointer[0].texture_point
+            self.pointer[0].texture = self.pointer[0].texture_point  # Byt tillbaka till vanliga texturen
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused() and self.pause.is_closed():
