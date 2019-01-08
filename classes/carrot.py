@@ -38,6 +38,9 @@ class CarrotSprite(arcade.Sprite):
         self.sand_position = random.randint(int(self.sh * self.sr / 2), int(self.sh * self.sr))
         self.bounce_number = 1
 
+        # För förflyttning med muspekaren
+        self.drag_speed = [0, 0]
+
         self.framerate = TICK_RATE
         # Morotens egenskaper
         self.size = 1
@@ -67,6 +70,15 @@ class CarrotSprite(arcade.Sprite):
 
         # Anropa huvudklassen
         super().update()
+
+    def drag_sprite(self, x, y, dx, dy):
+        self.center_x = x
+        self.center_y = y
+        self.drag_speed = [dx, dy]
+
+    def is_mouse_on(self, pointer):
+        if arcade.check_for_collision(self, pointer):
+            return True
 
     def eaten(self):
         self.food_value -= 1

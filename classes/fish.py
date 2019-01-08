@@ -49,6 +49,9 @@ class FishSprite(arcade.Sprite):
         # För kommunikation ut från objekt
         self.event = event or None
 
+        # För förflyttning med muspekaren
+        self.drag_speed = [0, 0]
+
         # Dessa variabler styr reproduktionen av fiskarna
         self.name_gender = fish_names[random.randrange(fish_names_length)]
         self.partner = None
@@ -304,6 +307,11 @@ class FishSprite(arcade.Sprite):
             self.eaten_fish += 1
             self.event.put(self.get_name() + " ate " + prey.get_name())
 
+    def drag_sprite(self, x, y, dx, dy):
+        self.center_x = x
+        self.center_y = y
+        self.drag_speed = [dx, dy]
+
     def eat_food(self, food, chew):
         # Sätt vatiabel så att fiskarna vet att de äter
         if self.iseating <= 10:
@@ -416,6 +424,10 @@ class FishSprite(arcade.Sprite):
 
         # Stega ner livsmätaren
         self.health -= 1
+
+    def is_mouse_on(self, pointer):
+        if arcade.check_for_collision(self, pointer):
+            return True
 
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
