@@ -49,8 +49,7 @@ class CarrotSprite(arcade.Sprite):
 
     def update(self):
         # Beräkna acceleration i x-led
-        self.acc_right = 0
-        self.acc_left = 0
+        self.acc_x = - (self.size * self.change_x * math.fabs(self.change_x)) / self.mass
 
         # Beräkna acceleration i y-led
         self.acc_grav_float = - 1
@@ -65,7 +64,7 @@ class CarrotSprite(arcade.Sprite):
             self.change_y = 0
             self.change_x = 0
         else:
-            self.change_x = self.change_x + (self.acc_right - self.acc_left) / self.framerate
+            self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
         # Anropa huvudklassen
