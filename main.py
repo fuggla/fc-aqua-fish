@@ -24,6 +24,7 @@ from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from classes.fade import Fade
 from classes.fps import Fps
+from classes.pointer import Pointer
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
@@ -42,9 +43,11 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
-        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info" ]
+        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
+
+        self.set_mouse_visible(False)
 
     def setup(self):
         self.timer = Performance_timer("Loading started")
@@ -56,6 +59,8 @@ class MyGame(arcade.Window, State):
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
         self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
+        self.pointer = SpriteList()
+        self.pointer.use_spatial_hash = False
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -92,6 +97,9 @@ class MyGame(arcade.Window, State):
 
         # Räkna Frames Per Second
         self.fps_counter = Fps()
+
+        # Skapa muspekaren
+        self.pointer.append(Pointer())
 
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
@@ -140,6 +148,9 @@ class MyGame(arcade.Window, State):
 
         # Rita FPS uppe i högra hörnet
         self.fps_counter.draw()
+
+        # Rita ut muspekaren
+        self.pointer.draw()
 
     def update(self, dt):
 
@@ -299,6 +310,7 @@ class MyGame(arcade.Window, State):
     def on_mouse_motion(self, x, y, dx, dy):
         for w in self.get_open_windows(dragged_only=True):
             w.move(dx, dy)
+        self.pointer[0].set_position(x+self.pointer[0].width*0.3, y-self.pointer[0].height*0.5)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():

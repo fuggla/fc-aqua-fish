@@ -42,6 +42,9 @@ fish_egg_disapear_age = 1500
 """ Egenskaper för bubbelkartor """
 BUBBLE_MAPS = 5             # Antalet bubbelkartor att generera
 
+""" Egenskaper för muspekaren """
+SCALING_POINTER = 0.08
+
 """
 Importera debug.py om den existerar
 Filen spåras inte av repo utan är lokal
