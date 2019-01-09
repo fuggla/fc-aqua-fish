@@ -145,16 +145,10 @@ class MyGame(arcade.Window, State):
                     w.draw()
 
         elif self.is_main_menu():
-            self.window_list[0].draw()
-            for b in self.bubble_main_list:
-                b.draw()
+            self.draw_main_menu()
 
         elif self.is_credits():
-            if self.fade.is_fading_out():
-                self.window_list[0].draw()
-                for b in self.bubble_main_list:
-                    b.draw()
-            render_text(self.credits_text, self.credits_x, self.credits_y)
+            self.draw_credits()
 
         self.fade.draw()
 
@@ -455,12 +449,22 @@ class MyGame(arcade.Window, State):
 
     def update_credits(self, dt):
         if self.fade.is_fading_out():
-            self.update_menu_bubbles()
+            self.update_menu_bubbles(dt)
         self.credits_y += 20 * dt
 
     def update_menu_bubbles(self, dt):
         for b in self.bubble_main_list:
             b.update(dt)
+
+    def draw_main_menu(self):
+        self.window_list[0].draw()
+        for b in self.bubble_main_list:
+            b.draw()
+
+    def draw_credits(self):
+        if self.fade.is_fading_out():
+            self.draw_main_menu()
+        render_text(self.credits_text, self.credits_x, self.credits_y)
 
 def main():
     if DEBUG:
