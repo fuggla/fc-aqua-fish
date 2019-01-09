@@ -323,6 +323,7 @@ class MyGame(arcade.Window, State):
             w.on_mouse_press(x, y)
             if w.dragging:
                 self.pointer[0].texture = self.pointer[0].texture_grab  # Om musen håller i ett fönster så byt textur
+                return
         for sprite in self.all_sprite_list:                             # Stega igenom alla fiskar och morötter
             if sprite.is_mouse_on(self.pointer[0]):                     # Kolla ifall de är i kontakt med pekaren
                 self.dragged_sprite.append(sprite)                      # Spara dem i en lista
