@@ -47,7 +47,6 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
-        self.set_mouse_visible(False)
         self.dragged_sprite = []
 
     def setup(self):
@@ -100,6 +99,7 @@ class MyGame(arcade.Window, State):
         self.fps_counter = Fps()
 
         # Skapa muspekaren
+        self.set_mouse_visible(False)
         self.pointer.append(Pointer())
 
         # Setup klar. Använd timer för att vänta med toning

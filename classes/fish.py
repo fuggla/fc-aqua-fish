@@ -364,7 +364,7 @@ class FishSprite(arcade.Sprite):
                         partner_list.append(partner)
                     elif partner.attraction == "f" and self.name_gender[1] == "f":
                         partner_list.append(partner)
-                    elif self.attraction == "open minded":
+                    elif partner.attraction == "open minded":
                         partner_list.append(partner)
 
                 # I slutändan är det omöjligt att veta vad som får två fiskar att bli kära i varandra
