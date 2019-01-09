@@ -327,6 +327,7 @@ class MyGame(arcade.Window, State):
         for sprite in self.all_sprite_list:                             # Stega igenom alla fiskar och morötter
             if sprite.is_mouse_on(self.pointer):                        # Kolla ifall de är i kontakt med pekaren
                 self.dragged_sprite = sprite
+                self.dragged_sprite.dragged = True
                 self.pointer.grab()
                 return
 
@@ -335,6 +336,7 @@ class MyGame(arcade.Window, State):
             w.on_mouse_release(x, y)
         if self.dragged_sprite:
             self.dragged_sprite.release()
+            self.dragged_sprite.dragged = False
             self.dragged_sprite = None
         self.pointer.point()
 
