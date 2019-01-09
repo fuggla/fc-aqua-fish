@@ -58,7 +58,7 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
-        self.window_list = load_windows(self)
+        self.window_list, self.pause, self.event = load_windows(self)
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()

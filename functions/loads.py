@@ -58,7 +58,8 @@ def load_windows(game):
 
     # Fönster för händelser
     event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-    game.event = event.add_text(15, 12, 180, 80) # använd game.event.put(text) för nya rader
+    eventhandler = event.add_text(15, 12, 180, 80) # använd game.event.put(text) för nya rader
+    print(eventhandler)
 
     # Fönster för interaktion med spel
     action= Window(60, center_y, 100, 170, " Store", title_height=20, title_align="left")
@@ -78,6 +79,5 @@ def load_windows(game):
         ( "Open Store", action.open, 50 ),
         ( "Exit", exit, 90 )
     )
-    game.pause = pause # Behövs för att bland annat escape ska fungera
 
-    return [main, event, action, pause]
+    return [main, event, action, pause], pause, eventhandler
