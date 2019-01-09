@@ -20,9 +20,7 @@ A simulator by Furniture Corp.
 - [ ] Menyer i form av valar som simmar in?
 - [ ] Ljudeffekter
 - [ ] Någon form av ekonomisystem för köp av fiskar/morot
-- [ ] Credits
-  - [ ] Lång lista på vilka som gjort vad
-  - [ ] Länkar till där Jonte har snott bilderna
+- [ ] Länkar i credits till där Jonte har snott bilderna
 
 ### v0.9
 - [ ] Ljudeffekter
@@ -58,7 +56,9 @@ A simulator by Furniture Corp.
   - [x] Antal pussar
 - [x] Fixa sprites för pfish som är andra färger
 - [x] Se till att alla bilder kan användas och har länkar till källan
-- [ ] Startmeny (något separat från paus som bara visas när spelet startas)
+- [x] Startmeny (något separat från paus som bara visas när spelet startas)
+- [x] Credits
+  - [x] Lång lista på vilka som gjort vad
 
 ### v0.7
 - [x] System för köttätande fisk
