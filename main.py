@@ -189,6 +189,7 @@ class MyGame(arcade.Window, State):
                     fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "medium")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.bfish_list:
                 # Ätalgoritm för blue small fish
@@ -217,6 +218,7 @@ class MyGame(arcade.Window, State):
                     fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "small")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             for fish in self.shark_list:
                 # Ätalgoritm för blue shark
@@ -236,6 +238,7 @@ class MyGame(arcade.Window, State):
                     fish.laid_eggs += 1
                     egg = FishEggSprite(fish, "large")
                     self.fish_egg_list.append(egg)
+                    self.event.put(fish.get_name() + " laid an egg")
 
             """ Stega igenom äggen """
             for egg in self.fish_egg_list:
