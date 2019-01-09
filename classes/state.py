@@ -12,6 +12,9 @@ class State():
     def pause(self):
         self.state = "paused"
 
+    def credits(self):
+        self.state = "credits"
+
     def is_paused(self):
         return True if self.state == "paused" else False
 
@@ -20,6 +23,9 @@ class State():
 
     def is_main_menu(self):
         return True if self.state == "main" else False
+
+    def is_credits(self):
+        return True if self.state == "credits" else False
 
     # Ändra läge mellan paused och playing
     def toggle_pause(self):
