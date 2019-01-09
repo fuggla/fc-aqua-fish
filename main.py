@@ -5,8 +5,8 @@ A game by furniture corporation
 
 https://github.com/owlnical/fc-aqua-fish
 """
-import arcade, random, types, math
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled
+import arcade, random, types, math, csv
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled, load_sound, play_sound, render_text, create_text
 from random import randrange
 from arcade.key import *
 from arcade.color import *
@@ -43,7 +43,7 @@ class MyGame(arcade.Window, State):
 
         # Sätt spritelistor och vanliga listor till none
         self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite", "pointer" ]
-        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info"]
+        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info", "music"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
@@ -60,6 +60,7 @@ class MyGame(arcade.Window, State):
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
         self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
+        self.music_list = self.load_music()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -145,6 +146,9 @@ class MyGame(arcade.Window, State):
             self.window_list[0].draw()
             for b in self.bubble_main_list:
                 b.draw()
+
+        elif self.is_credits():
+            render_text(self.credits_text, self.credits_x, self.credits_y)
 
         self.fade.draw()
 
@@ -290,6 +294,9 @@ class MyGame(arcade.Window, State):
             for b in self.bubble_main_list:
                 b.update(dt)
 
+        elif self.is_credits():
+            self.credits_y += 20 * dt
+
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
         self.frame_count += 1
@@ -394,9 +401,11 @@ class MyGame(arcade.Window, State):
         # Huvudmenyn är ett fönster som sträcker sig utanför upplösningen (så det inte kan flyttas)
         main = Window(*self.center_cords, *self.width_height, "Main Menu",
         background_color=WHITE)
-        main.add_button(self.height / 2 - 30, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
+        main.add_button(self.height / 2 - 50, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
         WHITE, "Lato Light", GRAY)
-        main.add_button(self.height / 2 + 30, self.width / 2 - 90, 180, 30, "Exit", 22,
+        main.add_button(self.height / 2 , self.width / 2 - 90, 180, 30, "Credits", 22,
+        self.play_credits, WHITE, WHITE, "Lato Light", GRAY)
+        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22,
         window_commands.close_window, WHITE, WHITE, "Lato Light", GRAY)
         main.open()
 
@@ -425,6 +434,23 @@ class MyGame(arcade.Window, State):
         for i in range(BUBBLE_MAPS):
             list.append(Bubble_map(color=color))
         return list
+
+    def load_music(self):
+        music = []
+        music.append(load_sound("assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"))
+        return music
+
+    def play_credits(self):
+        self.credits_x = 0
+        self.credits_y = -230
+        text = "AQUA FISH\n\n"
+        with open('credits.csv') as file:
+            reader = csv.reader(file, delimiter=';')
+            for row in reader:
+                text += f"{row[0]}\n{row[1]}\n\n"
+        play_sound(self.music_list[0])
+        self.credits_text = create_text(text, WHITE, 22, self.width, "center")
+        self.credits()
 
     def start(self):
         self.window_list[0].close() # Main
