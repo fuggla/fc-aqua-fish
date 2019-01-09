@@ -47,7 +47,8 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
-        self.dragged_sprite = []
+        # Den sprite som flyttas med musen
+        self.dragged_sprite = None
 
     def setup(self):
         self.timer = Performance_timer("Loading started")
@@ -311,8 +312,8 @@ class MyGame(arcade.Window, State):
     def on_mouse_motion(self, x, y, dx, dy):
         for w in self.get_open_windows(dragged_only=True):
             w.move(dx, dy)
-        if self.dragged_sprite:                                         # Om det finns dragna sprites
-            self.dragged_sprite[0].drag_sprite(x, y, dx, dy)            # Så flytta dem och spara pekarens hastighet
+        if self.dragged_sprite:                                      # Om det finns dragna sprites
+            self.dragged_sprite.drag_sprite(x, y, dx, dy)            # Så flytta dem och spara pekarens hastighet
 
         # Här flyttas muspekaren då musen flyttas.
         self.pointer.on_mouse_motion(x, y)
@@ -325,16 +326,17 @@ class MyGame(arcade.Window, State):
                 return
         for sprite in self.all_sprite_list:                             # Stega igenom alla fiskar och morötter
             if sprite.is_mouse_on(self.pointer):                        # Kolla ifall de är i kontakt med pekaren
-                self.dragged_sprite.append(sprite)                      # Spara dem i en lista
+                self.dragged_sprite = sprite
                 self.pointer.grab()
+                return
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
         if self.dragged_sprite:
-            self.dragged_sprite[0].change_x = self.dragged_sprite[0].drag_speed[0]  # Ställ in spritens x-hastighet
-            self.dragged_sprite[0].change_y = self.dragged_sprite[0].drag_speed[1]  # Ställ in spritens y-hastighet
-            self.dragged_sprite = []                                                # Töm listan med dragna strukturer
+            self.dragged_sprite.change_x = self.dragged_sprite.drag_speed[0]  # Ställ in spritens x-hastighet
+            self.dragged_sprite.change_y = self.dragged_sprite.drag_speed[1]  # Ställ in spritens y-hastighet
+            self.dragged_sprite = None
         self.pointer.point()
 
         # Alltid spela spel när pausmenyn är stängs
