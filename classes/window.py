@@ -272,11 +272,13 @@ class Text(Shape, SimpleQueue):
     def draw(self):
         render_text(self.text, self.x, self.y)
 
+    def message_received(self):
+        return not self.empty()
+
     # Töm kö och fyll på textruta med ny rad
     def update(self):
-        if not self.empty():
-            text = ""
-            self.row.insert(0, self.get())
-            for r in self.row[0:self.max_rows]:
-                text = f"{r}\n{text}"
-            self.text = create_text(text, *self.settings)
+        text = ""
+        self.row.insert(0, self.get())
+        for r in self.row[0:self.max_rows]:
+            text = f"{r}\n{text}"
+        self.text = create_text(text, *self.settings)

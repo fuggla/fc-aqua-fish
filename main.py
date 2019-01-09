@@ -294,7 +294,9 @@ class MyGame(arcade.Window, State):
             for b in self.bubble_list:
                 b.update(dt)
 
-            self.event.update()
+            """ Uppdatera eventruta """
+            if self.event.message_received():
+                self.event.update()
 
         elif self.is_main_menu():
             for b in self.bubble_main_list:
