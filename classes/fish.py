@@ -49,7 +49,8 @@ class FishSprite(arcade.Sprite):
         # För kommunikation ut från objekt
         self.event = event or None
 
-        # För förflyttning med muspekaren
+        # För förflyttning med muspekare
+        self.dragged = False
         self.drag_speed = [0, 0]
 
         # Dessa variabler styr reproduktionen av fiskarna
@@ -434,8 +435,12 @@ class FishSprite(arcade.Sprite):
     def move_calc(self):
         # Hastigheten är tidigare hastighet plus positiv acceleration minus negativ acceleration
         # Här ska programmets framerate in stället för 30
-        self.change_x = self.change_x + (self.acc_x - self.break_x) / self.tick_rate
-        self.change_y = self.change_y + (self.acc_y - self.break_y) / self.tick_rate
+        if self.dragged:
+            self.change_x = 0
+            self.change_y = 0
+        else:
+            self.change_x = self.change_x + (self.acc_x - self.break_x) / self.tick_rate
+            self.change_y = self.change_y + (self.acc_y - self.break_y) / self.tick_rate
 
         # Fiskarna plaskar till när de faller tillbaka
         if self.change_y < 0 and self.bottom > self.sh:

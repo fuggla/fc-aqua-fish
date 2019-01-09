@@ -38,6 +38,7 @@ class CarrotSprite(arcade.Sprite):
         self.bounce_number = 1
 
         # För förflyttning med muspekaren
+        self.dragged = False
         self.drag_speed = [0, 0]
 
         self.framerate = TICK_RATE
@@ -57,6 +58,9 @@ class CarrotSprite(arcade.Sprite):
         if self.center_y < self.sh * self.sr:
             self.change_y *= 0.9
             self.change_x *= 0.9
+        elif self.dragged:
+            self.change_x = 0
+            self.change_y = 0
         else:
             self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
