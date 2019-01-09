@@ -441,7 +441,7 @@ class MyGame(arcade.Window, State):
             self.credits()
 
     def start(self):
-        main, event, action = 1, 2, 3
+        main, event, action = 0, 1, 2
         self.window_list[main].close()
         self.window_list[event].open()
         self.window_list[action].open()
