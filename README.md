@@ -14,7 +14,6 @@ A simulator by Furniture Corp.
 
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Skippbar splashscreen med logga
-- [ ] Fiskarna lägger rom som blir nya fiskar
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
 - [ ] Interaktion med fiskarna
 - [ ] Menyer i form av valar som simmar in?
@@ -35,6 +34,7 @@ A simulator by Furniture Corp.
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
   - [x] Lägre updateringsfrekvens för informationsdispay
 - [ ] Funktion för att visa statistik
+  - [ ] När användaren håller i fisken?
 - [ ] Exit när credits är slut
 
 ## Tutorials / Dokumentation
