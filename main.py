@@ -120,7 +120,7 @@ class MyGame(arcade.Window, State):
         # the screen to the background color, and erase what we drew last frame.
         start_render()
 
-        if self.is_playing():
+        if self.is_playing() or self.is_paused():
             # Rita bakgrund
             draw_texture_rectangle(*self.center_cords, *self.width_height, self.background)
 
