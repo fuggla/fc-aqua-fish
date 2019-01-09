@@ -35,6 +35,7 @@ A simulator by Furniture Corp.
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
   - [ ] Lägre updateringsfrekvens för informationsdispay
 - [ ] Funktion för att visa statistik
+- [ ] Exit när credits är slut
 
 ## Tutorials / Dokumentation
 
