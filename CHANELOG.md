@@ -1,3 +1,46 @@
+### v0.8
+- [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
+- [x] System för kärlek mellan fiskarna
+  - [x] Herrarna och damerna måste pussas innan damerna kan lägga ägg
+  - [x] De blir puss-redo när de är mätta
+  - [x] Någon form av pussanimation
+  - [x] Slumpad chans för graviditet när de pussas (herr + dam)
+  - [x] Fiskarna simmar ner och lägger endast ägg på marken
+- [x] Snyggare muspekare?
+- [x] Flytta runt fiskar med muspekarten
+  - [x] Kaska fiskarna
+- [x] Spara statistik
+  - [x] Haj kills
+  - [x] Fisk livstid
+  - [x] Antal ätna morötter
+  - [x] Antal ätna blåbär
+  - [x] Antal lagda ägg
+  - [x] Antal pussar
+- [x] Fixa sprites för pfish som är andra färger
+- [x] Se till att alla bilder kan användas och har länkar till källan
+- [x] Startmeny (något separat från paus som bara visas när spelet startas)
+- [x] Credits
+  - [x] Lång lista på vilka som gjort vad
+
+### v0.7
+- [x] System för köttätande fisk
+  - [x] En ny typ av fisk som äter andra fiskar
+  - [x] Bytesfiskarna blir rädda och flyt när de är nära den
+  - [x] Bytesfiskarna blir uppätna av hungriga köttätande fiskar
+- [x] Ett system för att styra vilka föremål som visuellt är framför/bakom varandra
+- [x] Föremål i akvariet
+  - [x] Slumpat valda och utplacerade
+  - [x] Fruktväxt som det växer mat på
+  - [x] Flera bär på varje planta
+- [x] System för äggläggning
+  - [x] Fiskarna lägger ägg ifall de ätit mycket
+  - [x] Tydliga ägg för blå och lila fiskarna (olika storlek)
+  - [x] Endast damerna lägger ägg
+  - [x] En ny fisk kläcks efter ett tag
+- [x] Mer info om fisken man köper
+- [x] Någon form av stack för meddelanden ("X dog av svält" etc)
+- [x] Tona in spel vid start
+
 ### v0.6
 - [x] Ätanimation
 - [x] Dödsanimation
