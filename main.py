@@ -388,7 +388,7 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_windows(self):
-        # Huvudmeny
+        # Huvudmenyn är ett fönster som sträcker sig utanför upplösningen (så det inte kan flyttas)
         main = Window(*self.center_cords, *self.width_height, "Main Menu",
         background_color=WHITE)
         main.add_button(self.height / 2 - 30, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
