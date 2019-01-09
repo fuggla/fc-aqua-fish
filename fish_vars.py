@@ -39,7 +39,7 @@ SPRITE_SCALING_SHARK = 0.8
 
 shark_eager = 10            # Hur ofta byter fiskarna riktning
 shark_hungry = 1            # Hur intresserade är de av mat (har ingen effekt nu)
-shark_hunt_will = 1         # Hur taggade de är på att börja jaga
+shark_hunt_will = 100         # Hur taggade de är på att börja jaga
 shark_daydream = 5          # Hur ofta de stannar upp och dagdrömmer
 shark_kiss_will = 10        # Hur benägna är de att vilja pussas
 

@@ -303,9 +303,11 @@ class FishSprite(arcade.Sprite):
             self.iseating = 10
 
             self.hunting_spirit = 0
+            self.angle = math.degrees(math.atan2(prey.center_y - self.center_y, prey.center_x - self.center_x))
             if -90 < self.angle < 90:
                 self.texture = self.texture_right1
             else:
+                self.angle += 180
                 self.texture = self.texture_left1
 
             prey.kill()
