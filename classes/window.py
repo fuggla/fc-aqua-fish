@@ -150,6 +150,11 @@ class Window(Shape):
             release = release
         ))
 
+    # Lägg till flera knappar samtidigt i fönster
+    def add_buttons(self, settings, *buttons):
+        for button in buttons:
+            self.add_button(*button, *settings)
+
     # Lägg till text i fönster
     # Returnerar textrutan. Använd object.put("ny rad")
     def add_text(self, margin_top, margin_left, w, h, text=""):

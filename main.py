@@ -402,40 +402,42 @@ class MyGame(arcade.Window, State):
         self.event.put("Bought carrot")
 
     def create_windows(self):
-        # Huvudmenyn är ett fönster som sträcker sig utanför upplösningen (så det inte kan flyttas)
-        style = [ 22, WHITE, WHITE, "Lato Light", GRAY ]
+        centerx, center_y = self.width / 2, self.height / 2
+
+        # Fönster huvudmeny (Sträcker sig utanför skärmen så det inte kan flyttas)
         main = Window(*self.center_cords, *self.width_height, "Main Menu", bg_color=WHITE)
-        main.add_button("New Game", self.start, self.height / 2 - 50, self.width / 2 - 90, 180, 30, *style)
-        main.add_button("Credits", self.play_credits, self.height / 2 , self.width / 2 - 90, 180, 30, *style)
-        main.add_button("Exit", exit, self.height / 2 + 50, self.width / 2 - 90, 180, 30, *style)
+
+        # Knappar har en gemensam stil men unik titel, funktion och X-kordinat
+        main.add_buttons(
+            ( self.width / 2 - 90, 180, 30, 22, WHITE, WHITE, "Lato Light", GRAY ),
+            ( "New Game", self.start, center_y - 50 ),
+            ( "Credits", self.play_credits, center_y ),
+            ( "Exit", exit, center_y + 50 )
+        )
         main.open()
 
         # Fönster för händelser
         event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
         self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
 
-        # Skapa meny för att interagera med akvariet
-        action= Window(60, self.height/ 2, 100, 170, " Store", title_height=20, title_align="left")
-        buttons = (
+        # Fönster för interaktion med spel
+        action= Window(60, center_y, 100, 170, " Store", title_height=20, title_align="left")
+        action.add_buttons(
+            (10, 80, 30),
             ( "Pfish", self.buy_pfish, 10 ),
             ( "Bfish", self.buy_bfish, 50 ),
             ( "Shark", self.buy_shark, 90 ),
             ( "Carrot", self.buy_carrot, 130 )
         )
-        top_width_height = [ 10, 80, 30 ] # Gemensam Top Width Height för knappar
-        for button in buttons:
-            action.add_button(*button, *top_width_height)
 
-        # Skapa huvudmeny att visa med escape
+        # Pausefönster att visa med Escape
         pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
-        top_width_height = [ 10, 180, 30 ] # Gemensam Top Width Height för knappar
-        buttons = (
+        pause.add_buttons(
+            ( 10, 180, 30 ),
             ( "New Game", self.setup, 10 ),
             ( "Open Store", action.open, 50 ),
             ( "Exit", exit, 90 )
         )
-        for button in buttons:
-            pause.add_button(*button, *top_width_height)
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
         return [main, event, action, pause]
