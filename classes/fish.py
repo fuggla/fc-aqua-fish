@@ -511,6 +511,10 @@ class FishSprite(arcade.Sprite):
         self.acc_x = (random.random() * 2 - 1) * self.finforce / self.mass
         self.acc_y = (random.random() * 2 - 1) * self.finforce / self.mass
 
+    def release(self):
+        self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
+        self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
+
     def water_res(self):
         # Beräkna negativ acceleration från vattnet
         self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass

@@ -334,8 +334,7 @@ class MyGame(arcade.Window, State):
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
         if self.dragged_sprite:
-            self.dragged_sprite.change_x = self.dragged_sprite.drag_speed[0]  # Ställ in spritens x-hastighet
-            self.dragged_sprite.change_y = self.dragged_sprite.drag_speed[1]  # Ställ in spritens y-hastighet
+            self.dragged_sprite.release()
             self.dragged_sprite = None
         self.pointer.point()
 

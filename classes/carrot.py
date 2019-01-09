@@ -69,6 +69,10 @@ class CarrotSprite(arcade.Sprite):
         self.center_y = y
         self.drag_speed = [dx, dy]
 
+    def release(self):
+        self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
+        self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
+
     def is_mouse_on(self, pointer):
         if arcade.check_for_collision(self, pointer):
             return True
