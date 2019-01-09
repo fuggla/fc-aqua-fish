@@ -59,8 +59,8 @@ class MyGame(arcade.Window, State):
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
         self.window_list = self.create_windows()
-        self.bubble_list = self.create_bubbles()
-        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
+        self.bubble_list = load_bubbles()
+        self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
 
         """ Skapa alla fiskar """
@@ -442,12 +442,6 @@ class MyGame(arcade.Window, State):
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
         return [main, event, action, pause]
-
-    def create_bubbles(self, color=(255,255,255,randrange(128,255))):
-        list = []
-        for i in range(BUBBLE_MAPS):
-            list.append(Bubble_map(color=color))
-        return list
 
     def play_credits(self):
         if self.is_credits() == False:
