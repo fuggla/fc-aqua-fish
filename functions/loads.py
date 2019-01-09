@@ -1,10 +1,18 @@
-from classes.bubble_map import Bubble_map
-from csv import reader
-from arcade import create_text, load_sound
-from arcade.color import *
+"""
+Funktioner för att ladda/skapa:
+ - Credits
+ - Music
+ - Bubbles maps
+ - Windows
+"""
+
 from vars import SCREEN_WIDTH, BUBBLE_MAPS
-from random import randrange
+from arcade import create_text, load_sound
+from classes.bubble_map import Bubble_map
 from classes.window import Window
+from random import randrange
+from arcade.color import *
+from csv import reader
 
 # Läs in och skapa credits text från credits.csv
 def load_credits(width=SCREEN_WIDTH, x=0, y=-230, text="AQUA FISH\n\n", color=WHITE, font_size=22):
