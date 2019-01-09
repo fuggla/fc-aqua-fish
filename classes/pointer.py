@@ -13,3 +13,11 @@ class Pointer(arcade.Sprite):
         self.texture_grab = arcade.load_texture(f"{img}/grab.png", scale=SCALING_POINTER )
 
         self.texture = self.texture_point
+
+    # Om musen håller i ett fönster så byt textur
+    def grab(self):
+        self.texture = self.texture_grab  # Om musen håller i ett fönster så byt textur
+
+    # Byt tillbaka till vanliga texturen
+    def point(self):
+        self.texture = self.texture_point
