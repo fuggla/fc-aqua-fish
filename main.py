@@ -26,6 +26,7 @@ from classes.fade import Fade
 from classes.fps import Fps
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
+from functions.create_credits import create_credits
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
@@ -112,7 +113,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.start()
         else:
-            self.create_credits()
+            self.credits_text, self.credits_x, self.credits_y = create_credits()
             self.state_main_menu()
 
     def on_draw(self):
@@ -453,15 +454,6 @@ class MyGame(arcade.Window, State):
         music.append(load_sound("assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"))
         return music
 
-    def create_credits(self):
-        self.credits_x = 0
-        self.credits_y = -230
-        text = "AQUA FISH\n\n"
-        with open('credits.csv') as file:
-            reader = csv.reader(file, delimiter=';')
-            for row in reader:
-                text += f"{row[0]}\n{row[1]}\n\n"
-        self.credits_text = create_text(text, WHITE, 22, self.width, "center")
 
     def play_credits(self):
         if self.is_credits() == False:
