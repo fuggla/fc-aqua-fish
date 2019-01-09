@@ -305,7 +305,7 @@ class MyGame(arcade.Window, State):
 
     def on_key_release(self, key, key_modifiers):
         if (key == Q): # Avsluta
-            window_commands.close_window()
+            exit()
         elif (key == R): # Starta om
             self.setup()
         elif self.is_main_menu():
@@ -408,7 +408,7 @@ class MyGame(arcade.Window, State):
         background_color=WHITE)
         main.add_button(self.height / 2 - 50, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, *style)
         main.add_button(self.height / 2 , self.width / 2 - 90, 180, 30, "Credits", 22, self.play_credits, *style)
-        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22, window_commands.close_window, *style)
+        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22, exit, *style)
         main.open()
 
         # Fönster för händelser
@@ -426,7 +426,7 @@ class MyGame(arcade.Window, State):
         pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
         pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
         pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
-        pause.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
+        pause.add_button(90, 10, 180, 30, "Exit", 11, exit)
         self.pause = pause # Behövs för att bland annat escape ska fungera
 
         return [main, event, action, pause]
