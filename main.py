@@ -300,14 +300,10 @@ class MyGame(arcade.Window, State):
                 self.event.update()
 
         elif self.is_main_menu():
-            for b in self.bubble_main_list:
-                b.update(dt)
+            self.update_menu_bubbles(dt)
 
         elif self.is_credits():
-            if self.fade.is_fading_out():
-                for b in self.bubble_main_list:
-                    b.update(dt)
-            self.credits_y += 20 * dt
+            self.update_credits(dt)
 
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
@@ -456,6 +452,15 @@ class MyGame(arcade.Window, State):
         self.window_list[event].open()
         self.window_list[action].open()
         self.play()
+
+    def update_credits(self, dt):
+        if self.fade.is_fading_out():
+            self.update_menu_bubbles()
+        self.credits_y += 20 * dt
+
+    def update_menu_bubbles(self, dt):
+        for b in self.bubble_main_list:
+            b.update(dt)
 
 def main():
     if DEBUG:
