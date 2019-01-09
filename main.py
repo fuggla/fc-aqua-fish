@@ -112,6 +112,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.start()
         else:
+            self.create_credits()
             self.state_main_menu()
 
     def on_draw(self):
@@ -148,6 +149,10 @@ class MyGame(arcade.Window, State):
                 b.draw()
 
         elif self.is_credits():
+            if self.fade.is_fading_out():
+                self.window_list[0].draw()
+                for b in self.bubble_main_list:
+                    b.draw()
             render_text(self.credits_text, self.credits_x, self.credits_y)
 
         self.fade.draw()
@@ -156,7 +161,8 @@ class MyGame(arcade.Window, State):
         self.fps_counter.draw()
 
         # Rita ut muspekaren
-        self.pointer_list.draw()
+        if self.is_credits() == False:
+            self.pointer_list.draw()
 
     def update(self, dt):
 
@@ -295,6 +301,9 @@ class MyGame(arcade.Window, State):
                 b.update(dt)
 
         elif self.is_credits():
+            if self.fade.is_fading_out():
+                for b in self.bubble_main_list:
+                    b.update(dt)
             self.credits_y += 20 * dt
 
         self.fade.update(dt)
@@ -342,6 +351,8 @@ class MyGame(arcade.Window, State):
                 return
 
     def on_mouse_release(self, x, y, button, key_modifiers):
+        if self.is_credits():
+            return
         for w in self.get_open_windows():
             w.on_mouse_release(x, y)
         if self.dragged_sprite:
@@ -440,7 +451,7 @@ class MyGame(arcade.Window, State):
         music.append(load_sound("assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"))
         return music
 
-    def play_credits(self):
+    def create_credits(self):
         self.credits_x = 0
         self.credits_y = -230
         text = "AQUA FISH\n\n"
@@ -448,9 +459,14 @@ class MyGame(arcade.Window, State):
             reader = csv.reader(file, delimiter=';')
             for row in reader:
                 text += f"{row[0]}\n{row[1]}\n\n"
-        play_sound(self.music_list[0])
         self.credits_text = create_text(text, WHITE, 22, self.width, "center")
-        self.credits()
+
+    def play_credits(self):
+        if self.is_credits() == False:
+            self.fade = Fade(a=255, time=4)
+            self.fade.start_out()
+            play_sound(self.music_list[0])
+            self.credits()
 
     def start(self):
         self.window_list[0].close() # Main

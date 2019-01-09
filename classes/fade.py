@@ -74,3 +74,6 @@ class Fade():
         # Rita inte i onödan när alpha är 0
         if (self.a != 0):
             draw_xywh_rectangle_filled(self.x, self.y, self.w, self.h, (self.r, self.g, self.b, self.a))
+
+    def is_fading_out(self):
+        return True if self.fade == "out" else False
