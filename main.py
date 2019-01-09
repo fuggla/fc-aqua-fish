@@ -315,8 +315,7 @@ class MyGame(arcade.Window, State):
             self.dragged_sprite[0].drag_sprite(x, y, dx, dy)            # Så flytta dem och spara pekarens hastighet
 
         # Här flyttas muspekaren då musen flyttas.
-        # Allt jox är för att fingret ska hamna på samma plats som orginalmusens "pekare"
-        self.pointer.set_position(x + self.pointer.width*0.3, y - self.pointer.height*0.5)
+        self.pointer.on_mouse_motion(x, y)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
