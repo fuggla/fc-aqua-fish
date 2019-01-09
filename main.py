@@ -403,14 +403,12 @@ class MyGame(arcade.Window, State):
 
     def create_windows(self):
         # Huvudmenyn är ett fönster som sträcker sig utanför upplösningen (så det inte kan flyttas)
+        style = [ WHITE, WHITE, "Lato Light", GRAY ]
         main = Window(*self.center_cords, *self.width_height, "Main Menu",
         background_color=WHITE)
-        main.add_button(self.height / 2 - 50, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
-        WHITE, "Lato Light", GRAY)
-        main.add_button(self.height / 2 , self.width / 2 - 90, 180, 30, "Credits", 22,
-        self.play_credits, WHITE, WHITE, "Lato Light", GRAY)
-        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22,
-        window_commands.close_window, WHITE, WHITE, "Lato Light", GRAY)
+        main.add_button(self.height / 2 - 50, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, *style)
+        main.add_button(self.height / 2 , self.width / 2 - 90, 180, 30, "Credits", 22, self.play_credits, *style)
+        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22, window_commands.close_window, *style)
         main.open()
 
         # Fönster för händelser
