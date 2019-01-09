@@ -26,8 +26,7 @@ from classes.fade import Fade
 from classes.fps import Fps
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
-from functions.create_credits import create_credits
-from functions.load_music import load_music
+from functions.loads import *
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
@@ -114,7 +113,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.start()
         else:
-            self.credits_text, self.credits_x, self.credits_y = create_credits()
+            self.credits_text, self.credits_x, self.credits_y = load_credits()
             self.state_main_menu()
 
     def on_draw(self):
