@@ -58,7 +58,7 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
-        self.window_list = self.create_windows()
+        self.window_list = load_windows(self)
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
@@ -400,47 +400,6 @@ class MyGame(arcade.Window, State):
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")
-
-    def create_windows(self):
-        centerx, center_y = self.width / 2, self.height / 2
-
-        # Fönster huvudmeny (Sträcker sig utanför skärmen så det inte kan flyttas)
-        main = Window(*self.center_cords, *self.width_height, "Main Menu", bg_color=WHITE)
-
-        # Knappar har en gemensam stil men unik titel, funktion och X-kordinat
-        main.add_buttons(
-            ( self.width / 2 - 90, 180, 30, 22, WHITE, WHITE, "Lato Light", GRAY ),
-            ( "New Game", self.start, center_y - 50 ),
-            ( "Credits", self.play_credits, center_y ),
-            ( "Exit", exit, center_y + 50 )
-        )
-        main.open()
-
-        # Fönster för händelser
-        event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-        self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
-
-        # Fönster för interaktion med spel
-        action= Window(60, center_y, 100, 170, " Store", title_height=20, title_align="left")
-        action.add_buttons(
-            (10, 80, 30),
-            ( "Pfish", self.buy_pfish, 10 ),
-            ( "Bfish", self.buy_bfish, 50 ),
-            ( "Shark", self.buy_shark, 90 ),
-            ( "Carrot", self.buy_carrot, 130 )
-        )
-
-        # Pausefönster att visa med Escape
-        pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
-        pause.add_buttons(
-            ( 10, 180, 30 ),
-            ( "New Game", self.setup, 10 ),
-            ( "Open Store", action.open, 50 ),
-            ( "Exit", exit, 90 )
-        )
-        self.pause = pause # Behövs för att bland annat escape ska fungera
-
-        return [main, event, action, pause]
 
     def play_credits(self):
         if self.is_credits() == False:
