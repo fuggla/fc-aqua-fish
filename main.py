@@ -42,7 +42,7 @@ class MyGame(arcade.Window, State):
         self.width_height = (width, height)
 
         # Sätt spritelistor och vanliga listor till none
-        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite" ]
+        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite", "pointer" ]
         self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
@@ -59,8 +59,6 @@ class MyGame(arcade.Window, State):
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
         self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
-        self.pointer = SpriteList()
-        self.pointer.use_spatial_hash = False
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -100,7 +98,9 @@ class MyGame(arcade.Window, State):
 
         # Skapa muspekaren
         self.set_mouse_visible(False)
-        self.pointer.append(Pointer())
+        self.pointer_list.use_spatial_hash = False
+        self.pointer_list.append(Pointer())
+        self.pointer = self.pointer_list[0]
 
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
@@ -151,7 +151,7 @@ class MyGame(arcade.Window, State):
         self.fps_counter.draw()
 
         # Rita ut muspekaren
-        self.pointer.draw()
+        self.pointer_list.draw()
 
     def update(self, dt):
 
@@ -316,18 +316,18 @@ class MyGame(arcade.Window, State):
 
         # Här flyttas muspekaren då musen flyttas.
         # Allt jox är för att fingret ska hamna på samma plats som orginalmusens "pekare"
-        self.pointer[0].set_position(x + self.pointer[0].width*0.3, y - self.pointer[0].height*0.5)
+        self.pointer.set_position(x + self.pointer.width*0.3, y - self.pointer.height*0.5)
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
             w.on_mouse_press(x, y)
             if w.dragging:
-                self.pointer[0].grab()
+                self.pointer.grab()
                 return
         for sprite in self.all_sprite_list:                             # Stega igenom alla fiskar och morötter
-            if sprite.is_mouse_on(self.pointer[0]):                     # Kolla ifall de är i kontakt med pekaren
+            if sprite.is_mouse_on(self.pointer):                        # Kolla ifall de är i kontakt med pekaren
                 self.dragged_sprite.append(sprite)                      # Spara dem i en lista
-                self.pointer[0].grab()
+                self.pointer.grab()
 
     def on_mouse_release(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
@@ -336,7 +336,7 @@ class MyGame(arcade.Window, State):
             self.dragged_sprite[0].change_x = self.dragged_sprite[0].drag_speed[0]  # Ställ in spritens x-hastighet
             self.dragged_sprite[0].change_y = self.dragged_sprite[0].drag_speed[1]  # Ställ in spritens y-hastighet
             self.dragged_sprite = []                                                # Töm listan med dragna strukturer
-        self.pointer[0].point()
+        self.pointer.point()
 
         # Alltid spela spel när pausmenyn är stängs
         if self.is_paused() and self.pause.is_closed():
