@@ -6,7 +6,7 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types, math, csv
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled, load_sound, play_sound, render_text, create_text
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled, play_sound, render_text
 from random import randrange
 from arcade.key import *
 from arcade.color import *
@@ -27,6 +27,7 @@ from classes.fps import Fps
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from functions.create_credits import create_credits
+from functions.load_music import load_music
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
@@ -61,7 +62,7 @@ class MyGame(arcade.Window, State):
         self.window_list = self.create_windows()
         self.bubble_list = self.create_bubbles()
         self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
-        self.music_list = self.load_music()
+        self.music_list = load_music()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -448,12 +449,6 @@ class MyGame(arcade.Window, State):
         for i in range(BUBBLE_MAPS):
             list.append(Bubble_map(color=color))
         return list
-
-    def load_music(self):
-        music = []
-        music.append(load_sound("assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"))
-        return music
-
 
     def play_credits(self):
         if self.is_credits() == False:
