@@ -6,7 +6,7 @@ A game by furniture corporation
 https://github.com/owlnical/fc-aqua-fish
 """
 import arcade, random, types, math, csv
-from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled, load_sound, play_sound, render_text, create_text
+from arcade import SpriteList, load_texture, start_render, draw_texture_rectangle, check_for_collision_with_list, window_commands, draw_rectangle_filled, play_sound, render_text
 from random import randrange
 from arcade.key import *
 from arcade.color import *
@@ -26,6 +26,7 @@ from classes.fade import Fade
 from classes.fps import Fps
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
+from functions.loads import *
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
 
@@ -57,10 +58,10 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
-        self.window_list = self.create_windows()
-        self.bubble_list = self.create_bubbles()
-        self.bubble_main_list = self.create_bubbles((0,0,0,randrange(64,192)))
-        self.music_list = self.load_music()
+        self.window_list = load_windows(self)
+        self.bubble_list = load_bubbles()
+        self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
+        self.music_list = load_music()
 
         """ Skapa alla fiskar """
         # Skapa purple_fish
@@ -112,7 +113,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.start()
         else:
-            self.create_credits()
+            self.credits_text, self.credits_x, self.credits_y = load_credits()
             self.state_main_menu()
 
     def on_draw(self):
@@ -144,16 +145,10 @@ class MyGame(arcade.Window, State):
                     w.draw()
 
         elif self.is_main_menu():
-            self.window_list[0].draw()
-            for b in self.bubble_main_list:
-                b.draw()
+            self.draw_main_menu()
 
         elif self.is_credits():
-            if self.fade.is_fading_out():
-                self.window_list[0].draw()
-                for b in self.bubble_main_list:
-                    b.draw()
-            render_text(self.credits_text, self.credits_x, self.credits_y)
+            self.draw_credits()
 
         self.fade.draw()
 
@@ -299,14 +294,10 @@ class MyGame(arcade.Window, State):
                 self.event.update()
 
         elif self.is_main_menu():
-            for b in self.bubble_main_list:
-                b.update(dt)
+            self.update_menu_bubbles(dt)
 
         elif self.is_credits():
-            if self.fade.is_fading_out():
-                for b in self.bubble_main_list:
-                    b.update(dt)
-            self.credits_y += 20 * dt
+            self.update_credits(dt)
 
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
@@ -314,7 +305,7 @@ class MyGame(arcade.Window, State):
 
     def on_key_release(self, key, key_modifiers):
         if (key == Q): # Avsluta
-            window_commands.close_window()
+            exit()
         elif (key == R): # Starta om
             self.setup()
         elif self.is_main_menu():
@@ -410,59 +401,6 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")
 
-    def create_windows(self):
-        # Huvudmenyn är ett fönster som sträcker sig utanför upplösningen (så det inte kan flyttas)
-        main = Window(*self.center_cords, *self.width_height, "Main Menu",
-        background_color=WHITE)
-        main.add_button(self.height / 2 - 50, self.width / 2 - 90, 180, 30, "New Game", 22, self.start, WHITE,
-        WHITE, "Lato Light", GRAY)
-        main.add_button(self.height / 2 , self.width / 2 - 90, 180, 30, "Credits", 22,
-        self.play_credits, WHITE, WHITE, "Lato Light", GRAY)
-        main.add_button(self.height / 2 + 50, self.width / 2 - 90, 180, 30, "Exit", 22,
-        window_commands.close_window, WHITE, WHITE, "Lato Light", GRAY)
-        main.open()
-
-        # Fönster för händelser
-        event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-        self.event = event.add_text(15, 12, 180, 80) # använd self.event.put(text) för nya rader
-
-        # Skapa meny för att interagera med akvariet
-        action= Window(60, self.height/ 2, 100, 170, " Store", title_height=20, title_align="left")
-        action.add_button(10, 10, 80, 30, "Pfish", 11, self.buy_pfish)
-        action.add_button(50, 10, 80, 30, "Bfish", 11, self.buy_bfish)
-        action.add_button(90, 10, 80, 30, "Shark", 11, self.buy_shark)
-        action.add_button(130, 10, 80, 30, "Carrot", 11, self.buy_carrot)
-
-        # Skapa huvudmeny att visa med escape
-        pause=Window(*self.center_cords, 200, 130, "Aqua Fish")
-        pause.add_button(10, 10, 180, 30, "New Game", 11, self.setup)
-        pause.add_button(50, 10, 180, 30, "Open Store", 11, action.open)
-        pause.add_button(90, 10, 180, 30, "Exit", 11, window_commands.close_window)
-        self.pause = pause # Behövs för att bland annat escape ska fungera
-
-        return [main, event, action, pause]
-
-    def create_bubbles(self, color=(255,255,255,randrange(128,255))):
-        list = []
-        for i in range(BUBBLE_MAPS):
-            list.append(Bubble_map(color=color))
-        return list
-
-    def load_music(self):
-        music = []
-        music.append(load_sound("assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"))
-        return music
-
-    def create_credits(self):
-        self.credits_x = 0
-        self.credits_y = -230
-        text = "AQUA FISH\n\n"
-        with open('credits.csv') as file:
-            reader = csv.reader(file, delimiter=';')
-            for row in reader:
-                text += f"{row[0]}\n{row[1]}\n\n"
-        self.credits_text = create_text(text, WHITE, 22, self.width, "center")
-
     def play_credits(self):
         if self.is_credits() == False:
             self.fade = Fade(a=255, time=4)
@@ -471,10 +409,30 @@ class MyGame(arcade.Window, State):
             self.credits()
 
     def start(self):
-        self.window_list[0].close() # Main
-        self.window_list[1].open()  # Event
-        self.window_list[2].open()  # Action
+        main, event, action = 0, 1, 2
+        self.window_list[main].close()
+        self.window_list[event].open()
+        self.window_list[action].open()
         self.play()
+
+    def update_credits(self, dt):
+        if self.fade.is_fading_out():
+            self.update_menu_bubbles(dt)
+        self.credits_y += 20 * dt
+
+    def update_menu_bubbles(self, dt):
+        for b in self.bubble_main_list:
+            b.update(dt)
+
+    def draw_main_menu(self):
+        self.window_list[0].draw()
+        for b in self.bubble_main_list:
+            b.draw()
+
+    def draw_credits(self):
+        if self.fade.is_fading_out():
+            self.draw_main_menu()
+        render_text(self.credits_text, self.credits_x, self.credits_y)
 
 def main():
     if DEBUG:

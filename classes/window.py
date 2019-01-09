@@ -26,17 +26,17 @@ from arcade import create_text, render_text, draw_rectangle_filled, draw_rectang
 from arcade.color import *
 
 class Window(Shape):
-    def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_background_color=(255,182,193), font_size=13, font_name="Arial", outline_size=2, outline_color=(0,0,0,128), background_color=(211,211,211)):
+    def __init__(self, x, y, w, h, title, title_height=30, title_align="center", title_bg_color=(255,182,193), font_size=13, font_name="Arial", outline_size=2, outline_color=(0,0,0,128), bg_color=(211,211,211)):
         super().__init__(x, y, w, h)
 
         # Ram och bakgrund
         self.outline = [outline_color, outline_size]
-        self.background_color = background_color
+        self.bg_color = bg_color
 
         # Text längst upp på fönstret
         self.title = title
         self.title_height = title_height
-        self.title_background_color = title_background_color
+        self.title_bg_color = title_bg_color
         self.font_size = font_size
         self.font_name = font_name
 
@@ -63,7 +63,7 @@ class Window(Shape):
             h = title_height,
             w = w,
             outline_size = outline_size,
-            background_color = title_background_color,
+            bg_color = title_bg_color,
             text = title,
             font_size = font_size,
             font_name = font_name,
@@ -80,7 +80,7 @@ class Window(Shape):
             w = title_height,
             outline_size = outline_size,
             outline_color = BLACK,
-            background_color = (100, 0, 0, 100),
+            bg_color = (100, 0, 0, 100),
             text = "X",
             font_size = title_height - 10,
             font_name = font_name,
@@ -125,7 +125,7 @@ class Window(Shape):
     def draw(self):
         if self.is_open():
             draw_rectangle_filled(*self.drop_shadow)
-            draw_lrtb_rectangle_filled(*self.lrtb, self.background_color)
+            draw_lrtb_rectangle_filled(*self.lrtb, self.bg_color)
             draw_rectangle_outline(*self.pos, *self.size, *self.outline)
             for button in self.button_list:
                 button.draw()
@@ -133,8 +133,8 @@ class Window(Shape):
                 render_text(t.text, t.x, t.y)
 
     # Lägg till knapp i fönster
-    def add_button(self, margin_top, margin_left, w, h, text, font_size,
-    release, outline_color=BLACK, background_color=GRAY, font_name="Arial",
+    def add_button(self, text, release, margin_top, margin_left, w, h,
+    font_size=11, outline_color=BLACK, bg_color=GRAY, font_name="Arial",
     font_color=BLACK):
         self.button_list.append(Button(
             x = self.left + margin_left + w / 2,
@@ -142,13 +142,18 @@ class Window(Shape):
             w = w,
             h = h,
             outline_color = outline_color,
-            background_color = background_color,
+            bg_color = bg_color,
             text = text,
             font_size = font_size,
             font_name = font_name,
             font_color = font_color,
             release = release
         ))
+
+    # Lägg till flera knappar samtidigt i fönster
+    def add_buttons(self, settings, *buttons):
+        for button in buttons:
+            self.add_button(*button, *settings)
 
     # Lägg till text i fönster
     # Returnerar textrutan. Använd object.put("ny rad")
@@ -207,7 +212,7 @@ class Window(Shape):
 # Rektanglulära knappar
 class Button(Shape):
     def __init__(self, x, y, w, h, text, release=None, press=None,
-    outline_size=2, outline_color=(0,0,0,128), background_color=(200,200,200),
+    outline_size=2, outline_color=(0,0,0,128), bg_color=(200,200,200),
     font_size=11, font_name="Calibri", align="center", font_color = BLACK):
         super().__init__(x, y, w, h)
 
@@ -221,7 +226,7 @@ class Button(Shape):
         # Bakgrund och ram
         self.outline_size = outline_size
         self.outline_color = outline_color
-        self.background_color = background_color
+        self.bg_color = bg_color
 
         # Funktioner som triggas vid musklick
         self.release = release or self.release
@@ -229,7 +234,7 @@ class Button(Shape):
 
     # Rita knapp
     def draw(self):
-        draw_rectangle_filled(self.x, self.y, self.w, self.h, self.background_color)
+        draw_rectangle_filled(self.x, self.y, self.w, self.h, self.bg_color)
         draw_rectangle_outline(self.x, self.y, self.w, self.h, self.outline_color, self.outline_size)
         draw_text(self.text, self.x, self.y, self.font_color, font_name=self.font_name, font_size=self.font_size, width=self.w, align=self.align, anchor_x="center", anchor_y="center")
 
