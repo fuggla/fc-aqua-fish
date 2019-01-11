@@ -175,7 +175,7 @@ class MyGame(arcade.Window, State):
                 self.carrot_list.append(carrot)
                 self.all_sprite_list.append(carrot)
 
-            """ Här stegas alla fiskar igenom för mat, död och ägg mm """
+            """ Här stegas alla fiskar igenom för interaktion med andra objekt """
             for fish in self.pfish_list:
                 # Ätalgoritm för purple fish
                 hit_list = check_for_collision_with_list(fish, self.carrot_list)
@@ -184,9 +184,6 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
-                # Ta bort döda fiskar som flytit upp
-                if fish.bottom > self.height and fish.health <= 0:
-                    fish.kill()
                 # Lägg ägg ifall fisken är gravid
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False
@@ -212,10 +209,6 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en morot äter fisken på den
                 if hit_list and not fish.disturbed:
                     fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
-
-                # Ta bort döda fiskar som flytit upp
-                if fish.bottom > self.height and fish.health <= 0:
-                    fish.kill()
                 # Lägg ägg ifall fisken är gravid
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False
@@ -233,9 +226,6 @@ class MyGame(arcade.Window, State):
                 # Om fisken lever och det finns en blue small fish äter fisken den
                 if hit_list and not fish.disturbed:
                     fish.eat_fish(hit_list[0])
-                # Ta bort döda fiskar som flytit upp
-                if fish.bottom > self.height and fish.health <= 0:
-                    fish.kill()
                 # Lägg ägg ifall fisken är gravid
                 if fish.ready_to_lay_egg:
                     fish.pregnant = False

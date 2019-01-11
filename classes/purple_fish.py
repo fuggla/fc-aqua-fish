@@ -115,6 +115,10 @@ class PfishSprite(FishSprite):
         if self.health <= 0:
             self.die()
 
+        # Ta bort döda fisken som flutit upp
+        if self.bottom > self.sh and self.health <= 0:
+            self.kill()
+
         # Kolla om fisken är nära kansten och styr in den mot mitten
         # Stressa även upp den
         self.check_edge()
