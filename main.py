@@ -136,6 +136,7 @@ class MyGame(arcade.Window, State):
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
             if DIAGNOSE_FISH:
+                #self.get_fish_info()
                 diagnose_name_gender_health_hungry(self.pfish_list)
                 diagnose_name_gender_health_hungry(self.bfish_list)
                 diagnose_name_gender_health_hungry(self.shark_list)
@@ -303,7 +304,12 @@ class MyGame(arcade.Window, State):
         self.window_list[0].draw()
         for b in self.bubble_main_list:
             b.draw()
-
+    """
+    def get_fish_info(self):
+        self.allfishinfo = []
+        for fish in self.pfish:
+            self.allfishinfo[]fish.name_gender
+    """
     def get_open_windows(self, dragged_only=False):
         # Hämta alla tillgängliga fönster
         open_windows = []
