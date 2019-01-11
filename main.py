@@ -256,16 +256,23 @@ class MyGame(arcade.Window, State):
         if self.is_paused() and self.pause.is_closed():
             self.play()
 
-    # Hämta alla tillgängliga fönster
-    def get_open_windows(self, dragged_only=False):
-        open_windows = []
-        if self.show_windows:
-            for w in self.window_list:
-                if w.is_dragged():
-                    return [ w ]
-                elif w.is_open() and not dragged_only:
-                    open_windows.append(w)
-        return open_windows
+    """ 
+    
+    
+    Metoder utanför arcadestrukturen:
+    (i bokstavsordning)
+    
+    
+    """
+
+    def buy_bfish(self):
+        self.buy_fish("bfish")
+
+    def buy_carrot(self):
+        carrot = CarrotSprite(setspeed_y=-20)
+        self.carrot_list.append(carrot)
+        self.all_sprite_list.append(carrot)
+        self.event.put("Bought carrot")
 
     def buy_fish(self, name):
         fish = None
@@ -284,72 +291,32 @@ class MyGame(arcade.Window, State):
         self.all_sprite_list.append(fish)
         self.event.put(f"Bought {name} {fish.get_name()}")
 
-    def buy_shark(self):
-        self.buy_fish("shark")
-
     def buy_pfish(self):
         self.buy_fish("pfish")
 
-    def buy_bfish(self):
-        self.buy_fish("bfish")
-
-    def buy_carrot(self):
-        carrot = CarrotSprite(setspeed_y=-20)
-        self.carrot_list.append(carrot)
-        self.all_sprite_list.append(carrot)
-        self.event.put("Bought carrot")
-
-    def play_credits(self):
-        if self.is_credits() == False:
-            self.fade = Fade(a=255, time=4)
-            self.fade.start_out()
-            play_sound(self.music_list[0])
-            self.credits()
-
-    def start(self):
-        main, event, action = 0, 1, 2
-        self.window_list[main].close()
-        self.window_list[event].open()
-        self.window_list[action].open()
-        self.play()
-
-    def update_credits(self, dt):
-        if self.fade.is_fading_out():
-            self.update_menu_bubbles(dt)
-        self.credits_y += 20 * dt
-
-    def update_menu_bubbles(self, dt):
-        for b in self.bubble_main_list:
-            b.update(dt)
-
-    def draw_main_menu(self):
-        self.window_list[0].draw()
-        for b in self.bubble_main_list:
-            b.draw()
+    def buy_shark(self):
+        self.buy_fish("shark")
 
     def draw_credits(self):
         if self.fade.is_fading_out():
             self.draw_main_menu()
         render_text(self.credits_text, self.credits_x, self.credits_y)
 
-    def interactions_pfish(self):
-        """" Stega igenpom pfish """
-        for fish in self.pfish_list:
-            # Ätalgoritm för purple fish
-            hit_list = check_for_collision_with_list(fish, self.carrot_list)
-            if len(hit_list) == 0 and fish.iseating > 0:
-                fish.iseating -= 1
-            # Om fisken lever och det finns en morot äter fisken på den
-            if hit_list and not fish.disturbed:
-                fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
-            # Lägg ägg ifall fisken är gravid
-            if fish.ready_to_lay_egg:
-                fish.pregnant = False
-                fish.ready_to_lay_egg = False
-                fish.laid_eggs += 1
-                egg = FishEggSprite(fish, "medium")
-                self.fish_egg_list.append(egg)
-                self.event.put(fish.get_name() + " laid an egg")
+    def draw_main_menu(self):
+        self.window_list[0].draw()
+        for b in self.bubble_main_list:
+            b.draw()
+
+    def get_open_windows(self, dragged_only=False):
+        # Hämta alla tillgängliga fönster
+        open_windows = []
+        if self.show_windows:
+            for w in self.window_list:
+                if w.is_dragged():
+                    return [ w ]
+                elif w.is_open() and not dragged_only:
+                    open_windows.append(w)
+        return open_windows
 
     def interactions_bfish(self):
         """ Stega igenom bfish """
@@ -375,25 +342,6 @@ class MyGame(arcade.Window, State):
                 fish.ready_to_lay_egg = False
                 fish.laid_eggs += 1
                 egg = FishEggSprite(fish, "small")
-                self.fish_egg_list.append(egg)
-                self.event.put(fish.get_name() + " laid an egg")
-
-    def interactions_shark(self):
-        """ Stega igenom hajarna """
-        for fish in self.shark_list:
-            # Ätalgoritm för blue shark
-            if fish.iseating > 0:
-                fish.iseating -= 1
-            hit_list = check_for_collision_with_list(fish, self.bfish_list)
-            # Om fisken lever och det finns en blue small fish äter fisken den
-            if hit_list and not fish.disturbed:
-                fish.eat_fish(hit_list[0])
-            # Lägg ägg ifall fisken är gravid
-            if fish.ready_to_lay_egg:
-                fish.pregnant = False
-                fish.ready_to_lay_egg = False
-                fish.laid_eggs += 1
-                egg = FishEggSprite(fish, "large")
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
 
@@ -425,6 +373,25 @@ class MyGame(arcade.Window, State):
                 egg.kill()
             egg.age += 1
 
+    def interactions_pfish(self):
+        """" Stega igenpom pfish """
+        for fish in self.pfish_list:
+            # Ätalgoritm för purple fish
+            hit_list = check_for_collision_with_list(fish, self.carrot_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
+            # Lägg ägg ifall fisken är gravid
+            if fish.ready_to_lay_egg:
+                fish.pregnant = False
+                fish.ready_to_lay_egg = False
+                fish.laid_eggs += 1
+                egg = FishEggSprite(fish, "medium")
+                self.fish_egg_list.append(egg)
+                self.event.put(fish.get_name() + " laid an egg")
+
     def interactions_plant_blueberry(self):
         """ Stega igenom blåbärsplantorna """
         for grow_space in self.berry_info_list:
@@ -439,6 +406,48 @@ class MyGame(arcade.Window, State):
                     if can_grow:
                         berry = BlueberrySprite(test_x, test_y)
                         self.blueberry_list.append(berry)
+
+    def interactions_shark(self):
+        """ Stega igenom hajarna """
+        for fish in self.shark_list:
+            # Ätalgoritm för blue shark
+            if fish.iseating > 0:
+                fish.iseating -= 1
+            hit_list = check_for_collision_with_list(fish, self.bfish_list)
+            # Om fisken lever och det finns en blue small fish äter fisken den
+            if hit_list and not fish.disturbed:
+                fish.eat_fish(hit_list[0])
+            # Lägg ägg ifall fisken är gravid
+            if fish.ready_to_lay_egg:
+                fish.pregnant = False
+                fish.ready_to_lay_egg = False
+                fish.laid_eggs += 1
+                egg = FishEggSprite(fish, "large")
+                self.fish_egg_list.append(egg)
+                self.event.put(fish.get_name() + " laid an egg")
+
+    def play_credits(self):
+        if self.is_credits() == False:
+            self.fade = Fade(a=255, time=4)
+            self.fade.start_out()
+            play_sound(self.music_list[0])
+            self.credits()
+
+    def start(self):
+        main, event, action = 0, 1, 2
+        self.window_list[main].close()
+        self.window_list[event].open()
+        self.window_list[action].open()
+        self.play()
+
+    def update_credits(self, dt):
+        if self.fade.is_fading_out():
+            self.update_menu_bubbles(dt)
+        self.credits_y += 20 * dt
+
+    def update_menu_bubbles(self, dt):
+        for b in self.bubble_main_list:
+            b.update(dt)
 
 
 def main():
