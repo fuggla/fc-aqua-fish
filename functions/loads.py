@@ -62,13 +62,14 @@ def load_windows(game):
     print(eventhandler)
 
     # Fönster för interaktion med spel
-    action= Window(60, center_y, 100, 170, " Store", title_height=20, title_align="left")
+    action= Window(80, center_y, 140, 210, " Store", title_height=20, title_align="left")
     action.add_buttons(
-        (10, 80, 30),
-        ( "Pfish", game.buy_pfish, 10 ),
-        ( "Bfish", game.buy_bfish, 50 ),
+        (10, 120, 30),
+        ( "Purple Fish", game.buy_pfish, 10 ),
+        ( "Blue Small Fish", game.buy_bfish, 50 ),
         ( "Shark", game.buy_shark, 90 ),
-        ( "Carrot", game.buy_carrot, 130 )
+        ( "Carrot", game.buy_carrot, 130 ),
+        ( "Fish Hook", game.buy_carrot, 170)
     )
 
     # Pausefönster att visa med Escape
