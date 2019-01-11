@@ -161,7 +161,7 @@ class MyGame(arcade.Window, State):
 
     def update(self, dt):
 
-        # Uppdatera all när spelet är igång
+        """ Uppdatera all när spelet är igång """
         if self.is_playing():
             self.plant_blueberry_list.update()
             self.blueberry_list.update()
@@ -169,11 +169,8 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.update()
             self.plant_foreground_list.update()
 
-            """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
-            if random.randrange(1000) < carrot_frequency:
-                carrot = CarrotSprite(setspeed_y=-20)
-                self.carrot_list.append(carrot)
-                self.all_sprite_list.append(carrot)
+            """ Släpp ner morötter ibland """
+            self.random_carrot_drop()
 
             """ Här stegas alla fiskar igenom för interaktion med andra objekt """
             self.interactions_pfish()
@@ -432,6 +429,13 @@ class MyGame(arcade.Window, State):
             self.fade.start_out()
             play_sound(self.music_list[0])
             self.credits()
+
+    def random_carrot_drop(self):
+        """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
+        if random.randrange(1000) < carrot_frequency:
+            carrot = CarrotSprite(setspeed_y=-20)
+            self.carrot_list.append(carrot)
+            self.all_sprite_list.append(carrot)
 
     def start(self):
         main, event, action = 0, 1, 2
