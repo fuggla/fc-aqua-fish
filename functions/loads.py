@@ -75,7 +75,7 @@ def load_windows(game):
     pause=Window(*game.center_cords, 200, 130, "Aqua Fish")
     pause.add_buttons(
         ( 10, 180, 30 ),
-        ( "New Game", game.setup, 10 ),
+        ( "Main Menu", game.setup, 10 ),
         ( "Open Store", action.open, 50 ),
         ( "Exit", exit, 90 )
     )
