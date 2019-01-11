@@ -29,6 +29,12 @@ A simulator by Furniture Corp.
   - [ ] Fiskar och morötter faller ner i akvariet
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
+  - [ ] Skapa en krok med popcorn med slumpat djup
+  - [ ] Köp det i "store"
+  - [ ] Fiskarna äter popcornet
+  - [ ] Hajarna jagar popcornet
+  - [ ] Fiskarna kan fastna och dras då upp
+  - [ ] Event för fisket
 - [ ] Förbättra prestanda
   - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
