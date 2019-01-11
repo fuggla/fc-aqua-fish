@@ -176,104 +176,12 @@ class MyGame(arcade.Window, State):
                 self.all_sprite_list.append(carrot)
 
             """ Här stegas alla fiskar igenom för interaktion med andra objekt """
-            for fish in self.pfish_list:
-                # Ätalgoritm för purple fish
-                hit_list = check_for_collision_with_list(fish, self.carrot_list)
-                if len(hit_list) == 0 and fish.iseating > 0:
-                    fish.iseating -= 1
-                # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and not fish.disturbed:
-                    fish.eat_food(hit_list[0], 10)       # 10 är hur mycket de äter varje tugga
-                # Lägg ägg ifall fisken är gravid
-                if fish.ready_to_lay_egg:
-                    fish.pregnant = False
-                    fish.ready_to_lay_egg = False
-                    fish.laid_eggs += 1
-                    egg = FishEggSprite(fish, "medium")
-                    self.fish_egg_list.append(egg)
-                    self.event.put(fish.get_name() + " laid an egg")
+            self.interactions_pfish()
+            self.interactions_bfish()
+            self.interactions_shark()
 
-            for fish in self.bfish_list:
-                # Ätalgoritm för blue small fish
-                hit_list = check_for_collision_with_list(fish, self.carrot_list)
-                if len(hit_list) == 0 and fish.iseating > 0:
-                    fish.iseating -= 1
-                # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and not fish.disturbed:
-                    fish.eat_food(hit_list[0], 1)        # 1 är hur mycket de äter varje tugga
-
-                # Ätalgoritm för blue small fish
-                hit_list = check_for_collision_with_list(fish, self.blueberry_list)
-                if len(hit_list) == 0 and fish.iseating > 0:
-                    fish.iseating -= 1
-                # Om fisken lever och det finns en morot äter fisken på den
-                if hit_list and not fish.disturbed:
-                    fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
-                # Lägg ägg ifall fisken är gravid
-                if fish.ready_to_lay_egg:
-                    fish.pregnant = False
-                    fish.ready_to_lay_egg = False
-                    fish.laid_eggs += 1
-                    egg = FishEggSprite(fish, "small")
-                    self.fish_egg_list.append(egg)
-                    self.event.put(fish.get_name() + " laid an egg")
-
-            for fish in self.shark_list:
-                # Ätalgoritm för blue shark
-                if fish.iseating > 0:
-                    fish.iseating -= 1
-                hit_list = check_for_collision_with_list(fish, self.bfish_list)
-                # Om fisken lever och det finns en blue small fish äter fisken den
-                if hit_list and not fish.disturbed:
-                    fish.eat_fish(hit_list[0])
-                # Lägg ägg ifall fisken är gravid
-                if fish.ready_to_lay_egg:
-                    fish.pregnant = False
-                    fish.ready_to_lay_egg = False
-                    fish.laid_eggs += 1
-                    egg = FishEggSprite(fish, "large")
-                    self.fish_egg_list.append(egg)
-                    self.event.put(fish.get_name() + " laid an egg")
-
-            """ Stega igenom äggen """
-            for egg in self.fish_egg_list:
-                if egg.age == egg.hatch_age:        # ägget kläcks efter en viss tid
-                    egg.texture = egg.texture_egg_cracked
-                    if egg.origin == "pfish":
-                        # Kläck en pfish om ägget kom från pfish
-                        pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x,
-                                            setpos_y=egg.center_y, size=pfish_size*0.5)
-                        self.pfish_list.append(pfish)
-                        self.all_sprite_list.append(pfish)
-                    if egg.origin == "bfish":
-                        # Kläck en bfish om ägget kom från bfish
-                        bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_x=egg.center_x,
-                                            setpos_y=egg.center_y, size=pfish_size*0.25)
-                        self.bfish_list.append(bfish)
-                        self.all_sprite_list.append(bfish)
-                    if egg.origin == "shark":
-                        # Kläck en shark om ägget kom från haj
-                        shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x,
-                                            setpos_y=egg.center_y, event=self.event, size=pfish_size*0.6)
-                        self.shark_list.append(shark)
-                        self.all_sprite_list.append(shark)
-                if egg.age > egg.disapear_age:      # Ta bort äggresterna efter ett tag
-                    egg.kill()
-                egg.age += 1
-
-            """ Stega igenom blåbärsplantorna """
-            for grow_space in self.berry_info_list:
-                for k in range(2):
-                    if random.randrange(1000) < plant_blueberry_grow_rate:
-                        test_x = grow_space[k][0]
-                        test_y = grow_space[k][1]
-                        can_grow = True
-                        for test_berry in self.blueberry_list:
-                            if math.fabs(test_berry.center_x - test_x) < 25:
-                                can_grow = False
-                        if can_grow:
-                            berry = BlueberrySprite(test_x, test_y)
-                            self.blueberry_list.append(berry)
+            self.interactions_egg()
+            self.interactions_plant_blueberry()
 
             """ Flytta bubblor """
             for b in self.bubble_list:
@@ -423,6 +331,115 @@ class MyGame(arcade.Window, State):
         if self.fade.is_fading_out():
             self.draw_main_menu()
         render_text(self.credits_text, self.credits_x, self.credits_y)
+
+    def interactions_pfish(self):
+        """" Stega igenpom pfish """
+        for fish in self.pfish_list:
+            # Ätalgoritm för purple fish
+            hit_list = check_for_collision_with_list(fish, self.carrot_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
+            # Lägg ägg ifall fisken är gravid
+            if fish.ready_to_lay_egg:
+                fish.pregnant = False
+                fish.ready_to_lay_egg = False
+                fish.laid_eggs += 1
+                egg = FishEggSprite(fish, "medium")
+                self.fish_egg_list.append(egg)
+                self.event.put(fish.get_name() + " laid an egg")
+
+    def interactions_bfish(self):
+        """ Stega igenom bfish """
+        for fish in self.bfish_list:
+            # Ätalgoritm för blue small fish
+            hit_list = check_for_collision_with_list(fish, self.carrot_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+
+            # Ätalgoritm för blue small fish
+            hit_list = check_for_collision_with_list(fish, self.blueberry_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+            # Lägg ägg ifall fisken är gravid
+            if fish.ready_to_lay_egg:
+                fish.pregnant = False
+                fish.ready_to_lay_egg = False
+                fish.laid_eggs += 1
+                egg = FishEggSprite(fish, "small")
+                self.fish_egg_list.append(egg)
+                self.event.put(fish.get_name() + " laid an egg")
+
+    def interactions_shark(self):
+        """ Stega igenom hajarna """
+        for fish in self.shark_list:
+            # Ätalgoritm för blue shark
+            if fish.iseating > 0:
+                fish.iseating -= 1
+            hit_list = check_for_collision_with_list(fish, self.bfish_list)
+            # Om fisken lever och det finns en blue small fish äter fisken den
+            if hit_list and not fish.disturbed:
+                fish.eat_fish(hit_list[0])
+            # Lägg ägg ifall fisken är gravid
+            if fish.ready_to_lay_egg:
+                fish.pregnant = False
+                fish.ready_to_lay_egg = False
+                fish.laid_eggs += 1
+                egg = FishEggSprite(fish, "large")
+                self.fish_egg_list.append(egg)
+                self.event.put(fish.get_name() + " laid an egg")
+
+    def interactions_egg(self):
+        """ Stega igenom äggen """
+        for egg in self.fish_egg_list:
+            if egg.age == egg.hatch_age:  # ägget kläcks efter en viss tid
+                egg.texture = egg.texture_egg_cracked
+                if egg.origin == "pfish":
+                    # Kläck en pfish om ägget kom från pfish
+                    pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x,
+                                        setpos_y=egg.center_y, size=pfish_size * 0.5)
+                    self.pfish_list.append(pfish)
+                    self.all_sprite_list.append(pfish)
+                if egg.origin == "bfish":
+                    # Kläck en bfish om ägget kom från bfish
+                    bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list,
+                                        setpos_x=egg.center_x,
+                                        setpos_y=egg.center_y, size=pfish_size * 0.25)
+                    self.bfish_list.append(bfish)
+                    self.all_sprite_list.append(bfish)
+                if egg.origin == "shark":
+                    # Kläck en shark om ägget kom från haj
+                    shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                                        setpos_y=egg.center_y, event=self.event, size=pfish_size * 0.6)
+                    self.shark_list.append(shark)
+                    self.all_sprite_list.append(shark)
+            if egg.age > egg.disapear_age:  # Ta bort äggresterna efter ett tag
+                egg.kill()
+            egg.age += 1
+
+    def interactions_plant_blueberry(self):
+        """ Stega igenom blåbärsplantorna """
+        for grow_space in self.berry_info_list:
+            for k in range(2):
+                if random.randrange(1000) < plant_blueberry_grow_rate:
+                    test_x = grow_space[k][0]
+                    test_y = grow_space[k][1]
+                    can_grow = True
+                    for test_berry in self.blueberry_list:
+                        if math.fabs(test_berry.center_x - test_x) < 25:
+                            can_grow = False
+                    if can_grow:
+                        berry = BlueberrySprite(test_x, test_y)
+                        self.blueberry_list.append(berry)
+
 
 def main():
     if DEBUG:
