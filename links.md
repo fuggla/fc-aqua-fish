@@ -2,9 +2,9 @@
 
 ## Använda och fungerande
 
-Pfish: https://www.clipartmax.com/middle/m2i8N4G6A0b1A0m2_fish-sprite-purple-clip-art-portable-network-graphics/
+Purple fish: https://www.clipartmax.com/middle/m2i8N4G6A0b1A0m2_fish-sprite-purple-clip-art-portable-network-graphics/
 
-Bfish: http://shopforclipart.com/clipart/free-fish-cliparts-1.htm
+Small blue fish: http://shopforclipart.com/clipart/free-fish-cliparts-1.htm
 
 Shark: https://opengameart.org/content/aqua-fish
 
@@ -12,11 +12,16 @@ Blueberry: https://www.vectorstock.com/royalty-free-vector/blueberry-fruits-cart
 
 Carrot: https://www.pinterest.se/pin/70509550393252066
 
-Water_plant1: https://www.kisspng.com/png-seaweed-coral-algae-plants-1060034/preview.html
+Water plant 1: https://www.kisspng.com/png-seaweed-coral-algae-plants-1060034/preview.html
 
-Water_plant2: https://www.kisspng.com/png-algae-seaweed-aquatic-plants-2265927/preview.html
+Water plant 2: https://www.kisspng.com/png-algae-seaweed-aquatic-plants-2265927/preview.html
 
-Background: https://www.downloadwallpapers.info/wallpaper/blue-bottom-ocean-sand-underwater-944797/1920x1200
+Popcorn: https://ya-webdesign.com/explore/popcorn-transparent-png/
+
+Fish hook: https://dlpng.com/png/166247
+
+Under water background: https://www.downloadwallpapers.info/wallpaper/blue-bottom-ocean-sand-underwater-944797/1920x1200
+
 
 ## FÖRSLAG
 
