@@ -21,8 +21,11 @@ SPRITE_SCALING_CARROT = 0.25
 carrot_food_value = 1000
 carrot_frequency = 1
 
+""" Egenskaper för kroken """
+SPRITE_SCALING_FISH_HOOK = 0.1
+
 """ Egenskaper för popcorn """
-POPCORN_SCALING_CARROT = 0.1
+SPRITE_SCALING_POPCORN = 0.1
 popcorn_food_value = 500
 
 """ Egenskaper för blåbär """
