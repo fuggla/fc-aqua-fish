@@ -38,6 +38,7 @@ A simulator by Furniture Corp.
 - [ ] Förbättra prestanda
   - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
+  - [x] Lägre updateringsfrekvens för fiskinfo (F1)
   - [x] Lägre updateringsfrekvens för informationsdispay
 - [ ] Funktion för att visa statistik
   - [ ] När användaren håller i fisken?
