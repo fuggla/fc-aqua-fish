@@ -378,6 +378,14 @@ class MyGame(arcade.Window, State):
             if hit_list and not fish.disturbed:
                 fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
 
+            # Ätalgoritm för blue small fish
+            hit_list = check_for_collision_with_list(fish, self.popcorn_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
                 fish.pregnant = False
@@ -426,6 +434,14 @@ class MyGame(arcade.Window, State):
             if hit_list and not fish.disturbed:
                 fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
 
+            # Ätalgoritm för purple fish
+            hit_list = check_for_collision_with_list(fish, self.popcorn_list)
+            if len(hit_list) == 0 and fish.iseating > 0:
+                fish.iseating -= 1
+            # Om fisken lever och det finns en morot äter fisken på den
+            if hit_list and not fish.disturbed:
+                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
                 fish.pregnant = False
@@ -453,11 +469,19 @@ class MyGame(arcade.Window, State):
     def interactions_shark(self):
         """ Stega igenom hajarna """
         for fish in self.shark_list:
-            # Ätalgoritm för blue shark
+            # Ätalgoritm för shark
             if fish.iseating > 0:
                 fish.iseating -= 1
             hit_list = check_for_collision_with_list(fish, self.bfish_list)
             # Om fisken lever och det finns en blue small fish äter fisken den
+            if hit_list and not fish.disturbed:
+                fish.eat_fish(hit_list[0])
+
+            # Ätalgoritm för shark
+            if fish.iseating > 0:
+                fish.iseating -= 1
+            hit_list = check_for_collision_with_list(fish, self.popcorn_list)
+            # Om fisken lever och det finns ett popcorn fish äter fisken det
             if hit_list and not fish.disturbed:
                 fish.eat_fish(hit_list[0])
 

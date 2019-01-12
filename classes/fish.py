@@ -328,11 +328,11 @@ class FishSprite(arcade.Sprite):
         self.animate_eat_food()
 
         food.food_value -= chew                     # Fiskarna äter moroten
-        if food.food_value <= 750:
+        if food.food_value <= food.base_food_value * 0.75:
             food.texture = food.texture_food2
-        if food.food_value <= 500:
+        if food.food_value <= food.base_food_value * 0.50:
             food.texture = food.texture_food3
-        if food.food_value <= 250:
+        if food.food_value <= food.base_food_value * 0.25:
             food.texture = food.texture_food4
         if food.food_value <= 0:                    # När moroten är slut försvinner den
             if food.type == "blueberry":            # Samla statistik

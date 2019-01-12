@@ -12,6 +12,7 @@ class PopcornSprite(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
 
         self.type = "popcorn"
+        self.base_food_value = popcorn_food_value
         self.hook = hook
 
         img = f"assets/images/food/popcorn"
@@ -37,3 +38,6 @@ class PopcornSprite(arcade.Sprite):
 
         # Anropa huvudklassen
         super().update()
+
+    def get_name(self):
+        return "popcorn"

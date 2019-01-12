@@ -32,7 +32,7 @@ class SharkSprite(FishSprite):
 
         self.food_fish_list_b = food_fish_list
         self.food_fish_list_p = popcorn_list
-        self.food_fish_list = self.food_fish_list_b
+        self.food_fish_list = []
         self.hunting_spirit = 0
         self.base_hunting_spirit = shark_hunting_spirit
         self.tired = 0
@@ -69,6 +69,8 @@ class SharkSprite(FishSprite):
             self.relaxed[0] = True
         if 0.15 * self.sh < self.center_y < 0.85 * self.sh:
             self.relaxed[1] = True
+
+        self.set_food_list()
 
         # Kolla om de är vuxna
         if self.size < self.base_size:
@@ -177,3 +179,9 @@ class SharkSprite(FishSprite):
         self.texture_right2 = arcade.load_texture(f"{img}/shark2.png", scale=scale_factor)
         self.texture_right_eat1 = arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor)
         self.texture_right_eat2 = arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor)
+
+    def set_food_list(self):
+        for fish in self.food_fish_list_b:
+            self.food_fish_list.append(fish)
+        for popcorn in self.food_fish_list_p:
+            self.food_fish_list.append(popcorn)

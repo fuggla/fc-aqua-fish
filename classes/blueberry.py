@@ -8,6 +8,7 @@ class BlueberrySprite(arcade.Sprite):
         super().__init__()
 
         self.type = "blueberry"
+        self.base_food_value = blueberry_food_value
 
         img = "assets/images/food/blueberry"
         self.texture_food1 = arcade.load_texture(f"{img}/blueberry1.png", scale=SPRITE_SCALING_BLUEBERRY)
