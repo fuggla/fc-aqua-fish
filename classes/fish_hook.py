@@ -16,9 +16,9 @@ class FishHookSprite(arcade.Sprite):
 
         # Definiera variabler
         self.center_x = int(self.sw * 0.1) + random.randrange(int(self.sw * 0.8))
-        self.center_y = self.sh
+        self.center_y = self.sh + 20
         self.change_x = 0
-        self.change_y = 0
+        self.change_y = - 50
         self.acc_x = 0
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
