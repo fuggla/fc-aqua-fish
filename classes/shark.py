@@ -181,6 +181,7 @@ class SharkSprite(FishSprite):
         self.texture_right_eat2 = arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor)
 
     def set_food_list(self):
+        self.food_fish_list = []
         for fish in self.food_fish_list_b:
             self.food_fish_list.append(fish)
         for popcorn in self.food_fish_list_p:
