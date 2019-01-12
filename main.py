@@ -176,7 +176,7 @@ class MyGame(arcade.Window, State):
             """ Släpp ner morötter ibland """
             self.random_carrot_drop()
 
-            """ Här stegas alla fiskar igenom för interaktion med andra objekt """
+            """ Här stegas alla fiskar och föremål igenom för interaktion med andra objekt """
             self.interactions_pfish()
             self.interactions_bfish()
             self.interactions_shark()

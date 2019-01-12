@@ -31,6 +31,7 @@ A simulator by Furniture Corp.
 - [ ] Metspö som kan fiska upp fiskarna
   - [ ] Skapa en krok med popcorn med slumpat djup
   - [ ] Köp det i "store"
+  - [ ] När vi dör blir våra kroppar till popcorn
   - [ ] Fiskarna äter popcornet
   - [ ] Hajarna jagar popcornet
   - [ ] Fiskarna kan fastna och dras då upp
