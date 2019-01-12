@@ -445,9 +445,10 @@ class MyGame(arcade.Window, State):
                     fish_hook_list.append(fish)
 
             # fisken fastnar ifall slumpfaktorn slår in
-            if fish_hook_list and random.randrange(1000) > 100:
+            if fish_hook_list and random.randrange(1000) < 1:
                 index = random.randrange(len(fish_hook_list))
                 fish_hook_list[index].hooked(hook)
+                fish_hook_list[index].hook_diff_calc()
 
             # Ge upp ifall ingen fisk har fastnat och popcornet är slut
             if not check_for_collision_with_list(hook, self.popcorn_list):

@@ -36,6 +36,7 @@ class FishSprite(arcade.Sprite):
         self.disturbed = False                          # Denna variable är True när fiskarnas beteendemönster bryts
         self.relaxed = [True, True]                     # Fiskarna blir nervösa nära kanterna
         self.hook = None
+        self.hook_diff = [0, 0, 0]                      # Variable för positionsdiff och vinkel då fisken fastnar
         self.eat_speed = 10                             # Animationshastighet då de äter
         self.iseating = 0                               # Variable för att stanna upp lite kort efter de ätit
         self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
@@ -95,7 +96,8 @@ class FishSprite(arcade.Sprite):
         # Animering av fiskarna
         if self.iseating == 0:
 
-            self.angle = 0
+            if not self.is_hooked:
+                self.angle = 0
             # Ändra fenfrekvens utifrån totalacceleration
             self.findelay = int(self.findelay_base / ((math.fabs(self.acc_x) + math.fabs(self.acc_y)) / self.finforce + 1))
 
@@ -434,6 +436,20 @@ class FishSprite(arcade.Sprite):
         self.is_hooked = True
         self.hook = hook
 
+    def hook_diff_calc(self):
+        # Räkna ut possitionsdifferens mellan fisk och krok
+        self.hook_diff[0] = self.center_x - self.hook.center_x
+        self.hook_diff[1] = self.center_y - self.hook.center_y
+        self.hook_diff[2] = self.angle
+
+    def hook_move(self):
+        self.center_x = self.hook.center_x + self.hook_diff[0]
+        self.center_y = self.hook.center_y + self.hook_diff[1]
+        self.angle = self.hook_diff[2]
+
+        if self.bottom > self.sh:
+            self.kill()
+
     def is_mouse_on(self, pointer):
         if arcade.check_for_collision(self, pointer):
             return True
@@ -452,9 +468,9 @@ class FishSprite(arcade.Sprite):
         if self.change_y < 0 and self.bottom > self.sh:
             self.change_y = -30
 
+        # Helt annat ifall fisken fastnat på kroken
         if self.hook:
-            self.center_x = self.hook.center_x
-            self.center_y = self.hook.center_y
+            self.hook_move()
 
     def move_lay_egg_position(self):
         # Metod för att hitta en plats där fisken kan lägga ägg
