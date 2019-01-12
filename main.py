@@ -312,11 +312,11 @@ class MyGame(arcade.Window, State):
         # Metod för att skriva ut information om alla fiskar
         if self.frame_count % 60 == 0:                                                      # Samla bara infon 1 g/s
             self.get_fish_info()                                                            # Anropa metod
-        if len(self.pfish_info) == len(self.pfish_list):                                    # Det undvik krash
+        if self.pfish_list:                                                                 # Det undvik krash
             diagnose_name_gender_attraction_health(self.pfish_list, self.pfish_info)
-        if len(self.bfish_info) == len(self.bfish_list):
+        if self.bfish_list:
             diagnose_name_gender_attraction_health(self.bfish_list, self.bfish_info)
-        if len(self.shark_info) == len(self.shark_list):
+        if self.shark_list:
             diagnose_name_gender_attraction_health(self.shark_list, self.shark_info)
 
     def get_fish_info(self):
