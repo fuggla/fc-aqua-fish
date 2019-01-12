@@ -301,8 +301,11 @@ class MyGame(arcade.Window, State):
         fish_hook = FishHookSprite()
         self.fish_hook_list.append(fish_hook)
         self.all_sprite_list.append(fish_hook)
-        self.event.put("Bought fishing rod")
 
+        popcorn = PopcornSprite(fish_hook)
+        self.popcorn_list.append(popcorn)
+
+        self.event.put("Bought fishing rod")
 
     def buy_pfish(self):
         self.buy_fish("pfish")

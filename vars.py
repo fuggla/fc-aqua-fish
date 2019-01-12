@@ -25,7 +25,7 @@ carrot_frequency = 1
 SPRITE_SCALING_FISH_HOOK = 0.15
 
 """ Egenskaper för popcorn """
-SPRITE_SCALING_POPCORN = 0.1
+SPRITE_SCALING_POPCORN = 0.05
 popcorn_food_value = 500
 
 """ Egenskaper för blåbär """

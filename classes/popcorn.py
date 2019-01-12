@@ -12,6 +12,7 @@ class PopcornSprite(arcade.Sprite):
         self.sh = SCREEN_HEIGHT
 
         self.type = "popcorn"
+        self.hook = hook
 
         img = f"assets/images/food/popcorn"
         self.texture_food1 = arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN)
@@ -20,14 +21,19 @@ class PopcornSprite(arcade.Sprite):
         self.texture_food4 = arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN)
         self.texture = self.texture_food1
 
-        self.center_x = hook.center_x + 100
-        self.center_y = hook.center_y - 100
+        self.angle = 40
+        self.x_diff = 20
+        self.y_diff = - 30
+        self.center_x = self.hook.center_x + self.x_diff
+        self.center_y = self.hook.center_y + self.y_diff
 
         # Definiera variabler
         self.food_value = popcorn_food_value     # Hur mycket mat finns på popcornet
 
     def update(self):
-        pass
+
+        self.center_x = self.hook.center_x + self.x_diff
+        self.center_y = self.hook.center_y + self.y_diff
 
         # Anropa huvudklassen
         super().update()

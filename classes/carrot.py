@@ -46,7 +46,6 @@ class CarrotSprite(arcade.Sprite):
         self.size = 1
         self.mass = 0.5
 
-
     def update(self):
         # Beräkna acceleration i x-led
         self.acc_x = - (self.size * self.change_x * math.fabs(self.change_x)) / self.mass
