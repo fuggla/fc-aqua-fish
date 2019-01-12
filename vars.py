@@ -22,7 +22,7 @@ carrot_food_value = 1000
 carrot_frequency = 1
 
 """ Egenskaper för kroken """
-SPRITE_SCALING_FISH_HOOK = 0.1
+SPRITE_SCALING_FISH_HOOK = 0.15
 
 """ Egenskaper för popcorn """
 SPRITE_SCALING_POPCORN = 0.1

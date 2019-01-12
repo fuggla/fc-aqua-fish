@@ -1,5 +1,5 @@
 import arcade,random,math
-from vars import SPRITE_SCALING_FISH_HOOK, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE
+from vars import SPRITE_SCALING_FISH_HOOK, SCREEN_WIDTH, SCREEN_HEIGHT, TICK_RATE
 
 class FishHookSprite(arcade.Sprite):
     # Klass för krok
@@ -9,15 +9,14 @@ class FishHookSprite(arcade.Sprite):
 
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
-        self.sr = SAND_RATIO
 
-        img = f"assets/images/food/fish_hook"
+        img = f"assets/images/fish_hook"
         self.texture_fish_hook = arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK)
         self.texture = self.texture_fish_hook
 
         # Definiera variabler
-        self.center_x = None
-        self.center_y = None
+        self.center_x = int(self.sw * 0.1) + random.randrange(int(self.sw * 0.8))
+        self.center_y = self.sh
         self.change_x = 0
         self.change_y = 0
         self.acc_x = 0

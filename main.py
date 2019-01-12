@@ -16,6 +16,8 @@ from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
 from classes.blueberry import BlueberrySprite
+from classes.fish_hook import FishHookSprite
+from classes.popcorn import PopcornSprite
 from classes.plant_blueberry import PlantBlueberry
 from classes.plant_foreground import PlantForeground
 from classes.fish_egg import FishEggSprite
@@ -44,8 +46,9 @@ class MyGame(arcade.Window, State):
         self.width_height = (width, height)
 
         # Sätt spritelistor och vanliga listor till none
-        self.sprite_list_names = [ "pfish", "bfish", "shark", "carrot", "blueberry", "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite", "pointer" ]
-        self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info", "music"]
+        self.sprite_list_names = ["pfish", "bfish", "shark", "carrot", "blueberry", "popcorn", "fish_hook",
+                                   "plant_blueberry", "plant_foreground", "fish_egg", "all_sprite", "pointer" ]
+        self.standard_list_names = ["window", "bubble", "bubble_main", "berry_info", "music"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
@@ -93,6 +96,9 @@ class MyGame(arcade.Window, State):
             plant_blueberry = PlantBlueberry(self.plant_blueberry_list, i)
             self.plant_blueberry_list.append(plant_blueberry)
             self.berry_info_list.append(plant_blueberry.berry_info)
+
+        fish_hook = FishHookSprite()
+        self.all_sprite_list.append(fish_hook)
 
         # Skapa förgrundsväxter
         for i in range(PLANT_FOREGROUND_NUMBER):
