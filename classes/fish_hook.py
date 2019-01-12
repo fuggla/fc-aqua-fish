@@ -22,6 +22,7 @@ class FishHookSprite(arcade.Sprite):
         self.acc_x = 0
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
+        self.popcorn = True
 
         self.stop_y = int(self.sh * 0.7) + random.randrange(int(self.sh * 0.1))
 
@@ -42,8 +43,12 @@ class FishHookSprite(arcade.Sprite):
         # Beräkna acceleration i y-led
         if self.center_y < self.stop_y:
             self.acc_grav_float = 0
+
         else:
             self.acc_grav_float = - 1
+
+        if not self.popcorn:
+            self.acc_grav_float = 3
 
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
@@ -65,6 +70,9 @@ class FishHookSprite(arcade.Sprite):
     def is_mouse_on(self, pointer):
         if arcade.check_for_collision(self, pointer):
             return True
+
+    def no_fish(self):
+        self.popcorn = False
 
     def release(self):
         self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet

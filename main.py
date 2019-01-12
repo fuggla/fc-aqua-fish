@@ -186,6 +186,7 @@ class MyGame(arcade.Window, State):
             self.interactions_bfish()
             self.interactions_shark()
 
+            self.interactions_fishing_rod()
             self.interactions_egg()
             self.interactions_plant_blueberry()
 
@@ -423,8 +424,14 @@ class MyGame(arcade.Window, State):
                 egg.kill()
             egg.age += 1
 
+    def interactions_fishing_rod(self):
+        """" Stega igenom hook och popcorn """
+        for hook in self.fish_hook_list:
+            if not check_for_collision_with_list(hook, self.popcorn_list):
+                hook.no_fish()
+
     def interactions_pfish(self):
-        """" Stega igenpom pfish """
+        """" Stega igenom pfish """
         for fish in self.pfish_list:
             # Ätalgoritm för purple fish
             hit_list = check_for_collision_with_list(fish, self.carrot_list)
