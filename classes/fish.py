@@ -32,8 +32,10 @@ class FishSprite(arcade.Sprite):
         self.base_health = self.health
         self.hunting_spirit = 0                         # Denna variabel styr hur länge hajarna orkar jaga
         self.isalive = True
+        self.is_hooked = False
         self.disturbed = False                          # Denna variable är True när fiskarnas beteendemönster bryts
         self.relaxed = [True, True]                     # Fiskarna blir nervösa nära kanterna
+        self.hook = None
         self.eat_speed = 10                             # Animationshastighet då de äter
         self.iseating = 0                               # Variable för att stanna upp lite kort efter de ätit
         self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
@@ -428,6 +430,10 @@ class FishSprite(arcade.Sprite):
         # Stega ner livsmätaren
         self.health -= 1
 
+    def hooked(self, hook):
+        self.is_hooked = True
+        self.hook = hook
+
     def is_mouse_on(self, pointer):
         if arcade.check_for_collision(self, pointer):
             return True
@@ -445,6 +451,10 @@ class FishSprite(arcade.Sprite):
         # Fiskarna plaskar till när de faller tillbaka
         if self.change_y < 0 and self.bottom > self.sh:
             self.change_y = -30
+
+        if self.hook:
+            self.center_x = self.hook.center_x
+            self.center_y = self.hook.center_y
 
     def move_lay_egg_position(self):
         # Metod för att hitta en plats där fisken kan lägga ägg

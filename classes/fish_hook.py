@@ -59,7 +59,7 @@ class FishHookSprite(arcade.Sprite):
             self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
-        if self.center_y > self.sh and not self.popcorn:
+        if self.center_y > self.sh + 100 and not self.popcorn:
             self.kill()
 
         # Anropa huvudklassen

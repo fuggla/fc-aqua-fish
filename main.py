@@ -427,6 +427,29 @@ class MyGame(arcade.Window, State):
     def interactions_fishing_rod(self):
         """" Stega igenom hook och popcorn """
         for hook in self.fish_hook_list:
+            # Kolla vilka fiskar som är i kontakt med kroken
+            pfish_hook_list = check_for_collision_with_list(hook, self.pfish_list)
+            bfish_hook_list = check_for_collision_with_list(hook, self.bfish_list)
+            shark_hook_list = check_for_collision_with_list(hook, self.shark_list)
+
+            # Spara fiskarna som kontaktar kroken och äter i en lista
+            fish_hook_list = []
+            for fish in pfish_hook_list:
+                if fish.iseating > 0:
+                    fish_hook_list.append(fish)
+            for fish in bfish_hook_list:
+                if fish.iseating > 0:
+                    fish_hook_list.append(fish)
+            for fish in shark_hook_list:
+                if fish.iseating > 0:
+                    fish_hook_list.append(fish)
+
+            # fisken fastnar ifall slumpfaktorn slår in
+            if fish_hook_list and random.randrange(1000) > 100:
+                index = random.randrange(len(fish_hook_list))
+                fish_hook_list[index].hooked(hook)
+
+            # Ge upp ifall ingen fisk har fastnat och popcornet är slut
             if not check_for_collision_with_list(hook, self.popcorn_list):
                 hook.no_fish()
 
