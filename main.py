@@ -140,16 +140,9 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.draw()
             self.plant_foreground_list.draw()
 
-        # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
+        # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
             if DIAGNOSE_FISH:
-                if self.frame_count % 60 == 0:
-                    self.get_fish_info()
-                if len(self.pfish_info) == len(self.pfish_list):
-                    diagnose_name_gender_attraction_health(self.pfish_list, self.pfish_info)
-                if len(self.bfish_info) == len(self.bfish_list):
-                    diagnose_name_gender_attraction_health(self.bfish_list, self.bfish_info)
-                if len(self.shark_info) == len(self.shark_list):
-                    diagnose_name_gender_attraction_health(self.shark_list, self.shark_info)
+                self.diagnose_all_fish()
 
             if self.show_windows:
                 for w in self.window_list:
