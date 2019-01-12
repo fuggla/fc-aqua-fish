@@ -30,7 +30,7 @@ A simulator by Furniture Corp.
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
   - [ ] Skapa en krok med popcorn med slumpat djup
-  - [ ] Köp det i "store"
+  - [x] Köp det i "store"
   - [ ] När vi dör blir våra kroppar till popcorn
   - [ ] Fiskarna äter popcornet
   - [ ] Hajarna jagar popcornet

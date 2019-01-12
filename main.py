@@ -97,9 +97,6 @@ class MyGame(arcade.Window, State):
             self.plant_blueberry_list.append(plant_blueberry)
             self.berry_info_list.append(plant_blueberry.berry_info)
 
-        fish_hook = FishHookSprite()
-        self.all_sprite_list.append(fish_hook)
-
         # Skapa förgrundsväxter
         for i in range(PLANT_FOREGROUND_NUMBER):
             plant_foreground = PlantForeground(self.plant_foreground_list)
@@ -144,6 +141,7 @@ class MyGame(arcade.Window, State):
             self.blueberry_list.draw()
             self.fish_egg_list.draw()
             self.all_sprite_list.draw()
+            self.popcorn_list.draw()
             self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
@@ -177,6 +175,7 @@ class MyGame(arcade.Window, State):
             self.blueberry_list.update()
             self.fish_egg_list.update()
             self.all_sprite_list.update()
+            self.popcorn_list.update()
             self.plant_foreground_list.update()
 
             """ Släpp ner morötter ibland """
@@ -297,6 +296,13 @@ class MyGame(arcade.Window, State):
         # Done and done
         self.all_sprite_list.append(fish)
         self.event.put(f"Bought {name} {fish.get_name()}")
+
+    def buy_fishing_rod(self):
+        fish_hook = FishHookSprite()
+        self.fish_hook_list.append(fish_hook)
+        self.all_sprite_list.append(fish_hook)
+        self.event.put("Bought fishing rod")
+
 
     def buy_pfish(self):
         self.buy_fish("pfish")
@@ -466,7 +472,7 @@ class MyGame(arcade.Window, State):
             self.credits()
 
     def random_carrot_drop(self):
-        """ Skapa en morot med sannolikheten 1 på 1000 varje frame """
+        """ Skapa en morot med sannolikheten [carrot_frequency] på 1000 varje frame """
         if random.randrange(1000) < carrot_frequency:
             carrot = CarrotSprite(setspeed_y=-20)
             self.carrot_list.append(carrot)

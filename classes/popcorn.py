@@ -26,3 +26,8 @@ class PopcornSprite(arcade.Sprite):
         # Definiera variabler
         self.food_value = popcorn_food_value     # Hur mycket mat finns på popcornet
 
+    def update(self):
+        pass
+
+        # Anropa huvudklassen
+        super().update()

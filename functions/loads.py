@@ -69,7 +69,7 @@ def load_windows(game):
         ( "Blue Small Fish", game.buy_bfish, 50 ),
         ( "Shark", game.buy_shark, 90 ),
         ( "Carrot", game.buy_carrot, 130 ),
-        ( "Fish Hook", game.buy_carrot, 170)
+        ( "Fish Hook", game.buy_fishing_rod, 170)
     )
 
     # Pausefönster att visa med Escape
