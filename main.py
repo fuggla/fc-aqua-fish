@@ -377,6 +377,7 @@ class MyGame(arcade.Window, State):
             # Om fisken lever och det finns en morot äter fisken på den
             if hit_list and not fish.disturbed:
                 fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
                 fish.pregnant = False
@@ -424,6 +425,7 @@ class MyGame(arcade.Window, State):
             # Om fisken lever och det finns en morot äter fisken på den
             if hit_list and not fish.disturbed:
                 fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
+
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
                 fish.pregnant = False
@@ -458,6 +460,7 @@ class MyGame(arcade.Window, State):
             # Om fisken lever och det finns en blue small fish äter fisken den
             if hit_list and not fish.disturbed:
                 fish.eat_fish(hit_list[0])
+
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
                 fish.pregnant = False

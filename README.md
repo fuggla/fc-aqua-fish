@@ -29,7 +29,7 @@ A simulator by Furniture Corp.
   - [ ] Fiskar och morötter faller ner i akvariet
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
-  - [ ] Skapa en krok med popcorn med slumpat djup
+  - [x] Skapa en krok med popcorn med slumpat djup
   - [x] Köp det i "store"
   - [ ] När vi dör blir våra kroppar till popcorn
   - [ ] Fiskarna äter popcornet
