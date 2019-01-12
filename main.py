@@ -25,6 +25,7 @@ from classes.bubble_map import Bubble_map
 from classes.fade import Fade
 from classes.fps import Fps
 from classes.pointer import Pointer
+from functions.diagnose_name_gender_attraction_health import diagnose_name_gender_attraction_health
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from functions.loads import *
 from vars import *
@@ -47,6 +48,11 @@ class MyGame(arcade.Window, State):
         self.standard_list_names = [ "window", "bubble", "bubble_main", "berry_info", "music"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
+
+        # Listor med information om fiskarna
+        self.pfish_info = []
+        self.bfish_info = []
+        self.shark_info = []
 
         # Den sprite som flyttas med musen
         self.dragged_sprite = None
@@ -136,10 +142,14 @@ class MyGame(arcade.Window, State):
 
         # "DIAGNOSE_FISH = True" skriver ut health och hungry för varje fisk. (För balans av mat och hunger)
             if DIAGNOSE_FISH:
-                #self.get_fish_info()
-                diagnose_name_gender_health_hungry(self.pfish_list)
-                diagnose_name_gender_health_hungry(self.bfish_list)
-                diagnose_name_gender_health_hungry(self.shark_list)
+                if self.frame_count % 60 == 0:
+                    self.get_fish_info()
+                if len(self.pfish_info) == len(self.pfish_list):
+                    diagnose_name_gender_attraction_health(self.pfish_list, self.pfish_info)
+                if len(self.bfish_info) == len(self.bfish_list):
+                    diagnose_name_gender_attraction_health(self.bfish_list, self.bfish_info)
+                if len(self.shark_info) == len(self.shark_list):
+                    diagnose_name_gender_attraction_health(self.shark_list, self.shark_info)
 
             if self.show_windows:
                 for w in self.window_list:
@@ -304,12 +314,32 @@ class MyGame(arcade.Window, State):
         self.window_list[0].draw()
         for b in self.bubble_main_list:
             b.draw()
-    """
+
+    def diagnose_all_fish(self):
+        # Metod för att skriva ut information om alla fiskar
+        if self.frame_count % 60 == 0:                                                      # Samla bara infon 1 g/s
+            self.get_fish_info()                                                            # Anropa metod
+        if len(self.pfish_info) == len(self.pfish_list):                                    # Det undvik krash
+            diagnose_name_gender_attraction_health(self.pfish_list, self.pfish_info)
+        if len(self.bfish_info) == len(self.bfish_list):
+            diagnose_name_gender_attraction_health(self.bfish_list, self.bfish_info)
+        if len(self.shark_info) == len(self.shark_list):
+            diagnose_name_gender_attraction_health(self.shark_list, self.shark_info)
+
     def get_fish_info(self):
-        self.allfishinfo = []
-        for fish in self.pfish:
-            self.allfishinfo[]fish.name_gender
-    """
+        self.pfish_info = []
+        for i in range(len(self.pfish_list)):
+            self.pfish_info.append([self.pfish_list[i].name_gender[0], self.pfish_list[i].name_gender[1],
+                                    self.pfish_list[i].attraction, self.pfish_list[i].health])
+        self.bfish_info = []
+        for i in range(len(self.bfish_list)):
+            self.bfish_info.append([self.bfish_list[i].name_gender[0], self.bfish_list[i].name_gender[1],
+                                    self.bfish_list[i].attraction, self.bfish_list[i].health])
+        self.shark_info = []
+        for i in range(len(self.shark_list)):
+            self.shark_info.append([self.shark_list[i].name_gender[0], self.shark_list[i].name_gender[1],
+                                    self.shark_list[i].attraction, self.shark_list[i].health])
+
     def get_open_windows(self, dragged_only=False):
         # Hämta alla tillgängliga fönster
         open_windows = []
