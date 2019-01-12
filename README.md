@@ -8,6 +8,7 @@ A simulator by Furniture Corp.
 
 ### v.1.x
 - [ ] Introfilm
+- [ ] Användarens credits sparas i en databas
 - [ ] Spara användardata och sälja på svarta marknaden
 - [ ] Menyer i form av valar som simmar in?
 
