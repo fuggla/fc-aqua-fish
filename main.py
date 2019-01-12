@@ -75,19 +75,19 @@ class MyGame(arcade.Window, State):
         """ Skapa alla fiskar """
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(self.carrot_list, self.pfish_list)
+            pfish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list)
             self.pfish_list.append(pfish)
             self.all_sprite_list.append(pfish)
 
         # Skapa blue_small_fish
         for i in range(BFISH_NUMBER):
-            bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list)
+            bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.popcorn_list, self.bfish_list, self.shark_list)
             self.bfish_list.append(bfish)
             self.all_sprite_list.append(bfish)
 
         # Skapa shark
         for i in range(SHARK_NUMBER):
-            shark = SharkSprite(self.bfish_list, self.shark_list, self.event)
+            shark = SharkSprite(self.bfish_list, self.popcorn_list, self.shark_list, self.event)
             self.shark_list.append(shark)
             self.all_sprite_list.append(shark)
 
@@ -284,13 +284,13 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, self.pfish_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            fish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
-            fish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
+            fish = BfishSprite(self.carrot_list, self.blueberry_list, self.popcorn_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
             self.bfish_list.append(fish)
         elif (name == "shark"):
-            fish = SharkSprite(self.bfish_list, self.shark_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
+            fish = SharkSprite(self.bfish_list, self.popcorn_list, self.shark_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
 
         # Done and done
@@ -394,20 +394,20 @@ class MyGame(arcade.Window, State):
                 egg.texture = egg.texture_egg_cracked
                 if egg.origin == "pfish":
                     # Kläck en pfish om ägget kom från pfish
-                    pfish = PfishSprite(self.carrot_list, self.pfish_list, setpos_x=egg.center_x,
+                    pfish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, setpos_x=egg.center_x,
                                         setpos_y=egg.center_y, size=pfish_size * 0.5)
                     self.pfish_list.append(pfish)
                     self.all_sprite_list.append(pfish)
                 if egg.origin == "bfish":
                     # Kläck en bfish om ägget kom från bfish
-                    bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.bfish_list, self.shark_list,
+                    bfish = BfishSprite(self.carrot_list, self.blueberry_list, self.popcorn_list, self.bfish_list, self.shark_list,
                                         setpos_x=egg.center_x,
                                         setpos_y=egg.center_y, size=pfish_size * 0.25)
                     self.bfish_list.append(bfish)
                     self.all_sprite_list.append(bfish)
                 if egg.origin == "shark":
                     # Kläck en shark om ägget kom från haj
-                    shark = SharkSprite(self.bfish_list, self.shark_list, setpos_x=egg.center_x,
+                    shark = SharkSprite(self.bfish_list, self.popcorn_list, self.shark_list, setpos_x=egg.center_x,
                                         setpos_y=egg.center_y, event=self.event, size=pfish_size * 0.6)
                     self.shark_list.append(shark)
                     self.all_sprite_list.append(shark)

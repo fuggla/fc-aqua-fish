@@ -5,7 +5,7 @@ from fish_vars import SPRITE_SCALING_PFISH, pfish_eager, pfish_hungry, pfish_day
 
 # Klass för lila fiskar (Purple_fish)
 class PfishSprite(FishSprite):
-    def __init__(self, carrot_list, pfish_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
+    def __init__(self, carrot_list, popcorn_list, pfish_list, eager=None, hungry=None, daydream=None, finforce=None, size=None, mass=None,
                  color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -31,7 +31,9 @@ class PfishSprite(FishSprite):
         self.findelay_base = self.findelay
         self.eat_speed = 8                      # Denna variabel styr hur intensivt de äter
 
-        self.food_objects = carrot_list
+        self.food_objects_c = carrot_list
+        self.food_objects_p = popcorn_list
+        self.food_objects = self.food_objects_c
 
         # Ladda in texturer för pfish
         self.texture_left1 = None
