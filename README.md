@@ -9,17 +9,22 @@ A simulator by Furniture Corp.
 ### v.1.x
 - [ ] Introfilm
 - [ ] Spara användardata och sälja på svarta marknaden
+- [ ] Menyer i form av valar som simmar in?
+
 
 ### v1.0
-
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Skippbar splashscreen med logga
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
-- [ ] Interaktion med fiskarna
-- [ ] Menyer i form av valar som simmar in?
-- [ ] Ljudeffekter
-- [ ] Någon form av ekonomisystem för köp av fiskar/morot
-- [ ] Länkar i credits till där Jonte har snott bilderna
+  - [ ] Mål: ungefär 10-25 bfish med 2 shark
+  - [ ] Mål: ungefär 4 pfish med 10-15 bfish
+  - [ ] ok om det ballar ut med shark dam + herre
+- [ ] Någon form av ekonomisystem för köp av fiskar mm
+  - [ ] Användaren har ett antal credits
+  - [ ] Fiskar, mat och fiskespö kostar credits att köpa
+  - [ ] Användaren får credits då en fisk dras upp
+  - [ ] Användaren kan även få credits om den lovar att swisha oss båda 20 kr var
+
 
 ### v0.9
 - [ ] Ljudeffekter
