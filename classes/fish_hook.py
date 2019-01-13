@@ -3,7 +3,7 @@ from vars import SPRITE_SCALING_FISH_HOOK, SCREEN_WIDTH, SCREEN_HEIGHT, TICK_RAT
 
 class FishHookSprite(arcade.Sprite):
     # Klass för krok
-    def __init__(self):
+    def __init__(self, hook_list):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -15,8 +15,6 @@ class FishHookSprite(arcade.Sprite):
         self.texture = self.texture_fish_hook
 
         # Definiera variabler
-        self.center_x = int(self.sw * 0.1) + random.randrange(int(self.sw * 0.8))
-        self.center_y = self.sh + 20
         self.change_x = 0
         self.change_y = - 50
         self.acc_x = 0
@@ -24,6 +22,10 @@ class FishHookSprite(arcade.Sprite):
         self.acc_water_res = 0
         self.popcorn = True
         self.has_fish = False
+        self.hook_list = hook_list
+        self.not_placed = True
+        self.try_place_number = 10
+        self.active = True
 
         self.stop_y = int(self.sh * 0.7) + random.randrange(int(self.sh * 0.1))
 
@@ -35,6 +37,25 @@ class FishHookSprite(arcade.Sprite):
         # Morotens egenskaper
         self.size = 1
         self.mass = 0.5
+
+        # Kroken placeras endast om det finns plats
+        self.illegal_coordinates = []
+        for hook in self.hook_list:
+            coordinates = [hook.center_x - 100, hook.center_x + 100]
+            self.illegal_coordinates.append(coordinates)
+
+        while self.not_placed and self.try_place_number > 0:
+            self.not_placed = False
+            test_center_x = int(self.sw * 0.1) + random.randrange(int(self.sw * 0.8))
+            for coordinates in self.illegal_coordinates:
+                if coordinates[0] < test_center_x < coordinates[1]:
+                    self.not_placed = True
+                    test_center_x = - 10000
+                    self.try_place_number -= 1
+                    break
+
+        self.center_x = test_center_x
+        self.center_y = self.sh + 20
 
 
     def update(self):
@@ -48,8 +69,10 @@ class FishHookSprite(arcade.Sprite):
         else:
             self.acc_grav_float = - 1
 
-        if not self.popcorn or self.has_fish:
-            self.acc_grav_float = 3
+        if not self.popcorn and not self.has_fish:
+            self.acc_grav_float = 2
+        elif self.has_fish:
+            self.acc_grav_float = 4
 
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
@@ -60,7 +83,7 @@ class FishHookSprite(arcade.Sprite):
             self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
-        if self.center_y > self.sh * 2 and (not self.popcorn or self.has_fish):
+        if self.center_y > self.sh * 1.2:
             self.kill()
 
         # Anropa huvudklassen

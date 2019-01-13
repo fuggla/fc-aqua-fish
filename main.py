@@ -301,7 +301,7 @@ class MyGame(arcade.Window, State):
         self.event.put(f"Bought {name} {fish.get_name()}")
 
     def buy_fishing_rod(self):
-        fish_hook = FishHookSprite()
+        fish_hook = FishHookSprite(self.fish_hook_list)
         self.fish_hook_list.append(fish_hook)
 
         popcorn = PopcornSprite(fish_hook)
@@ -445,9 +445,9 @@ class MyGame(arcade.Window, State):
                 if fish.type == "pfish":
                     prob = 15
                 elif fish.type == "bfish":
-                    prob = 3
+                    prob = 5
                 else:
-                    prob = 100
+                    prob = 200
 
                 # fisken fastnar ifall slumpfaktorn slår in
                 if random.randrange(1000) < prob and not hook.has_fish:
