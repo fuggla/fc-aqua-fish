@@ -302,12 +302,15 @@ class MyGame(arcade.Window, State):
 
     def buy_fishing_rod(self):
         fish_hook = FishHookSprite(self.fish_hook_list)
-        self.fish_hook_list.append(fish_hook)
+        if fish_hook.not_placed:
+            self.event.put("No room for fishing rod")
+        else:
+            self.fish_hook_list.append(fish_hook)
 
-        popcorn = PopcornSprite(fish_hook)
-        self.popcorn_list.append(popcorn)
+            popcorn = PopcornSprite(fish_hook)
+            self.popcorn_list.append(popcorn)
 
-        self.event.put("Bought fishing rod")
+            self.event.put("Bought fishing rod")
 
     def buy_pfish(self):
         self.buy_fish("pfish")
