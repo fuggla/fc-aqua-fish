@@ -138,6 +138,7 @@ class MyGame(arcade.Window, State):
                 b.draw()
 
             self.plant_blueberry_list.draw()
+            self.draw_fishing_lines()
             self.fish_hook_list.draw()
             self.popcorn_list.draw()
             self.blueberry_list.draw()
@@ -338,6 +339,14 @@ class MyGame(arcade.Window, State):
             diagnose_name_gender_attraction_health(self.bfish_list, self.bfish_info)
         if self.shark_list:
             diagnose_name_gender_attraction_health(self.shark_list, self.shark_info)
+
+    def draw_fishing_lines(self):
+        for hook in self.fish_hook_list:
+            x1 = hook.center_x - 2
+            y1 = hook.center_y + 31
+            x2 = hook.center_x - 2
+            y2 = SCREEN_HEIGHT * 1.1
+            arcade.draw_line(x1, y1, x2, y2, arcade.color.BLACK)
 
     def get_fish_info(self):
         self.pfish_info = []

@@ -73,6 +73,7 @@ class FishHookSprite(arcade.Sprite):
             self.acc_grav_float = 2
         elif self.has_fish:
             self.acc_grav_float = 4
+            self.size = 0.5
 
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
