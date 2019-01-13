@@ -23,6 +23,7 @@ class FishHookSprite(arcade.Sprite):
         self.acc_grav_float = 0                 # Fulvariabel, summan av gravitationen och lyftkraften
         self.acc_water_res = 0
         self.popcorn = True
+        self.has_fish = False
 
         self.stop_y = int(self.sh * 0.7) + random.randrange(int(self.sh * 0.1))
 
@@ -59,7 +60,7 @@ class FishHookSprite(arcade.Sprite):
             self.change_x = self.change_x + self.acc_x / self.framerate
             self.change_y = self.change_y + (self.acc_grav_float - self.acc_water_res) / self.framerate
 
-        if self.center_y > self.sh + 100 and not self.popcorn:
+        if self.center_y > self.sh * 2 and not self.popcorn:
             self.kill()
 
         # Anropa huvudklassen
