@@ -36,7 +36,7 @@ class FishSprite(arcade.Sprite):
         self.disturbed = False                          # Denna variable är True när fiskarnas beteendemönster bryts
         self.relaxed = [True, True]                     # Fiskarna blir nervösa nära kanterna
         self.hook = None
-        self.hook_bite_pos = [0, 0]                     # Variable för positionen på kroken fisken fastnar
+        self.hook_bite_pos_diff = [20, -30]             # Variable för positionen på kroken fisken fastnar
         self.eat_speed = 10                             # Animationshastighet då de äter
         self.iseating = 0                               # Variable för att stanna upp lite kort efter de ätit
         self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
@@ -437,13 +437,25 @@ class FishSprite(arcade.Sprite):
         self.hook = hook
 
     def hook_pos_calc(self):
-        # Räkna ut possitionsdifferens mellan fisk och krok
-        self.hook_bite_pos[0] = self.center_x - self.hook.center_x
-        self.hook_bite_pos[1] = self.center_y - self.hook.center_y
+        # Räkna fiskens koordinater då den fastnat på kroken
+        bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
+        bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
+        angle_rad = math.atan2(bite_y - self.center_y, bite_x - self.center_x) + 3.14
+        dist_tot = self.width / 2
+        self.center_x = bite_x + math.cos(angle_rad) * dist_tot
+        self.center_y = bite_y + math.sin(angle_rad) * dist_tot
 
     def hook_move(self):
-        self.center_x = self.hook.center_x + self.hook_bite_pos[0]
-        self.center_y = self.hook.center_y + self.hook_bite_pos[1]
+        # Fisken hänger och slänger i kroken
+        bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
+        bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
+        hook_vel_angle = math.atan2(self.hook.change_y, self.hook.change_x)
+        hook_fish_angle = math.atan2(bite_y - self.center_y, bite_x - self.center_x) + 3.14
+
+
+
+        self.change_x = self.hook.change_x
+        self.change_y = self.hook.change_y
 
         if self.bottom > self.sh:
             self.kill()

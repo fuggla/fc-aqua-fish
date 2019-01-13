@@ -448,8 +448,8 @@ class MyGame(arcade.Window, State):
             if fish_hook_list and random.randrange(1000) < 100:
                 index = random.randrange(len(fish_hook_list))
                 if not hook.has_fish:
-                    hook.has_fish = True
-                    fish_hook_list[index].hooked(hook)
+                    hook.has_fish = True                    # Kroken har en fisk
+                    fish_hook_list[index].hooked(hook)      # Fisken är krokad på kroken
                     fish_hook_list[index].hook_pos_calc()
 
             # Ge upp ifall ingen fisk har fastnat och popcornet är slut
