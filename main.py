@@ -435,12 +435,23 @@ class MyGame(arcade.Window, State):
                 if fish.iseating > 0:
                     fish_hook_list.append(fish)
 
-            # fisken fastnar ifall slumpfaktorn slår in
-            if fish_hook_list and random.randrange(1000) < 10:
+            if fish_hook_list:
+                # Plocka ut en stackare från listan
                 index = random.randrange(len(fish_hook_list))
-                if not hook.has_fish:
+                fish = fish_hook_list[index]
+
+                # Olika sannolikhet för olika fiskar
+                if fish.type == "pfish":
+                    prob = 15
+                elif fish.type == "bfish":
+                    prob = 3
+                else:
+                    prob = 100
+
+                # fisken fastnar ifall slumpfaktorn slår in
+                if random.randrange(1000) < prob and not hook.has_fish:
                     hook.has_fish = True                    # Kroken har en fisk
-                    fish_hook_list[index].hooked(hook)      # Fisken är krokad på kroken
+                    fish.hooked(hook)                       # Fisken är krokad på kroken
 
             # Ge upp ifall ingen fisk har fastnat och popcornet är slut
             if not check_for_collision_with_list(hook, self.popcorn_list):
@@ -463,7 +474,7 @@ class MyGame(arcade.Window, State):
                 fish.iseating -= 1
             # Om fisken lever och det finns en morot äter fisken på den
             if hit_list and not fish.disturbed:
-                fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
+                fish.eat_food(hit_list[0], 5)  # 5 är hur mycket de äter varje tugga
 
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
