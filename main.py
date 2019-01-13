@@ -139,10 +139,10 @@ class MyGame(arcade.Window, State):
 
             self.plant_blueberry_list.draw()
             self.fish_hook_list.draw()
+            self.popcorn_list.draw()
             self.blueberry_list.draw()
             self.fish_egg_list.draw()
             self.all_sprite_list.draw()
-            self.popcorn_list.draw()
             self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut information om varje fisk

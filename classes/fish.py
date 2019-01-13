@@ -440,7 +440,7 @@ class FishSprite(arcade.Sprite):
         # Räkna fiskens koordinater då den fastnat på kroken
         bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
         bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
-        dist_tot = self.width / 2
+        dist_tot = self.width * 0.4
         self.center_x = bite_x
         self.center_y = bite_y - dist_tot
         self.angle = 90
