@@ -440,22 +440,19 @@ class FishSprite(arcade.Sprite):
         # Räkna fiskens koordinater då den fastnat på kroken
         bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
         bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
-        angle_rad = math.atan2(bite_y - self.center_y, bite_x - self.center_x) + 3.14
         dist_tot = self.width / 2
-        self.center_x = bite_x + math.cos(angle_rad) * dist_tot
-        self.center_y = bite_y + math.sin(angle_rad) * dist_tot
+        self.center_x = bite_x + dist_tot
+        self.center_y = bite_y + dist_tot
 
     def hook_move(self):
-        # Fisken hänger och slänger i kroken
+        # Räkna fiskens koordinater då den fastnat på kroken
         bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
         bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
-        hook_vel_angle = math.atan2(self.hook.change_y, self.hook.change_x)
-        hook_fish_angle = math.atan2(bite_y - self.center_y, bite_x - self.center_x) + 3.14
-
-
-
-        self.change_x = self.hook.change_x
-        self.change_y = self.hook.change_y
+        dist_tot = self.width / 2
+        self.center_x = bite_x
+        self.center_y = bite_y - dist_tot
+        self.angle = 90
+        self.texture = self.texture_right1
 
         if self.bottom > self.sh:
             self.kill()

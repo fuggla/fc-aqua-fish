@@ -76,7 +76,7 @@ class BfishSprite(FishSprite):
             self.grown_up = True
 
         # Håll koll ifall fisken störs av någonting
-        if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner:
+        if not self.isalive or not self.relaxed == [True, True] or self.pregnant or self.partner or self.is_hooked:
             self.disturbed = True
         else:
             self.disturbed = False
