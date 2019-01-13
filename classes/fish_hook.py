@@ -66,19 +66,5 @@ class FishHookSprite(arcade.Sprite):
         # Anropa huvudklassen
         super().update()
 
-    def drag_sprite(self, x, y, dx, dy):
-        self.center_x = x
-        self.center_y = y
-        self.drag_speed = [dx, dy]
-
-    def is_mouse_on(self, pointer):
-        if arcade.check_for_collision(self, pointer):
-            return True
-
     def no_fish(self):
         self.popcorn = False
-
-    def release(self):
-        self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
-        self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
-

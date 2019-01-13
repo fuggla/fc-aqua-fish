@@ -138,6 +138,7 @@ class MyGame(arcade.Window, State):
                 b.draw()
 
             self.plant_blueberry_list.draw()
+            self.fish_hook_list.draw()
             self.blueberry_list.draw()
             self.fish_egg_list.draw()
             self.all_sprite_list.draw()
@@ -175,6 +176,7 @@ class MyGame(arcade.Window, State):
             self.blueberry_list.update()
             self.fish_egg_list.update()
             self.all_sprite_list.update()
+            self.fish_hook_list.update()
             self.popcorn_list.update()
             self.plant_foreground_list.update()
 
@@ -301,7 +303,6 @@ class MyGame(arcade.Window, State):
     def buy_fishing_rod(self):
         fish_hook = FishHookSprite()
         self.fish_hook_list.append(fish_hook)
-        self.all_sprite_list.append(fish_hook)
 
         popcorn = PopcornSprite(fish_hook)
         self.popcorn_list.append(popcorn)
