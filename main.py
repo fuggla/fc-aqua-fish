@@ -456,6 +456,7 @@ class MyGame(arcade.Window, State):
                 if random.randrange(1000) < prob and not hook.has_fish:
                     hook.has_fish = True                    # Kroken har en fisk
                     fish.hooked(hook)                       # Fisken är krokad på kroken
+                    self.event.put(f"You caught a {fish.type} named {fish.get_name()}")
 
             # Ge upp ifall ingen fisk har fastnat och popcornet är slut
             if not check_for_collision_with_list(hook, self.popcorn_list):

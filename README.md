@@ -36,13 +36,14 @@ A simulator by Furniture Corp.
   - [ ] Bakgrundsljud
 - [ ] Metspö som kan fiska upp fiskarna
   - [x] Skapa en krok med popcorn med slumpat djup
+  - [ ] Skapa fiskelina
   - [x] Köp det i "store"
   - [x] När vi dör blir våra kroppar till popcorn
   - [x] Fiskarna äter popcornet
   - [x] Hajarna jagar popcornet
   - [x] Kroken dras upp ifall fiskarna inte fastnar
-  - [ ] Fiskarna kan fastna och dras då upp
-  - [ ] Event för fisket
+  - [x] Fiskarna kan fastna och dras då upp
+  - [x] Event för fisket
 - [ ] Förbättra prestanda
   - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
