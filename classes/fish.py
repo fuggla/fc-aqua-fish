@@ -436,14 +436,6 @@ class FishSprite(arcade.Sprite):
         self.is_hooked = True
         self.hook = hook
 
-    def hook_pos_calc(self):
-        # Räkna fiskens koordinater då den fastnat på kroken
-        bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]
-        bite_y = self.hook.center_y + self.hook_bite_pos_diff[1]
-        dist_tot = self.width / 2
-        self.center_x = bite_x + dist_tot
-        self.center_y = bite_y + dist_tot
-
     def hook_move(self):
         # Räkna fiskens koordinater då den fastnat på kroken
         bite_x = self.hook.center_x + self.hook_bite_pos_diff[0]

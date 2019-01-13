@@ -155,7 +155,7 @@ class BfishSprite(FishSprite):
         self.health_calc()
 
         # Updatera animationen
-        if self.isalive and self.iseating == 0:
+        if self.isalive and self.iseating == 0 and not self.is_hooked:
             if self.partner:
                 self.animate_love()
             else:

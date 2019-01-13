@@ -154,14 +154,14 @@ class SharkSprite(FishSprite):
         self.health_calc()
 
         # Updatera animationen
-        if self.hunting_spirit <= 0 and self.isalive and self.iseating == 0:
+        if self.hunting_spirit <= 0 and self.isalive and self.iseating == 0 and not self.is_hooked:
             if self.partner:
                 self.animate_love()
             else:
                 self.animate()
 
         # Updatera animationen ifall den jagar
-        if self.hunting_spirit > 0 and self.isalive:
+        if self.hunting_spirit > 0 and self.isalive and not self.is_hooked:
             self.animate_hunt()
 
         # Anropa huvudklassen

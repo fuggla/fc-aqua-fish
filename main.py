@@ -365,22 +365,13 @@ class MyGame(arcade.Window, State):
         for fish in self.bfish_list:
             # Ätalgoritm för blue small fish
             hit_list = check_for_collision_with_list(fish, self.carrot_list)
-            if len(hit_list) == 0 and fish.iseating > 0:
-                fish.iseating -= 1
-            # Om fisken lever och det finns en morot äter fisken på den
-            if hit_list and not fish.disturbed:
-                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
+            hit_list2 = check_for_collision_with_list(fish, self.blueberry_list)
+            hit_list3 = check_for_collision_with_list(fish, self.popcorn_list)
+            for hit in hit_list2:
+                hit_list.append(hit)
+            for hit in hit_list3:
+                hit_list.append(hit)
 
-            # Ätalgoritm för blue small fish
-            hit_list = check_for_collision_with_list(fish, self.blueberry_list)
-            if len(hit_list) == 0 and fish.iseating > 0:
-                fish.iseating -= 1
-            # Om fisken lever och det finns en morot äter fisken på den
-            if hit_list and not fish.disturbed:
-                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
-
-            # Ätalgoritm för blue small fish
-            hit_list = check_for_collision_with_list(fish, self.popcorn_list)
             if len(hit_list) == 0 and fish.iseating > 0:
                 fish.iseating -= 1
             # Om fisken lever och det finns en morot äter fisken på den
@@ -445,12 +436,11 @@ class MyGame(arcade.Window, State):
                     fish_hook_list.append(fish)
 
             # fisken fastnar ifall slumpfaktorn slår in
-            if fish_hook_list and random.randrange(1000) < 100:
+            if fish_hook_list and random.randrange(1000) < 10:
                 index = random.randrange(len(fish_hook_list))
                 if not hook.has_fish:
                     hook.has_fish = True                    # Kroken har en fisk
                     fish_hook_list[index].hooked(hook)      # Fisken är krokad på kroken
-                    fish_hook_list[index].hook_pos_calc()
 
             # Ge upp ifall ingen fisk har fastnat och popcornet är slut
             if not check_for_collision_with_list(hook, self.popcorn_list):
@@ -458,22 +448,22 @@ class MyGame(arcade.Window, State):
 
     def interactions_pfish(self):
         """" Stega igenom pfish """
+        #food_sprite_list = self.carrot_list
+        #for popcorn in self.popcorn_list:
+        #    food_sprite_list.append(popcorn)
+
         for fish in self.pfish_list:
-            # Ätalgoritm för purple fish
+            # Samla ihop all mat
             hit_list = check_for_collision_with_list(fish, self.carrot_list)
+            hit_list2 = check_for_collision_with_list(fish, self.popcorn_list)
+            for hit in hit_list2:
+                hit_list.append(hit)
+
             if len(hit_list) == 0 and fish.iseating > 0:
                 fish.iseating -= 1
             # Om fisken lever och det finns en morot äter fisken på den
             if hit_list and not fish.disturbed:
                 fish.eat_food(hit_list[0], 10)  # 10 är hur mycket de äter varje tugga
-
-            # Ätalgoritm för purple fish
-            hit_list = check_for_collision_with_list(fish, self.popcorn_list)
-            if len(hit_list) == 0 and fish.iseating > 0:
-                fish.iseating -= 1
-            # Om fisken lever och det finns en morot äter fisken på den
-            if hit_list and not fish.disturbed:
-                fish.eat_food(hit_list[0], 1)  # 1 är hur mycket de äter varje tugga
 
             # Lägg ägg ifall fisken är gravid
             if fish.ready_to_lay_egg:
