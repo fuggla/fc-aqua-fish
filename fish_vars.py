@@ -52,12 +52,12 @@ shark_hunting_spirit = 600
 shark_egg_freq = 1
 
 """
-Importera debug.py om den existerar
+Importera debug123.py om den existerar
 Filen spåras inte av repo utan är lokal
 Ha kvar längst ner, ifall den skriver över några vars
 """
 try:
-    from debug import *
+    from debug123 import *
     DEBUG = True
 except:
     DEBUG = False

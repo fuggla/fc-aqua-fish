@@ -137,14 +137,15 @@ class MyGame(arcade.Window, State):
             for b in self.bubble_list:
                 b.draw()
 
-            self.plant_blueberry_list.draw()
+            #self.plant_blueberry_list.draw()
             self.draw_fishing_lines()
             self.fish_hook_list.draw()
-            self.popcorn_list.draw()
-            self.blueberry_list.draw()
+            #self.popcorn_list.draw()
+            #self.blueberry_list.draw()
             self.fish_egg_list.draw()
-            self.all_sprite_list.draw()
-            self.plant_foreground_list.draw()
+            self.pfish_list.draw()
+            #self.all_sprite_list.draw()
+            #self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
             if DIAGNOSE_FISH:
