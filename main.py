@@ -144,6 +144,7 @@ class MyGame(arcade.Window, State):
             #self.blueberry_list.draw()
             self.fish_egg_list.draw()
             self.pfish_list.draw()
+            self.carrot_list.draw()
             #self.all_sprite_list.draw()
             #self.plant_foreground_list.draw()
 

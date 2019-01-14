@@ -17,11 +17,13 @@ class CarrotSprite(arcade.Sprite):
 
 
         img = f"assets/images/food/carrot"
-        self.texture_food1 = arcade.load_texture(f"{img}/carrot1.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_food2 = arcade.load_texture(f"{img}/carrot2.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_food3 = arcade.load_texture(f"{img}/carrot3.png", scale=SPRITE_SCALING_CARROT)
-        self.texture_food4 = arcade.load_texture(f"{img}/carrot4.png", scale=SPRITE_SCALING_CARROT)
-        self.texture = self.texture_food1
+        self.textures = []
+        self.append_texture(arcade.load_texture(f"{img}/carrot1.png", scale=SPRITE_SCALING_CARROT))
+        self.append_texture(arcade.load_texture(f"{img}/carrot2.png", scale=SPRITE_SCALING_CARROT))
+        self.append_texture(arcade.load_texture(f"{img}/carrot3.png", scale=SPRITE_SCALING_CARROT))
+        self.append_texture(arcade.load_texture(f"{img}/carrot4.png", scale=SPRITE_SCALING_CARROT))
+
+        self.set_texture(0)
 
         # Placera ut moroten
         self.center_x = random.randrange(int(self.sw * 0.8)) + int(self.sw * 0.1)

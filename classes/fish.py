@@ -131,27 +131,27 @@ class FishSprite(arcade.Sprite):
         if -90 < self.angle < 90:
             # Ätanimation då fisken är riktad åt höger
             if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18 or self.whichtexture == 22:
-                self.texture = self.texture_right1
+                self.set_texture(0)
                 self.whichtexture = 21
 
             if self.frame_count % self.eat_speed == 0 and self.whichtexture == 21:
-                self.texture = self.texture_right8
+                self.set_texture(5)
                 self.whichtexture = 28
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 28:
-                self.texture = self.texture_right1
+                self.set_texture(2)
                 self.whichtexture = 21
 
         else:
             # Ätanimation då fisken är riktad åt vänster
             if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28 or self.whichtexture == 12:
-                self.texture = self.texture_left1
+                self.set_texture(0)
                 self.whichtexture = 11
 
             if self.frame_count % self.eat_speed == 0 and self.whichtexture == 11:
-                self.texture = self.texture_left8
+                self.set_texture(4)
                 self.whichtexture = 18
             elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 18:
-                self.texture = self.texture_left1
+                self.set_texture(0)
                 self.whichtexture = 11
             self.angle += 180
 
@@ -333,11 +333,11 @@ class FishSprite(arcade.Sprite):
 
         food.food_value -= chew                     # Fiskarna äter moroten
         if food.food_value <= food.base_food_value * 0.75:
-            food.texture = food.texture_food2
+            food.set_texture(1)
         if food.food_value <= food.base_food_value * 0.50:
-            food.texture = food.texture_food3
+            food.set_texture(2)
         if food.food_value <= food.base_food_value * 0.25:
-            food.texture = food.texture_food4
+            food.set_texture(3)
         if food.food_value <= 0:                    # När moroten är slut försvinner den
             if food.type == "blueberry":            # Samla statistik
                 self.eaten_blueberries += 1
