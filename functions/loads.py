@@ -7,7 +7,7 @@ Funktioner för att ladda/skapa:
 """
 
 from vars import SCREEN_WIDTH, BUBBLE_MAPS
-from arcade import create_text, load_sound
+from arcade import draw_text, load_sound
 from classes.bubble_map import Bubble_map
 from classes.window import Window
 from random import randrange
@@ -20,8 +20,7 @@ def load_credits(width=SCREEN_WIDTH, x=0, y=-230, text="AQUA FISH\n\n", color=WH
         content = reader(file, delimiter=';')
         for row in content:
             text += f"{row[0]}\n{row[1]}\n\n"
-    text = create_text(text, color, font_size, width, "center")
-    return text, x, y
+    return text, x, y, [color, font_size, width, "center"]
 
 # Load music files
 def load_music():
