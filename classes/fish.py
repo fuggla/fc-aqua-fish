@@ -432,6 +432,10 @@ class FishSprite(arcade.Sprite):
         # Stega ner livsmätaren
         self.health -= 1
 
+        if self.is_hooked and self.bottom > self.sh:
+            self.kill()
+
+
     def hooked(self, hook):
         self.is_hooked = True
         self.hook = hook
