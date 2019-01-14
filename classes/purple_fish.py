@@ -36,13 +36,6 @@ class PfishSprite(FishSprite):
         self.food_objects = self.food_objects_c
 
         # Ladda in texturer för pfish
-        self.texture_left1 = None
-        self.texture_left2 = None
-        self.texture_left8 = None
-        self.texture_right1 = None
-        self.texture_right2 = None
-        self.texture_right8 = None
-
         self.load_textures()
 
         # Slumpa fiskarna höger/vänster
@@ -142,6 +135,7 @@ class PfishSprite(FishSprite):
             else:
                 self.animate()
         """
+        self.animate()
         # Anropa huvudklassen
         super().update()
 
