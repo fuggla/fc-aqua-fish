@@ -17,7 +17,7 @@ pfish_findelay = 20         # Hur ofta viftar de med fenorna
 pfish_egg_freq = 1
 
 """ Egenskaper för blue fish """
-BFISH_NUMBER = 0
+BFISH_NUMBER = 12
 SPRITE_SCALING_BFISH = 0.1
 
 bfish_eager = 10            # Hur ofta byter fiskarna riktning

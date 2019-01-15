@@ -24,7 +24,7 @@ class BfishSprite(FishSprite):
         self.base_size = bfish_size
         self.scaling = SPRITE_SCALING_BFISH
         self.mass = mass or bfish_mass
-        self.color = color or "blue"
+        self.fish_color = color or "blue"
         self.type = "bfish"
 
         self.findelay = bfish_findelay  # Hur ofta viftar de med fenorna
@@ -39,21 +39,14 @@ class BfishSprite(FishSprite):
         self.hunter_fish_list = hunter_list
 
         # Ladda in texturer
-        self.texture_left1 = None
-        self.texture_left2 = None
-        self.texture_left8 = None
-        self.texture_right1 = None
-        self.texture_right2 = None
-        self.texture_right8 = None
-
         self.load_textures()
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
-            self.texture = self.texture_left1
+            self.set_texture(0)
             self.whichtexture = 11  # 11 = left1
         else:
-            self.texture = self.texture_right1
+            self.set_texture(2)
             self.whichtexture = 21  # 21 = right1
 
         # Placera ut fiskarna
@@ -213,10 +206,11 @@ class BfishSprite(FishSprite):
     def load_textures(self):
         # texture 1 & 2 för höger och vänster
         scale_factor = self.scaling * self.size / 8
-        img = f"assets/images/fish/bfish/{self.color}_small"
-        self.texture_left1 = arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor)
-        self.texture_left8 = arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture(f"{img}_fish1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture(f"{img}_fish2.png", scale=scale_factor)
-        self.texture_right8 = arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor)
+        img = f"assets/images/fish/bfish/{self.fish_color}_small"
+        self.textures = []
+        self.append_texture(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))

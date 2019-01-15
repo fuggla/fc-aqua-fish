@@ -23,7 +23,7 @@ class PfishSprite(FishSprite):
         self.base_size = pfish_size
         self.scaling = SPRITE_SCALING_PFISH
         self.mass = mass or pfish_mass
-        self.extra_color = color or "purple"
+        self.fish_color = color or "purple"
         self.type = "pfish"
         self.pfish_list = pfish_list
 
@@ -141,7 +141,7 @@ class PfishSprite(FishSprite):
 
     def load_textures(self):
         # texture 1 & 2 för höger och vänster
-        img = f"assets/images/fish/pfish/{self.extra_color}"
+        img = f"assets/images/fish/pfish/{self.fish_color}"
         scale_factor = self.scaling*self.size/8
         self.textures = []
         self.append_texture(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
