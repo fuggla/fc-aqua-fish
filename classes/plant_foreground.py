@@ -13,17 +13,18 @@ class PlantForeground(arcade.Sprite):
         self.plant_blueberry_list = plant_blueberry_list
         self.not_placed = True
 
+        self.textures = []
         img = "assets/images/plant"
-        self.texture_plant_blueberry1 = arcade.load_texture(f"{img}/seaweed2.png", scale=SPRITE_SCALING_PLANT_FOREGROUND)
-        self.texture_plant_blueberry2 = arcade.load_texture(f"{img}/seaweed2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND)
+        self.append_texture(arcade.load_texture(f"{img}/seaweed2.png", scale=SPRITE_SCALING_PLANT_FOREGROUND))
+        self.append_texture(arcade.load_texture(f"{img}/seaweed2.png", mirrored=True, scale=SPRITE_SCALING_PLANT_FOREGROUND))
 
         # Placera ut blåbärsplantan
         self.try_place_number = 5
 
         if random.random() < 0.5:
-            self.texture = self.texture_plant_blueberry1
+            self.set_texture(0)
         else:
-            self.texture = self.texture_plant_blueberry2
+            self.set_texture(1)
 
 
         self.illegal_coordinates = []

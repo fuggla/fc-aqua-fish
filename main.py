@@ -147,7 +147,7 @@ class MyGame(arcade.Window, State):
             self.bfish_list.draw()
             self.carrot_list.draw()
             #self.all_sprite_list.draw()
-            #self.plant_foreground_list.draw()
+            self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
             if DIAGNOSE_FISH:
