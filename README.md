@@ -21,10 +21,10 @@ A simulator by Furniture Corp.
   - [ ] Mål: ungefär 4 pfish med 10-15 bfish
   - [ ] ok om det ballar ut med shark dam + herre
 - [ ] Någon form av ekonomisystem för köp av fiskar mm
-  - [ ] Användaren har ett antal credits
-  - [ ] Fiskar, mat och fiskespö kostar credits att köpa
-  - [ ] Användaren får credits då en fisk dras upp
-  - [ ] Användaren kan även få credits om den lovar att swisha oss båda 20 kr var
+  - [ ] Användaren har ett antal cash
+  - [ ] Fiskar, mat och fiskespö kostar cash att köpa
+  - [ ] Användaren får cash då en fisk dras upp
+  - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
 
 
 ### v0.9
@@ -52,6 +52,8 @@ A simulator by Furniture Corp.
 - [ ] Funktion för att visa statistik
   - [ ] När användaren håller i fisken?
 - [ ] Exit när credits är slut
+- [ ] Updatera arcade till 2.0
+
 
 ## Tutorials / Dokumentation
 
