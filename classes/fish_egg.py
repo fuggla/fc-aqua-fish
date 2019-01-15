@@ -18,10 +18,11 @@ class FishEggSprite(arcade.Sprite):
         else:
             self.scale_factor = SCALING_FISH_EGG
 
+        self.textures = []
         img = "assets/images/egg"
-        self.texture_egg1 = arcade.load_texture(f"{img}/egg1.png", scale=self.scale_factor)
-        self.texture_egg_cracked = arcade.load_texture(f"{img}/egg_cracked.png", scale=self.scale_factor)
-        self.texture = self.texture_egg1
+        self.append_texture(arcade.load_texture(f"{img}/egg1.png", scale=self.scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/egg_cracked.png", scale=self.scale_factor))
+        self.set_texture(0)
 
         # Placera ut ägget
         self.center_x = fish.center_x

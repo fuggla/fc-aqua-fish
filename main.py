@@ -137,11 +137,11 @@ class MyGame(arcade.Window, State):
             for b in self.bubble_list:
                 b.draw()
 
-            #self.plant_blueberry_list.draw()
+            self.plant_blueberry_list.draw()
+            self.blueberry_list.draw()
             self.draw_fishing_lines()
             self.fish_hook_list.draw()
             #self.popcorn_list.draw()
-            #self.blueberry_list.draw()
             self.fish_egg_list.draw()
             self.pfish_list.draw()
             self.bfish_list.draw()
@@ -407,7 +407,7 @@ class MyGame(arcade.Window, State):
         """ Stega igenom äggen """
         for egg in self.fish_egg_list:
             if egg.age == egg.hatch_age:  # ägget kläcks efter en viss tid
-                egg.texture = egg.texture_egg_cracked
+                egg.set_texture(1)
                 if egg.origin == "pfish":
                     # Kläck en pfish om ägget kom från pfish
                     pfish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, setpos_x=egg.center_x,
