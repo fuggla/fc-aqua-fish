@@ -164,27 +164,27 @@ class FishSprite(arcade.Sprite):
             if -90 < self.angle < 90:
                 # Ätanimation då fisken är riktad åt höger
                 if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
-                    self.texture = self.texture_right_eat1
+                    self.set_texture(6)
                     self.whichtexture = 21
 
                 if self.frame_count % self.eat_speed == 0 and self.whichtexture == 21:
-                    self.texture = self.texture_right_eat2
+                    self.set_texture(7)
                     self.whichtexture = 22
                 elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 22:
-                    self.texture = self.texture_right_eat1
+                    self.set_texture(6)
                     self.whichtexture = 21
 
             else:
                 # Ätanimation då fisken är riktad åt vänster
                 if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
-                    self.texture = self.texture_left_eat1
+                    self.set_texture(4)
                     self.whichtexture = 11
 
                 if self.frame_count % self.eat_speed == 0 and self.whichtexture == 11:
-                    self.texture = self.texture_left_eat2
+                    self.set_texture(5)
                     self.whichtexture = 12
                 elif self.frame_count % self.eat_speed == 0 and self.whichtexture == 12:
-                    self.texture = self.texture_left_eat1
+                    self.set_texture(4)
                     self.whichtexture = 11
                 self.angle += 180
 
@@ -310,10 +310,10 @@ class FishSprite(arcade.Sprite):
             self.hunting_spirit = 0
             self.angle = math.degrees(math.atan2(prey.center_y - self.center_y, prey.center_x - self.center_x))
             if -90 < self.angle < 90:
-                self.texture = self.texture_right1
+                self.set_texture(2)
             else:
                 self.angle += 180
-                self.texture = self.texture_left1
+                self.set_texture(0)
 
             prey.kill()
             self.eaten_fish += 1

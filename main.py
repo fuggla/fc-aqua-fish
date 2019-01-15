@@ -143,10 +143,7 @@ class MyGame(arcade.Window, State):
             self.fish_hook_list.draw()
             self.popcorn_list.draw()
             self.fish_egg_list.draw()
-            self.pfish_list.draw()
-            self.bfish_list.draw()
-            self.carrot_list.draw()
-            #self.all_sprite_list.draw()
+            self.all_sprite_list.draw()
             self.plant_foreground_list.draw()
 
         # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
@@ -291,7 +288,7 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, color=color[random.randrange(3)], setpos_y=self.height, setspeed_y=-30)
+            fish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, color=color[random.randrange(2)], setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.popcorn_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)

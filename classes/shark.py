@@ -38,23 +38,14 @@ class SharkSprite(FishSprite):
         self.tired = 0
 
         # Ladda in texturer
-        self.texture_left1 = None
-        self.texture_left2 = None
-        self.texture_left_eat1 = None
-        self.texture_left_eat2 = None
-        self.texture_right1 = None
-        self.texture_right2 = None
-        self.texture_right_eat1 = None
-        self.texture_right_eat2 = None
-
         self.load_textures()
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
-            self.texture = self.texture_left1
+            self.set_texture(0)
             self.whichtexture = 11              # 11 = left1
         else:
-            self.texture = self.texture_right1
+            self.set_texture(2)
             self.whichtexture = 21              # 21 = right1
 
         # Placera ut fiskarna
@@ -170,15 +161,16 @@ class SharkSprite(FishSprite):
     def load_textures(self):
         # texture 1 & 2 för höger och vänster
         scale_factor = self.scaling * self.size / 8
+        self.textures = []
         img = "assets/images/fish/shark"
-        self.texture_left1 = arcade.load_texture(f"{img}/shark1.png", mirrored=True, scale=scale_factor)
-        self.texture_left2 = arcade.load_texture(f"{img}/shark2.png", mirrored=True, scale=scale_factor)
-        self.texture_left_eat1 = arcade.load_texture(f"{img}/shark_eat1.png", mirrored=True, scale=scale_factor)
-        self.texture_left_eat2 = arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor)
-        self.texture_right1 = arcade.load_texture(f"{img}/shark1.png", scale=scale_factor)
-        self.texture_right2 = arcade.load_texture(f"{img}/shark2.png", scale=scale_factor)
-        self.texture_right_eat1 = arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor)
-        self.texture_right_eat2 = arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor)
+        self.append_texture(arcade.load_texture(f"{img}/shark1.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark2.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark1.png", scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark2.png", scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark_eat1.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor))
+        self.append_texture(arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor))
 
     def set_food_list(self):
         # Skapa lista för bfish och alla popcorn

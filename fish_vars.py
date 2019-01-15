@@ -34,7 +34,7 @@ bfish_findelay = 10         # Hur ofta viftar de med fenorna
 bfish_egg_freq = 1
 
 """ Egenskaper för shark """
-SHARK_NUMBER = 0
+SHARK_NUMBER = 2
 SPRITE_SCALING_SHARK = 0.8
 
 shark_eager = 10            # Hur ofta byter fiskarna riktning
