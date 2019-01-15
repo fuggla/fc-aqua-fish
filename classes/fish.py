@@ -448,7 +448,7 @@ class FishSprite(arcade.Sprite):
         self.center_x = bite_x
         self.center_y = bite_y - dist_tot
         self.angle = 90
-        self.texture = self.texture_right1
+        self.set_texture(2)
 
         if self.bottom > self.sh:
             self.kill()

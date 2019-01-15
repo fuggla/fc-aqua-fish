@@ -141,7 +141,7 @@ class MyGame(arcade.Window, State):
             self.blueberry_list.draw()
             self.draw_fishing_lines()
             self.fish_hook_list.draw()
-            #self.popcorn_list.draw()
+            self.popcorn_list.draw()
             self.fish_egg_list.draw()
             self.pfish_list.draw()
             self.bfish_list.draw()

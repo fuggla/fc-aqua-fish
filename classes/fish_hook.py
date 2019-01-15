@@ -10,9 +10,10 @@ class FishHookSprite(arcade.Sprite):
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
 
+        self.textures = []
         img = f"assets/images/fish_hook"
-        self.texture_fish_hook = arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK)
-        self.texture = self.texture_fish_hook
+        self.append_texture(arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK))
+        self.set_texture(0)
 
         # Definiera variabler
         self.change_x = 0

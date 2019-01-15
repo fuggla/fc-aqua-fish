@@ -15,12 +15,13 @@ class PopcornSprite(arcade.Sprite):
         self.base_food_value = popcorn_food_value
         self.hook = hook
 
+        self.textures = []
         img = f"assets/images/food/popcorn"
-        self.texture_food1 = arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN)
-        self.texture_food2 = arcade.load_texture(f"{img}/popcorn2.png", scale=SPRITE_SCALING_POPCORN)
-        self.texture_food3 = arcade.load_texture(f"{img}/popcorn3.png", scale=SPRITE_SCALING_POPCORN)
-        self.texture_food4 = arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN)
-        self.texture = self.texture_food1
+        self.append_texture(arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN))
+        self.append_texture(arcade.load_texture(f"{img}/popcorn2.png", scale=SPRITE_SCALING_POPCORN))
+        self.append_texture(arcade.load_texture(f"{img}/popcorn3.png", scale=SPRITE_SCALING_POPCORN))
+        self.append_texture(arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN))
+        self.set_texture(0)
 
         self.angle = 40
         self.x_diff = 20

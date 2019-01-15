@@ -128,14 +128,11 @@ class PfishSprite(FishSprite):
         self.health_calc()
 
         # Updatera animationen
-        """
         if self.isalive and self.iseating == 0 and not self.is_hooked:
             if self.partner:
                 self.animate_love()
             else:
                 self.animate()
-        """
-        self.animate()
         # Anropa huvudklassen
         super().update()
 
