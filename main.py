@@ -598,12 +598,9 @@ class MyGame(arcade.Window, State):
         self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK)]
 
         # Popcorn
-        img = f"assets/images/food/popcorn"
         self.textures_popcorn = []
-        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN))
-        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn2.png", scale=SPRITE_SCALING_POPCORN))
-        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn3.png", scale=SPRITE_SCALING_POPCORN))
-        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN))
+        for i in range(1, 5):
+            self.textures_popcorn.append(load_texture(f"assets/images/food/popcorn/popcorn{i}.png", scale=SPRITE_SCALING_POPCORN))
 
     def play_credits(self):
         if self.is_credits() == False:
