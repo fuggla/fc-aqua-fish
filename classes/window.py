@@ -129,6 +129,8 @@ class Window(Shape):
             draw_rectangle_outline(*self.pos, *self.size, *self.outline)
             for button in self.button_list:
                 button.draw()
+            for t in self.text_list:
+                t.draw()
 
     # Lägg till knapp i fönster
     def add_button(self, text, release, margin_top, margin_left, w, h,
