@@ -538,7 +538,7 @@ class MyGame(arcade.Window, State):
                         if math.fabs(test_berry.center_x - test_x) < 25:
                             can_grow = False
                     if can_grow:
-                        berry = BlueberrySprite(test_x, test_y)
+                        berry = BlueberrySprite(test_x, test_y, self.textures_blueberry)
                         self.blueberry_list.append(berry)
 
     def interactions_shark(self):
@@ -593,6 +593,7 @@ class MyGame(arcade.Window, State):
         # Käk
         self.textures_popcorn = load_texture_list("food", "popcorn", scale["popcorn"])
         self.textures_carrot = load_texture_list("food", "carrot", scale["carrot"])
+        self.textures_blueberry = load_texture_list("food", "blueberry", scale["carrot"])
 
     def play_credits(self):
         if self.is_credits() == False:

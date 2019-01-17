@@ -112,7 +112,7 @@ def load_texture_list(type, name, scale):
 # Räkna ut skalor för alla gemensamma texturer
 def load_scales():
     from fish_vars import pfish_size, pfish_size_kid, SPRITE_SCALING_PFISH, bfish_size, bfish_size_kid, SPRITE_SCALING_BFISH, shark_size, shark_size_kid, SPRITE_SCALING_SHARK
-    from vars import SPRITE_SCALING_POPCORN, SPRITE_SCALING_FISH_HOOK, SPRITE_SCALING_CARROT
+    from vars import SPRITE_SCALING_POPCORN, SPRITE_SCALING_FISH_HOOK, SPRITE_SCALING_CARROT, SPRITE_SCALING_BLUEBERRY
     return {
         'pfish' : SPRITE_SCALING_PFISH * pfish_size / 8,
         'bfish' : SPRITE_SCALING_BFISH * bfish_size / 8,
@@ -122,5 +122,6 @@ def load_scales():
         'shark_kid' : SPRITE_SCALING_SHARK * shark_size_kid / 8,
         'popcorn' : SPRITE_SCALING_POPCORN,
         'hook' : SPRITE_SCALING_FISH_HOOK,
-        'carrot' : SPRITE_SCALING_CARROT
+        'carrot' : SPRITE_SCALING_CARROT,
+        'blueberry' : SPRITE_SCALING_BLUEBERRY
     }
