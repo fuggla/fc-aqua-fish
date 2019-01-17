@@ -577,6 +577,8 @@ class MyGame(arcade.Window, State):
         scale_pfish_kid = SPRITE_SCALING_PFISH * pfish_size_kid / 8
         scale_bfish = SPRITE_SCALING_BFISH * bfish_size / 8
         scale_bfish_kid = SPRITE_SCALING_BFISH * bfish_size_kid / 8
+        scale_shark = SPRITE_SCALING_SHARK * shark_size / 8
+        scale_shark_kid = SPRITE_SCALING_SHARK * shark_size_kid / 8
 
         # Pfish
         self.textures_pfish_purple = load_texture_list("pfish", "purple", scale_pfish)
@@ -589,29 +591,8 @@ class MyGame(arcade.Window, State):
         self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small", scale_bfish_kid)
 
         # Shark
-        scale_factor = SPRITE_SCALING_SHARK * shark_size / 8
-        img = "assets/images/fish/shark"
-        self.textures_shark = []
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark1.png", mirrored=True, scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark2.png", mirrored=True, scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark1.png", scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark2.png", scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark_eat1.png", mirrored=True, scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor))
-        self.textures_shark.append(arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor))
-
-        scale_factor = SPRITE_SCALING_SHARK * shark_size_kid / 8
-        img = "assets/images/fish/shark"
-        self.textures_shark_kid = []
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark1.png", mirrored=True, scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark2.png", mirrored=True, scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark1.png", scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark2.png", scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat1.png", mirrored=True, scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor))
-        self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor))
+        self.textures_shark = load_texture_list("shark", "shark", scale_shark)
+        self.textures_shark_kid = load_texture_list("shark", "shark", scale_shark_kid)
 
         # Fish_hook
         img = f"assets/images/fish_hook"

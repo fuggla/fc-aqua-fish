@@ -93,4 +93,14 @@ def load_texture_list(specie, color, scale):
         t.append(load_texture(f"{img}_fish2.png", scale=scale))
         t.append(load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_fish_eat.png", scale=scale))
+    elif (specie == "shark"):
+        img = f"assets/images/fish/{specie}/{color}"
+        t.append(load_texture(f"{img}1.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}2.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}1.png", scale=scale))
+        t.append(load_texture(f"{img}2.png", scale=scale))
+        t.append(load_texture(f"{img}_eat1.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_eat2.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_eat1.png", scale=scale))
+        t.append(load_texture(f"{img}_eat2.png", scale=scale))
     return t
