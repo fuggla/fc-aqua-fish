@@ -22,7 +22,7 @@ Klass för att visa ett fönster med knappar och text
 
 from classes.shape import Shape
 from queue import SimpleQueue
-from arcade import draw_text, render_text, draw_rectangle_filled, draw_rectangle_outline, draw_text, draw_lrtb_rectangle_filled
+from arcade import create_text, render_text, draw_rectangle_filled, draw_rectangle_outline, draw_text, draw_lrtb_rectangle_filled
 from arcade.color import *
 
 class Window(Shape):
@@ -269,11 +269,11 @@ class Text(Shape, SimpleQueue):
 
         # Förbered för rendering
         self.settings = [color, font_size, w, align]
-        self.text = text
+        self.text = create_text(text, *self.settings)
 
     # Rita text
     def draw(self):
-        draw_text(self.text, *settings)
+        render_text(self.text, self.x, self.y)
 
     def message_received(self):
         return not self.empty()
@@ -284,4 +284,4 @@ class Text(Shape, SimpleQueue):
         self.row.insert(0, self.get())
         for r in self.row[0:self.max_rows]:
             text = f"{r}\n{text}"
-        self.text = text
+        self.text = create_text(text, *self.settings)

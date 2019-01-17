@@ -141,7 +141,7 @@ class MyGame(arcade.Window, State):
         if SKIP_MAIN_MENU:
             self.start()
         else:
-            self.credits_text, self.credits_x, self.credits_y, self.credits_settings = load_credits()
+            self.credits_text, self.credits_x, self.credits_y = load_credits()
             self.state_main_menu()
 
     def on_draw(self):
@@ -350,7 +350,7 @@ class MyGame(arcade.Window, State):
     def draw_credits(self):
         if self.fade.is_fading_out():
             self.draw_main_menu()
-        draw_text(self.credits_text, self.credits_x, self.credits_y, *self.credits_settings)
+        render_text(self.credits_text, self.credits_x, self.credits_y)
 
     def draw_main_menu(self):
         self.window_list[0].draw()
