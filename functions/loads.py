@@ -84,11 +84,11 @@ def load_windows(game):
     return [main, event, action, pause], pause, eventhandler
 
 # Ladda in en fisktexturer
-def load_texture_list(specie, color, scale):
+def load_texture_list(type, name, scale):
     t = []
     # Fiskar och hajar har en del sökvägar
-    if (specie[-4:] == "fish" or "shark"):
-        img = f"assets/images/fish/{specie}/{color}"
+    if (type[-4:] == "fish" or type == "shark"):
+        img = f"assets/images/fish/{type}/{name}"
         t.append(load_texture(f"{img}1.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}1.png", scale=scale))
@@ -97,9 +97,16 @@ def load_texture_list(specie, color, scale):
         t.append(load_texture(f"{img}_eat1.png", scale=scale))
 
     # Shark har en extra ätimation
-    if (specie == "shark"):
+    if (type == "shark"):
         t.insert(5, load_texture(f"{img}_eat2.png", mirrored=True, scale=scale)) # Direkt efter eat1 mirrored
         t.append(load_texture(f"{img}_eat2.png", scale=scale))
+
+    # Feud
+    if (type == "food"):
+        img = f"assets/images/{type}/{name}/{name}"
+        for i in range(1, 5):
+            t.append(load_texture(f"{img}{i}.png", scale=scale))
+
     return t
 
 # Räkna ut skalor för alla gemensamma texturer
