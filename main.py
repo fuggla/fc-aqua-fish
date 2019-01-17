@@ -31,7 +31,7 @@ from functions.diagnose_name_gender_attraction_health import diagnose_name_gende
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from functions.loads import *
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size_kid, bfish_size_kid, shark_size_kid
 
 class MyGame(arcade.Window, State):
 
