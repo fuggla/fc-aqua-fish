@@ -595,9 +595,7 @@ class MyGame(arcade.Window, State):
         self.textures_shark_kid = load_texture_list("shark", "shark", scale_shark_kid)
 
         # Fish_hook
-        img = f"assets/images/fish_hook"
-        self.textures_fish_hook = []
-        self.textures_fish_hook.append(arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK))
+        self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK)]
 
         # Popcorn
         img = f"assets/images/food/popcorn"
