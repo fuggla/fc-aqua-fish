@@ -31,9 +31,7 @@ from functions.diagnose_name_gender_attraction_health import diagnose_name_gende
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from functions.loads import *
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, pfish_size_kid, SPRITE_SCALING_PFISH, \
-    bfish_size, bfish_size_kid, SPRITE_SCALING_BFISH, shark_size, shark_size_kid, SPRITE_SCALING_SHARK
-
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER
 
 class MyGame(arcade.Window, State):
 
@@ -573,17 +571,7 @@ class MyGame(arcade.Window, State):
 
     """ Ladda alla texturer så de kan skickas till objekten """
     def load_textures(self):
-        # Scale factors
-        scale = {
-            'pfish' : SPRITE_SCALING_PFISH * pfish_size / 8,
-            'bfish' : SPRITE_SCALING_BFISH * bfish_size / 8,
-            'shark' : SPRITE_SCALING_SHARK * shark_size / 8,
-            'pfish_kid' : SPRITE_SCALING_PFISH * pfish_size_kid / 8,
-            'bfish_kid' : SPRITE_SCALING_BFISH * bfish_size_kid / 8,
-            'shark_kid' : SPRITE_SCALING_SHARK * shark_size_kid / 8,
-            'popcorn' : SPRITE_SCALING_POPCORN,
-            'hook' : SPRITE_SCALING_FISH_HOOK,
-        }
+        scale = load_scales()
 
         # Pfish
         self.textures_pfish_purple = load_texture_list("pfish", "purple_fish", scale["pfish"])

@@ -104,3 +104,17 @@ def load_texture_list(specie, color, scale):
         t.append(load_texture(f"{img}_eat1.png", scale=scale))
         t.append(load_texture(f"{img}_eat2.png", scale=scale))
     return t
+
+def load_scales():
+    from fish_vars import pfish_size, pfish_size_kid, SPRITE_SCALING_PFISH, bfish_size, bfish_size_kid, SPRITE_SCALING_BFISH, shark_size, shark_size_kid, SPRITE_SCALING_SHARK
+    from vars import SPRITE_SCALING_POPCORN, SPRITE_SCALING_FISH_HOOK
+    return {
+        'pfish' : SPRITE_SCALING_PFISH * pfish_size / 8,
+        'bfish' : SPRITE_SCALING_BFISH * bfish_size / 8,
+        'shark' : SPRITE_SCALING_SHARK * shark_size / 8,
+        'pfish_kid' : SPRITE_SCALING_PFISH * pfish_size_kid / 8,
+        'bfish_kid' : SPRITE_SCALING_BFISH * bfish_size_kid / 8,
+        'shark_kid' : SPRITE_SCALING_SHARK * shark_size_kid / 8,
+        'popcorn' : SPRITE_SCALING_POPCORN,
+        'hook' : SPRITE_SCALING_FISH_HOOK,
+    }
