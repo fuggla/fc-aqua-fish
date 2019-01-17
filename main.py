@@ -56,6 +56,8 @@ class MyGame(arcade.Window, State):
         # Listor med texturer
         self.textures_pfish_purple = []
         self.textures_pfish_purple_kid = []
+        self.textures_pfish_orange = []
+        self.textures_pfish_green = []
         self.textures_bfish_blue = []
         self.textures_bfish_blue_kid = []
         self.textures_shark = []
@@ -302,9 +304,16 @@ class MyGame(arcade.Window, State):
     def buy_fish(self, name):
         fish = None
         if (name == "pfish"):
-            color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.textures_pfish_purple, self.textures_pfish_purple_kid, self.carrot_list,
-                               self.popcorn_list, self.pfish_list, color=color[random.randrange(2)],
+            color_list = ["purple", "orange", "green"]
+            color = random.choice(color_list)
+            if color == "purple":
+                textures = self.textures_pfish_purple
+            elif color == "orange":
+                textures = self.textures_pfish_orange
+            else:
+                textures = self.textures_pfish_green
+            fish = PfishSprite(textures, self.textures_pfish_purple_kid, self.carrot_list,
+                               self.popcorn_list, self.pfish_list, color=color,
                                setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
@@ -563,8 +572,8 @@ class MyGame(arcade.Window, State):
     def load_textures(self):
         """ Ladda alla texturer så de kan skickas till objekten """
         # Pfish
-        img = f"assets/images/fish/pfish/purple"
         scale_factor = SPRITE_SCALING_PFISH * pfish_size / 8
+        img = f"assets/images/fish/pfish/purple"
         self.textures_pfish_purple = []
         self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
         self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
@@ -572,6 +581,24 @@ class MyGame(arcade.Window, State):
         self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
         self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
         self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+
+        img = f"assets/images/fish/pfish/orange"
+        self.textures_pfish_orange = []
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_orange.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+
+        img = f"assets/images/fish/pfish/green"
+        self.textures_pfish_green = []
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_green.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
 
         img = f"assets/images/fish/pfish/purple"
         scale_factor = SPRITE_SCALING_PFISH * pfish_size_kid / 8
