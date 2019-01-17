@@ -284,7 +284,7 @@ class FishSprite(arcade.Sprite):
     def check_grow_up(self):
         if self.frame_count >= 2000:
             self.size = self.base_size
-            self.load_textures()
+            self.textures = self.textures_grown
 
     def die(self):
         self.isalive = False

@@ -11,13 +11,14 @@ pfish_kiss_will = 10        # Hur benägna är de att vilja pussas
 
 pfish_finforce = 6          # Kraften i fenorna
 pfish_size = 8              # Påverkan av vattenmotstånd
+pfish_size_kid = 4
 pfish_mass = 8              # Default är samma som siz<e
 pfish_findelay = 20         # Hur ofta viftar de med fenorna
 
 pfish_egg_freq = 1
 
 """ Egenskaper för blue fish """
-BFISH_NUMBER = 12
+BFISH_NUMBER = 0
 SPRITE_SCALING_BFISH = 0.1
 
 bfish_eager = 10            # Hur ofta byter fiskarna riktning

@@ -31,7 +31,7 @@ from functions.diagnose_name_gender_attraction_health import diagnose_name_gende
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
 from functions.loads import *
 from vars import *
-from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, bfish_size, shark_size
+from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size, pfish_size_kid, SPRITE_SCALING_PFISH, bfish_size, shark_size
 
 
 class MyGame(arcade.Window, State):
@@ -51,6 +51,12 @@ class MyGame(arcade.Window, State):
         self.standard_list_names = ["window", "bubble", "bubble_main", "berry_info", "music"]
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
+
+        # Listor med texturer
+        self.textures_pfish_purple = []
+        self.textures_pfish_purple_kid = []
+        self.textures_pfish_orange = []
+        self.textures_pfish_green = []
 
         # Listor med information om fiskarna
         self.pfish_info = []
@@ -73,9 +79,13 @@ class MyGame(arcade.Window, State):
         self.music_list = load_music()
 
         """ Skapa alla fiskar """
+        # Ladda in texturer
+        self.load_textures()
+
         # Skapa purple_fish
         for i in range(PFISH_NUMBER):
-            pfish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list)
+            pfish = PfishSprite(self.textures_pfish_purple, self.textures_pfish_purple_kid, self.carrot_list,
+                                self.popcorn_list, self.pfish_list)
             self.pfish_list.append(pfish)
             self.all_sprite_list.append(pfish)
 
@@ -288,7 +298,9 @@ class MyGame(arcade.Window, State):
         fish = None
         if (name == "pfish"):
             color = ["purple", "orange", "green"]
-            fish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, color=color[random.randrange(2)], setpos_y=self.height, setspeed_y=-30)
+            fish = PfishSprite(self.textures_pfish_purple, self.textures_pfish_purple_kid, self.carrot_list,
+                               self.popcorn_list, self.pfish_list, color=color[random.randrange(2)],
+                               setpos_y=self.height, setspeed_y=-30)
             self.pfish_list.append(fish)
         elif (name == "bfish"):
             fish = BfishSprite(self.carrot_list, self.blueberry_list, self.popcorn_list, self.bfish_list, self.shark_list, setpos_y=self.height, setspeed_y=-30)
@@ -407,8 +419,9 @@ class MyGame(arcade.Window, State):
                 egg.set_texture(1)
                 if egg.origin == "pfish":
                     # Kläck en pfish om ägget kom från pfish
-                    pfish = PfishSprite(self.carrot_list, self.popcorn_list, self.pfish_list, setpos_x=egg.center_x,
-                                        setpos_y=egg.center_y, size=pfish_size * 0.5)
+                    pfish = PfishSprite(self.textures_pfish_purple, self.textures_pfish_purple_kid, self.carrot_list,
+                                        self.popcorn_list, self.pfish_list, setpos_x=egg.center_x,
+                                        setpos_y=egg.center_y, size=pfish_size_kid)
                     self.pfish_list.append(pfish)
                     self.all_sprite_list.append(pfish)
                 if egg.origin == "bfish":
@@ -541,6 +554,29 @@ class MyGame(arcade.Window, State):
                 egg = FishEggSprite(fish, "large")
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
+
+    def load_textures(self):
+        """ Ladda alla texturer så de kan skickas till objekten """
+        img = f"assets/images/fish/pfish/purple"
+        scale_factor = SPRITE_SCALING_PFISH * pfish_size / 8
+        self.textures_pfish_purple = []
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+
+        img = f"assets/images/fish/pfish/purple"
+        scale_factor = SPRITE_SCALING_PFISH * pfish_size_kid / 8
+        self.textures_pfish_purple_kid = []
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
+        self.textures_pfish_purple_kid.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+
 
     def play_credits(self):
         if self.is_credits() == False:
