@@ -58,7 +58,7 @@ class CarrotSprite(arcade.Sprite):
         self.acc_grav_float = - 1
         self.acc_water_res = (self.size * self.change_y * math.fabs(self.change_y)) / self.mass
 
-        if self.center_y < self.sh * self.sr:
+        if self.center_y < self.sand_position:
             self.change_y *= 0.9
             self.change_x *= 0.9
         elif self.dragged:
