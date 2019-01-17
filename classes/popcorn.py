@@ -32,6 +32,9 @@ class PopcornSprite(arcade.Sprite):
         self.center_x = self.hook.center_x + self.x_diff
         self.center_y = self.hook.center_y + self.y_diff
 
+        if self.bottom > self.sh:
+            self.kill()
+
         # Anropa huvudklassen
         super().update()
 
