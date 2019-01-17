@@ -83,6 +83,7 @@ def load_windows(game):
 
     return [main, event, action, pause], pause, eventhandler
 
+# Ladda in en fisktexturer
 def load_texture_list(specie, color, scale):
     t = []
     # Gemensamma
@@ -92,19 +93,16 @@ def load_texture_list(specie, color, scale):
         t.append(load_texture(f"{img}2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}1.png", scale=scale))
         t.append(load_texture(f"{img}2.png", scale=scale))
-
-    # Gemensamma inte
-    if (specie[-4:] == "fish"):
-        t.append(load_texture(f"{img}_eat.png", mirrored=True, scale=scale))
-        t.append(load_texture(f"{img}_eat.png", scale=scale))
-    elif (specie == "shark"):
-        img = f"assets/images/fish/{specie}/{color}"
         t.append(load_texture(f"{img}_eat1.png", mirrored=True, scale=scale))
-        t.append(load_texture(f"{img}_eat2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_eat1.png", scale=scale))
+
+    # Shark har två extra
+    if (specie == "shark"):
+        t.insert(5, load_texture(f"{img}_eat2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_eat2.png", scale=scale))
     return t
 
+# Räkna ut skalor för alla gemensamma texturer
 def load_scales():
     from fish_vars import pfish_size, pfish_size_kid, SPRITE_SCALING_PFISH, bfish_size, bfish_size_kid, SPRITE_SCALING_BFISH, shark_size, shark_size_kid, SPRITE_SCALING_SHARK
     from vars import SPRITE_SCALING_POPCORN, SPRITE_SCALING_FISH_HOOK

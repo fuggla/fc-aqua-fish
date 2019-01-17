@@ -574,18 +574,18 @@ class MyGame(arcade.Window, State):
         scale = load_scales()
 
         # Pfish
-        self.textures_pfish_purple = load_texture_list("pfish", "purple_fish", scale["pfish"])
-        self.textures_pfish_orange = load_texture_list("pfish", "orange_fish", scale["pfish"])
-        self.textures_pfish_green = load_texture_list("pfish", "green_fish", scale["pfish"])
-        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple_fish", scale["pfish_kid"])
+        self.textures_pfish_purple = load_texture_list("pfish", "purple", scale["pfish"])
+        self.textures_pfish_orange = load_texture_list("pfish", "orange", scale["pfish"])
+        self.textures_pfish_green = load_texture_list("pfish", "green", scale["pfish"])
+        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple", scale["pfish_kid"])
 
         # Bfish
-        self.textures_bfish_blue = load_texture_list("bfish", "blue_small_fish", scale["bfish"])
-        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small_fish", scale["bfish_kid"])
+        self.textures_bfish_blue = load_texture_list("bfish", "blue_small", scale["bfish"])
+        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small", scale["bfish_kid"])
 
         # Shark
-        self.textures_shark = load_texture_list("shark", "shark", scale["shark"])
-        self.textures_shark_kid = load_texture_list("shark", "shark", scale["shark_kid"])
+        self.textures_shark = load_texture_list("shark", "white", scale["shark"])
+        self.textures_shark_kid = load_texture_list("shark", "white", scale["shark_kid"])
 
         # Fish_hook
         self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=scale["hook"])]
