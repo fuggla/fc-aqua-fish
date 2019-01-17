@@ -62,6 +62,8 @@ class MyGame(arcade.Window, State):
         self.textures_bfish_blue_kid = []
         self.textures_shark = []
         self.textures_shark_kid = []
+        self.textures_fish_hook = []
+        self.textures_popcorn = []
 
         # Listor med information om fiskarna
         self.pfish_info = []
@@ -328,13 +330,13 @@ class MyGame(arcade.Window, State):
         self.event.put(f"Bought {name} {fish.get_name()}")
 
     def buy_fishing_rod(self):
-        fish_hook = FishHookSprite(self.fish_hook_list)
+        fish_hook = FishHookSprite(self.textures_fish_hook, self.fish_hook_list)
         if fish_hook.not_placed:
             self.event.put("No room for fishing rod")
         else:
             self.fish_hook_list.append(fish_hook)
 
-            popcorn = PopcornSprite(fish_hook)
+            popcorn = PopcornSprite(self.textures_popcorn, fish_hook)
             self.popcorn_list.append(popcorn)
 
             self.event.put("Bought fishing rod")
@@ -655,6 +657,19 @@ class MyGame(arcade.Window, State):
         self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor))
         self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor))
         self.textures_shark_kid.append(arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor))
+
+        # Fish_hook
+        img = f"assets/images/fish_hook"
+        self.textures_fish_hook = []
+        self.textures_fish_hook.append(arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK))
+
+        # Popcorn
+        img = f"assets/images/food/popcorn"
+        self.textures_popcorn = []
+        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN))
+        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn2.png", scale=SPRITE_SCALING_POPCORN))
+        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn3.png", scale=SPRITE_SCALING_POPCORN))
+        self.textures_popcorn.append(arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN))
 
     def play_credits(self):
         if self.is_credits() == False:

@@ -3,14 +3,14 @@ from vars import SPRITE_SCALING_FISH_HOOK, SCREEN_WIDTH, SCREEN_HEIGHT, TICK_RAT
 
 class FishHookSprite(arcade.Sprite):
     # Klass för krok
-    def __init__(self, hook_list):
+    def __init__(self, textures_fish_hook, hook_list):
         # Anropa Sprite konstruktor
         super().__init__()
 
         self.sw = SCREEN_WIDTH
         self.sh = SCREEN_HEIGHT
 
-        self.textures = []
+        self.textures = textures_fish_hook
         img = f"assets/images/fish_hook"
         self.append_texture(arcade.load_texture(f"{img}/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK))
         self.set_texture(0)

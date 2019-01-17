@@ -4,7 +4,7 @@ from vars import SPRITE_SCALING_POPCORN, SCREEN_WIDTH, SCREEN_HEIGHT, TICK_RATE,
 
 class PopcornSprite(arcade.Sprite):
     # Klass för popcorn. Bete på kroken
-    def __init__(self, hook):
+    def __init__(self, textures_popcorn, hook):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -15,12 +15,7 @@ class PopcornSprite(arcade.Sprite):
         self.base_food_value = popcorn_food_value
         self.hook = hook
 
-        self.textures = []
-        img = f"assets/images/food/popcorn"
-        self.append_texture(arcade.load_texture(f"{img}/popcorn1.png", scale=SPRITE_SCALING_POPCORN))
-        self.append_texture(arcade.load_texture(f"{img}/popcorn2.png", scale=SPRITE_SCALING_POPCORN))
-        self.append_texture(arcade.load_texture(f"{img}/popcorn3.png", scale=SPRITE_SCALING_POPCORN))
-        self.append_texture(arcade.load_texture(f"{img}/popcorn4.png", scale=SPRITE_SCALING_POPCORN))
+        self.textures = textures_popcorn
         self.set_texture(0)
 
         self.angle = 40
