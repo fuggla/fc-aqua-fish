@@ -86,7 +86,7 @@ def load_windows(game):
 # Ladda in en fisktexturer
 def load_texture_list(specie, color, scale):
     t = []
-    # Gemensamma
+    # Fiskar och hajar har en del sökvägar
     if (specie[-4:] == "fish" or "shark"):
         img = f"assets/images/fish/{specie}/{color}"
         t.append(load_texture(f"{img}1.png", mirrored=True, scale=scale))
@@ -96,9 +96,9 @@ def load_texture_list(specie, color, scale):
         t.append(load_texture(f"{img}_eat1.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_eat1.png", scale=scale))
 
-    # Shark har två extra
+    # Shark har en extra ätimation
     if (specie == "shark"):
-        t.insert(5, load_texture(f"{img}_eat2.png", mirrored=True, scale=scale))
+        t.insert(5, load_texture(f"{img}_eat2.png", mirrored=True, scale=scale)) # Direkt efter eat1 mirrored
         t.append(load_texture(f"{img}_eat2.png", scale=scale))
     return t
 
