@@ -1,10 +1,10 @@
 import arcade,random,math
-from vars import SPRITE_SCALING_CARROT, SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE, carrot_food_value
+from vars import SCREEN_WIDTH, SCREEN_HEIGHT, SAND_RATIO, TICK_RATE, carrot_food_value
 
 
 class CarrotSprite(arcade.Sprite):
     # Klass för morötter
-    def __init__(self, setspeed_y=None):
+    def __init__(self, textures_carrot, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
 
@@ -15,14 +15,7 @@ class CarrotSprite(arcade.Sprite):
         self.type = "carrot"
         self.base_food_value = carrot_food_value
 
-
-        img = f"assets/images/food/carrot"
-        self.textures = []
-        self.append_texture(arcade.load_texture(f"{img}/carrot1.png", scale=SPRITE_SCALING_CARROT))
-        self.append_texture(arcade.load_texture(f"{img}/carrot2.png", scale=SPRITE_SCALING_CARROT))
-        self.append_texture(arcade.load_texture(f"{img}/carrot3.png", scale=SPRITE_SCALING_CARROT))
-        self.append_texture(arcade.load_texture(f"{img}/carrot4.png", scale=SPRITE_SCALING_CARROT))
-
+        self.textures = textures_carrot
         self.set_texture(0)
 
         # Placera ut moroten

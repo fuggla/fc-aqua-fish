@@ -296,7 +296,7 @@ class MyGame(arcade.Window, State):
         self.buy_fish("bfish")
 
     def buy_carrot(self):
-        carrot = CarrotSprite(setspeed_y=-20)
+        carrot = CarrotSprite(self.textures_carrot, setspeed_y=-20)
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
         self.event.put("Bought carrot")
@@ -590,8 +590,9 @@ class MyGame(arcade.Window, State):
         # Fish_hook
         self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=scale["hook"])]
 
-        # Popcorn
+        # Käk
         self.textures_popcorn = load_texture_list("food", "popcorn", scale["popcorn"])
+        self.textures_carrot = load_texture_list("food", "carrot", scale["carrot"])
 
     def play_credits(self):
         if self.is_credits() == False:
@@ -603,7 +604,7 @@ class MyGame(arcade.Window, State):
     def random_carrot_drop(self):
         """ Skapa en morot med sannolikheten [carrot_frequency] på 1000 varje frame """
         if random.randrange(1000) < carrot_frequency:
-            carrot = CarrotSprite(setspeed_y=-20)
+            carrot = CarrotSprite(self.textures_carrot, setspeed_y=-20)
             self.carrot_list.append(carrot)
             self.all_sprite_list.append(carrot)
 
