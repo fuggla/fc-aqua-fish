@@ -571,36 +571,41 @@ class MyGame(arcade.Window, State):
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
 
+    """ Ladda alla texturer så de kan skickas till objekten """
     def load_textures(self):
-        """ Ladda alla texturer så de kan skickas till objekten """
-        scale_pfish = SPRITE_SCALING_PFISH * pfish_size / 8
-        scale_pfish_kid = SPRITE_SCALING_PFISH * pfish_size_kid / 8
-        scale_bfish = SPRITE_SCALING_BFISH * bfish_size / 8
-        scale_bfish_kid = SPRITE_SCALING_BFISH * bfish_size_kid / 8
-        scale_shark = SPRITE_SCALING_SHARK * shark_size / 8
-        scale_shark_kid = SPRITE_SCALING_SHARK * shark_size_kid / 8
+        # Scale factors
+        scale = {
+            'pfish' : SPRITE_SCALING_PFISH * pfish_size / 8,
+            'bfish' : SPRITE_SCALING_BFISH * bfish_size / 8,
+            'shark' : SPRITE_SCALING_SHARK * shark_size / 8,
+            'pfish_kid' : SPRITE_SCALING_PFISH * pfish_size_kid / 8,
+            'bfish_kid' : SPRITE_SCALING_BFISH * bfish_size_kid / 8,
+            'shark_kid' : SPRITE_SCALING_SHARK * shark_size_kid / 8,
+            'popcorn' : SPRITE_SCALING_POPCORN,
+            'hook' : SPRITE_SCALING_FISH_HOOK,
+        }
 
         # Pfish
-        self.textures_pfish_purple = load_texture_list("pfish", "purple_fish", scale_pfish)
-        self.textures_pfish_orange = load_texture_list("pfish", "orange_fish", scale_pfish)
-        self.textures_pfish_green = load_texture_list("pfish", "green_fish", scale_pfish)
-        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple_fish", scale_pfish_kid)
+        self.textures_pfish_purple = load_texture_list("pfish", "purple_fish", scale["pfish"])
+        self.textures_pfish_orange = load_texture_list("pfish", "orange_fish", scale["pfish"])
+        self.textures_pfish_green = load_texture_list("pfish", "green_fish", scale["pfish"])
+        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple_fish", scale["pfish_kid"])
 
         # Bfish
-        self.textures_bfish_blue = load_texture_list("bfish", "blue_small_fish", scale_bfish)
-        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small_fish", scale_bfish_kid)
+        self.textures_bfish_blue = load_texture_list("bfish", "blue_small_fish", scale["bfish"])
+        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small_fish", scale["bfish_kid"])
 
         # Shark
-        self.textures_shark = load_texture_list("shark", "shark", scale_shark)
-        self.textures_shark_kid = load_texture_list("shark", "shark", scale_shark_kid)
+        self.textures_shark = load_texture_list("shark", "shark", scale["shark"])
+        self.textures_shark_kid = load_texture_list("shark", "shark", scale["shark_kid"])
 
         # Fish_hook
-        self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=SPRITE_SCALING_FISH_HOOK)]
+        self.textures_fish_hook = [load_texture(f"assets/images/fish_hook/fish_hook.png", scale=scale["hook"])]
 
         # Popcorn
         self.textures_popcorn = []
         for i in range(1, 5):
-            self.textures_popcorn.append(load_texture(f"assets/images/food/popcorn/popcorn{i}.png", scale=SPRITE_SCALING_POPCORN))
+            self.textures_popcorn.append(load_texture(f"assets/images/food/popcorn/popcorn{i}.png", scale=scale["popcorn"]))
 
     def play_credits(self):
         if self.is_credits() == False:
