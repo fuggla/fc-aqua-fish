@@ -29,7 +29,7 @@ bfish_kiss_will = 10        # Hur benägna är de att vilja pussas
 
 bfish_finforce = 6          # Kraften i fenorna
 bfish_size = 5              # Påverkan av vattenmotstånd
-bfish_size_kid = 3
+bfish_size_kid = 2
 bfish_mass = 5              # Default är samma som siz<e
 bfish_findelay = 10         # Hur ofta viftar de med fenorna
 
@@ -47,6 +47,7 @@ shark_kiss_will = 10        # Hur benägna är de att vilja pussas
 
 shark_finforce = 16         # Kraften i fenorna
 shark_size = 10             # Påverkan av vattenmotstånd
+shark_size_kid = 5
 shark_mass = 10             # Default är samma som siz<e
 shark_findelay = 25         # Hur ofta viftar de med fenorna
 shark_hunting_spirit = 600

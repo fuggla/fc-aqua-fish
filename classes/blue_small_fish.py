@@ -44,7 +44,7 @@ class BfishSprite(FishSprite):
         if self.size < self.base_size:
             self.textures = self.textures_kid
         else:
-            self.textures = textures_bfish
+            self.textures = self.textures_grown
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
             self.set_texture(0)

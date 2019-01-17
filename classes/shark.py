@@ -4,7 +4,7 @@ from fish_vars import SPRITE_SCALING_SHARK, shark_eager, shark_hungry, shark_hun
 
 # Klass för hajarna (Shark_fish)
 class SharkSprite(FishSprite):
-    def __init__(self, food_fish_list, popcorn_list, shark_list, event=None, eager=None, hungry=None, hunt_will=None, daydream=None, finforce=None, size=None, mass=None,
+    def __init__(self, textures_shark, textures_shark_kid, food_fish_list, popcorn_list, shark_list, event=None, eager=None, hungry=None, hunt_will=None, daydream=None, finforce=None, size=None, mass=None,
                  color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__(event)
@@ -38,7 +38,12 @@ class SharkSprite(FishSprite):
         self.tired = 0
 
         # Ladda in texturer
-        self.load_textures()
+        self.textures_grown = textures_shark
+        self.textures_kid = textures_shark_kid
+        if self.size < self.base_size:
+            self.textures = self.textures_kid
+        else:
+            self.textures = self.textures_grown
 
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
@@ -159,7 +164,6 @@ class SharkSprite(FishSprite):
         super().update()
 
     def load_textures(self):
-        # texture 1 & 2 för höger och vänster
         scale_factor = self.scaling * self.size / 8
         self.textures = []
         img = "assets/images/fish/shark"
