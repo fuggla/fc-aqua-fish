@@ -85,20 +85,20 @@ def load_windows(game):
 
 def load_texture_list(specie, color, scale):
     t = []
-    if (specie[-4:] == "fish"):
-        img = f"assets/images/fish/{specie}/{color}"
-        t.append(load_texture(f"{img}_fish1.png", mirrored=True, scale=scale))
-        t.append(load_texture(f"{img}_fish2.png", mirrored=True, scale=scale))
-        t.append(load_texture(f"{img}_fish1.png", scale=scale))
-        t.append(load_texture(f"{img}_fish2.png", scale=scale))
-        t.append(load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale))
-        t.append(load_texture(f"{img}_fish_eat.png", scale=scale))
-    elif (specie == "shark"):
+    # Gemensamma
+    if (specie[-4:] == "fish" or "shark"):
         img = f"assets/images/fish/{specie}/{color}"
         t.append(load_texture(f"{img}1.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}1.png", scale=scale))
         t.append(load_texture(f"{img}2.png", scale=scale))
+
+    # Gemensamma inte
+    if (specie[-4:] == "fish"):
+        t.append(load_texture(f"{img}_eat.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_eat.png", scale=scale))
+    elif (specie == "shark"):
+        img = f"assets/images/fish/{specie}/{color}"
         t.append(load_texture(f"{img}_eat1.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_eat2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_eat1.png", scale=scale))

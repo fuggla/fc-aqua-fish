@@ -581,14 +581,14 @@ class MyGame(arcade.Window, State):
         scale_shark_kid = SPRITE_SCALING_SHARK * shark_size_kid / 8
 
         # Pfish
-        self.textures_pfish_purple = load_texture_list("pfish", "purple", scale_pfish)
-        self.textures_pfish_orange = load_texture_list("pfish", "orange", scale_pfish)
-        self.textures_pfish_green = load_texture_list("pfish", "green", scale_pfish)
-        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple", scale_pfish_kid)
+        self.textures_pfish_purple = load_texture_list("pfish", "purple_fish", scale_pfish)
+        self.textures_pfish_orange = load_texture_list("pfish", "orange_fish", scale_pfish)
+        self.textures_pfish_green = load_texture_list("pfish", "green_fish", scale_pfish)
+        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple_fish", scale_pfish_kid)
 
         # Bfish
-        self.textures_bfish_blue = load_texture_list("bfish", "blue_small", scale_bfish)
-        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small", scale_bfish_kid)
+        self.textures_bfish_blue = load_texture_list("bfish", "blue_small_fish", scale_bfish)
+        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small_fish", scale_bfish_kid)
 
         # Shark
         self.textures_shark = load_texture_list("shark", "shark", scale_shark)
