@@ -5,7 +5,7 @@ from fish_vars import SPRITE_SCALING_BFISH, bfish_eager, bfish_hungry, bfish_con
 
 # Klass för små blå fiskar (blue_fish)
 class BfishSprite(FishSprite):
-    def __init__(self, carrot_list, blueberry_list, popcorn_list, bfish_list, hunter_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None,
+    def __init__(self, textures_bfish, textures_bfish_kid, carrot_list, blueberry_list, popcorn_list, bfish_list, hunter_list, eager=None, hungry=None, conformity=None, daydream=None, finforce=None,
                  size=None, mass=None, color=None, setpos_x=None, setpos_y=None, setspeed_y=None):
         # Anropa Sprite konstruktor
         super().__init__()
@@ -39,8 +39,12 @@ class BfishSprite(FishSprite):
         self.hunter_fish_list = hunter_list
 
         # Ladda in texturer
-        self.load_textures()
-
+        self.textures_grown = textures_bfish
+        self.textures_kid = textures_bfish_kid
+        if self.size < self.base_size:
+            self.textures = self.textures_kid
+        else:
+            self.textures = textures_bfish
         # Slumpa fiskarna höger/vänster
         if random.random() > 0.5:
             self.set_texture(0)
@@ -156,6 +160,7 @@ class BfishSprite(FishSprite):
 
         # Anropa huvudklassen
         super().update()
+
     def shoal_move(self):
         """ Hämta in koordinater och hastihet från närmsta två blue_small_fish """
         if len(self.bfish_list) > 1:
