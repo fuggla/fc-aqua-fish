@@ -575,14 +575,7 @@ class MyGame(arcade.Window, State):
         """ Ladda alla texturer så de kan skickas till objekten """
         # Pfish
         scale_factor = SPRITE_SCALING_PFISH * pfish_size / 8
-        img = f"assets/images/fish/pfish/purple"
-        self.textures_pfish_purple = []
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
-        self.textures_pfish_purple.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+        self.textures_pfish_purple = load_texture_list("pfish", "purple", scale_factor)
 
         img = f"assets/images/fish/pfish/orange"
         self.textures_pfish_orange = []

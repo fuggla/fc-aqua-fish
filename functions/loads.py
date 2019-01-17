@@ -7,7 +7,7 @@ Funktioner för att ladda/skapa:
 """
 
 from vars import SCREEN_WIDTH, BUBBLE_MAPS
-from arcade import create_text, load_sound
+from arcade import create_text, load_sound, load_texture
 from classes.bubble_map import Bubble_map
 from classes.window import Window
 from random import randrange
@@ -82,3 +82,15 @@ def load_windows(game):
     )
 
     return [main, event, action, pause], pause, eventhandler
+
+def load_texture_list(specie, color, scale):
+    t = []
+    if (specie == "pfish"):
+        img = f"assets/images/fish/pfish/{color}"
+        t.append(load_texture(f"{img}_fish1.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_fish2.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_fish1.png", scale=scale))
+        t.append(load_texture(f"{img}_fish2.png", scale=scale))
+        t.append(load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale))
+        t.append(load_texture(f"{img}_fish_eat.png", scale=scale))
+    return t
