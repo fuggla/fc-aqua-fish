@@ -573,34 +573,20 @@ class MyGame(arcade.Window, State):
 
     def load_textures(self):
         """ Ladda alla texturer så de kan skickas till objekten """
+        scale_pfish = SPRITE_SCALING_PFISH * pfish_size / 8
+        scale_pfish_kid = SPRITE_SCALING_PFISH * pfish_size_kid / 8
+        scale_bfish = SPRITE_SCALING_BFISH * bfish_size / 8
+        scale_bfish_kid = SPRITE_SCALING_BFISH * bfish_size_kid / 8
+
         # Pfish
-        scale_factor = SPRITE_SCALING_PFISH * pfish_size / 8
-        self.textures_pfish_purple = load_texture_list("pfish", "purple", scale_factor)
-        self.textures_pfish_orange = load_texture_list("pfish", "orange", scale_factor)
-        self.textures_pfish_green = load_texture_list("pfish", "green", scale_factor)
-        scale_factor = SPRITE_SCALING_PFISH * pfish_size_kid / 8
-        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple", scale_factor)
+        self.textures_pfish_purple = load_texture_list("pfish", "purple", scale_pfish)
+        self.textures_pfish_orange = load_texture_list("pfish", "orange", scale_pfish)
+        self.textures_pfish_green = load_texture_list("pfish", "green", scale_pfish)
+        self.textures_pfish_purple_kid = load_texture_list("pfish", "purple", scale_pfish_kid)
 
         # Bfish
-        scale_factor = SPRITE_SCALING_BFISH * bfish_size / 8
-        img = f"assets/images/fish/bfish/blue_small"
-        self.textures_bfish_blue = []
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
-
-        scale_factor = SPRITE_SCALING_BFISH * bfish_size_kid / 8
-        img = f"assets/images/fish/bfish/blue_small"
-        self.textures_bfish_blue_kid = []
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish1.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish2.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish1.png", scale=scale_factor))
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish2.png", scale=scale_factor))
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish_eat.png", mirrored=True, scale=scale_factor))
-        self.textures_bfish_blue_kid.append(arcade.load_texture(f"{img}_fish_eat.png", scale=scale_factor))
+        self.textures_bfish_blue = load_texture_list("bfish", "blue_small", scale_bfish)
+        self.textures_bfish_blue_kid = load_texture_list("bfish", "blue_small", scale_bfish_kid)
 
         # Shark
         scale_factor = SPRITE_SCALING_SHARK * shark_size / 8

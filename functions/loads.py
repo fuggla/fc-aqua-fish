@@ -85,8 +85,8 @@ def load_windows(game):
 
 def load_texture_list(specie, color, scale):
     t = []
-    if (specie == "pfish"):
-        img = f"assets/images/fish/pfish/{color}"
+    if (specie[-4:] == "fish"):
+        img = f"assets/images/fish/{specie}/{color}"
         t.append(load_texture(f"{img}_fish1.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_fish2.png", mirrored=True, scale=scale))
         t.append(load_texture(f"{img}_fish1.png", scale=scale))
