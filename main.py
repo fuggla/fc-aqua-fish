@@ -448,7 +448,7 @@ class MyGame(arcade.Window, State):
                 if egg.origin == "shark":
                     # Kläck en shark om ägget kom från haj
                     shark = SharkSprite(self.textures_shark, self.textures_shark_kid, self.bfish_list, self.popcorn_list, self.shark_list, setpos_x=egg.center_x,
-                                        setpos_y=egg.center_y, event=self.event, size=pfish_size * 0.6)
+                                        setpos_y=egg.center_y, event=self.event, size=shark_size_kid)
                     self.shark_list.append(shark)
                     self.all_sprite_list.append(shark)
             if egg.age > egg.disapear_age:  # Ta bort äggresterna efter ett tag
