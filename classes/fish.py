@@ -292,10 +292,10 @@ class FishSprite(arcade.Sprite):
         self.acc_y = .1
         if self.whichtexture == 11 or self.whichtexture == 12 or self.whichtexture == 18:
             self.angle = 180
-            self.texture = self.texture_right1
+            self.set_texture(2)
         if self.whichtexture == 21 or self.whichtexture == 22 or self.whichtexture == 28:
             self.angle = 180
-            self.texture = self.texture_left1
+            self.set_texture(0)
 
     def drag_sprite(self, x, y, dx, dy):
         self.center_x = x
