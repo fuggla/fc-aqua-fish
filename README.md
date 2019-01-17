@@ -45,15 +45,13 @@ A simulator by Furniture Corp.
   - [x] Fiskarna kan fastna och dras då upp
   - [x] Event för fisket
 - [ ] Förbättra prestanda
-  - [ ] Ladda in texturer en gång istället för varje gång en fisk skapas
+  - [x] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [ ] Lägre updateringsfrekvens för många fiskmetoder
   - [x] Lägre updateringsfrekvens för fiskinfo (F1)
   - [x] Lägre updateringsfrekvens för informationsdispay
 - [ ] Funktion för att visa statistik
   - [ ] När användaren håller i fisken?
 - [ ] Exit när credits är slut
-- [ ] Updatera arcade till 2.0
-
 
 ## Tutorials / Dokumentation
 
