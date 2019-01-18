@@ -92,8 +92,10 @@ class Window(Shape):
         self.visible = not self.visible
 
     # Öppna fönster
-    def open(self):
+    def open(self, x=None, y=None):
         self.visible = True
+        if x and y:
+            self.move(x - self.x, y - self.y) # Relativ förflyttning
 
     # Stäng fönster
     def close(self):
