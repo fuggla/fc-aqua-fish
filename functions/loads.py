@@ -81,9 +81,11 @@ def load_windows(game):
         ( "Exit", exit, 90 )
     )
 
-    stats = Window(110, game.height - 80, 200, 100, " Stats", title_height=20, title_align="left")
+    stats = Window(110, game.height - 80, 200, 130, " Stats", title_height=20, title_align="left")
+    stats_left = stats.add_text(15, 12, 120, 80)
+    stats_right = stats.add_text(15, 132, 60, 80)
 
-    return [main, event, action, pause, stats], pause, eventhandler
+    return [main, event, action, pause, stats], pause, eventhandler, stats_left, stats_right
 
 # Ladda in en fisktexturer
 def load_texture_list(type, name, scale):
