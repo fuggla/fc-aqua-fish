@@ -16,11 +16,11 @@ from classes.blue_small_fish import BfishSprite
 from classes.shark import SharkSprite
 from classes.carrot import CarrotSprite
 from classes.blueberry import BlueberrySprite
-from classes.fish_hook import FishHookSprite
+from classes.hook import FishHookSprite
 from classes.popcorn import PopcornSprite
 from classes.plant_blueberry import PlantBlueberry
 from classes.plant_foreground import PlantForeground
-from classes.fish_egg import FishEggSprite
+from classes.egg_fish import FishEggSprite
 from classes.window import Window, Button, Text
 from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
