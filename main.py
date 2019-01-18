@@ -266,9 +266,9 @@ class MyGame(arcade.Window, State):
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
-            w.on_mouse_press(x, y)
-            if w.dragging:
-                self.pointer.grab()
+            if w.on_mouse_press(x, y):
+                if w.dragging:
+                    self.pointer.grab()
                 return
         for sprite in reversed(self.all_sprite_list):                   # Stega igenom alla fiskar och morötter
             if sprite.is_mouse_on(self.pointer):                        # Kolla ifall de är i kontakt med pekaren
