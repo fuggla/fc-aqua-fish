@@ -22,6 +22,29 @@ Fish hook: https://dlpng.com/png/166247
 
 Under water background: https://www.downloadwallpapers.info/wallpaper/blue-bottom-ocean-sand-underwater-944797/1920x1200
 
+## LJUD
+https://freesound.org/
+
+Ambient bubblor
+https://freesound.org/people/Perel/sounds/173439/
+
+Bubbla, ta upp fisk?
+https://freesound.org/people/Godowan/sounds/235264/
+
+Äta
+https://freesound.org/people/InspectorJ/sounds/429594/
+
+Lägga ägg
+https://freesound.org/people/dersuperanton/sounds/433649/
+
+Ramlar ner i vatten
+https://freesound.org/people/kijjaz/sounds/16746/
+
+Kroken åker i vatten
+https://freesound.org/people/bolkmar/sounds/451126/
+
+Puss
+https://freesound.org/people/Adam_N/sounds/166316/
 
 ## FÖRSLAG
 
