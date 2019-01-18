@@ -48,8 +48,9 @@ A simulator by Furniture Corp.
   - [x] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [x] Lägre updateringsfrekvens för fiskinfo (F1)
   - [x] Lägre updateringsfrekvens för informationsdispay
-- [ ] Funktion för att visa statistik
-  - [ ] När användaren håller i fisken?
+- [x] Funktion för att visa statistik
+  - [x] När användaren håller i fisken?
+  - [ ] Specifik statistik per fisk
 - [ ] Exit när credits är slut
 
 ## Tutorials / Dokumentation
