@@ -1,9 +1,9 @@
 import arcade,random,math
-from vars import SPRITE_SCALING_BLUEBERRY, blueberry_food_value
+from vars import blueberry_food_value
 
 class BlueberrySprite(arcade.Sprite):
     # Klass för blueberry
-    def __init__(self, center_x, center_y, textures):
+    def __init__(self, textures, center_x, center_y):
         # Anropa Sprite konstruktor
         super().__init__()
 

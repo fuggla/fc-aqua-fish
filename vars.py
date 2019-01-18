@@ -29,7 +29,7 @@ SPRITE_SCALING_POPCORN = 0.05
 popcorn_food_value = 500
 
 """ Egenskaper för blåbär """
-SPRITE_SCALING_BLUEBERRY = 0.15
+SPRITE_SCALING_BLUEBERRY = 0.18
 blueberry_food_value = 500
 
 """ Egenskaper för blåbärsplantan """
