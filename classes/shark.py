@@ -163,19 +163,6 @@ class SharkSprite(FishSprite):
         # Anropa huvudklassen
         super().update()
 
-    def load_textures(self):
-        scale_factor = self.scaling * self.size / 8
-        self.textures = []
-        img = "assets/images/fish/shark"
-        self.append_texture(arcade.load_texture(f"{img}/shark1.png", mirrored=True, scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark2.png", mirrored=True, scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark1.png", scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark2.png", scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark_eat1.png", mirrored=True, scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark_eat2.png", mirrored=True, scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark_eat1.png", scale=scale_factor))
-        self.append_texture(arcade.load_texture(f"{img}/shark_eat2.png", scale=scale_factor))
-
     def set_food_list(self):
         # Skapa lista för bfish och alla popcorn
         self.food_fish_list = []
