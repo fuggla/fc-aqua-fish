@@ -274,6 +274,8 @@ class MyGame(arcade.Window, State):
                 self.dragged_sprite = sprite
                 self.dragged_sprite.dragged = True
                 self.pointer.grab()
+                if not isinstance(sprite, CarrotSprite):
+                    sprite.print_stats(self.stats_left.put, self.stats_right.put)
                 return
 
     def on_mouse_release(self, x, y, button, key_modifiers):
@@ -631,12 +633,6 @@ class MyGame(arcade.Window, State):
         self.stats_left.put("Eggs      ")
         for i in range(0, 6):
             self.stats_right.put(": 0")
-        #self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
-        #self.eaten_fish = 0                             # Antal uppätna fiskar
-        #self.eaten_carrots = 0                          # Antal ätna (=tagit sista tuggan på) morötter
-        #self.eaten_blueberries = 0                      # Antal ätna (=tagit sista tuggan på) blåbär
-        #self.laid_eggs = 0                              # Antal lagda ägg
-        #self.kiss_amount = 0                            # Antal gånger fisken har pussats
         self.play()
 
     def update_credits(self, dt):
