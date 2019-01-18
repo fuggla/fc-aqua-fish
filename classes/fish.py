@@ -43,6 +43,7 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
         self.eat_speed = 10                             # Animationshastighet då de äter
         self.iseating = 0                               # Variable för att stanna upp lite kort efter de ätit
         self.tick_rate = TICK_RATE                      # Tickrate för simuleringen (def=60 fps)
+        self.is_hunting = False
 
         # Variabler för statistik
         self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
@@ -253,9 +254,25 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
             return True
 
     def print_stats(self, left, right):
+        health = math.ceil(self.health / self.base_health * 100)
+        if self.is_hunting:
+            status = "Hunting"
+        elif self.pregnant:
+            status = "Pregnant"
+        elif (health > 100):
+            status = "Aroused"
+        elif (health > 85):
+            status = "Satisfied"
+        elif (health > 50):
+            status = "Hungry"
+        else:
+            status = "Starving"
+
         rows = [
             self.name_gender,
+            ["Status", status],
             ["Age", math.ceil(self.frame_count / 60)],
+            ["Health", str(health) + "%"],
             ["Fish eaten", self.eaten_carrots + self.eaten_blueberries],
             ["Fish eaten", self.eaten_fish],
             ["Total kisses", self.kiss_amount],
