@@ -549,6 +549,54 @@ class FishSprite(arcade.Sprite):
         self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
         self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
 
+    def shoal_move(self):
+        """ Hämta in koordinater och hastihet från närmsta två blue_small_fish """
+        if len(self.bfish_list) > 1:
+
+            dist1 = 1000000000      # variable där avstånet (i kvadrat) till närmaste bfish sparas
+            dist2 = 1000000000
+
+            fish1 = 0               # index för närmaste bfish
+            fish2 = 0               # index för näst närmaste bfish
+
+            index = 0
+
+            # Stega igenom alla fiskar och spara index och avstånd om de är närmast eller näst närmast
+            for fish in self.bfish_list:
+                if fish.center_x == self.center_x and fish.center_y == self.center_y:   # Räkna bort sig själv
+                    pass
+                elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist1:
+                    dist1 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
+                    fish1 = index
+                elif ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2) < dist2:
+                    dist2 = ((fish.center_x - self.center_x) ** 2 + (fish.center_y - self.center_y) ** 2)
+                    fish2 = index
+                index += 1
+            if len(self.bfish_list) == 2:
+                # Spara x- & y-positioner för närmaste och näst närmaste fisk
+                midpos_x = self.bfish_list[fish1].center_x
+                midpos_y = self.bfish_list[fish1].center_y
+
+
+            elif len(self.bfish_list) >= 3:
+                # Spara x- & y-positioner för närmaste och näst närmaste fisk
+                pos1_x = self.bfish_list[fish1].center_x
+                pos1_y = self.bfish_list[fish1].center_y
+
+                pos2_x = self.bfish_list[fish2].center_x
+                pos2_y = self.bfish_list[fish2].center_y
+
+                # Beräkna medelvärde för dessa positioner
+                midpos_x = (pos1_x + pos2_x) / 2
+                midpos_y = (pos1_y + pos2_y) / 2
+
+            # Beräkna vinkel mot medelvärdet av positionerna och accelerera ditåt
+            ang = math.atan2((midpos_y - self.center_y), (midpos_x - self.center_x))
+            shoal_speed = random.random() * self.finforce / self.mass
+            self.acc_x = shoal_speed * math.cos(ang)
+            self.acc_y = shoal_speed * math.sin(ang)
+
+
     def water_res(self):
         # Beräkna negativ acceleration från vattnet
         self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
