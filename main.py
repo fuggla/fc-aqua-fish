@@ -625,14 +625,7 @@ class MyGame(arcade.Window, State):
         self.window_list[event].open()
         self.window_list[action].open()
         self.window_list[stats].open()
-        self.stats_left.put("Name      ")
-        self.stats_left.put("Age       ")
-        self.stats_left.put("Food eaten")
-        self.stats_left.put("Fish eaten")
-        self.stats_left.put("Kisses    ")
-        self.stats_left.put("Eggs      ")
-        for i in range(0, 6):
-            self.stats_right.put(": 0")
+        self.stats_left.put("Click on a fish!")
         self.play()
 
     def update_credits(self, dt):

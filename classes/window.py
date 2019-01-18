@@ -157,14 +157,15 @@ class Window(Shape):
 
     # Lägg till text i fönster
     # Returnerar textrutan. Använd object.put("ny rad")
-    def add_text(self, margin_top, margin_left, w, h, text="", rows=7):
+    def add_text(self, margin_top, margin_left, w, h, text="", rows=7, align="left"):
         new_text = Text(
             x = self.left + margin_left,
             y = self.top - margin_top,
             w = w,
             h = h,
             text = text,
-            rows = rows
+            rows = rows,
+            align = align
         )
         self.text_list.append(new_text)
         return new_text
