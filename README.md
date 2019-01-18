@@ -52,6 +52,7 @@ A simulator by Furniture Corp.
   - [x] När användaren håller i fisken?
   - [ ] Specifik statistik per fisk
 - [ ] Exit när credits är slut
+- [ ] Snyggare knappar i menyerna
 
 ## Tutorials / Dokumentation
 
