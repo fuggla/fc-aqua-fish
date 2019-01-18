@@ -116,12 +116,16 @@ class Window(Shape):
     # Kolla om det har klickats på en knapp i fönstret
     def on_mouse_release(self, *pos):
         for b in self.button_list:
-            b.on_mouse_release(*pos)
+            if b.on_mouse_release(*pos):
+                return True
+        return False
 
     # Kolla om det har klickats på en knapp i fönstret
     def on_mouse_press(self, *pos):
         for b in self.button_list:
-            b.on_mouse_press(*pos)
+            if b.on_mouse_press(*pos):
+                return True
+        return False
 
     # Rita fönster
     def draw(self):
@@ -259,10 +263,16 @@ class Button(Shape):
     def on_mouse_release(self, x, y):
         if self.is_mouse_on_button(x, y):
             self.release()
+            return True
+        else:
+            return False
 
     def on_mouse_press(self, x, y):
         if self.is_mouse_on_button(x, y):
             self.press()
+            return True
+        else:
+            return False
 
 # Textrutor med ett begränsat antal rader
 class Text(Shape, SimpleQueue):
