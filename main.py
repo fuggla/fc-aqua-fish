@@ -610,10 +610,11 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.append(carrot)
 
     def start(self):
-        main, event, action = 0, 1, 2
+        main, event, action, stats = 0, 1, 2, 4
         self.window_list[main].close()
         self.window_list[event].open()
         self.window_list[action].open()
+        self.window_list[stats].open()
         self.play()
 
     def update_credits(self, dt):
