@@ -57,8 +57,8 @@ def load_windows(game):
     main.open()
 
     # Fönster för händelser
-    event = Window(110, 60, 200, 100, " Events", title_height=20, title_align="left")
-    eventhandler = event.add_text(15, 12, 180, 80) # använd game.event.put(text) för nya rader
+    event = Window(160, 60, 300, 100, " Events", title_height=20, title_align="left")
+    eventhandler = event.add_text(15, 12, 280, 80) # använd game.event.put(text) för nya rader
     print(eventhandler)
 
     # Fönster för interaktion med spel
