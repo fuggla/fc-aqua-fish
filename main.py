@@ -78,7 +78,7 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
-        self.window_list, self.pause, self.event = load_windows(self)
+        self.window_list, self.pause, self.event, self.stats_left, self.stats_right = load_windows(self)
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
@@ -217,6 +217,14 @@ class MyGame(arcade.Window, State):
             """ Uppdatera eventruta """
             if self.event.message_received():
                 self.event.update()
+
+            """ Uppdatera statistik vänster """
+            if self.stats_left.message_received():
+                self.stats_left.update()
+
+            """ Uppdatera statistik höger """
+            if self.stats_right.message_received():
+                self.stats_right.update()
 
         elif self.is_main_menu():
             self.update_menu_bubbles(dt)
@@ -615,6 +623,20 @@ class MyGame(arcade.Window, State):
         self.window_list[event].open()
         self.window_list[action].open()
         self.window_list[stats].open()
+        self.stats_left.put("Name      ")
+        self.stats_left.put("Age       ")
+        self.stats_left.put("Food eaten")
+        self.stats_left.put("Fish eaten")
+        self.stats_left.put("Kisses    ")
+        self.stats_left.put("Eggs      ")
+        for i in range(0, 6):
+            self.stats_right.put(": 0")
+        #self.frame_count = 0                            # Denna variabel innehåller fiskarnas livstid i "ticks"
+        #self.eaten_fish = 0                             # Antal uppätna fiskar
+        #self.eaten_carrots = 0                          # Antal ätna (=tagit sista tuggan på) morötter
+        #self.eaten_blueberries = 0                      # Antal ätna (=tagit sista tuggan på) blåbär
+        #self.laid_eggs = 0                              # Antal lagda ägg
+        #self.kiss_amount = 0                            # Antal gånger fisken har pussats
         self.play()
 
     def update_credits(self, dt):
