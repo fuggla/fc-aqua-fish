@@ -78,7 +78,7 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names:
             setattr(self, f"{l}_list", SpriteList())
         self.berry_info_list = []
-        self.window_list, self.pause, self.event, self.stats_left, self.stats_right = load_windows(self)
+        self.window_list, self.pause, self.event, self.stats, self.stats_left, self.stats_right = load_windows(self)
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
@@ -259,6 +259,7 @@ class MyGame(arcade.Window, State):
             w.move(dx, dy)
         if self.dragged_sprite:                                      # Om det finns dragna sprites
             self.dragged_sprite.drag_sprite(x, y, dx, dy)            # Så flytta dem och spara pekarens hastighet
+            self.stats.move(dx, dy)
 
         # Här flyttas muspekaren då musen flyttas.
         self.pointer.on_mouse_motion(x, y)
@@ -276,6 +277,9 @@ class MyGame(arcade.Window, State):
                 self.pointer.grab()
                 if not isinstance(sprite, CarrotSprite):
                     sprite.print_stats(self.stats_left.put, self.stats_right.put)
+                    y -= sprite.height * 0.4
+                    y -= w.height * 0.5
+                    self.stats.open(x, y)
                 return
 
     def on_mouse_release(self, x, y, button, key_modifiers):
@@ -287,6 +291,7 @@ class MyGame(arcade.Window, State):
             self.dragged_sprite.release()
             self.dragged_sprite.dragged = False
             self.dragged_sprite = None
+            self.stats.close()
         self.pointer.point()
 
         # Alltid spela spel när pausmenyn är stängs
@@ -624,7 +629,6 @@ class MyGame(arcade.Window, State):
         self.window_list[main].close()
         self.window_list[event].open()
         self.window_list[action].open()
-        self.window_list[stats].open()
         self.stats_left.put("Click on a fish!")
         self.play()
 

@@ -84,7 +84,7 @@ def load_windows(game):
     stats_left = stats.add_text(15, 12, 120, 80, rows=8)
     stats_right = stats.add_text(15, 132, 60, 80, rows=8, align="right")
 
-    return [main, event, action, pause, stats], pause, eventhandler, stats_left, stats_right
+    return [main, event, action, pause, stats], pause, eventhandler, stats, stats_left, stats_right
 
 # Ladda in en fisktexturer
 def load_texture_list(type, name, scale):
