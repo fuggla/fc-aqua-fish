@@ -4,7 +4,7 @@ class LiquidAssets:
     def __init__(self):
 
         # Definiera kostnader
-        self.start_value = 20
+        self.liquid_assets_start = 20
         self.cost_bfish = 1
         self.cost_pfish = 2
         self.cost_shark = 5
@@ -19,7 +19,7 @@ class LiquidAssets:
         self.income_swish = 25
 
         # Den viktigaste variabeln
-        self.liquid_assets = self.start_value
+        self.liquid_assets = self.liquid_assets_start
 
     def status(self):
         # returnera pegavärdet
@@ -39,3 +39,24 @@ class LiquidAssets:
             self.liquid_assets -= self.cost_pfish
         else:
             self.cant_buy()
+
+    def buy_shark(self):
+        if self.liquid_assets >= self.cost_shark:
+            self.liquid_assets -= self.cost_shark
+        else:
+            self.cant_buy()
+
+    def buy_hook(self):
+        if self.liquid_assets >= self.cost_hook:
+            self.liquid_assets -= self.cost_hook
+        else:
+            self.cant_buy()
+
+    def buy_carrot(self):
+        if self.liquid_assets >= self.cost_carrot:
+            self.liquid_assets -= self.cost_carrot
+        else:
+            self.cant_buy()
+
+    def press_swish(self):
+        self.liquid_assets += self.income_swish
