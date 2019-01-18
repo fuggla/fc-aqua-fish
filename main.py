@@ -270,7 +270,7 @@ class MyGame(arcade.Window, State):
                 if w.dragging:
                     self.pointer.grab()
                 return
-        for sprite in self.all_sprite_list:                             # Stega igenom alla fiskar och morötter
+        for sprite in reversed(self.all_sprite_list):                   # Stega igenom alla fiskar och morötter
             if sprite.is_mouse_on(self.pointer):                        # Kolla ifall de är i kontakt med pekaren
                 self.dragged_sprite = sprite
                 self.dragged_sprite.dragged = True
