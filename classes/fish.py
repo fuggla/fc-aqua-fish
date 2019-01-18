@@ -252,6 +252,18 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
         if arcade.check_for_collision(self, pointer):
             return True
 
+    def print_stats(self, left, right):
+        columns = [
+            self.name_gender,
+            ["Age", math.ceil(self.frame_count / 60)],
+            ["Fish eaten", self.eaten_carrots + self.eaten_blueberries],
+            ["Fish eaten", self.eaten_fish],
+            ["Total kisses", self.kiss_amount],
+            ["Eggs laid", self.laid_eggs]]
+        for c in columns:
+            left(c[0])
+            right(c[1])
+
     def release(self):
         self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
         self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
