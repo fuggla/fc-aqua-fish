@@ -289,3 +289,46 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
         # Beräkna negativ acceleration från vattnet
         self.break_x = self.size * self.change_x * math.fabs(self.change_x) / self.mass
         self.break_y = self.size * self.change_y * math.fabs(self.change_y) / self.mass
+
+    """ Stats """
+
+    def get_stat(self, stat):
+        v = "Value to return"
+        if (stat == "name" or stat == "gender"):
+            return self.name_gender
+        elif (stat == "attraction"):
+            if (self.attraction == "m"):
+                v = "Male"
+            elif (self.attraction == "f"):
+                v = "Female"
+            else:
+                v = "Open Minded"
+        elif (stat == "status"):
+            health = math.ceil(self.health / self.base_health * 100)
+            if (health > 100):
+                v = "Aroused"
+            elif (health > 85):
+                v = "Satisfied"
+            elif (health > 50):
+                v = "Hungry"
+            else:
+                v = "Starving"
+        elif (stat == "health"):
+            v = math.ceil(self.health / self.base_health * 100)
+        elif (stat == "age"):
+            v = math.ceil(self.frame_count / 60)
+        elif (stat == "fish"):
+            v = self.eaten_fish
+        elif (stat == "hunting"):
+            v = self.is_hunting
+        elif (stat == "kisses"):
+            v = self.kiss_amount
+        elif (stat == "eggs"):
+            v = self.laid_eggs
+        elif (stat == "color"):
+            v = self.fish_color
+        elif (stat == "carrots"):
+            v = self.eaten_carrots
+        elif (stat == "blueberries"):
+            v = self.eaten_blueberries
+        return stat, v
