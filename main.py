@@ -33,6 +33,7 @@ from functions.loads import *
 from vars import *
 from fish_vars import PFISH_NUMBER, BFISH_NUMBER, SHARK_NUMBER, pfish_size_kid, bfish_size_kid, shark_size_kid
 
+
 class MyGame(arcade.Window, State):
 
     def __init__(self, width, height):
@@ -343,6 +344,7 @@ class MyGame(arcade.Window, State):
         self.event.put(f"Bought {name} {fish.get_name()}")
 
     def buy_fishing_rod(self):
+        # Skapa en krok med ett popcorn på
         fish_hook = FishHookSprite(self.textures_fish_hook, self.fish_hook_list)
         if fish_hook.not_placed:
             self.event.put("No room for fishing rod")
@@ -584,8 +586,8 @@ class MyGame(arcade.Window, State):
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
 
-    """ Ladda alla texturer så de kan skickas till objekten """
     def load_textures(self):
+        """ Ladda alla texturer så de kan skickas till objekten """
         scale = load_scales()
 
         # Pfish

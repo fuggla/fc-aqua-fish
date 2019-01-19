@@ -12,6 +12,9 @@ with open('names.csv') as file:
         fish_names.append([row[1], row[0]])
 fish_names_length = len(fish_names)
 
+"""
+Överklass för fish. Alla gemensamma variabler och alla metoder finns här och i fish_aminate + fish_move
+"""
 
 class FishSprite(arcade.Sprite, FishAnimate, FishMove):
     def __init__(self, event=None):
@@ -137,7 +140,7 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
     def eat_fish(self, prey):
         if self.hunting_spirit > 0:
             self.health += 10000
-            self.iseating = 10
+            self.iseating = 10          # Denna variabel håller kvar hajen en stund då den bitit
 
             self.hunting_spirit = 0
             self.angle = math.degrees(math.atan2(prey.center_y - self.center_y, prey.center_x - self.center_x))
@@ -223,7 +226,7 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
         return self.name_gender[0]
 
     def health_calc(self):
-
+        # Fiskarna blir hungrigare då de har låg hälsa
         if self.health < self.base_health * 0.75:
             self.hungry = self.base_hungry * 2
 
@@ -282,6 +285,7 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
             right(column[1])
 
     def release(self):
+        # Metod som ger fiskarna hastighet då de släpps av muspekaren
         self.change_x = self.drag_speed[0]  # Ställ in spritens x-hastighet
         self.change_y = self.drag_speed[1]  # Ställ in spritens y-hastighet
 
