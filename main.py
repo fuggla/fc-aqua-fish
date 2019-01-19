@@ -184,7 +184,7 @@ class MyGame(arcade.Window, State):
         self.fps_counter.draw()
 
         # Rita ut muspekaren
-        if self.is_credits() == False:
+        if not self.is_credits() and self.pointer_list[0].is_visable:
             self.pointer_list.draw()
 
     def update(self, dt):

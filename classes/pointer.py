@@ -18,14 +18,22 @@ class Pointer(arcade.Sprite):
         self.xmod = self.width*0.3
         self.ymod = self.height*0.5
 
-    # Om musen håller i ett fönster så byt textur
+        self.is_visable = True
+
     def grab(self):
+        # Om musen håller i ett fönster så byt textur
         self.set_texture(1)  # Om musen håller i ett fönster så byt textur
 
-    # Byt tillbaka till vanliga texturen
     def point(self):
+        # Byt tillbaka till vanliga texturen
         self.set_texture(0)
 
-    # Flytta muspekaren
     def on_mouse_motion(self, x, y):
+        # Flytta muspekaren
         self.set_position(x - self.xmod, y - self.ymod)
+
+    def hide_pointer(self):
+        self.is_visable = False
+
+    def show_pointer(self):
+        self.is_visable = True
