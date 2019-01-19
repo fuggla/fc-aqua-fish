@@ -82,8 +82,9 @@ def load_windows(game):
     )
 
     stats = Window(110, game.height - 80, 200, 130, " Stats", title_height=20, title_align="left")
-    stats_left = stats.add_text(15, 12, 120, 80, rows=8)
-    stats_right = stats.add_text(15, 132, 60, 80, rows=8, align="right")
+    text_box = [15, 12, 180, 80]
+    stats_left = stats.add_text(*text_box, rows=8)
+    stats_right = stats.add_text(*text_box, rows=8, align="right")
 
     return [main, event, action, pause, stats], pause, eventhandler, stats, stats_left, stats_right
 
