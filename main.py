@@ -164,7 +164,7 @@ class MyGame(arcade.Window, State):
             self.all_sprite_list.draw()
             self.plant_foreground_list.draw()
 
-        # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
+            # "DIAGNOSE_FISH = True" skriver ut information om varje fisk
             if DIAGNOSE_FISH:
                 self.diagnose_all_fish()
 
@@ -198,6 +198,7 @@ class MyGame(arcade.Window, State):
             self.fish_hook_list.update()
             self.popcorn_list.update()
             self.plant_foreground_list.update()
+            self.pointer_list.update()
 
             """ Släpp ner morötter ibland """
             self.random_carrot_drop()

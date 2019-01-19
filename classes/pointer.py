@@ -19,6 +19,24 @@ class Pointer(arcade.Sprite):
         self.ymod = self.height*0.5
 
         self.is_visable = True
+        self.frames = 0
+        self.timer = 0
+
+    def update(self):
+        # Öka timer varje sekund
+        if self.frames % 60 == 0 and not self.check_move():
+            self.timer += 1
+        self.frames += 1
+
+        print(self.frames)
+        if self.timer >= 4:
+            self.is_visable = False
+
+        if self.check_move():
+            self.is_visable = True
+            self.timer = 0
+
+        super().update()
 
     def grab(self):
         # Om musen håller i ett fönster så byt textur
@@ -37,3 +55,9 @@ class Pointer(arcade.Sprite):
 
     def show_pointer(self):
         self.is_visable = True
+
+    def check_move(self):
+        if self.center_x == self.last_center_x and self.center_y == self.last_center_y:
+            return False
+        else:
+            return True
