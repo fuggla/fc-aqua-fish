@@ -28,7 +28,6 @@ class Pointer(arcade.Sprite):
             self.timer += 1
         self.frames += 1
 
-        print(self.frames)
         if self.timer >= 4:
             self.is_visable = False
 
