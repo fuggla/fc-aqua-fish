@@ -52,7 +52,7 @@ class MyGame(arcade.Window, State):
         for l in self.sprite_list_names + self.standard_list_names:
             setattr(self, f"{l}_list", None)
 
-        # Listor med texturer
+        # Listor med alla texturer
         self.textures_pfish_purple = []
         self.textures_pfish_purple_kid = []
         self.textures_pfish_orange = []
