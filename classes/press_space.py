@@ -12,7 +12,7 @@ class PressSpace:
         self.timer = 0
         self.enabled = False
 
-    def update(self):
+    def update_text(self):
         # Öka timer varje sekund
         if self.tick % 60 == 0 and self.show_text():
             self.timer += 1
@@ -29,7 +29,7 @@ class PressSpace:
         if self.enabled:
             self.draw()
 
-        super().update()
+
 
     def show_text(self):
         self.enabled = True

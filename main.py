@@ -26,6 +26,7 @@ from classes.timer import Performance_timer
 from classes.bubble_map import Bubble_map
 from classes.fade import Fade
 from classes.fps import Fps
+from classes.press_space import PressSpace
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_attraction_health import diagnose_name_gender_attraction_health
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
@@ -198,6 +199,7 @@ class MyGame(arcade.Window, State):
             self.fish_hook_list.update()
             self.popcorn_list.update()
             self.plant_foreground_list.update()
+
             self.pointer_list.update()
 
             """ Släpp ner morötter ibland """
