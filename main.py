@@ -282,7 +282,7 @@ class MyGame(arcade.Window, State):
                 if not isinstance(sprite, CarrotSprite):
                     sprite.print_stats(self.stats_left.put, self.stats_right.put)
                     y -= sprite.height * 0.4
-                    y -= w.height * 0.5
+                    y -= sprite.height * 0.5
                     self.stats.open(x, y)
                 return
 
