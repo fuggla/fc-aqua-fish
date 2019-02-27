@@ -73,6 +73,8 @@ class MyGame(arcade.Window, State):
         # Den sprite som flyttas med musen
         self.dragged_sprite = None
 
+        self.press_space = None
+
     def setup(self):
         self.timer = Performance_timer("Loading started")
 
@@ -133,6 +135,8 @@ class MyGame(arcade.Window, State):
         self.pointer_list.append(Pointer())
         self.pointer = self.pointer_list[0]
 
+        self.press_space = PressSpace()
+
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
         self.fade = Fade(a=255, time=2, pause=self.timer.done("Loading done"))
@@ -172,6 +176,8 @@ class MyGame(arcade.Window, State):
             if self.show_windows:
                 for w in self.window_list:
                     w.draw()
+
+            self.press_space.draw()
 
         elif self.is_main_menu():
             self.draw_main_menu()
@@ -229,6 +235,8 @@ class MyGame(arcade.Window, State):
             """ Uppdatera statistik höger """
             if self.stats_right.message_received():
                 self.stats_right.update()
+
+            self.press_space.update_text()
 
         elif self.is_main_menu():
             self.update_menu_bubbles(dt)
