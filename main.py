@@ -136,6 +136,7 @@ class MyGame(arcade.Window, State):
         self.pointer = self.pointer_list[0]
 
         self.press_space = PressSpace()
+        self.press_space.show_text()
 
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
