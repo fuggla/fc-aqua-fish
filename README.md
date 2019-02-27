@@ -20,6 +20,7 @@ A simulator by Furniture Corp.
   - [ ] Fiskar, mat och fiskespö kostar cash att köpa
   - [ ] Användaren får cash då en fisk dras upp
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
+- [ ] Snyggare knappar i menyerna
 
 
 ### v1.0
@@ -52,7 +53,7 @@ A simulator by Furniture Corp.
   - [x] När användaren håller i fisken?
   - [ ] Specifik statistik per fisk
 - [ ] Exit när credits är slut
-- [ ] Snyggare knappar i menyerna
+
 
 ## Tutorials / Dokumentation
 
