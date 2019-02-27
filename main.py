@@ -276,6 +276,7 @@ class MyGame(arcade.Window, State):
 
         # Här flyttas muspekaren då musen flyttas.
         self.pointer.on_mouse_motion(x, y)
+        self.press_space.show_text()
 
     def on_mouse_press(self, x, y, button, key_modifiers):
         for w in self.get_open_windows():
