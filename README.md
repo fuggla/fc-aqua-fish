@@ -11,7 +11,6 @@ A simulator by Furniture Corp.
 - [ ] Användarens credits sparas i en databas
 - [ ] Spara användardata och sälja det så där obehagligt som facebook gör
 - [ ] Menyer i form av valar som simmar in?
-- [ ] Skippbar splashscreen med logga
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
   - [ ] Mål: ungefär 10-25 bfish med 2 shark
   - [ ] Mål: ungefär 4 pfish med 10-15 bfish
@@ -25,7 +24,8 @@ A simulator by Furniture Corp.
 
 ### v1.0
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
-- [ ] En rad som säger "Press space"
+- [x] En rad som säger "Press space"
+- [ ] Skippbar splashscreen med logga
 
 ### v0.9
 - [ ] Ljudeffekter
