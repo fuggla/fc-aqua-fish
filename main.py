@@ -259,6 +259,7 @@ class MyGame(arcade.Window, State):
         elif (key == ESCAPE): # Visa pausmeny och pausa
             self.pause.toggle()
             self.toggle_pause()
+            self.show_windows = True
         elif (key == F1): # Info om fiskar
             global DIAGNOSE_FISH
             DIAGNOSE_FISH = not DIAGNOSE_FISH
@@ -645,6 +646,7 @@ class MyGame(arcade.Window, State):
         self.window_list[event].open()
         self.window_list[action].open()
         self.stats_left.put("Click on a fish!")
+        self.show_windows = False
         self.play()
 
     def update_credits(self, dt):
