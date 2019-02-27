@@ -26,13 +26,9 @@ class PressSpace:
             self.enabled = True
             self.timer = 0
 
-        if self.enabled:
-            self.draw()
-
-
-
     def show_text(self):
         self.enabled = True
 
     def draw(self):
-        draw_text("Press Space to show menues", self.x, self.y, (0, 0, 0), font_size=12, width=10, align="left", anchor_x="center", anchor_y="center")
+        if self.enabled:
+            draw_text("Press Space to show menues", self.x, self.y, (0, 0, 0), font_size=12, width=10, align="left", anchor_x="center", anchor_y="center")
