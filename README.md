@@ -11,10 +11,6 @@ A simulator by Furniture Corp.
 - [ ] Användarens credits sparas i en databas
 - [ ] Spara användardata och sälja det så där obehagligt som facebook gör
 - [ ] Menyer i form av valar som simmar in?
-
-
-### v1.0
-- [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [ ] Skippbar splashscreen med logga
 - [ ] Hitta balans mellan nyfödda fiskar och uppätna fiskar
   - [ ] Mål: ungefär 10-25 bfish med 2 shark
@@ -25,6 +21,10 @@ A simulator by Furniture Corp.
   - [ ] Fiskar, mat och fiskespö kostar cash att köpa
   - [ ] Användaren får cash då en fisk dras upp
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
+
+
+### v1.0
+- [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 
 
 ### v0.9
