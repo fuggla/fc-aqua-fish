@@ -14,16 +14,13 @@ class PressSpace:
 
     def update_text(self):
         # Öka timer varje sekund
-        if self.tick % 60 == 0 and self.show_text():
+        if self.tick % 60 == 0:
             self.timer += 1
         self.tick += 1
 
         # Sudda ut efter fyra sekunder
         if self.timer >= 4:
             self.enabled = False
-
-        if self.show_text():
-            self.enabled = True
             self.timer = 0
 
     def show_text(self):
