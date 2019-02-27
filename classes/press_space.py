@@ -28,4 +28,4 @@ class PressSpace:
 
     def draw(self):
         if self.enabled:
-            draw_text("Press Space to show menues", self.x, self.y, (0, 0, 0), font_size=12, width=1000, align="center", anchor_x="center", anchor_y="center")
+            draw_text("Press Space to toggle menues", self.x, self.y, (0, 0, 0), font_size=12, width=1000, align="center", anchor_x="center", anchor_y="center")
