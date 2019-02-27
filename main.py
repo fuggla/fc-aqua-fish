@@ -207,8 +207,6 @@ class MyGame(arcade.Window, State):
             self.popcorn_list.update()
             self.plant_foreground_list.update()
 
-            self.pointer_list.update()
-
             """ Släpp ner morötter ibland """
             self.random_carrot_drop()
 
@@ -248,6 +246,8 @@ class MyGame(arcade.Window, State):
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
         self.frame_count += 1
+
+        self.pointer_list.update()
 
     def on_key_release(self, key, key_modifiers):
         if (key == Q): # Avsluta
