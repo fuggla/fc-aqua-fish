@@ -1,5 +1,5 @@
 
-import random, math
+import random, math, arcade
 
 """ 
 Klass för alla rörelser fiskarna kan göra.
@@ -169,6 +169,8 @@ class FishMove:
             self.kiss_amount += 1
             partner.partner = None
             self.partner = None
+
+            arcade.play_sound("assets/sound_effects/kiss.wav")  # Spela pluppljud
 
     def random_move(self):
         # Ändra accelerationen slumpartat

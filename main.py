@@ -342,6 +342,7 @@ class MyGame(arcade.Window, State):
         carrot = CarrotSprite(self.textures_carrot, setspeed_y=-20)
         self.carrot_list.append(carrot)
         self.all_sprite_list.append(carrot)
+        play_sound(self.sound_list[4])  # Spela pluppljud
         self.event.put("Bought carrot")
 
     def buy_fish(self, name):
@@ -366,6 +367,8 @@ class MyGame(arcade.Window, State):
             fish = SharkSprite(self.textures_shark, self.textures_shark_kid, self.bfish_list, self.popcorn_list, self.shark_list, setpos_y = self.height, setspeed_y=-30, event=self.event)
             self.shark_list.append(fish)
 
+        play_sound(self.sound_list[4])  # Spela pluppljud
+
         # Done and done
         self.all_sprite_list.append(fish)
         self.event.put(f"Bought {name} {fish.get_name()}")
@@ -381,6 +384,7 @@ class MyGame(arcade.Window, State):
             popcorn = PopcornSprite(self.textures_popcorn, fish_hook)
             self.popcorn_list.append(popcorn)
 
+            play_sound(self.sound_list[4])  # Spela pluppljud
             self.event.put("Bought fishing rod")
 
     def buy_pfish(self):
@@ -469,6 +473,8 @@ class MyGame(arcade.Window, State):
                 egg = FishEggSprite(fish, "small")
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
+
+                play_sound(self.sound_list[2])  # Spela pluppljud
 
     def interactions_egg(self):
         """ Stega igenom äggen """
@@ -570,6 +576,9 @@ class MyGame(arcade.Window, State):
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
 
+                play_sound(self.sound_list[2])  # Spela pluppljud
+
+
     def interactions_plant_blueberry(self):
         """ Stega igenom blåbärsplantorna """
         for grow_space in self.berry_info_list:
@@ -613,6 +622,9 @@ class MyGame(arcade.Window, State):
                 egg = FishEggSprite(fish, "large")
                 self.fish_egg_list.append(egg)
                 self.event.put(fish.get_name() + " laid an egg")
+
+                play_sound(self.sound_list[2])  # Spela pluppljud
+
 
     def load_textures(self):
         """ Ladda alla texturer så de kan skickas till objekten """

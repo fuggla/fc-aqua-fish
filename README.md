@@ -30,13 +30,13 @@ A simulator by Furniture Corp.
 
 ### v0.9
 - [ ] Ljudeffekter
-  - [ ] Äggkläckning
+  - [x] Äggkläckning
   - [x] Fisk äts upp
-  - [ ] Puss
-  - [ ] Fiskar och morötter faller ner i akvariet
+  - [x] Puss
+  - [x] Fiskar och morötter faller ner i akvariet
   - [x] Plocka upp fisk
-  - [ ] Bakgrundsljud
-  - [x] Fixa lagg innan ljud
+  - [x] Bakgrundsljud
+  - [ ] Fixa lagg innan ljud
   - [ ] Ställ in volym
 - [x] Metspö som kan fiska upp fiskarna
   - [x] Skapa en krok med popcorn med slumpat djup
