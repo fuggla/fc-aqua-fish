@@ -37,7 +37,7 @@ A simulator by Furniture Corp.
   - [x] Plocka upp fisk
   - [x] Bakgrundsljud
   - [ ] Fixa lagg innan ljud
-  - [ ] Ställ in volym
+  - [x] Ställ in volym
 - [x] Metspö som kan fiska upp fiskarna
   - [x] Skapa en krok med popcorn med slumpat djup
   - [x] Skapa fiskelina

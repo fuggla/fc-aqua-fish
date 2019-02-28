@@ -604,7 +604,6 @@ class MyGame(arcade.Window, State):
             # Om fisken lever och det finns en blue small fish äter fisken den
             if hit_list and not fish.disturbed:
                 fish.eat_fish(hit_list[0])
-                play_sound(self.sound_list[1])  # Spela ätljud
 
             # Ätalgoritm för shark
             if fish.iseating > 0:

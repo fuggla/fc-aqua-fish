@@ -153,6 +153,7 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
             prey.kill()
             self.eaten_fish += 1
             self.event.put(self.get_name() + " ate " + prey.get_name())
+            arcade.play_sound("assets/sound_effects/eat.wav")  # Spela ätljud
 
     def eat_food(self, food, chew):
         # Sätt vatiabel så att fiskarna vet att de äter
