@@ -37,7 +37,15 @@ def load_music():
 
 # Load sound effect files
 def load_sound_effect():
-    files = []
+    files = [
+        "assets/sound_effects/ambient_bubble.mp3"
+        "assets/sound_effects/eat.wav"
+        "assets/sound_effects/egg.wav"
+        "assets/sound_effects/fall_into_water_heavy.wav"
+        "assets/sound_effects/fall_into_water_light.aiff"
+        "assets/sound_effects/kiss.wav"
+        "assets/sound_effects/pick_up_fish.wav"
+    ]
     sound = []
     for f in files:
         sound.append(load_sound(f))
