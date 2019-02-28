@@ -27,6 +27,7 @@ A simulator by Furniture Corp.
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
 - [x] En rad som säger "Press space"
 - [ ] Skippbar splashscreen med logga
+  - [ ] Något ljud så att första ljudlagget undviks
 
 ### v0.9
 - [x] Ljudeffekter
