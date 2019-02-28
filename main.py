@@ -240,6 +240,9 @@ class MyGame(arcade.Window, State):
             """ Uppdatera texten längst ned """
             self.press_space.update_text()
 
+            """ Bakgrundsljud """
+            self.ambient_sound()
+
         elif self.is_main_menu():
             self.update_menu_bubbles(dt)
 
@@ -326,6 +329,11 @@ class MyGame(arcade.Window, State):
     
     
     """
+
+    def ambient_sound(self):
+        # Spela bakgrundsljud slumpat
+        if random.randrange(1000) < 1:
+            play_sound(self.sound_list[0])
 
     def buy_bfish(self):
         self.buy_fish("bfish")
@@ -587,6 +595,7 @@ class MyGame(arcade.Window, State):
             # Om fisken lever och det finns en blue small fish äter fisken den
             if hit_list and not fish.disturbed:
                 fish.eat_fish(hit_list[0])
+                play_sound(self.sound_list[1])  # Spela ätljud
 
             # Ätalgoritm för shark
             if fish.iseating > 0:
