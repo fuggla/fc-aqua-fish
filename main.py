@@ -70,11 +70,10 @@ class MyGame(arcade.Window, State):
         self.bfish_info = []
         self.shark_info = []
 
-        # Den sprite som flyttas med musen
-        self.dragged_sprite = None
-
-        # Text i mitten längst ner för toggle menue
-        self.press_space = None
+        # Skapa övriga Objekt
+        self.music_list = None
+        self.sound_list = None
+        self.dragged_sprite = None  # Den sprite som flyttas med musen
 
     def setup(self):
         self.timer = Performance_timer("Loading started")
@@ -87,6 +86,7 @@ class MyGame(arcade.Window, State):
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
+        self.sound_list = load_sound_effect()
 
         """ Skapa alla fiskar """
         # Ladda in texturer
