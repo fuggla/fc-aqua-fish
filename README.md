@@ -34,7 +34,9 @@ A simulator by Furniture Corp.
   - [ ] Fisk äts upp
   - [ ] Puss
   - [ ] Fiskar och morötter faller ner i akvariet
+  - [x] Plocka upp fisk
   - [ ] Bakgrundsljud
+  - [ ] Fixa lagg innan ljud
 - [x] Metspö som kan fiska upp fiskarna
   - [x] Skapa en krok med popcorn med slumpat djup
   - [x] Skapa fiskelina

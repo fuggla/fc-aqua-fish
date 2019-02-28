@@ -299,6 +299,7 @@ class MyGame(arcade.Window, State):
                     y -= sprite.height * 0.4
                     y -= sprite.height * 0.5
                     self.stats.open(x, y)
+                    play_sound(self.sound_list[6])  # Spela pluppljud
                 return
 
     def on_mouse_release(self, x, y, button, key_modifiers):
