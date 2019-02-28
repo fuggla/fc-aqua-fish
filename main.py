@@ -332,7 +332,7 @@ class MyGame(arcade.Window, State):
 
     def ambient_sound(self):
         # Spela bakgrundsljud slumpat
-        if random.randrange(1000) < 1:
+        if randrange(1000) < 1:
             play_sound(self.sound_list[0])
 
     def buy_bfish(self):
@@ -539,7 +539,7 @@ class MyGame(arcade.Window, State):
                     prob = 200
 
                 # fisken fastnar ifall slumpfaktorn slår in
-                if random.randrange(1000) < prob and not hook.has_fish:
+                if randrange(1000) < prob and not hook.has_fish:
                     hook.has_fish = True                    # Kroken har en fisk
                     fish.hooked(hook)                       # Fisken är krokad på kroken
                     self.event.put(f"You caught a {fish.type} named {fish.get_name()}")
@@ -583,7 +583,7 @@ class MyGame(arcade.Window, State):
         """ Stega igenom blåbärsplantorna """
         for grow_space in self.berry_info_list:
             for k in range(2):
-                if random.randrange(1000) < plant_blueberry_grow_rate:
+                if randrange(1000) < plant_blueberry_grow_rate:
                     test_x = grow_space[k][0]
                     test_y = grow_space[k][1]
                     can_grow = True
