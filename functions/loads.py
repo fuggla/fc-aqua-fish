@@ -41,7 +41,7 @@ def load_sound_effect():
         "assets/sound_effects/ambient_bubble.wav",
         "assets/sound_effects/eat.wav",
         "assets/sound_effects/egg.wav",
-        "assets/sound_effects/fall_into_water_heavy.wav",
+        "assets/sound_effects/fall_into_water_light.wav",
         "assets/sound_effects/fall_into_water_light.wav",
         "assets/sound_effects/kiss.wav",
         "assets/sound_effects/pick_up_fish.wav",

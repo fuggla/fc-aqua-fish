@@ -29,14 +29,13 @@ A simulator by Furniture Corp.
 - [ ] Skippbar splashscreen med logga
 
 ### v0.9
-- [ ] Ljudeffekter
+- [x] Ljudeffekter
   - [x] Äggkläckning
   - [x] Fisk äts upp
   - [x] Puss
   - [x] Fiskar och morötter faller ner i akvariet
   - [x] Plocka upp fisk
   - [x] Bakgrundsljud
-  - [ ] Fixa lagg innan ljud
   - [x] Ställ in volym
 - [x] Metspö som kan fiska upp fiskarna
   - [x] Skapa en krok med popcorn med slumpat djup

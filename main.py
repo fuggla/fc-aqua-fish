@@ -384,7 +384,7 @@ class MyGame(arcade.Window, State):
             popcorn = PopcornSprite(self.textures_popcorn, fish_hook)
             self.popcorn_list.append(popcorn)
 
-            play_sound(self.sound_list[4])  # Spela pluppljud
+            play_sound(self.sound_list[3])  # Spela pluppljud
             self.event.put("Bought fishing rod")
 
     def buy_pfish(self):
@@ -664,6 +664,7 @@ class MyGame(arcade.Window, State):
             carrot = CarrotSprite(self.textures_carrot, setspeed_y=-20)
             self.carrot_list.append(carrot)
             self.all_sprite_list.append(carrot)
+            play_sound(self.sound_list[4])  # Spela pluppljud
 
     def start(self):
         main, event, action, stats = 0, 1, 2, 4
