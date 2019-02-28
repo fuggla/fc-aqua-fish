@@ -23,6 +23,7 @@ def load_credits(width=SCREEN_WIDTH, x=0, y=-230, text="AQUA FISH\n\n", color=WH
     text = create_text(text, color, font_size, width, "center")
     return text, x, y
 
+
 # Load music files
 def load_music():
     files = [ 
@@ -33,12 +34,23 @@ def load_music():
         music.append(load_sound(f))
     return music
 
+
+# Load sound effect files
+def load_sound_effect():
+    files = []
+    sound = []
+    for f in files:
+        sound.append(load_sound(f))
+    return sound
+
+
 # Ladda in bubblor
 def load_bubbles(color=(255,255,255,randrange(128,255))):
     list = []
     for i in range(BUBBLE_MAPS):
         list.append(Bubble_map(color=color))
     return list
+
 
 # Ladda in alla fönster
 def load_windows(game):
@@ -86,6 +98,7 @@ def load_windows(game):
 
     return [main, event, action, pause, stats], pause, eventhandler, stats, stats_left, stats_right
 
+
 # Ladda in en fisktexturer
 def load_texture_list(type, name, scale):
     t = []
@@ -111,6 +124,7 @@ def load_texture_list(type, name, scale):
             t.append(load_texture(f"{img}{i}.png", scale=scale))
 
     return t
+
 
 # Räkna ut skalor för alla gemensamma texturer
 def load_scales():

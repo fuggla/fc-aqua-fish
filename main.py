@@ -70,10 +70,10 @@ class MyGame(arcade.Window, State):
         self.bfish_info = []
         self.shark_info = []
 
-        # Den sprite som flyttas med musen
-        self.dragged_sprite = None
-
-        self.press_space = None
+        # Skapa övriga Objekt
+        self.music_list = None
+        self.sound_list = None
+        self.dragged_sprite = None  # Den sprite som flyttas med musen
 
     def setup(self):
         self.timer = Performance_timer("Loading started")
@@ -86,6 +86,7 @@ class MyGame(arcade.Window, State):
         self.bubble_list = load_bubbles()
         self.bubble_main_list = load_bubbles((0,0,0,randrange(64,192)))
         self.music_list = load_music()
+        self.sound_list = load_sound_effect()
 
         """ Skapa alla fiskar """
         # Ladda in texturer
@@ -135,6 +136,7 @@ class MyGame(arcade.Window, State):
         self.pointer_list.append(Pointer())
         self.pointer = self.pointer_list[0]
 
+        # Skapa textobjekt längst ner för toggle menues
         self.press_space = PressSpace()
         self.press_space.show_text()
 
@@ -235,6 +237,7 @@ class MyGame(arcade.Window, State):
             if self.stats_right.message_received():
                 self.stats_right.update()
 
+            """ Uppdatera texten längst ned """
             self.press_space.update_text()
 
         elif self.is_main_menu():
@@ -250,22 +253,23 @@ class MyGame(arcade.Window, State):
         self.pointer_list.update()
 
     def on_key_release(self, key, key_modifiers):
-        if (key == Q): # Avsluta
+        if (key == Q):  # Avsluta
             exit()
-        elif (key == R): # Starta om
+        elif (key == R):  # Starta om
             self.setup()
         elif self.is_main_menu():
             return
-        elif (key == ESCAPE): # Visa pausmeny och pausa
+        elif (key == ESCAPE):  # Visa pausmeny och pausa
             self.pause.toggle()
             self.toggle_pause()
-            self.show_windows = True
-        elif (key == F1): # Info om fiskar
+            if not self.is_playing():  # Visa menyer ifall de är av
+                self.show_windows = True
+        elif (key == F1):  # Info om fiskar
             global DIAGNOSE_FISH
             DIAGNOSE_FISH = not DIAGNOSE_FISH
-        elif (key == F2): # Visa FPS
+        elif (key == F2):  # Visa FPS
             self.fps_counter.toggle()
-        elif (key == SPACE): # Visa fönster
+        elif (key == SPACE):  # Visa fönster
             self.show_windows = not self.show_windows
 
     def on_mouse_motion(self, x, y, dx, dy):
