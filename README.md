@@ -55,6 +55,7 @@ A simulator by Furniture Corp.
   - [x] När användaren håller i fisken?
   - [ ] Specifik statistik per fisk
 - [ ] Exit när credits är slut
+  - [ ] Arcade kan typ inte göra nått med ljud... Se till att man inte kan avsluta credits? (förutom "Q")
 
 
 ## Tutorials / Dokumentation
