@@ -25,7 +25,6 @@ A simulator by Furniture Corp.
 
 ### v1.0
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
-- [x] En rad som säger "Press space"
 - [ ] Skippbar splashscreen med logga
   - [ ] Något ljud så att första ljudlagget undviks
 
@@ -52,6 +51,7 @@ A simulator by Furniture Corp.
   - [x] Ladda in texturer en gång istället för varje gång en fisk skapas
   - [x] Lägre updateringsfrekvens för fiskinfo (F1)
   - [x] Lägre updateringsfrekvens för informationsdispay
+- [x] En rad som säger "Press space"
 - [x] Funktion för att visa statistik
   - [x] När användaren håller i fisken?
   - [x] Specifik statistik per fisk
