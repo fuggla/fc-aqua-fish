@@ -27,7 +27,7 @@ def load_credits(width=SCREEN_WIDTH, x=0, y=-230, text="AQUA FISH\n\n", color=WH
 # Load music files
 def load_music():
     files = [ 
-        "assets/music/08-min-mard-ska-klippa-sig-och-skaffa-ett-jobb.wav"
+        "assets/music/music_credits.wav"
     ]
     music = []
     for f in files:
