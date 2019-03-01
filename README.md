@@ -56,8 +56,9 @@ A simulator by Furniture Corp.
   - [x] När användaren håller i fisken?
   - [x] Specifik statistik per fisk
 - [x] Exit när credits är slut
-  - [x] Användaren kan inte stänga av credits!
+  - [x] Användaren kan inte stänga av credits! (nästan)
   - [x] Endast "Q" fungerar för att stoppa
+  - [x] En text "Press Q to Exit" kommer efter 90 sekunder
 
 ## Tutorials / Dokumentation
 

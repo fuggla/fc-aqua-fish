@@ -27,6 +27,7 @@ from classes.bubble_map import Bubble_map
 from classes.fade import Fade
 from classes.fps import Fps
 from classes.press_space import PressSpace
+from classes.press_q import PressQ
 from classes.pointer import Pointer
 from functions.diagnose_name_gender_attraction_health import diagnose_name_gender_attraction_health
 from functions.diagnose_name_gender_health_hungry import diagnose_name_gender_health_hungry
@@ -139,6 +140,7 @@ class MyGame(arcade.Window, State):
         # Skapa textobjekt längst ner för toggle menues
         self.press_space = PressSpace()
         self.press_space.show_text()
+        self.press_q = PressQ()
 
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
@@ -187,6 +189,7 @@ class MyGame(arcade.Window, State):
 
         elif self.is_credits():
             self.draw_credits()
+            self.press_q.draw()
 
         self.fade.draw()
 
@@ -248,6 +251,7 @@ class MyGame(arcade.Window, State):
 
         elif self.is_credits():
             self.update_credits(dt)
+            self.press_q.update_text()
 
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
