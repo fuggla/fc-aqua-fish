@@ -16,6 +16,7 @@ fish_names_length = len(fish_names)
 Överklass för fish. Alla gemensamma variabler och alla metoder finns här och i fish_aminate + fish_move
 """
 
+
 class FishSprite(arcade.Sprite, FishAnimate, FishMove):
     def __init__(self, event=None):
         # Anropa Sprite konstruktor
@@ -272,15 +273,40 @@ class FishSprite(arcade.Sprite, FishAnimate, FishMove):
         else:
             status = "Starving"
 
-        rows = [
-            self.name_gender,
-            ["Status", status],
-            ["Age", math.ceil(self.frame_count / 60)],
-            ["Health", str(health) + "%"],
-            ["Fish eaten", self.eaten_carrots + self.eaten_blueberries],
-            ["Fish eaten", self.eaten_fish],
-            ["Total kisses", self.kiss_amount],
-            ["Eggs laid", self.laid_eggs]]
+        if self.name_gender[1] == "f":
+            gender = "female"
+        elif self.name_gender[1] == "m":
+            gender = "male"
+        else:
+            gender = "gender fluid"
+
+        if self.attraction == "f":
+            attraction = "female"
+        elif self.attraction == "m":
+            attraction = "male"
+        else:
+            attraction = "open_minded"
+
+        if self.type == "shark":
+            rows = [
+                [self.name_gender[0], gender],
+                ["Attraction", attraction],
+                ["Status", status],
+                ["Age", math.ceil(self.frame_count / 60)],
+                ["Health", str(health) + "%"],
+                ["Fish eaten", self.eaten_fish],
+                ["Total kisses", self.kiss_amount],
+                ["Eggs laid", self.laid_eggs]]
+        else:
+            rows = [
+                [self.name_gender[0], gender],
+                ["Attraction", attraction],
+                ["Status", status],
+                ["Age", math.ceil(self.frame_count / 60)],
+                ["Health", str(health) + "%"],
+                ["Food eaten", self.eaten_carrots + self.eaten_blueberries],
+                ["Total kisses", self.kiss_amount],
+                ["Eggs laid", self.laid_eggs]]
         for column in rows:
             left(column[0])
             right(column[1])
