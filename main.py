@@ -267,10 +267,10 @@ class MyGame(arcade.Window, State):
         elif self.is_main_menu():
             return
         elif (key == ESCAPE):  # Visa pausmeny och pausa
-            if not self.credits():
+            if not self.is_credits():
                 self.pause.toggle()
                 self.toggle_pause()
-            if not self.is_playing() and not self.credits():  # Visa menyer ifall de är av
+            if self.is_paused() and not self.is_credits():  # Visa menyer ifall de är av
                 self.show_windows = True
         elif (key == F1):  # Info om fiskar
             global DIAGNOSE_FISH
