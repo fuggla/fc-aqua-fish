@@ -146,8 +146,7 @@ class MyGame(arcade.Window, State):
 
         # Setup klar. Använd timer för att vänta med toning
         # Tona in grafik över ~2 sekunder
-        self.fade = Fade(a=255, time=2, pause=self.timer.done("Loading done"))
-        self.fade.start_in()
+        self.timer.done("Loading done")
 
         if SKIP_MAIN_MENU:
             self.start()
@@ -263,8 +262,10 @@ class MyGame(arcade.Window, State):
             if self.frame_count == 0:
                 self.time = 0
                 dt = 0
-            # Lämna splashscreen till huvudmeny efter 2 sek
-            if self.time > 2:
+                self.fade = Fade(a=255, time=2, pause=0.5)
+                self.fade.start_in()
+            # Lämna splashscreen till huvudmeny efter 4 sek
+            if self.time > 4:
                 self.state_main_menu()
 
         self.fade.update(dt)
