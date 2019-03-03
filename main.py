@@ -125,8 +125,9 @@ class MyGame(arcade.Window, State):
             plant_foreground = PlantForeground(self.plant_foreground_list)
             self.plant_foreground_list.append(plant_foreground)
 
-        # Ladda backgrund
+        # Ladda bakgrund och splash
         self.background = load_texture(BACKGROUND_IMAGE)
+        self.splash = load_texture(SPLASH_IMAGE)
 
         # Räkna Frames Per Second
         self.fps_counter = Fps()
@@ -190,6 +191,9 @@ class MyGame(arcade.Window, State):
         elif self.is_credits():
             self.draw_credits()
             self.press_q.draw()
+
+        elif self.is_splash():
+            draw_texture_rectangle(*self.center_cords, *self.width_height, self.splash)
 
         self.fade.draw()
 

@@ -15,6 +15,9 @@ class State():
     def credits(self):
         self.state = "credits"
 
+    def state_splash(self):
+        self.state = "splash"
+
     def is_paused(self):
         return True if self.state == "paused" else False
 
@@ -26,6 +29,9 @@ class State():
 
     def is_credits(self):
         return True if self.state == "credits" else False
+
+    def is_splash(self):
+        return True if self.state == "splash" else False
 
     # Ändra läge mellan paused och playing
     def toggle_pause(self):
