@@ -24,7 +24,7 @@ A simulator by Furniture Corp.
   - [ ] Fiskar, mat och fiskespö kostar cash att köpa
   - [ ] Användaren får cash då en fisk dras upp
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
-- Spashscreen komemr upp under Loading
+- [ ] Spashscreen komemr upp under Loading
 
 ### v1.0
 - [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
