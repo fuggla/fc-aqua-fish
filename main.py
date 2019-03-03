@@ -153,7 +153,7 @@ class MyGame(arcade.Window, State):
             self.start()
         else:
             self.credits_text, self.credits_x, self.credits_y = load_credits()
-            self.state_main_menu()
+            self.state_splash()
 
     def on_draw(self):
         # This command should happen before we start drawing. It will clear
@@ -263,6 +263,9 @@ class MyGame(arcade.Window, State):
             if self.frame_count == 0:
                 self.time = 0
                 dt = 0
+            # Lämna splashscreen till huvudmeny efter 2 sek
+            if self.time > 2:
+                self.state_main_menu()
 
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
