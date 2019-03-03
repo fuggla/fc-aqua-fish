@@ -41,6 +41,7 @@ class MyGame(arcade.Window, State):
     def __init__(self, width, height):
         super().__init__(width, height, fullscreen=FULLSCREEN)
 
+        self.time = 0
         self.frame_count = 0
         self.show_windows = True
         self.background = None
@@ -257,9 +258,16 @@ class MyGame(arcade.Window, State):
             self.update_credits(dt)
             self.press_q.update_text()
 
+        elif self.is_splash():
+            # Återställ tid och deltatid till noll efter att vi laddat in alla bilder osv
+            if self.frame_count == 0:
+                self.time = 0
+                dt = 0
+
         self.fade.update(dt)
         self.fps_counter.calculate(dt)
         self.frame_count += 1
+        self.time += dt
 
         self.pointer_list.update()
 
