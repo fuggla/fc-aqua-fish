@@ -264,6 +264,7 @@ class MyGame(arcade.Window, State):
                 dt = 0
                 self.fade = Fade(a=255, time=2, pause=0.5)
                 self.fade.start_in()
+                play_sound(self.sound_list[0])
             # Lämna splashscreen till huvudmeny efter 4 sek
             if self.time > 4:
                 self.state_main_menu()
