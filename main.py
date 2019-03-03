@@ -282,7 +282,10 @@ class MyGame(arcade.Window, State):
             self.setup()
         elif self.is_main_menu():
             return
-        elif (key == ESCAPE):  # Visa pausmeny och pausa
+        elif (key == ESCAPE):
+            if self.is_splash():
+                self.state_main_menu()
+                return
             if not self.is_credits():
                 self.pause.toggle()
                 self.toggle_pause()
