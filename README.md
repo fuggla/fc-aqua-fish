@@ -1,8 +1,8 @@
-# Aqua Fish
+![](https://raw.githubusercontent.com/owlnical/fc-aqua-fish/master/assets/images/banner.svg?sanitize=true)
 
-Experience what it's like to watch fish eat carrots! The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
+Experience the nextgen oceanic wildlife simulator, a game by Furniture Corp.!
 
-A simulator by Furniture Corp.
+The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
 
 ## Roadmap
 
