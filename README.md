@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/owlnical/fc-aqua-fish/master/assets/images/banner.svg?sanitize=true)
 
-Experience the nextgen oceanic wildlife simulator, a game by Furniture Corp.!
+*Experience the nextgen oceanic wildlife simulator **Aqua Fish**, a game by Furniture Corp!*
 
 The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
 
