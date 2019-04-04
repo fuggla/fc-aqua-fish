@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="160mm"
-   height="30mm"
-   viewBox="0 0 160 30"
+   width="882"
+   height="180"
+   viewBox="0 0 233.36249 47.624996"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
@@ -39,7 +39,8 @@
        y1="-1.0572392"
        x2="82.657547"
        y2="28.705948"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4584825,0,0,1.5876845,-0.10954837,-17.505612)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -48,11 +49,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6356895"
-     inkscape:cx="295.70351"
-     inkscape:cy="-63.220265"
+     inkscape:zoom="1.1566071"
+     inkscape:cx="419.80441"
+     inkscape:cy="11.708069"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer5"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -60,7 +61,8 @@
      inkscape:window-height="1080"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     units="px" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -76,22 +78,24 @@
   <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="bg">
+     inkscape:label="bg"
+     transform="translate(0,17.624998)">
     <rect
-       style="display:inline;opacity:1;fill:url(#linearGradient980);fill-opacity:1;stroke:#0e9cab;stroke-width:0.08383118;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:url(#linearGradient980);fill-opacity:1;stroke:#0e9cab;stroke-width:0.12756698;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect946"
-       width="159.91617"
-       height="29.916168"
-       x="0.11884397"
-       y="-0.035020664" />
+       width="233.23494"
+       height="47.497433"
+       x="0.063783489"
+       y="-17.561213" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="text">
+     inkscape:label="text"
+     transform="translate(0,17.624998)">
     <g
        id="g1045"
-       transform="translate(2.7372124,-0.48526936)">
+       transform="matrix(1.4640388,0,0,1.4640388,3.9716875,-14.595916)">
       <path
          transform="scale(0.26458333)"
          id="flowRoot927"
