@@ -109,3 +109,9 @@ debug1.py
 
 # vim
 *.swp
+
+# build
+build/
+*.exe
+*.dll
+dist/
