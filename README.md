@@ -28,6 +28,7 @@ The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/
 
 ### v1.0
 - [x] Någon form av exekverbar fil eller bibliotek för allmänheten
+  - [ ] Testa exe-fil
 - [x] Skippbar splashscreen med logga
   - [x] Något ljud så att första ljudlagget undviks
 - [ ] Fix: Krash om en kastar ut en fisk för långt
