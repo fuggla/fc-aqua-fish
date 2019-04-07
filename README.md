@@ -27,7 +27,7 @@ The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/
 - [ ] Spashscreen komemr upp under Loading
 
 ### v1.0
-- [ ] Någon form av exekverbar fil eller bibliotek för allmänheten ([såhär](http://arcade.academy/examples/pyinstaller.html) till win på något sätt?)
+- [x] Någon form av exekverbar fil eller bibliotek för allmänheten
 - [x] Skippbar splashscreen med logga
   - [x] Något ljud så att första ljudlagget undviks
 
