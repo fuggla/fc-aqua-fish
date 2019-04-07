@@ -1,3 +1,42 @@
+
+### v1.0
+- [x] Någon form av exekverbar fil eller bibliotek för allmänheten
+  - [x] Testa exe-fil
+- [x] Skippbar splashscreen med logga
+  - [x] Något ljud så att första ljudlagget undviks
+
+### v0.9
+- [x] Ljudeffekter
+  - [x] Äggkläckning
+  - [x] Fisk äts upp
+  - [x] Puss
+  - [x] Fiskar och morötter faller ner i akvariet
+  - [x] Plocka upp fisk
+  - [x] Bakgrundsljud
+  - [x] Ställ in volym
+- [x] Metspö som kan fiska upp fiskarna
+  - [x] Skapa en krok med popcorn med slumpat djup
+  - [x] Skapa fiskelina
+  - [x] Köp det i "store"
+  - [x] När vi dör blir våra kroppar till popcorn
+  - [x] Fiskarna äter popcornet
+  - [x] Hajarna jagar popcornet
+  - [x] Kroken dras upp ifall fiskarna inte fastnar
+  - [x] Fiskarna kan fastna och dras då upp
+  - [x] Event för fisket
+- [x] Förbättra prestanda
+  - [x] Ladda in texturer en gång istället för varje gång en fisk skapas
+  - [x] Lägre updateringsfrekvens för fiskinfo (F1)
+  - [x] Lägre updateringsfrekvens för informationsdispay
+- [x] En rad som säger "Press space"
+- [x] Funktion för att visa statistik
+  - [x] När användaren håller i fisken?
+  - [x] Specifik statistik per fisk
+- [x] Exit när credits är slut
+  - [x] Användaren kan inte stänga av credits! (nästan)
+  - [x] Endast "Q" fungerar för att stoppa
+  - [x] En text "Press Q to Exit" kommer efter 90 sekunder
+
 ### v0.8
 - [x] Barnfiskar kläcks ur äggen. Växer upp efter ett tag
 - [x] System för kärlek mellan fiskarna
