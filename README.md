@@ -26,23 +26,6 @@ The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
 - [ ] Spashscreen komemr upp under Loading
 
-## Tutorials / Dokumentation
-
-Länkar till material om Python, Arcade Library mm.
-
-### Video
-
-- [Easy 2D Game Creation With Arcade](https://www.youtube.com/watch?v=8InKwiysVIk)
-
-### Text
-
-- [How to create a 2D game with Python and the Arcade library](https://opensource.com/article/18/4/easy-2d-game-creation-python-and-arcade)
-- [Learn Python With Arcade Academy](https://arcade-book.readthedocs.io/en/latest/)
-- [API quick index](http://arcade.academy/quick_index.html)
-- [Arcade API](http://arcade.academy/arcade.html)
-- [Pycharm: Getting Started](https://confluence.jetbrains.com/display/PYH/Getting+Started+with+PyCharm)
-- [Pycharm: Tutorials](https://confluence.jetbrains.com/display/PYH/PyCharm+Tutorials)
-
 ## Names
 
 Generated using [mockaroo](https://mockaroo.com/) and stolen from [anishsingh20 and GRRM](https://github.com/anishsingh20/Network-Analysis-of-Game-of-Thrones).
