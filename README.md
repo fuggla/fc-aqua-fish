@@ -4,6 +4,12 @@
 
 The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/releases).
 
+## Dependencies
+
+- Arcade Library 1.3.7 (`pip3 install arcade==1.3.7`)
+- tkinter (usually available under dist repos)
+- The full windows release includes all necesseray dependencies
+
 ## Roadmap
 
 ### v.1.x
