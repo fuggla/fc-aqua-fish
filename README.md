@@ -30,4 +30,3 @@ The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/
   - [ ] Fiskar, mat och fiskespö kostar cash att köpa
   - [ ] Användaren får cash då en fisk dras upp
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
-- [ ] Spashscreen komemr upp under Loading
