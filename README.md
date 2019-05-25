@@ -31,7 +31,3 @@ The latest release can be found [here](https://github.com/owlnical/fc-aqua-fish/
   - [ ] Användaren får cash då en fisk dras upp
   - [ ] Användaren kan även få cash om den lovar att swisha oss båda 20 kr var
 - [ ] Spashscreen komemr upp under Loading
-
-## Names
-
-Generated using [mockaroo](https://mockaroo.com/) and stolen from [anishsingh20 and GRRM](https://github.com/anishsingh20/Network-Analysis-of-Game-of-Thrones).
