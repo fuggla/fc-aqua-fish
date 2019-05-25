@@ -692,6 +692,8 @@ class MyGame(arcade.Window, State):
             play_sound(self.sound_list[4])  # Spela pluppljud
 
     def start(self):
+        self.fade = Fade(a=255, time=2, pause=0.5)
+        self.fade.start_in()
         main, event, action, stats = 0, 1, 2, 4
         self.window_list[main].close()
         self.window_list[event].open()
