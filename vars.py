@@ -9,7 +9,7 @@ SCREEN_HEIGHT = screen.winfo_screenheight()
 FULLSCREEN = True
 DIAGNOSE_FISH = False
 SKIP_MAIN_MENU = False
-SPLASH_IMAGE = "assets/images/splash.png"
+SPLASH_IMAGE = "assets/images/splash/splash.png"
 
 """ Bakgrundsbild """
 BACKGROUND_IMAGE = "assets/images/background.jpg"
