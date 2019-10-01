@@ -1,4 +1,10 @@
 
+### 1.1
+
+- Added font credits
+- Added splash screen source files
+- Moved csv files to assets
+
 ### v1.0
 - [x] Någon form av exekverbar fil eller bibliotek för allmänheten
   - [x] Testa exe-fil
