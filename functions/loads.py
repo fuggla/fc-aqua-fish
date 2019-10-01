@@ -16,7 +16,7 @@ from csv import reader
 
 # Läs in och skapa credits text från credits.csv
 def load_credits(width=SCREEN_WIDTH, x=0, y=-230, text="AQUA FISH\n\n", color=WHITE, font_size=22):
-    with open('credits.csv') as file:
+    with open('assets/credits.csv') as file:
         content = reader(file, delimiter=';')
         for row in content:
             text += f"{row[0]}\n{row[1]}\n\n"

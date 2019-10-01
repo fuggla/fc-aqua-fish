@@ -6,7 +6,7 @@ from classes.fish_move import FishMove
 
 # Läs fisknamn från names.csv
 fish_names = []
-with open('names.csv') as file:
+with open('assets/names.csv') as file:
     reader = csv.reader(file, delimiter=',')
     for row in reader:
         fish_names.append([row[1], row[0]])
