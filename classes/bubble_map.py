@@ -1,7 +1,7 @@
 # Class Bubble_map
 # Ritar en bild med X antal bubblor
 # Bilden flytta uppåt på skärmen i en loop
-# Flyttas ner när den är utanför skärmen
+# Flyttas ner när den är utanför/ovanför skärmen
 
 from random import randrange
 from arcade import ShapeElementList, create_ellipse_outline, create_rectangle_outline
@@ -13,7 +13,7 @@ class Bubble_map():
 
         # Höjd / Grundhastighet / nuvarande hastighet
         self.h = h
-        self.speed = speed
+        self.current_speed = speed
         self.base_speed = speed
 
         # Rita alla bubblor i lista
@@ -27,19 +27,21 @@ class Bubble_map():
 
         # Slumpa fram en synlig startposition och hastighet
         self.bubble_list.center_y = randrange(-h, h)
-        self.new_speed()
+        self.set_random_speed()
         
     # Flytta ner under skärmen
     def move_down(self):
         self.bubble_list.center_y = -self.h
 
     # Slumpa ny hastiget
-    def new_speed(self):
-        self.speed = randrange(self.base_speed * 0.5, self.base_speed * 1.5)
+    # Den nya hastigheten baseras på self.base_speed
+    def set_random_speed(self):
+        self.current_speed = randrange(self.base_speed * 0.5, self.base_speed * 1.5)
         
-    # Flyt uppåt och flytta ner vid behov
+    # Flyt uppåt
+    # Flytta ner nedanför fönstret vid behov
     def update(self, dt):
-        self.bubble_list.center_y += self.speed * dt
+        self.bubble_list.center_y += self.current_speed * dt
         if (self.bubble_list.center_y > self.h - 50):
             self.move_down()
-            self.new_speed()
+            self.set_random_speed()
