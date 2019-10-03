@@ -18,7 +18,6 @@ class Bubble_map():
 
         # Rita alla bubblor i lista
         self.bubble_list = ShapeElementList()
-        #self.bubble_list.append(create_rectangle_outline((w/2), (h/2), w, h, (randrange(255),randrange(255),randrange(255)), border_width * 2))
         for b in range(0, amount):
             radius = randrange(1, size)
             self.bubble_list.append(create_ellipse_outline(randrange(w), randrange(h), radius, radius, color, border_width))
@@ -30,10 +29,11 @@ class Bubble_map():
         self.bubble_list.center_y = randrange(-h, h)
         self.new_speed()
         
-    # Flytta ner under skärmen och ändra till ny hastighet
+    # Flytta ner under skärmen
     def move_down(self):
         self.bubble_list.center_y = -self.h
 
+    # Slumpa ny hastiget
     def new_speed(self):
         self.speed = randrange(self.base_speed * 0.5, self.base_speed * 1.5)
         
