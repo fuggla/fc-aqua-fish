@@ -8,12 +8,13 @@ timer = Performance_timer("My timer name")
 
 # Print elapsed time since start
 timer.print()
-# or
+timer.print("Timer progress update message")
 print(timer)
 
 # Print elapsed time and a message that notes
 # the time measurement as completed/stopped
 timer.stop()
+timer.stop("the timer is now done")
 """
 import time
 
@@ -22,14 +23,12 @@ class Performance_timer():
         self.started = time.perf_counter()
         self.name = f"[{name}]:"
         print(self.name, "started")
-        print(self)
 
-    def print(self):
-        print(self)
+    def print(self, msg="in progress"):
+        print(self, f"({msg})")
 
-    def stop(self):
-        print(self)
-        print(self.name, "completed/stopped")
+    def stop(self, msg="stopped"):
+        self.print(msg)
 
     # Return elapsed time as string with prefix
     def __str__(self):
