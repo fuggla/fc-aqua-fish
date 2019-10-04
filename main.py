@@ -78,7 +78,7 @@ class MyGame(arcade.Window, State):
         self.dragged_sprite = None  # Den sprite som flyttas med musen
 
     def setup(self):
-        self.timer = Performance_timer("Loading started")
+        loading_timer = Performance_timer("Loading")
 
         # Skapa listor
         for l in self.sprite_list_names:
@@ -144,9 +144,8 @@ class MyGame(arcade.Window, State):
         self.press_space.show_text()
         self.press_q = PressQ()
 
-        # Setup klar. Använd timer för att vänta med toning
-        # Tona in grafik över ~2 sekunder
-        self.timer.done("Loading done")
+        # Setup klar. Stoppa och skriv ut loading timer
+        loading_timer.stop()
 
         if SKIP_MAIN_MENU:
             self.start()
