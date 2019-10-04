@@ -4,6 +4,8 @@
 - Added font credits
 - Added splash screen source files
 - Moved csv files to assets
+- Removed AHK/Installer builder
+- Refactoring/Cleanup
 
 ### v1.0
 - [x] Någon form av exekverbar fil eller bibliotek för allmänheten
