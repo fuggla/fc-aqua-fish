@@ -1,3 +1,7 @@
+## Aqua Fish has been moved to [gitlab](https://gitlab.com/f-corp/aqua-fish)**
+
+------------------
+
 ![](https://raw.githubusercontent.com/owlnical/fc-aqua-fish/master/assets/images/banner.svg?sanitize=true)
 
 *Experience the nextgen oceanic wildlife simulator **Aqua Fish**, a game by Furniture Corp!*
