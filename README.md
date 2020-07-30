@@ -1,4 +1,4 @@
-## Aqua Fish has been moved to [gitlab](https://gitlab.com/f-corp/aqua-fish)**
+## Aqua Fish has been moved to **[gitlab](https://gitlab.com/f-corp/aqua-fish)**
 
 ------------------
 
